@@ -1,0 +1,1247 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="convert.xsl"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>0.0.1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>TA QoS Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>incomplete</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="ExampleNetworkID"/>
+      </NetworkReferences>
+      <MissionQoS>
+        <MissionSLP ID="TA_MissionSLP_3">
+          <!-- This MSLP is defined for 
+               Range ID    0x01
+               MSLP Tag    0x1236 
+               Instance ID 0x00 
+          -->
+          <Name>TA_MissionSLP_3</Name>
+          <Description>Uplink Mission Service Level Profile for Minimal Queue Example</Description>
+          <MSLPID>0x01123600</MSLPID>
+          <RadioLinkRef IDREF="TA_MissionSLP_3_Link"/>
+          <Priority>4</Priority>
+          <MinimumCapacity>
+            <FlexValue>100000</FlexValue>
+            <SIUnits>BitPerSecond</SIUnits>
+          </MinimumCapacity>
+          <CapacityAllocation>
+            <FlexValue>200000</FlexValue>
+            <SIUnits>BitPerSecond</SIUnits>
+          </CapacityAllocation>
+          <ServiceLevelProfiles>
+            <!-- 
+                 # Top level queue discipline
+                 tc qdisc add dev eth1 parent root handle 1:0 pfifo limit 100 -->
+            <ServiceLevelProfile ID="Uplink_SLP_1_0">
+              <Name>Uplink_SLP_1_0</Name>
+              <Description>Top level queue discipline</Description>
+              <SLPHandle>0x00010000</SLPHandle>
+              <QueueConstruct>
+                <QDisc>
+                  <FIFO>
+                    <LimitInPackets>100</LimitInPackets>
+                  </FIFO>
+                </QDisc>
+              </QueueConstruct>
+            </ServiceLevelProfile>
+          </ServiceLevelProfiles>
+        </MissionSLP>
+        <MissionSLP ID="TA_MissionSLP_1">
+          <Name>TA_MissionSLP_1</Name>
+          <Description>Downlink Mission Service Level Profile for Joint Strike Fighter (JSF) Flutter Test 42</Description>
+          <MSLPID>0x01123700</MSLPID>
+          <RadioLinkRef IDREF="TA_MissionSLP_1_Link"/>
+          <Priority>1</Priority>
+          <MinimumCapacity>
+            <FlexValue>1000000</FlexValue>
+            <SIUnits>BitPerSecond</SIUnits>
+          </MinimumCapacity>
+          <CapacityAllocation>
+            <FlexValue>2000000</FlexValue>
+            <SIUnits>BitPerSecond</SIUnits>
+          </CapacityAllocation>
+          <ServiceLevelProfiles>
+            <!-- 
+                 # Top level queue discipline
+                 tc qdisc add dev eth1 parent root handle 1:0 htb default 1:40 -->
+            <ServiceLevelProfile ID="SLP_1_0">
+              <Name>SLP_1_0</Name>
+              <Description>Top level queue discipline</Description>
+              <SLPHandle>0x00010000</SLPHandle>
+              <QueueConstruct>
+                <QDisc>
+                  <HTB>
+                    <DefaultClassHandle>0x00010028</DefaultClassHandle>
+                  </HTB>
+                </QDisc>
+              </QueueConstruct>
+              <ServiceLevelProfiles>
+                <!-- 
+                     # Primary HTB rollup class to enable sharing between subclasses
+                     tc class add dev eth1 parent 1:0 classid 1:1 htb rate 2Mbit ceil 10Mbit-->
+                <ServiceLevelProfile ID="SLP_1_1">
+                  <Name>SLP_1_1</Name>
+                  <Description>Primary HTB rollup class to enable sharing between subclasses</Description>
+                  <SLPHandle>0x00010001</SLPHandle>
+                  <QueueConstruct>
+                    <Class>
+                      <HTB>
+                        <Priority>1</Priority>
+                        <Rate>
+                          <FlexValue>2000000</FlexValue>
+                          <SIUnits>BitPerSecond</SIUnits>
+                        </Rate>
+                        <Ceiling>
+                          <FlexValue>10000000</FlexValue>
+                          <SIUnits>BitPerSecond</SIUnits>
+                        </Ceiling>
+                      </HTB>
+                    </Class>
+                  </QueueConstruct>
+                  <ServiceLevelProfiles>
+                    <!-- 
+                         # htb class for Network Control and Internetwork Control Traffic
+                         tc class add dev eth1 parent 1:1 classid 1:10 htb rate 10Kbit ceil 1Mbit prio 1-->
+                    <ServiceLevelProfile ID="SLP_1_10">
+                      <Name>SLP_1_10</Name>
+                      <Description>htb class for Network Control and Internetwork Control Traffic</Description>
+                      <SLPHandle>0x0001000A</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>1</Priority>
+                            <Rate>
+                              <FlexValue>10000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Rate>
+                            <Ceiling>
+                              <FlexValue>1000000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <!-- 
+                               # TrafficFilter for Link Manager Messages & Routing Protocol Keep Alive DCSP range 56-63 (class 7)
+                               tc filter add dev eth1 protocol ip parent 1:0 prio 1 u32 match u8 0xe0 0xe0 at 1 classid 1:10
+                          -->
+                          <Name>TBD name</Name>
+                          <Description>Filter for Link Manager Messages And Routing Protocol Keep Alive DCSP range 56-63 (class 7)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>1</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xe0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                        <TrafficFilter>
+                          <!-- 
+                               # TrafficFilter for RAN Messages, routing protocols DCSP range 48-55 (class 6)
+                               tc filter add dev eth1 protocol ip parent 1:0 prio 2 u32 match u8 0xc0 0xe0 at 1 classid 1:10
+                          -->
+                          <Name>TBD name</Name>
+                          <Description>Filter for RAN Messages, routing protocols DCSP range 48-55 (class 6)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>2</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xc0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>                  
+                      <ServiceLevelProfiles>
+                        <!-- 
+                             # FIFO Qdisc Network/Internetwork Control Traffic
+                             tc qdisc add dev eth1 parent 1:10 handle 10:0 pfifo limit 50 -->
+                        <ServiceLevelProfile ID="SLP_10_0">
+                          <Name>SLP_10_0</Name>
+                          <Description>FIFO Qdisc Network/Internetwork Control Traffic</Description>
+                          <SLPHandle>0x000A0000</SLPHandle>
+                          <QueueConstruct>
+                            <QDisc>
+                              <FIFO>
+                                <LimitInPackets>50</LimitInPackets>
+                              </FIFO>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <!-- 
+                         # htb class for Expedited Forwarding Voice Traffic
+                         tc class add dev eth1 parent 1:1 classid 1:20 htb rate 64Kbit ceil 128Kbit prio 2 -->
+                    <ServiceLevelProfile ID="SLP_1_20">
+                      <Name>SLP_1_20</Name>
+                      <Description>htb class for Expedited Forwarding Voice Traffic</Description>
+                      <SLPHandle>0x00010014</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>2</Priority>
+                            <Rate>
+                              <FlexValue>64000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Rate>
+                            <Ceiling>
+                              <FlexValue>128000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <!-- 
+                               # Filter for Voice traffic DCSP range 40-47 (class 5)
+                               tc filter add dev eth1 protocol ip parent 1:0 prio 3 u32 match u8 0xa0 0xe0 at 1 classid 1:20
+                          -->
+                          <Name>TBD name</Name>
+                          <Description>Filter for Voice traffic DCSP range 40-47 (class 5)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>3</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xa0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>
+                      <ServiceLevelProfiles>
+                        <!-- 
+                             # FIFO Qdisc for "Expedited Forwarding" Voice Traffic
+                             tc qdisc add dev eth1 parent 1:20 handle 20:0 pfifo limit 50 -->
+                        <ServiceLevelProfile ID="SLP_20_0">
+                          <Name>SLP_20_0</Name>
+                          <Description>FIFO Qdisc for "Expedited Forwarding" Voice Traffic</Description>
+                          <SLPHandle>0x00140000</SLPHandle>
+                          <AveragePacketDelay>
+                            <FloatValue>0.05</FloatValue>
+                            <SIUnits>Second</SIUnits>
+                          </AveragePacketDelay>
+                          <QueueConstruct>
+                            <QDisc>
+                              <FIFO>
+                                <LimitInPackets>50</LimitInPackets>
+                              </FIFO>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <!-- 
+                         htb rollup class for DSCP Class Selector ranges (Class 1, Class2, Class3, Class4)
+                         tc class add dev eth1 parent 1:1 classid 1:30 htb rate 1750Kbit ceil 5Mbit prio 3 -->
+                    <ServiceLevelProfile ID="SLP_1_30">
+                      <Name>SLP_1_30</Name>
+                      <Description>htb rollup class for DSCP Class Selector ranges (Class 1, Class2, Class3, Class4)</Description>
+                      <SLPHandle>0x0001001e</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>3</Priority>
+                            <Rate>
+                              <FlexValue>1750000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Rate>
+                            <Ceiling>
+                              <FlexValue>5000000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <ServiceLevelProfiles>
+                        <!-- 
+                             # htb DSCP Class Selector 4 (including all Class 4) traffic
+                             tc class add dev eth1 parent 1:30 classid 1:300 htb rate 250Kbit ceil 5Mbit prio 1 -->
+                        <ServiceLevelProfile ID="SLP_1_300">
+                          <Name>SLP_1_300</Name>
+                          <Description>htb DSCP Class Selector 4 (including all Class 4) traffic</Description>
+                          <SLPHandle>0x0001012c</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>1</Priority>
+                                <Rate>
+                                  <FlexValue>250000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Rate>
+                                <Ceiling>
+                                  <FlexValue>5000000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <!-- 
+                                   # Filter for System Management and Video DCSP range 32-39 (class 4)
+                                   tc filter add dev eth1 protocol ip parent 1:0 prio 4 u32 match u8 0x80 0xe0 at 1 classid 1:300
+                              -->
+                              <Name>TBD name</Name>
+                              <Description>Filter for System Management and Video DCSP range 32-39 (class 4)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>4</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x80</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <!-- 
+                                 # SFQ Qdisc for Class 4 "System Management & Video" traffic
+                                 tc qdisc add dev eth1 parent 1:300 handle 30:0 sfq perturb 10
+                            -->
+                            <ServiceLevelProfile ID="SLP_30_0">
+                              <Name>SLP_30_0</Name>
+                              <Description>SFQ Qdisc for Class 4 "System Management And Video" traffic</Description>
+                              <SLPHandle>0x00140001</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <SFQ>
+                                    <Perturb>
+                                      <FlexValue>10</FlexValue>
+                                      <SIUnits>Second</SIUnits>
+                                    </Perturb>
+                                  </SFQ>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <!-- 
+                             # htb DSCP Class Selector 3 (including all Class 3) traffic
+                             tc class add dev eth1 parent 1:30 classid 1:301 htb rate 250Kbit ceil 5Mbit prio 2 -->
+                        <ServiceLevelProfile ID="SLP_1_301">
+                          <Name>SLP_1_301</Name>
+                          <Description>htb DSCP Class Selector 3 (including all Class 3) traffic</Description>
+                          <SLPHandle>0x0001012d</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>2</Priority>
+                                <Rate>
+                                  <FlexValue>250000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Rate>
+                                <Ceiling>
+                                  <FlexValue>5000000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <!-- 
+                                   # Filter for RC Delivery at High Priority DCSP range 24-31 (class 3)
+                                   tc filter add dev eth1 protocol ip parent 1:0 prio 5 u32 match u8 0x60 0xe0 at 1 classid 1:301
+                              -->
+                              <Name>TBD name</Name>
+                              <Description>Filter for RC Delivery at High Priority DCSP range 24-31 (class 3)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>5</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x60</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <!-- 
+                                 # RED Qdisc for Class 3 "RC Delivery at High Priority" traffic 
+                                 # (For parameters, use desired Bandwidth/delay and recommended heuristics:
+                                 # Assume BW 256kbps and latency 500ms; min=max/3; limit=8*max; 
+                                 # Average Packet Size 1000bytes; burst=(2*min + max)/(3*avgpkt))
+                                 tc qdisc add dev eth1 parent 1:301 handle 40:0 red bandwidth 256 max 16000 min 5300 limit 128000 avpkt 1000 burst 9 probability 0.02
+                            -->
+                            <ServiceLevelProfile ID="SLP_40_0">
+                              <Name>SLP_40_0</Name>
+                              <Description>RED Qdisc for Class 3 "RC Delivery at High Priority" traffic</Description>
+                              <SLPHandle>0x00280000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <RED>
+                                    <Limit>
+                                      <FlexValue>128000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Limit>
+                                    <Min>
+                                      <FlexValue>5300</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Min>
+                                    <Max>
+                                      <FlexValue>16000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Max>
+                                    <Avpkt>
+                                      <FlexValue>1000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Avpkt>
+                                    <Burst>9</Burst>
+                                    <EnableECN>false</EnableECN>
+                                    <Bandwidth>
+                                      <FlexValue>256000</FlexValue>
+                                      <SIUnits>BitPerSecond</SIUnits>
+                                    </Bandwidth>
+                                    <Probability>0.02</Probability>
+                                  </RED>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <!-- 
+                             # htb DSCP Class Selector 2 (including all Class 2) traffic
+                             tc class add dev eth1 parent 1:30 classid 1:302 htb rate 250Kbit ceil 5Mbit prio 3 -->
+                        <ServiceLevelProfile ID="SLP_1_302">
+                          <Name>SLP_1_302</Name>
+                          <Description>htb DSCP Class Selector 2 (including all Class 2) traffic</Description>
+                          <SLPHandle>0x0001012e</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>3</Priority>
+                                <Rate>
+                                  <FlexValue>250000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Rate>
+                                <Ceiling>
+                                  <FlexValue>5000000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <!-- 
+                                   # Filter for LTC Delivery DCSP range 16-23 (class 2)
+                                   tc filter add dev eth1 protocol ip parent 1:0 prio 6 u32 match u8 0x40 0xe0 at 1 classid 1:302
+                              -->
+                              <Name>TBD name</Name>
+                              <Description>Filter for LTC Delivery DCSP range 16-23 (class 2)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>6</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x40</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <!-- 
+                                 # SFQ Qdisc for Class 2 "LTC Delivery" traffic
+                                 tc qdisc add dev eth1 parent 1:302 handle 50:0 sfq perturb 10
+                            -->
+                            <ServiceLevelProfile ID="SLP_50_0">
+                              <Name>SLP_50_0</Name>
+                              <Description>SFQ Qdisc for Class 2 "LTC Delivery" traffic</Description>
+                              <SLPHandle>0x00320000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <SFQ>
+                                    <Perturb>
+                                      <FlexValue>10</FlexValue>
+                                      <SIUnits>Second</SIUnits>
+                                    </Perturb>
+                                  </SFQ>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <!-- 
+                             # htb DSCP Class Selector 1 (including all Class 1) traffic
+                             tc class add dev eth1 parent 1:30 classid 1:303 htb rate 1Mbit ceil 5Mbit prio 4 -->
+                        <ServiceLevelProfile ID="SLP_1_303">
+                          <Name>SLP_1_303</Name>
+                          <Description>htb DSCP Class Selector 1 (including all Class 1) traffic</Description>
+                          <SLPHandle>0x0001012f</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>4</Priority>
+                                <Rate>
+                                  <FlexValue>1000000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Rate>
+                                <Ceiling>
+                                  <FlexValue>5000000</FlexValue>
+                                  <SIUnits>BitPerSecond</SIUnits>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <!-- 
+                                   # Filter for RC Delivery at Normal Priority & System Management Status DCSP range 8-15 (class 1)
+                                   tc filter add dev eth1 protocol ip parent 1:0 prio 7 u32 match u8 0x20 0xe0 at 1 classid 1:303
+                              -->
+                              <Name>TBD name</Name>
+                              <Description>Filter for RC Delivery at Normal Priority And System Management Status DCSP range 8-15 (class 1)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>7</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x20</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <!-- 
+                                 # RED Qdisc for Class 1 "RC Delivery at Normal Priority & System Management Status" traffic
+                                 # (For parameters, use desired Bandwidth/delay and recommended heuristics:
+                                 # Assume BW 1024kbps and latency 500ms; min=max/3; limit=8*max; 
+                                 # Average Packet Size 1000bytes; burst=(2*min + max)/(3*avgpkt))
+                                 tc qdisc add dev eth1 parent 1:303 handle 60:0 red bandwidth 1024 max 64000 min 21000 limit 128000 avpkt 1000 burst 35 probability 0.02
+                            -->
+                            <ServiceLevelProfile ID="SLP_60_0">
+                              <Name>SLP_60_0</Name>
+                              <Description>RED Qdisc for Class 1 "RC Delivery at Normal Priority And System Management Status" traffic</Description>
+                              <SLPHandle>0x003c0000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <RED>
+                                    <Limit>
+                                      <FlexValue>128000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Limit>
+                                    <Min>
+                                      <FlexValue>21000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Min>
+                                    <Max>
+                                      <FlexValue>64000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Max>
+                                    <Avpkt>
+                                      <FlexValue>1000</FlexValue>
+                                      <UnitsRef IDREF="ByteEU"/>
+                                    </Avpkt>
+                                    <Burst>35</Burst>
+                                    <EnableECN>false</EnableECN>
+                                    <Bandwidth>
+                                      <FlexValue>1024000</FlexValue>
+                                      <SIUnits>BitPerSecond</SIUnits>
+                                    </Bandwidth>
+                                    <Probability>0.02</Probability>
+                                  </RED>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <!-- 
+                         # htb class for DCSP "Best Effort" range and all other default traffic
+                         tc class add dev eth1 parent 1:1 classid 1:40 htb rate 150Kbit ceil 5Mbit prio 4 -->
+                    <ServiceLevelProfile ID="SLP_1_40">
+                      <Name>SLP_1_40</Name>
+                      <Description>htb class for DCSP "Best Effort" range and all other default traffic</Description>
+                      <SLPHandle>0x00010028</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>4</Priority>
+                            <Rate>
+                              <FlexValue>150000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Rate>
+                            <Ceiling>
+                              <FlexValue>5000000</FlexValue>
+                              <SIUnits>BitPerSecond</SIUnits>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <!-- 
+                               # Filter for RC General Network Traffic DCSP range 0-7 (class 0)
+                               tc filter add dev eth1 protocol ip parent 1:0 prio 8 u32 match u8 0x00 0xe0 at 1 classid 1:40
+                          -->
+                          <Name>TBD name</Name>
+                          <Description>Filter for RC General Network Traffic DCSP range 0-7 (class 0)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>8</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0x00</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>
+                      <ServiceLevelProfiles>
+                        <!-- 
+                             # SFQ Qdisc for "Best Effort" default traffic
+                             tc qdisc add dev eth1 parent 1:40 handle 70:0 sfq perturb 10
+                        -->
+                        <ServiceLevelProfile ID="SLP_70_0">
+                          <Name>SLP_70_0</Name>
+                          <Description>SFQ Qdisc for "Best Effort" default traffic</Description>
+                          <SLPHandle>0x00460000</SLPHandle>
+                          <QueueConstruct>
+                            <QDisc>
+                              <SFQ>
+                                <Perturb>
+                                  <FlexValue>10</FlexValue>
+                                  <SIUnits>Second</SIUnits>
+                                </Perturb>
+                              </SFQ>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                  </ServiceLevelProfiles>
+                </ServiceLevelProfile>
+              </ServiceLevelProfiles>
+            </ServiceLevelProfile>
+          </ServiceLevelProfiles>
+        </MissionSLP>
+      </MissionQoS>
+      <RadioLinks>
+        <RadioLink ID="TA_MissionSLP_1_Link">
+          <Name>Link1</Name>
+          <Description>Link1 Description</Description>
+          <Endpoints>
+            <SourceRadioRef IDREF="TARadioJSF" />
+            <DestinationRadioRef IDREF="GroundRadio1" />
+          </Endpoints>
+          <TxRxEnable>true</TxRxEnable> <!--assumed a fake value-->
+          <AutomaticPowerControlEnable>true</AutomaticPowerControlEnable> <!--assumed a fake value-->
+          <MinTxPowerLimitdBm>-10</MinTxPowerLimitdBm> <!--assumed a fake value-->
+          <MaxTxPowerLimitdBm>0</MaxTxPowerLimitdBm> <!--assumed a fake value-->
+          <RangeCompensationEnable>true</RangeCompensationEnable> <!--assumed a fake value-->
+          <EncryptionEnabled>true</EncryptionEnabled>
+          <EncryptionKeyID>12345</EncryptionKeyID>
+          <ARQEnableFlag>true</ARQEnableFlag>
+          <ARQParameterSet>
+            <ARQPriority>0</ARQPriority> <!--assumed a fake value-->
+            <ARQEnable>true</ARQEnable> <!--assumed a fake value-->
+            <BlockSequenceNumberModulus>512</BlockSequenceNumberModulus> <!--assumed a fake value-->
+            <WindowSizeInARQBlocks>128</WindowSizeInARQBlocks> <!--assumed a fake value-->
+            <ARQBlockSize>1024</ARQBlockSize>            
+            <BlockLifetime>0</BlockLifetime> <!--assumed a fake value-->
+            <TxDelay>10</TxDelay> <!--assumed a fake value-->
+            <RxDelay>10</RxDelay> <!--assumed a fake value-->
+            <SyncLossTimeout>10</SyncLossTimeout> <!--assumed a fake value-->
+            <RxPurgeTimeout>10</RxPurgeTimeout> <!--assumed a fake value-->
+          </ARQParameterSet>
+        </RadioLink>
+        <RadioLink ID="TA_MissionSLP_3_Link">
+          <Name>Link3</Name>
+          <Description>Link3 Description</Description>
+          <Endpoints>
+            <SourceRadioRef IDREF="GroundRadio1" />
+            <DestinationRadioRef IDREF="TARadioJSF" />
+          </Endpoints>
+          <TxRxEnable>true</TxRxEnable> <!--assumed a fake value-->
+          <AutomaticPowerControlEnable>true</AutomaticPowerControlEnable> <!--assumed a fake value-->
+          <MinTxPowerLimitdBm>-10</MinTxPowerLimitdBm> <!--assumed a fake value-->
+          <MaxTxPowerLimitdBm>0</MaxTxPowerLimitdBm> <!--assumed a fake value-->
+          <RangeCompensationEnable>true</RangeCompensationEnable> <!--assumed a fake value-->
+          <EncryptionEnabled>true</EncryptionEnabled>
+          <EncryptionKeyID>12345</EncryptionKeyID>
+          <ARQEnableFlag>true</ARQEnableFlag>
+          <ARQParameterSet>
+            <ARQPriority>0</ARQPriority> <!--assumed a fake value-->
+            <ARQEnable>true</ARQEnable> <!--assumed a fake value-->
+            <BlockSequenceNumberModulus>512</BlockSequenceNumberModulus> <!--assumed a fake value-->
+            <WindowSizeInARQBlocks>128</WindowSizeInARQBlocks> <!--assumed a fake value-->
+            <ARQBlockSize>1024</ARQBlockSize>            
+            <BlockLifetime>0</BlockLifetime> <!--assumed a fake value-->
+            <TxDelay>10</TxDelay> <!--assumed a fake value-->
+            <RxDelay>10</RxDelay> <!--assumed a fake value-->
+            <SyncLossTimeout>10</SyncLossTimeout> <!--assumed a fake value-->
+            <RxPurgeTimeout>10</RxPurgeTimeout> <!--assumed a fake value-->
+          </ARQParameterSet>
+        </RadioLink>
+      </RadioLinks>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="ByteEU">
+      <Name>Byte</Name>
+      <Description>8 binary digits (1 byte)</Description>
+      <Symbol>B</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>8.0</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+  </Units>
+  
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network for the TA</Name>
+      <Description>example network for the TA</Description>
+      <NetworkType>TestArticleNetwork</NetworkType>
+      <NetworkNode ID="TARadioComputerID">
+        <Name>Computer hosting Radio</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00110</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="TARadioJSF">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TA-Radio-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>false</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>TARadioJSF001</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSRadio>
+              <RANConfigRef IDREF="RANConfig1"/>
+              <RadioType>TA Radio</RadioType>
+              <RFAddress>2246</RFAddress>
+              <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <TxPowerLeveldBm>10</TxPowerLeveldBm>
+              <LowPowerModeEnable>false</LowPowerModeEnable>
+              <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+              <LinkAgent>
+                <ReadOnly>false</ReadOnly>
+                <Owner>token</Owner>
+                <NetworkInterfaceRef IDREF="Radio1HostIFace"/>
+                <ListeningPort>12345</ListeningPort>
+              </LinkAgent>              
+            </TmNSRadio>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservLTC"/>
+              <NetworkInterfaceRef IDREF="Radio1HostIFace"/>
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+              <!-- MIBInterface not shown in this example -->
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="TARadioJSFModule">
+            <Name>Radio Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD WhizzBang</Model>
+            <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+            <InventoryID>Radio-Module-00110</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="TARadioJSF"/>
+            </RunningApps>
+            <NetworkInterface ID="Radio1HostIFace">
+              <Name>eth0</Name>
+              <Description>Radio1 Host Interface</Description>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>130.33.46.104</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>130.33.46.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Radio1HostPhyNetPort">
+                <Name>Radio1HostPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Radio1HostPort" Index="1">
+                <Name>Radio1 Host Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Radio1HostPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="TA-QMTest-Host">
+        <Name>TA QMTest Host Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00831</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="TAQMTestApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TAQMTest</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>false</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>1.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSQueueManager>
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <ManagedApps>
+                <ManageableAppRef IDREF="GroundRadio1"/>
+              </ManagedApps>
+              <RFNEProtocolServer>
+                <Name>RFNM server</Name>
+                <Description>This is the RFNE server for upstream RFNMs</Description>
+                <ProtocolType>RFNM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="QM2TestHostIFace"/>
+                <ListeningPort>47230</ListeningPort>
+              </RFNEProtocolServer>
+              <RFNEProtocolServer>
+                <Name>LM server</Name>
+                <Description>This is the RFNE server for upstream LMs</Description>
+                <ProtocolType>LM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="QM2TestHostIFace"/>
+                <ListeningPort>47231</ListeningPort>
+              </RFNEProtocolServer>
+            </TmNSQueueManager>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservLTC"/>
+              <NetworkInterfaceRef IDREF="QM2TestHostIFace"/>
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="QM2TestHostModule">
+            <Name>QM2 Test Host Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="TAQMTestApp"/>
+            </RunningApps>
+            <NetworkInterface ID="QM2TestHostIFace">
+              <Name>eth0</Name>
+              <Description>QM2Test Host Interface</Description>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>130.33.46.105</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>130.33.46.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="QM2TestHostPhyNetPort">
+                <Name>QM2TestHostPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="QM2TestHostPort" Index="1">
+                <Name>QM2Test Host Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="QM2TestHostPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <!-- QM2 (G) -->
+      <NetworkNode ID="QM2Test-Host">
+        <Name>QM2Test Host Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00031</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="QM2TestApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>QM2Test</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>false</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>QM2TestApp</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSQueueManager>
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <ManagedApps>
+                <ManageableAppRef IDREF="TARadioJSF"/>
+              </ManagedApps>
+              <RFNEProtocolServer>
+                <Name>RFNM server</Name> <!-- TBD Does the TA QM need an RFNEProtocolServer? -->
+                <Description>This is the RFNE server for downstream RFNMs</Description>
+                <ProtocolType>RFNM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="TAQMTestHostIFace"/>
+                <ListeningPort>47230</ListeningPort>
+              </RFNEProtocolServer>
+              <RFNEProtocolServer>
+                <Name>LM server</Name>
+                <Description>This is the RFNE server for downstream LMs</Description>
+                <ProtocolType>LM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="TAQMTestHostIFace"/>
+                <ListeningPort>47231</ListeningPort>
+              </RFNEProtocolServer>
+            </TmNSQueueManager>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservLTC"/>
+              <NetworkInterfaceRef IDREF="TAQMTestHostIFace"/>
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+              <!-- MIBInterface not shown in this example -->
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="TAQMTestHostModule">
+            <Name>QM2 Test Host Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="QM2TestApp"/>
+            </RunningApps>
+            <NetworkInterface ID="TAQMTestHostIFace">
+              <Name>eth0</Name>
+              <Description>TA QMTest Host Interface</Description>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>130.33.46.105</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>130.33.46.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="TAQMTestHostPhyNetPort">
+                <Name>TA QMTestHostPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="TAQMTestHostPort" Index="1">
+                <Name>TA QMTest Host Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="TAQMTestHostPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <!-- Radio2 (G) -->
+      <NetworkNode ID="Radio2-Host">
+        <Name>Radio2 Host Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00013</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="GroundRadio1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Radio2App</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>false</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>RFNetworkManagerApp</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSRadio>
+              <RANConfigRef IDREF="RANConfig1"/>
+              <RadioType>Ground Radio</RadioType>
+              <RFAddress>3328</RFAddress>
+              <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <TxPowerLeveldBm>10</TxPowerLeveldBm>
+              <LowPowerModeEnable>false</LowPowerModeEnable>
+              <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+              <LinkAgent>
+                <ReadOnly>false</ReadOnly>
+                <Owner>token</Owner>
+                <NetworkInterfaceRef IDREF="Radio2HostIFace"/>
+                <ListeningPort>12345</ListeningPort>
+              </LinkAgent>
+            </TmNSRadio>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservLTC"/>
+              <NetworkInterfaceRef IDREF="Radio2HostIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="GroundRadioHostModule">
+            <Name>TBD</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="GroundRadio1"/>
+            </RunningApps>
+            <NetworkInterface ID="Radio2HostIFace">
+              <Name>eth0</Name>
+              <Description>Radio2 Host Interface</Description>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>130.33.40.106</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>130.33.40.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Radio2HostPhyNetPort">
+                <Name>Radio2HostPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Radio2HostPort" Index="1">
+                <Name>Radio1 Host Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Radio2HostPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+    </Network>
+  </NetworkDomains>
+  <RANConfigs>
+    <RANConfig ID="RANConfig1">
+      <Name>Example RAN</Name>
+      <Description>This is an example RAN configuration</Description>
+      <CenterFreqHz>1234</CenterFreqHz> <!--Obviously a fake value-->
+      <ModulationType>SOQPSK-TG</ModulationType>
+      <EpochSize>100</EpochSize>
+      <ContentionPeriodOpsEnable>true</ContentionPeriodOpsEnable>
+      <LDPCBlocksPerBurst>4</LDPCBlocksPerBurst>
+      <MaxGuardTimeSec>0.001234</MaxGuardTimeSec> <!--Just a fake value-->
+      <RadioControlLoopDSCPRef IDREF="DiffservLMHigh"/> <!--assumed a fake value-->
+      <RANCommandControlDSCPRef IDREF="DiffservLMLow"/> <!--assumed a fake value-->
+      <RadioGroups>
+        <RadioGroup ID="RG-001">
+          <Name>Radio Group 1</Name>
+          <Description>TBD</Description>
+          <GroupRFAddress>1234</GroupRFAddress>
+        </RadioGroup>
+      </RadioGroups>
+    </RANConfig>
+  </RANConfigs>
+  
+  <DSCPTable>
+    <ReadOnly>true</ReadOnly>
+    <Owner>SDD Range Rules</Owner>
+    <DSCPTableEntry ID="DiffservLTC">
+      <Name>Diffserv LTC (Best Effort)</Name>
+      <Description>Diffserv LTC (Best Effort PHB)</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCLow">
+      <Name>Diffserv RC Low (Assured Forwarding DSCP 8)</Name>
+      <Description>Diffserv RC Low (Assured Forwarding DSCP 8)</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCMed">
+      <Name>Diffserv RC Med (Assured Forwarding DSCP 16)</Name>
+      <Description>Diffserv RC Med (Assured Forwarding DSCP 16)</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCHigh">
+      <Name>Diffserv RC High (Assured Forwarding DSCP 24)</Name>
+      <Description>Diffserv RC High (Assured Forwarding DSCP 24)</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservVideo">
+      <Name>Diffserv Video (Assured Forwarding DSCP 32)</Name>
+      <Description>Diffserv Video (Assured Forwarding DSCP 32)</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservVoice">
+      <Name>Diffserv Voice (Expedited Forwarding DSCP 40)</Name>
+      <Description>Diffserv Voice (Expedited Forwarding PHB)</Description>
+      <DSCPValue>0b101000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLMLow">
+      <Name>Diffserv Link Manager Low (DSCP 48)</Name>
+      <Description>Diffserv Link Manager Low (DSCP 48)</Description>
+      <DSCPValue>0b110000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLMHigh">
+      <Name>Diffserv Link Manager High (DSCP 56)</Name>
+      <Description>Diffserv Link Manager High (DSCP 56)</Description>
+      <DSCPValue>0b111000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>  
+  
+</MDLRoot>

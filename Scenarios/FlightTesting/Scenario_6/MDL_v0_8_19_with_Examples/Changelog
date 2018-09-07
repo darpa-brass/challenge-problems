@@ -1,0 +1,426 @@
+Changelog for MDL Schema and related files
+
+----
+Revision MDL_v0_8_19.xsd
+
+Version 0.8.18 was accidentally released with schema errors so it was quickly removed from the portal
+Removed xsd:any tags that were intended for forward compatibility
+Tweaked VendorConfig and GenericParameters to allow xsd:any without violating XSD 1.0 rules.
+
+----
+Revision MDL_v0_8_18.xsd
+
+Added GenericParameter to ChildType
+Updated to latest TMATS schema
+Added generic Parent/Child relationships with the Children element
+Added handoff rule strings, exact format is tbd
+Removed obsolete LinkControlMode from RadioLink
+Settled on bit for fundamental unit.  Removed Byte and BytePerSecond
+Converted many enumerations to extensible enumerations
+Time as a measurement
+Describing a-priori time offsets in Packages
+InternalStructure: Generalized Module concept for all NetworkNodes and Devices, added RunningApps element to describe mapping of TMAs to the modules
+ModelNumber and SerialNumber: harmonized across schema to Model and SerialIdentifier
+
+----
+Revision MDL_v0_8_18-pre1.xsd
+
+Added xsd:any tags to facilitate extensibility and forward compatibility
+DataAttributesType Added TimeAttributes for describing time as a Measurement
+Added MeasurementTimeRef so a Measurement can identify the associated time Measurement
+VendorConfig: Added xsd:any tags to allow arbitrary levels of XML data.
+PortType:  Added various port attributes per Bill's recommendation
+PortTypeEnumExtType: This is an example of one way to create extensible enumerations.
+DeviceType: Fixed Sensitivity and Excitation to allow multiple ConditionParameter elements
+MeasurementTypeEnum: Added Time as an option
+
+----
+Revision MDL_v0_8_17.xsd
+
+* All examples updated in preparation for release of 0.8.17
+* Restored Byte and BytePerSecond to the schema
+* Made new DataOperationType enumeration required
+* TmNSDAU: added constraint that all Module Name elements be unigue within a TmNSDAU.
+* TmNSDAU: added constraint that all SubModule Name elements be unigue within a Module.
+* TmNSNetworkFabricDevice: added uniqueness constraint on the multicast addresses in a device
+* TmNSMasterClock: added elements to match the MIB regarding time master capability enabled or disabled and whether it has an internal or external time source.
+* FrequencyBand: added clarifying documentation that a positive attenuation means a decreased signal amplitude.
+* AnalogAttributes: made EUSignalRange and IUSignalRange optional to allow for either or both to be included.
+* Calibration element added to DataAttributes, TmNSDAU
+* DataStream: Added BusSpeed element to describe line rate of the bus
+* Bus message types: added clarification that omitted optional elements indicate "accept all"
+* MILSTD1553MessageType, ARINC429MessageType, GenericDataStreamMessageType: added MessageRate element with AverageRate and PeakRate elements.
+* ARINC429MessageType: made ARINC429Label and ARINC429DataFormat optional to match other data streams and to allow for "accept all" descriptions of the bus.
+* DataOperation: Added DataOperationType enumeration:EUtoIU, EUtoCounts, IUtoEU, etc.
+* PinType: Changed DataOperationRef to DataOperationRefs to allow for multiple descriptions of the internal transfer function of the channel.
+* DeviceTypeEnum: Added "Other"
+* AnalogAttributes: changed from SignalRange to explicit EUSignalRange and IUSignalRange elements.
+* Checking in initial RadioGroup elements.
+* Rolling back the prior change on 1553 Message Destination.
+* Adding Thermocouple types
+* ModuleType:Position changed from positiveInteger to nonNegativeInteger
+* Added Notifications for PointingError, TXNumQueueOverflows, RXNumQueueOverflows
+
+----
+Revision MDL_v0_8_16.xsd
+
+* Removed Byte from SIUnits, Examples show how to create Byte from Bit
+* Added PointingError items to NotificationsType
+* Added K,E,J,N,B,R,S,T,C,M type thermocouples to DeviceTypeEnum
+* MILSTD1553MessageType: MILSTD1553MessageDestination changed to 0 or 1, not unbounded.
+* IEEE1588Version: added "Multiple"
+* PhysicalNetworkPort: added optional IEEE1588VersionOfPort for devices that support multiple versions
+* SNMPInterface: element name changed to SMInterface
+* TmNSNetworkFabricDevice: added support for Multicast Routing elements
+* Added constraints on PhysicalNetworkPort references
+* Fixed missing "mdl:" namespace on DSCPTableEntryKeyRef
+* Added documentation to Route and Routes elements.
+* Changed PortType to allow both a list of PinRef elements and a PhysicalNetworkPortRef.
+* Added uniqueness constraints on DataStream/Name, DataOperation/Name, PackageStructure/Name to support negotiation.
+* Fixed error in uniqueness: ARQPriority in ARQParameterSet
+* ARQBlockSize: added as number between 1 and 2047 inclusive
+* uniqueness: Index in DataStreamMessageRef
+* uniqueness: SubOperationOrderIndex in DataOperation
+* uniqueness: Index in VendorConfig NameValue
+* uniqueness: Index in Pins within Connector
+* uniqueness: Index in Ports within NetworkNode
+* Routes element added to NetworkNode
+* uniqueness: Position in Module and SubModule of TmNSDAU
+* uniqueness: Index in CodecPriorities
+* fixed an incorrect constraint on NetworkInterfaceRefs
+* ModuleType & SubModuleType: Removed optional Sensitivity, Excitation, and Calibration elements that had been incorrectly copied from the DevicesType.
+* Fixed reverting PortType elements to PortsType that had been missed previously
+
+----
+Revision MDL_v0_8_15.xsd
+
+* NetworkNodeType: Changed IEEE1588SupportedVersion to IEEE1588Version
+* NetworkNodeType: Removed IEEE1588ClockMode since it was only status
+* NetworkNodeType: Removed IEEE1588TransparentClockMode since it was redundant
+* TmNSStandardsVersion element moved from NetworkNode to TmNSManageableApp to harmonize with SM.
+* ConstraintIDs that had been added to support schematron constraints was removed.
+* Converted Pins element to Connector to clarify the use of Pin elements as physical representations.
+* Hierarchy of Module/SubModule elements added to TmNSDAU for describing slots/cards, etc.  InternalStructure element removed.
+* GenericParameterType - simplified to a list of NameValue elements
+* VendorConfig element added to NetworkNode, TmNSManageableApp, Module, SubModule, Pin, Port, Device elements.  VendorConfig is a list of NameValue elements.
+* Designator added to Pin element for describing Pin number or letter.
+* PortType: Index element added
+* Separated ModuleType and DeviceType for clarity
+* SamplingFrequency moved from AnalogAttributes/FrequencyContent to DigitalAttributes and renamed to SampleRate.
+* Made Index required on NameValue element.
+* Added Index to PinType
+* ModuleType & SubModuleType: Removed optional Sensitivity, Excitation, and Calibration elements that had been incorrectly copied from the DevicesType.
+
+----
+Revision MDL_v0_8_14.xsd
+
+* Moved DeviceType:GenericParameters to after the Description element for consistency.
+* DeviceTypeEnum: Added Module to enumeration.
+* Made UnitsType optional at top-level.
+* ConstraintID added to NetworkNode, Device and TmNSManageableApp
+* TmNSDAU element may contain 0 or more Device elements
+* Updated documentation for LMExtraDebugLevelType
+* DeviceType: Added GenericParameter
+* DeviceType: added UniquePinIndexInDevice constraint
+* DeviceType: added LogicalLocation and PhysicalLocation elements
+* Documentation changes regarding conditional/optional/required elements.
+* Added uniqueRadioRFAddress constraint
+* Added DirtyBit element.
+* LDPCBlocksPerBurstType: change maxInclusive to 16 to match documentation.
+* Removed all StartDateTime and StopDateTime elements
+* Converted lots of optional elements to required.
+* Removed LinkControlStatusEnum
+* Removed ImplementationType
+* Clarified documentation for LookupTableType
+* LMExtraDebugLevelEnum: converted to complexType
+* Added AutoConfigureLinksBearers boolean
+* NetworkType: removed NetworkServicesType and element
+* IEEE1588SupportedVersionEnum: changed enumeration strings for 2008 modes
+* RadioTypeEnum: removed "Unknown" option
+* Added Celsius and Fahrenheit to SIUnits
+
+----
+Revision MDL_v0_8_13.xsd
+
+* Added EpochSchedule to RadioLinkType for describing static TxOp schedules
+* NotificationsType: renamed IntrusionNotification to AccessAnomalyNotification to harmonize with MIB.
+* Added documentation for RAN-related elements
+* RANConfig: added ContentionPeriodOpsEnable, RadioControlLoopDSCPRef, and RANCommandControlDSCPRef
+* LDPCBlocksPerBurstType: changed maxInclusive to 32 based to harmonize with requested MIB
+* REDQDiscType: changed Ecn:ValueUnitsType to EnableECN:boolean (harmonize with MIB)
+* PRIOQDiscType: changed Priomap to TOSBandAssignment for explicit, rather than implicit assignment of TOS to Band. (harmonize with MIB)
+* Removed unused DataAttributesDescriptions and duplicative inheritance scheme via DataAttributesRef usage.
+* Removed DataAttributes key/keyref constraints relating to DataAttributesRef
+* PortMappingType: Removed DataAttributesRef element (duplicative inheritance scheme)
+* MeasurementType: removed Requirements element.  Renamed Implementation element DataAttributes.
+* Removed BlockSizeInBytes and ARQBlockSizeInBytesType at Jim Kaba's request. (harmonize with MIB)
+* Expanded documentation on non-standard Package headers
+* updated documentation for DSCPTableEntry
+* ActiveInputRange: Added documentation regarding typical usage
+* Removed as-built terminology
+* TmNSNetworkFabric: added support for describing static multicast addresses (StaticMulticast element created)
+* TmNSRCDataSource & TmNSLTCDataSource: removed Requirements/Implementation distinction
+* TmNSLTCDataSink: added optional NetworkInterfaceRef for describing multi-IP address devices
+* PackageDefinitionType: changed AggregateRate to zero or one, not a list.
+* Renamed some enum-types for consistency:
+    FilterClassifierEnumType -> FilterClassifierEnum
+    MILSTD1553TransmitReceiveType -> MILSTD1553TransmitReceiveEnum
+    TimestampFormatEnum -> TimestampFormatType
+    TimestampFormatEnumTypes -> TimestampFormatEnum
+* Removed Word16, Word32, Word64
+* DataStreamType: removed redundant DataStreamTypeEnum
+* DataStreamType: Changed DataStreamID to Name for consistency with other elements.
+* MethodType: removed Padding element and ill-defined AnalogToDigitalConversion element
+
+----
+Revision MDL_v0_8_12.xsd
+
+* Changed unique Mission SLP Name constraint to uniqueMissionSLPID
+* Removed unique Service Level Profile Name constraint
+* Added unique Service Level Profile handle in Mission SLP constraint
+* MissionSLP: Added MSLPID as a ThirtyTwoBitHex string
+* MDLRoot: Added RANConfigs
+* TestMission: Added RadioLinks, ARQParameterSet, etc.
+* MissionSLP: Changed Source and Destination radio refs to RadioLinkRef
+* TmNSRadio: Removed MinimumRateConfiguration, CommittedRate, TimeWindowType
+* TmNSManageableApps:  Added TmNSRFNOManagerType
+* RAN-related TMAs: Added RANConfigRef
+* TmNSRadio: Changed TransceiverID to RFAddress
+* TmNSLinkManagerType: Removed EpochIntervalMs and SSL related elements
+* Moved TxOpSetupTimeMs to TxRxSetupTimeMs under LinkManager
+* ServiceLevelProfile: Added QueueConstruct, TrafficFilters
+* TmNSConsolidatedManagerType: split DeviceCommunicationTimoutAttempts into DeviceCommunicationProbationTimeoutAttempts and DeviceCommunicationFailureTimeoutAttempts.
+* SSTAssociationType:SSTChannelRef corrected maxOccurs to unbounded.
+* NetworkNode: LogicalLocation and PhysicalLocation removed maxOccurs="unbounded"
+* NetworkInterface: Removed duplicate names.  Made Name required and removed required InterfaceName.  This was the last remaining element with duplicate Name elements.
+* Fixed some portions of documentation
+* Changed LoggingLevel to LoggingLevels complexType
+* Changed TmNSNetworkDevice to TmNSNetworkFabricDevice to indicate its proper use in describing switches and routers
+* Included LinkManager team requests in schema.
+	TmNSLinkManagerType: added LMBuiltInTest, LMExtraDebugLevel, LMTimings, and SSL related
+* SNMPInterface: added Notifications element
+* updated documentation for TmNSNullType
+* PhysicalNetworkPort:PortNumber changed to required nonNegativeInteger.
+* Made Network:NetworkServices optional
+
+----
+Revision: MDL_v0_8_11.xsd
+
+* DSCPTableEntry: Removed duplicate DSCPDescription, kept Description
+* Reverted FieldRepetitions to nonNegativeInteger
+* Made Measurement:Implementation:DigitalAttributes required
+* Removed obsolete EncodingConversion.
+* Removed obsolete MeasurementSource and MeasurementSink elements from Measurement:Requirements and Implementation.
+* Removed obsolete TimeAttributes top-level element and sub-elements due to standardization on IEEE1588 time.
+* Removed obsolete Key/Keyref constraints
+* Removed obsolete TimeSynchronizationPath
+* Moved NetworkNode:DataBufferLength to TmNSManageableApp
+* Removed obsolete DataSelectionCharacteristics element and type
+* Added IEEE1588v2008TransparentClockModeEnum to NetworkNode
+
+----
+Revision: MDL_v0_8_10.xsd
+
+* TestMissionType: Added AssetAssociations element, created AssetAssociations.xml example
+* TmNSManageableApp: Added Manufacturer element
+* Created ManageableAppRefsType
+* TmNSLauncherType: changed list of ManageableAppRef to LaunchApps element of type ManageableAppRefsType
+* TmNSLTCDataSourceType: Added TTL element of type xsd:unsignedByte
+* TmNSConsolidatedManagerType, TmNSLinkManagerType, and TmNSQueueManagerType: changed list of ManageableAppRef to
+	ManagedApps element of type ManageableAppRefsType
+* Updated DSCP values in Network-Example.xml
+* TmNSACUType: Added TrackingReceiver element
+* TmNSACUType: added many new elements (Azimuth, Elevation, TrackingMode, etc.)
+* TmNSSSTTxType: added many new elements (Modulation, Randomize, RFEnable, etc.)
+* TmNSSSTRxType: added many new elements to the Channel
+* DevicesType: Added AntennaType to describe physical association of antenna, sst, and radio
+* Added Key/Keyref constraint for ManageableAppRef
+* Added unique antenna Name constraint
+* Constraints for unique SST Association Name, unique Radio Association Name, and unique RFNM Association Name
+* Added uniqueness constraints on DSCPValue and Supported Multicast Address
+* Created Examples and SDD_CONOP directories
+* NetworkType: Added NetworkServices element to describe committed rates for DSCP values across a network.
+* Updated all examples to include NetworkServices
+* SSTAssoc: Changed to hold an SSTChannelRef
+* ChannelType: Added Name, ID
+* MethodType: Removed Downselect
+* MessageDefinitionType: Added DestinationPort to go with DestinationAddress.
+* PinType: Moved MeasurementRef to PortMappingType (used to associate the Measurement with the Port)
+* PortType: Converted SignalAttributesRef into a choice of DataStreamRef, MeasurementRef, or DataAttributesRef for
+	describing the data that flows across the link.
+* Deleted SignalAttributesRefType
+* Adding SDD CONOP diagrams and MDL files.
+* SIUnits: added Word16, Word32, Word64
+* Added LinkAgent element to TmNSRadioType
+* TmNSVoiceGateway: made some elements optional to support the SDD Conop
+* FieldRepetitions changed from xsd:integer to xsd:positiveInteger, Updated FieldRepetitions in all examples to be a
+	minimum of 1.
+* Removed unused TransportAttributesType, TransportTypeEnum, ServiceTypeEnum, placeholder SSTType, MIBInterface, and
+	all MIB related elements (OIDs, etc.)
+
+----
+Revision: MDL_v0_8_9.xsd
+
+* TmNSManageableApp: Added optional LaunchCommand string to support the Launcher concept
+* Added TmNSLauncherType
+* Moved ConfigurationVersion element from TestMission to top-level.  Updated Examples to match
+* Added constraint to ensure Measurements are in the same domain as where they are referenced.
+* TmNSManageableAppType: Added GenericParameter
+* SNMPInterfaceType: Added NotificationPort
+* Fixed xsi:schemaLocation attribute in examples
+
+----
+Revision: MDL_v0_8_8.xsd
+
+* Added SupportedMCAs to describe Multicast Addresses allowed on a particular Range
+* Added DeliveryClass enumeration to MeasurementType with possible values of "Voice", "FlightSafety", "BestEffort"
+* Removed TmNSAdapter
+* Removed UsesAdapter
+* Updated MultipleAppsPerNetworkNode example with removed TmNSAdapter.
+* Updated examples to add DeliveryClass to Measurements.
+
+----
+Revision: MDL_v0_8_7.xsd
+
+* Changed remaining OIDName elements to type xsd:token
+* Changed Device:InventoryID to type xsd:token
+* Removed obsolete RoleID documentation from NetworkNode
+* Added unique MissionSLP:Name constraint
+* Added unique ServiceLevelProfile:Name constraint
+* DerivedUnitType: changed Symbol to xsd:token
+* Lots of updates to documentation strings preparing for document generation.
+* Owner and Name: Changed type to xsd:token
+* DataStreamID: Changed type to xsd:token
+* InventoryID: Changed type to xsd:token
+* RoleID: Changed type to xsd:token
+* OIDName: Changed type to xsd:token
+* ConditionOperationType changed to ConditionOperationEnum
+* Created MDLRootType for consistency with other types and to simplify document generation
+* Renamed SIUnitsType to SIUnitsEnum for consistency
+* Removed non-ascii characters
+* DeviceType:ID is required
+* Added Uniqueness Constraints for DerivedUnit:Name, TestMission:Name, MeasurementDomain:Name, and MissionSLP:Name
+* Changed TmNSVersion to ConfigurationVersion to clarify usage
+* ServiceLevelProfileType: added missing StopDateTime
+* NetworkInterfaceType: removed AggregateRate element
+* PhysicalNetworkPortType: made Name required
+* PortType: added choice around PhysicalNetworkPortRef and PinRef
+* Removed outdated keyref constraints for SourceNetworkInterfaceRef and SinkNetworkInterfaceRef
+* Updated all examples
+
+----
+Revision: MDL_v0_8_6.xsd
+
+* MissionSLP: Description is required
+* ServiceLevelProfile: Description is required
+* ServiceLevelProfile: Removed PeerRadioType, Inbound flag, LocalRadioRef.
+* ServiceLevelProfile: Changed SourceTranceiverID and DestinationTransceiverID to SourceRadioRef and
+	DestinationRadioRef of type ManageableAppRef.
+* Added TestMissions element at top level per typical MDL approach
+* Fixed typo in MeasurementDomains.  Removed unbounded
+* Removed documentation references to MessageDefinitionDomain.
+* MeasurementDomain: Name is required
+* Measurement: Name is required and must be unique within a MeasurementDomain
+* Separated out RCSourceReqImplType and added PreSelectMeasurementList
+* Expanded documentation sections on enumerations
+* Added MissionSLP hierarchy to MissionQoS element.
+* TmNSManageableAppType: added LoggingLevel enumeration per the SM standard.
+* TmNSConsolidatedManager: added DeviceAutoDiscovery, FTPServerURI, DeviceConfigurationTimeout,
+	DeviceStatusMonitoringPeriod, and DeviceCommunicationTimeout per request of SM team.
+* DeviceAutoDiscovery: BroadcastIPAddress, PingSweepRanges, and DeviceAutoDiscoveryPeriod
+* TmNSRadioType: added RadioType enumeration and TransceiverID of type xsd:unsignedShort
+* TmNSVoiceGateway: Per TAS team request added VoiceDSCPTableEntryRef, ControlDSCPTableEntryRef,
+	CodecPriorities list, and PhoneNumberMappings
+* DerivedUnit: Name is required
+* MeasurementDomains contains one or more MeasurementDomain elements (not zero)
+* Measurement: Requirements & Implementation: removed Name
+* NetworkNode: Name is required
+* PhoneNumber: changed from basic string to a string of 3-10 digits without dashes or hypens
+* Device: Name is required
+
+----
+Revision: MDL_v0_8_5.xsd
+
+* Updated Diagrams and examples for TmNSManageableApps concept.
+* Adding MultipleAppsPerNetworkNode example
+* Added more documentation tags to element docs
+* Added unique MeasurementID constraint
+* MessageDefinitionType: Changed TransportAttributes to DestinationAddress
+* Created TmNSManageableApp
+* Removed TmNSTASType and TmNSTGSType
+* Expanded TmNSAdapter and added UsesAdapterType
+* TmNSRCDataSourceType: added NetworkInterfaceRef and ListeningPort
+* TmNSQueueManager, TmNSLinkManager: changed to ManageableAppRef
+* RFNEProtocolServer: changed TransportAttributesRef to ListeningPort
+* Removed TmNSSwitchType and TmNSRouterType to match SM standard
+* SNMPInterface: added SNMPPort and NetworkInterfaceRef
+* DataSelectionCharacteristics: changed TransportAttributesRef to DestinationAddress
+* Added validate_examples.py script
+* Created TestMission, MeasurementDomain, NetworkDomain
+* Renamed MessageDefinitionDomains to MDLRoot
+* Removed MessageDefinitionDomain
+* Created empty MissionQoS element as placeholder
+* Added constraints on references within a MeasurementDomain for Measurements, Packages, Messages, etc.
+* Removed AvailableData element, moved subelements to MeasurementDomain
+* Moved Devices element to Network
+* Removed unused BusMeasurement element and unused sub-elements
+
+----
+Revision: MDL_v0_8_4.xsd
+
+* De-anonymized the following types (some have uniqueness constraints):  MessageDefinitionDomainType, PinsType,
+	CalibrationType, CalibrationPairType, OIDTableType, HeaderEntryType, *DataUnitsType
+* Removed TmNSProxyType since a proxy is transparent and doesn't need a specialization.
+
+----
+Revision: MDL_v0_8_3.xsd
+
+* Converted MessageDefinitionDomainType to an annonymous type to allow key/keyref constraints to operate
+	at the MDD level rather than the whole file.
+* Consolidated Measurements and SampledMeasurements
+* DataOperations element promoted to top-level and replace Operations element
+* Added UnitsChoiceType for DataOperations
+* PortsType: removed InputPort and OutputPort
+* PinType: Added DataOperationRef and MeasurementRef
+* DeviceType: Added DataOperationRef and Ports
+* DataOperation: made them composable with SubOperationType
+* SubOperationType: Extension of DataOperationType with added SubOperationOrderIndex
+* MethodType: added AnalogToDigitalConversion element
+* TermType: reverted to single variable polynomials
+* SyllableType: Changed SampledMeasurementRef to MeasurementRef
+* MeasurementType: removed Ports
+* RequirementsType/ImplementationType: added UnitsConversions element
+* UnitsConversionsType: created with list of DataOperationRefs
+* Added PCMMeasurementRef to ImplementationType, RequirementsType, and DataAttributesType
+* Added Unique Role ID constraint
+* Added options to PackageDefinition to include DataStreamRef, DataStreamMessageRef and PCMMinorFrame for packaging streams.
+* Added Index to DataStreamMessageRef.
+* PCMMeasurementRef: Changed NameRef to type xsd:Name
+* Added PCMMinorFrameType
+* Device: Added InventoryID
+* Uniqueness Constraints: Device:InventoryID, NetworkNode:InventoryID
+* Added Network-Example.png and updated example.
+* Added PackagingPCMStream.xml example and diagram
+
+----
+Revision: MDL_v0_8_3-exp1.xsd
+
+* SIUnits: added Byte, Knots, Degree, DegreePerSecond, and Feet
+* Added new examples:
+	Extract-Bus-Measurements.xml
+	Mapping-24bit-measurement-into-16bit-fields.xml
+	PackagingMeasurements.xml
+* Enforce IDs and IDREFs to be in the same MessageDefinitionDomain.
+* Defined TmNSRCDataSourceType, TmNSLTCDataSourceType, and TmNSLTCDataSinkType
+* Moved PinsType to enforce unique Index on PinType.
+* MIBInterfaceType: added constraints on ColumnHeaderIndex, ColumnValue, and RowEntry of OIDTable
+* Unique Index constraints added to MILSTD1553DataUnit, ARINC429DataUnit, PCMStreamDataUnit, and GenericDataStreamDataUnit
+* MessageDefinitionDomain:Name is now required
+* Added uniqueness constraints for MeasurementID, SampledMeasurementID, PackageDefinitionID, MessageDefinitionID
+* DerivedUnit:Symbol is now required
+* DiscreteLookupTable: updated documentation to clarify intent
+* Removed TmNSTAS, TmNSGSE, TmNSGSS
+* IEEE1588SupportedVersionEnum: Added "2002 and 2008"
+* Percentage: changed to float greater than or equal to zero
+* SyllableType: Removed PCMMeasurementRef and PackageDataFieldRef.  The latter was duplicate references.
+* Defined RFNEProtocolServer, TmNSRFNetworkManager, TmNSLinkManager, and TmNSQueueManager.

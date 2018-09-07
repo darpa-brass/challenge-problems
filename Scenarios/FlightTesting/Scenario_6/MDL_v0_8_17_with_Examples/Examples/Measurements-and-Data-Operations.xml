@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_17.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Packaging Measurements Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>-TBD-</TmNSCompletenessDescription>
+      <NetworkReferences/>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>9.80665</NumericalConstant>
+        <SIUnits>MeterPerSecondSquared</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="PercentVoltUnits">
+      <Name>Percent of full scale voltage</Name>
+      <Description>TBD description</Description>
+      <Symbol>%V</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>100</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsNumerator>
+      <UnitsDenominator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsDenominator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+        <Measurement ID="GearVibMeas">
+          <Name>GEARVIB</Name>
+          <Description>Gear Box Vibration</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="GearVibCountsToGsConversion"/>
+            </UnitsConversions>
+            <Uncertainty>
+              <ConfidenceInterval>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.2</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </ConfidenceInterval>
+              <ConfidenceLevel>95</ConfidenceLevel>
+            </Uncertainty>
+            <AnalogAttributes>
+              <EUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFlex>-3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFlex>3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </EUSignalRange>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>-1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.025</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.05</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValueFlex>200</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                </FrequencyBand>
+                <PercentSignal>99</PercentSignal>
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <ActiveInputRange>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>98.3</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>1.17</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+              </ActiveInputRange>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <DataOperations>
+        <DataOperation ID="AccelerometerTransducerDataOp">
+          <Name>Accelerometer Transducer</Name>
+          <Description>This operation represents the accelerometer transducer transfer function.</Description>
+          <DataOperationType>EUtoIU</DataOperationType>
+          <Method ID="Method1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.4917</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+                <Term>
+                  <Coefficient>0.045</Coefficient>
+                  <Exponent>0</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <UnitsRef IDREF="GForceUnits"/>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Volt</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+        <DataOperation ID="GearVibCountsToGsConversion">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <DataOperation ID="IUBitWeighting" SubOperationOrderIndex="1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>CountstoIU</DataOperationType>
+            <Method ID="IUBitWeightingMethod">
+              <Name>IU Bit Weighting</Name>
+              <Description>This operation represents the conversion from Counts to Volts.</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>0.000732</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Counts</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <SIUnits>Volt</SIUnits>
+            </OutputUnits>
+          </DataOperation>
+          <DataOperation ID="InverseTransducer" SubOperationOrderIndex="2">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>IUtoEU</DataOperationType>
+            <Method ID="InverseTransducerMethod">
+              <Name>Inverse Transducer</Name>
+              <Description>This operation represents the inverse of the transducer to convert from volts to G's.  
+              The equation is  G's = (Vin - 0.045) / 0.4917</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>1.0</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                  <Term>
+                    <Coefficient>-0.045</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+                <PolynomialDenominator>
+                  <Term>
+                    <Coefficient>0.4917</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialDenominator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Volt</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <UnitsRef IDREF="GForceUnits"/>
+            </OutputUnits>
+          </DataOperation>
+        </DataOperation>
+      </DataOperations>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network</Name>
+      <Description>TBD description</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="Dau1">
+        <Name>Dau1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Dau1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU>
+              <Module>
+                <Name>TBD Module Name</Name>
+                <Description>TBD Module Description</Description>
+                <Manufacturer>TBD Vendor Co</Manufacturer>
+                <ModelNumber>TBD Model Number</ModelNumber>
+                <SerialNumber>12345-988775</SerialNumber>
+                <InventoryID>InvID-192837</InventoryID>
+                <Position>1</Position>
+                <Connector>
+                  <Name>Analog Connector</Name>
+                  <Description>TBD description</Description>
+                  <Pin ID="Pin1ID" Index="1">
+                    <Name>TBD name</Name>
+                    <Description>This is the first analog input pin on the card</Description>
+                    <Designator>A</Designator>
+                  </Pin>
+                  <Pin ID="Pin2ID" Index="2">
+                    <Name>TBD name</Name>
+                    <Description>This is the second analog input pin on the card</Description>
+                    <Designator>B</Designator>
+                  </Pin>
+                </Connector>
+                <Ports>
+                  <Port ID="Dau1Pin1InputPort" Index="1">
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <PortDirection>Input</PortDirection>
+                    <PinRef IDREF="Pin1ID"/>
+                  </Port>
+                </Ports>
+              </Module>
+            </TmNSDAU>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <NetworkInterface ID="Dau1IFace">
+          <Name>Eth0</Name>
+          <DHCPEnable>false</DHCPEnable>
+          <IPAddress>192.168.0.21</IPAddress>
+          <Netmask>255.255.255.0</Netmask>
+          <Gateway>192.168.0.1</Gateway>
+          <MACAddress>00:00:00:00:00:00</MACAddress>
+          <PhysicalNetworkPort ID="Dau1PhysNetPort1">
+            <Name>Dau1PhyNetPort2</Name>
+            <Description>TBD description</Description>
+            <Medium>Copper</Medium>
+            <PortNumber>1</PortNumber>
+            <PortDataRate>
+              <FloatValue>1e8</FloatValue>
+              <SIUnits>BitPerSecond</SIUnits>
+            </PortDataRate>
+          </PhysicalNetworkPort>
+        </NetworkInterface>
+        <Ports>
+          <Port ID="Dau1NetworkPort" Index="2">
+            <Name>Dau1Port</Name>
+            <Description>TBD description</Description>
+            <PortDirection>Bidirectional</PortDirection>
+            <PhysicalNetworkPortRef IDREF="Dau1PhysNetPort1"/>
+          </Port>
+        </Ports>
+      </NetworkNode>
+
+      <Device ID="GearVibTransducer">
+        <Name>Gear Vibration Accelerometer Transducer</Name>
+        <Description>This operation represents the accelerometer transducer transfer function.</Description>
+        <Manufacturer>Endevco</Manufacturer>
+        <ModelNumber>752-500</ModelNumber>
+        <SerialNumber>000125</SerialNumber>
+        <InventoryID>03928-2934820-2934</InventoryID>
+        <DeviceType>Accelerometer</DeviceType>
+        <DataOperationRef IDREF="AccelerometerTransducerDataOp"/>
+        <Excitation>
+          <ConditionOperation>==</ConditionOperation>
+          <ConditionValueFloat>24</ConditionValueFloat>
+          <SIUnits>Volt</SIUnits>
+        </Excitation>
+        <Calibration>
+          <CalibrationDate>2010-10-24</CalibrationDate>
+          <CalibrationPair>
+            <InputValue>
+              <FloatValue>-3</FloatValue>
+              <UnitsRef IDREF="GForceUnits"/>
+            </InputValue>
+            <OutputValue>
+              <FloatValue>-1.43</FloatValue>
+              <SIUnits>Volt</SIUnits>
+            </OutputValue>
+          </CalibrationPair>
+          <CalibrationPair>
+            <InputValue>
+              <FloatValue>3</FloatValue>
+              <UnitsRef IDREF="GForceUnits"/>
+            </InputValue>
+            <OutputValue>
+              <FloatValue>1.52</FloatValue>
+              <SIUnits>Volt</SIUnits>
+            </OutputValue>
+          </CalibrationPair>
+        </Calibration>
+        <Connector>
+          <Name>Analog Connector</Name>
+          <Description>TBD description</Description>
+          <Pin ID="DevicePin1ID" Index="1">
+            <Name>TBD name</Name>
+            <Description>This is the (first) physical pin</Description>
+            <Designator>1</Designator>
+          </Pin>
+        </Connector>
+        <Ports>
+          <Port ID="GearVibTransducerOutputPort" Index="1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <PortDirection>Output</PortDirection>
+            <PinRef IDREF="DevicePin1ID"/>
+          </Port>
+        </Ports>
+      </Device>
+
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="GearVibTransducerOutputPort"/>
+          <PortRef IDREF="Dau1Pin1InputPort"/>
+          <MeasurementRef IDREF="GearVibMeas"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+  </NetworkDomains>
+</MDLRoot>

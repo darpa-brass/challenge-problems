@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="AddressCommonType">
+      <xs:sequence>
+         <xs:element ref="RemoteTerminal" minOccurs="0"/>
+         <xs:element ref="SubTerminal" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="ArincMessageDefinition" type="ArincMessageDefinitionType"/>
+   <xs:complexType name="ArincMessageDefinitionType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Label" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>LBL</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Code" type="TmatsCommon:ArincMessageDefinitionCodeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SDI</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="Bus" type="BusType"/>
+   <xs:complexType name="BusAttributesCommonType">
+      <xs:annotation>
+         <xs:documentation>TMATS B-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element ref="TestItem" minOccurs="0"/>
+         <xs:element name="Comments" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>COM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="BusAttributesType">
+      <xs:complexContent>
+         <xs:extension base="BusAttributesCommonType">
+            <xs:sequence>
+               <xs:element ref="Bus"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="BusCommonType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Number" type="TmatsCommon:BinaryType">
+            <xs:annotation>
+               <xs:documentation>BID</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>BNA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Type" type="TmatsCommon:BusTypeType">
+            <xs:annotation>
+               <xs:documentation>BT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element ref="RecordingDescription"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="BusType">
+      <xs:complexContent>
+         <xs:extension base="BusCommonType">
+            <xs:sequence>
+               <xs:element ref="Message" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="Measurement" type="MeasurementType"/>
+   <xs:complexType name="MeasurementType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>MN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Type" type="TmatsCommon:Ch8MeasurementTypeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="MeasurementLocationType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurementLocationType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="WordNumber" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>MWN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MBM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MTO</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FragmentNumber" default="1" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MFP</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:positiveInteger">
+                  <xs:maxInclusive value="8"/>
+                  <xs:minInclusive value="1"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="Message" type="MessageType"/>
+   <xs:complexType name="MessageType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>MNA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Number" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>MID</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CommandWordType" type="TmatsCommon:CommandWordTypeType" default="Address Fields" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CWE</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Depending on CWE value.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="CommandWordValue" type="TmatsCommon:HexType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>CMD</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Address" type="MessageAddressType" minOccurs="0"/>
+         </xs:choice>
+         <xs:element name="SpecialProcessing" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SPR</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element ref="ArincMessageDefinition" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Only valid, if Bus Type is ARINC 429</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element ref="RTRTReceiveCommandList" minOccurs="0"/>
+         <xs:element ref="ModeCode" minOccurs="0"/>
+         <xs:element ref="Measurement" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MessageAddressType">
+      <xs:complexContent>
+         <xs:extension base="AddressCommonType">
+            <xs:sequence>
+               <xs:element name="TransmitReceiveMode" type="TmatsCommon:TransmitReceiveModeType" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>TRM</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="DataWordCountOrModeCode" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>DWC</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="ModeCode" type="ModeCodeType"/>
+   <xs:complexType name="ModeCodeType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MCD</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataWordDescription" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MCW</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="RecordingDescription" type="RecordingDescriptionType"/>
+   <xs:complexType name="RecordingDescriptionType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="TrackSequence" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>TS</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="RemoteTerminal" type="RemoteTerminalType"/>
+   <xs:complexType name="RemoteTerminalType">
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRN, RTRN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="TmatsCommon:BinaryType">
+            <xs:annotation>
+               <xs:documentation>TRA, RTRA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="RTRTReceiveCommandList" type="RTRTReceiveCommandListType"/>
+   <xs:complexType name="RTRTReceiveCommandListType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="CommandWordType" type="TmatsCommon:CommandWordTypeType" default="Address Fields" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RCWE</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Depending on RCWE value.</xs:documentation>
+            </xs:annotation>
+            <xs:element name="CommandWordValue" type="TmatsCommon:HexType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>RCMD</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Address" type="RTRTReceiveCommandListAddressType" minOccurs="0"/>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="RTRTReceiveCommandListAddressType">
+      <xs:complexContent>
+         <xs:extension base="AddressCommonType">
+            <xs:sequence>
+               <xs:element name="DataWordCount" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>RDWC</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="SubTerminal" type="SubTerminalType"/>
+   <xs:complexType name="SubTerminalType">
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>STN, RSTN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="TmatsCommon:BinaryWithDontCareType">
+            <xs:annotation>
+               <xs:documentation>STA, RSTA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:element name="TestItem" type="TestItemType"/>
+   <xs:simpleType name="TestItemType">
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,618 @@
+<?xml version="1.0"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Multiple Apps Per NetworkNode Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>incomplete</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="ExampleNetworkID"/>
+        <NetworkRef IDREF="ExampleNetwork2ID"/>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network</Name>
+      <Description>example network</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="SSTComputerID">
+        <Name>SST Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00010</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="ACUApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SST-ACU</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSACU>
+              <TrackingReceiver>
+                <ManageableAppRef IDREF="SSTProxyApp1"/>
+              </TrackingReceiver>
+              <ServoEnergized>true</ServoEnergized>
+              <FeedEnabled>true</FeedEnabled>
+              <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              <TrackingMode>Search</TrackingMode>
+            </TmNSACU>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="SSTComputerIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="SSTProxyApp1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SST-SSTProxy1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSSSTRx>
+              <Channel ID="SSTProxyApp1Chan1">
+                <Name>TBD name</Name>
+                <ChannelNumber>30</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1800e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <AutoGainMode>true</AutoGainMode>
+                <ClockPolarityInverted>false</ClockPolarityInverted>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <SweepEnable>false</SweepEnable>
+                <DiffDecoding>true</DiffDecoding>
+                <Derandomize>false</Derandomize>
+                <DataSourceSimulated>false</DataSourceSimulated>
+                <FECEnable>false</FECEnable>
+              </Channel>
+            </TmNSSSTRx>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="SSTComputerIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="SSTProxyApp2">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SST-SSTProxy2</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSSSTRx>
+              <Channel ID="SSTProxyApp2Chan1">
+                <Name>TBD name</Name>
+                <ChannelNumber>31</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1805e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <AutoGainMode>true</AutoGainMode>
+                <ClockPolarityInverted>false</ClockPolarityInverted>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <SweepEnable>false</SweepEnable>
+                <DiffDecoding>true</DiffDecoding>
+                <Derandomize>false</Derandomize>
+                <DataSourceSimulated>false</DataSourceSimulated>
+                <FECEnable>false</FECEnable>
+              </Channel>
+            </TmNSSSTRx>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="SSTComputerIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="SSTProxyApp3">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SST-SSTProxy3</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSSSTRx>
+              <Channel ID="SSTProxyApp3Chan1">
+                <Name>TBD name</Name>
+                <ChannelNumber>32</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1810e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <AutoGainMode>true</AutoGainMode>
+                <ClockPolarityInverted>false</ClockPolarityInverted>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <SweepEnable>false</SweepEnable>
+                <DiffDecoding>true</DiffDecoding>
+                <Derandomize>false</Derandomize>
+                <DataSourceSimulated>false</DataSourceSimulated>
+                <FECEnable>false</FECEnable>
+              </Channel>
+            </TmNSSSTRx>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="SSTComputerIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="SSTProxyApp4">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SST-SSTProxy4</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSSSTRx>
+              <Channel ID="SSTProxyApp4Chan1">
+                <Name>TBD name</Name>
+                <ChannelNumber>33</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1815e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <AutoGainMode>true</AutoGainMode>
+                <ClockPolarityInverted>false</ClockPolarityInverted>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <SweepEnable>false</SweepEnable>
+                <DiffDecoding>true</DiffDecoding>
+                <Derandomize>false</Derandomize>
+                <DataSourceSimulated>false</DataSourceSimulated>
+                <FECEnable>false</FECEnable>
+              </Channel>
+            </TmNSSSTRx>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="SSTComputerIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="SSTComputerModule">
+            <Name>SST Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="ACUApp"/>
+              <ManageableAppRef IDREF="SSTProxyApp1"/>
+              <ManageableAppRef IDREF="SSTProxyApp2"/>
+              <ManageableAppRef IDREF="SSTProxyApp3"/>
+              <ManageableAppRef IDREF="SSTProxyApp4"/>
+            </RunningApps>
+            <NetworkInterface ID="SSTComputerIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="SSTComputerPhyNetPort">
+                <Name>SST Computer PhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="SSTComputerPort" Index="1">
+                <Name>SST Computer Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="SSTComputerPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+    </Network>
+    <Network ID="ExampleNetwork2ID">
+      <Name>Example Network 2</Name>
+      <Description>example network</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="GSECartBlackComputer">
+        <Name>GSE Cart Blackside Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00011</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="SSTManagerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>GSE-SSTMan-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSConsolidatedManager/> <!--Apps managed by this manager intentionally left out-->
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="RFNetworkOpsManagerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>GSE-RFNOMan-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSConsolidatedManager>
+              <ManagedApps>
+                <ManageableAppRef IDREF="RFNetworkManagerApp"/>
+                <ManageableAppRef IDREF="LinkManagerApp"/>
+              </ManagedApps>
+            </TmNSConsolidatedManager>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="RFNetworkManagerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>GSE-RFNM-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSRFNetworkManager>
+              <RANConfigRef IDREF="RANConfig1"/>
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <RFNEProtocolServer>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <ProtocolType>RFNM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+                <ListeningPort>47230</ListeningPort>
+              </RFNEProtocolServer>
+            </TmNSRFNetworkManager>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+          <TmNSManageableApp ID="LinkManagerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>GSE-LM-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSLinkManager>
+              <RANConfigRef IDREF="RANConfig1"/>
+              <LMBuiltInTest>
+                <ContinuousEnable>true</ContinuousEnable>
+                <EnterDoNoHarmStateOnBitFailure>true</EnterDoNoHarmStateOnBitFailure>
+                <FatalErrorThreshold>1</FatalErrorThreshold>
+                <CriticalErrorThreshold>10</CriticalErrorThreshold>
+                <ErrorThreshold>100</ErrorThreshold>
+                <WarningThreshold>500</WarningThreshold>
+                <InformationalThreshold>1000</InformationalThreshold>
+              </LMBuiltInTest>
+              <LMExtraDebugLevel>
+                <Debug1>false</Debug1>
+                <Debug2>false</Debug2>
+                <Debug3>false</Debug3>
+                <Debug4>false</Debug4>
+              </LMExtraDebugLevel>
+              <IdleOnPTPTimingThresholdExceeded>false</IdleOnPTPTimingThresholdExceeded>
+              <TxRxSetupTimeMs>10</TxRxSetupTimeMs>
+              <!-- ManageableAppRefs to the QueueManager and Radio components intentionally left blank -->
+              <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+              <RFNEProtocolServer>
+                <!--ProtocolType and ListeningPort intentionally left blank-->
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <ProtocolType>LM-QM</ProtocolType>
+                <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+                <ListeningPort>47230</ListeningPort>
+              </RFNEProtocolServer>
+            </TmNSLinkManager>
+            <SMInterface>
+              <SNMPVersion>3</SNMPVersion>
+              <SNMPPort>161</SNMPPort>
+              <NotificationPort>162</NotificationPort>
+              <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+              <NetworkInterfaceRef IDREF="GSECartBlackIFace"/>
+              <!-- MIBInterface not shown in this example -->
+              <Notifications>
+                <NotificationDestinations>
+                </NotificationDestinations>
+              </Notifications>
+            </SMInterface>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="GSECartBlackComputerModule">
+            <Name>GSE Cart Blackside Computer</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="SSTManagerApp"/>
+              <ManageableAppRef IDREF="RFNetworkManagerApp"/>
+              <ManageableAppRef IDREF="RFNetworkOpsManagerApp"/>
+              <ManageableAppRef IDREF="LinkManagerApp"/>
+            </RunningApps>
+            <NetworkInterface ID="GSECartBlackIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="GSECartBlackPhyNetPort">
+                <Name>GSE Cart Black PhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="GSECartBlackPort" Index="1">
+                <Name>GSE Cart Black Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="GSECartBlackPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+    </Network>
+  </NetworkDomains>
+  <RANConfigs>
+    <RANConfig ID="RANConfig1">
+      <Name>Example RAN</Name>
+      <Description>This is an example RAN configuration</Description>
+      <CenterFreqHz>1234</CenterFreqHz> <!--Obviously a fake value-->
+      <ModulationType>SOQPSK-TG</ModulationType>
+      <EpochSize>100</EpochSize>
+      <ContentionPeriodOpsEnable>true</ContentionPeriodOpsEnable>
+      <LDPCBlocksPerBurst>4</LDPCBlocksPerBurst>
+      <MaxGuardTimeSec>0.001234</MaxGuardTimeSec> <!--Just a fake value-->
+      <RadioControlLoopDSCPRef IDREF="DiffservExpeditedForwarding"/>
+      <RANCommandControlDSCPRef IDREF="DiffservBestEffort"/>
+      <RadioGroups>
+        <RadioGroup ID="RG-001">
+          <Name>Radio Group 1</Name>
+          <Description>TBD</Description>
+          <GroupRFAddress>1234</GroupRFAddress>
+        </RadioGroup>
+      </RadioGroups>
+    </RANConfig>
+  </RANConfigs>
+  <DSCPTable>
+    <DSCPTableEntry ID="DiffservBestEffort">
+      <Name>Best Effort Diffserv</Name>
+      <Description>Best Effort PHB</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservExpeditedForwarding">
+      <Name>Expedited Forwarding Diffserv</Name>
+      <Description>Expedited Forwarding PHB</Description>
+      <DSCPValue>0b101110</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding1">
+      <Name>Assured Forwarding 1 Diffserv</Name>
+      <Description>Assured Forwarding Class 1</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding2">
+      <Name>Assured Forwarding 2 Diffserv</Name>
+      <Description>Assured Forwarding Class 2</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding3">
+      <Name>Assured Forwarding 3 Diffserv</Name>
+      <Description>Assured Forwarding Class 3</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding4">
+      <Name>Assured Forwarding 4 Diffserv</Name>
+      <Description>Assured Forwarding Class 4</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>

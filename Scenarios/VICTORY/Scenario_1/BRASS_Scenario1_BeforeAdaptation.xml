@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vcl:VCL xmlns:vcl="http://www.victory-standards.org/Schemas/VICTORYConfigurationLanguage.xsd"
+ xmlns:vmt="http://www.victory-standards.org/Schemas/VICTORYManagementTypes.xsd"
+ xmlns:vst="http://www.victory-standards.org/Schemas/VICTORYSharedTypes.xsd"
+ xmlns:tns="http://www.w3.org/2003/05/soap-envelope"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.victory-standards.org/Schemas/VICTORYConfigurationLanguage.xsd file:/Volumes/Projects/10-23360_USAF_ROME/Shared/Scenarios/VICTORY%20Challenge%20Problem/Scenario%201/Scenario%201%20-%2020180328/VICTORYConfigurationLanguage.xsd">
+     <vcl:configGroup type="SHARED_PROCESSING_UNIT" name="MFoCSSharedProcessingUnit">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+         <vcl:configGroup type="SHARED_PROCESSING_UNIT" name="soapComponent">
+             <vcl:configGroup name="services">
+                 <vcl:configGroup name="service">
+                     <vcl:configItem name="uniqueName" value="DataLoggerService"/>
+                     <vcl:configItem name="startService" value="false"/>
+                     <vcl:configGroup name="victoryComponentTypes">
+                         <vcl:configGroup name="victoryComponentType">
+                             <vcl:configItem name="uniqueName" value="DataLogger"/>
+                             <vcl:configItem name="type" value="DATA_LOGGER"/>
+                         </vcl:configGroup>
+                     </vcl:configGroup>
+                 </vcl:configGroup>
+                 <vcl:configGroup name="service">
+                     <vcl:configItem name="uniqueName" value="ElectronicWarfareService"/>
+                     <vcl:configItem name="startService" value="false"/>
+                     <vcl:configGroup name="victoryComponentTypes">
+                         <vcl:configGroup name="victoryComponentType">
+                             <vcl:configItem name="uniqueName" value="ElectronicWarfare"/>
+                             <vcl:configItem name="type" value="ELECTRONIC_WARFARE"/>
+                         </vcl:configGroup>
+                     </vcl:configGroup>
+                 </vcl:configGroup>
+             </vcl:configGroup>
+             <vcl:configGroup name="ports">
+                 <vcl:configGroup name="port">
+                     <vcl:configItem name="portStandardVersion" value="1.6"/>
+                     <vcl:configItem name="uri" 
+                         value="http://10.50.50.112:8080/MFoCSSharedProcessingUnit/sharedProcessingUnit"/>
+                 </vcl:configGroup>
+             </vcl:configGroup>
+         </vcl:configGroup>
+         <vcl:configGroup type="GENERIC_END_NODE" name="soapComponent">
+             <vcl:configItem name="autodiscoveryEnabled" value="true"/>
+             <vcl:configItem name="dateTime" value="2013-10-31T09:06:12Z"/>
+             <vcl:configItem name="displayBlackoutEnabled" value="false"/>
+             <vcl:configItem name="hostname" value="mfocs"/>
+             <vcl:configGroup name="ethernetInterfaces">
+                 <vcl:configGroup name="ethernetInterface">
+                     <vcl:configItem name="interfaceName" value="eth0"/>
+                     <vcl:configItem name="uniqueName" value="eth0"/>
+                     <vcl:configItem name="macAddress" value="00-1b-ac-00-35-8f"/>
+                     <vcl:configItem name="dhcpv4Enabled" value="false"/>
+                     <vcl:configItem name="dhcpv6Enabled" value="false"/>
+                     <vcl:configGroup name="staticIpConfigurations">
+                         <vcl:configGroup name="staticIpConfiguration">
+                             <vcl:configItem name="uniqueName" value="10-50-50-112"/>
+                             <vcl:configItem name="address" value="10.50.50.112"/>
+                             <vcl:configItem name="subnet" value="255.255.255.0"/>
+                             <vcl:configItem name="broadcast" value="10.50.50.255"/>
+                             <vcl:configItem name="gateway" value="10.50.50.1"/>
+                         </vcl:configGroup>
+                     </vcl:configGroup>
+                     <vcl:configGroup name="autoIpConfigurations"/>
+                 </vcl:configGroup>    
+             </vcl:configGroup>
+             <vcl:configGroup name="ports">
+                 <vcl:configGroup name="port">
+                     <vcl:configItem name="portStandardVersion" value="1.7"/>
+                     <vcl:configItem name="uri" 
+                         value="http://10.50.50.112:8080/MFoCSSharedProcessingUnit/genericEndNode"/>
+                 </vcl:configGroup>
+             </vcl:configGroup>
+         </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="1000"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="5000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="spuHealthUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10150"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/MFoCSSharedProcessingUnit/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/MFoCSSharedProcessingUnit/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+         <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+             <vcl:configGroup name="ports">
+                 <vcl:configGroup name="port">
+                     <vcl:configItem name="portStandardVersion" value="1.6"/>
+                     <vcl:configItem name="uri" 
+                         value="http://10.50.50.112:8080/MFoCSSharedProcessingUnit/configuration"/>
+                 </vcl:configGroup>
+             </vcl:configGroup>
+         </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="DATA_LOGGER" name="DataLogger">
+        <vcl:configItem name="announcementEnabled" value="false"/>
+        <vcl:configItem name="interfaceId" value="60"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/DataLogger/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="DATA_LOGGER" name="soapComponent">
+            <vcl:configItem name="overwriteEnabled" value="false"/>
+            <vcl:configGroup name="maximumLogSize">
+                <vcl:configItem name="size" value="4"/>
+                <vcl:configItem name="units" value="GB"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/DataLogger/dataLogger"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="streams">
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="DbhSpuHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10100"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="PositionHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10110"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="PositionData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10111"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="POSITION"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="OrientationHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10120"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="OrientationData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10121"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="ORIENTATION"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="DotHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10130"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="DotData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10131"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="DIRECTION_OF_TRAVEL"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="GpsHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10140"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="GpsIcData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10141"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="GPS_RECEIVER_IONOSPHERIC_CORRECTIONS"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="GpsShsData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10142"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="GPS_RECEIVER_SATELLITE_HEALTH_STATUS"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="GpsSData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10143"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="GPS_RECEIVER_STATUS"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="MfocsSpuHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10150"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="DataLoggerHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10160"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="DataLoggerData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10161"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="DATA_LOGGER_STORAGE"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="EwHealth"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10170"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configItem name="healthStream" value="syslog"/>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="EwGeoData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10171"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="ELECTRONIC_WARFARE_GEOLOCATION"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="EwLobData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10172"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="ELECTRONIC_WARFARE_LINE_OF_BEARING"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="EwObjDetData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10173"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="ELECTRONIC_WARFARE_OBJECT_DETECTION"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="stream">
+                    <vcl:configItem name="uniqueName" value="EwDevSpData"/>
+                    <vcl:configItem name="uri" value="239.192.1.1:10174"/>
+                    <vcl:configGroup name="streamType">
+                        <vcl:configGroup name="vdmStream">
+                            <vcl:configItem name="vdmType" 
+                                value="ELECTRONIC_WARFARE_DEVICE_SPECIFIC"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="1000"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="TestUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10160"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/DataLogger/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/DataLogger/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VICTORY_DATA" name="soapComponent">
+            <vcl:configItem name="dataEnabled" value="true"/>
+            <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+            <vcl:configItem name="updatePeriod" value="5000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-00a0c91e6b61"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10161"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/DataLogger/victoryData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="ELECTRONIC_WARFARE" name="ElectronicWarfare">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configItem name="interfaceId" value="70"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="DEVICE_INFORMATION" name="soapComponent">
+            <vcl:configItem name="equipmentId" value="5000"/>
+            <vcl:configItem name="manufacturer" value="Harris"/>
+            <vcl:configItem name="model" value="CVRJ"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/deviceInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="ELECTRONIC_WARFARE_DATA" name="soapComponent">
+            <vcl:configGroup name="ewDataTypes">
+                <vcl:configGroup type="ELECTRONIC_WARFARE_GEOLOCATION" name="ewDataType">
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-5550c91e6b72"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10171"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup type="ELECTRONIC_WARFARE_LINE_OF_BEARING" name="ewDataType">
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-4444491e6b73"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10172"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup type="ELECTRONIC_WARFARE_OBJECT_DETECTION" name="ewDataType">
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-3333331e6b74"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10173"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup type="ELECTRONIC_WARFARE_DEVICE_SPECIFIC" name="ewDataType">
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-2222291e6b71"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10174"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/ewData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="ELECTRONIC_WARFARE_DEVICE" name="soapComponent">
+            <vcl:configItem name="configuration" value="file1"/>
+            <vcl:configGroup name="antennaSectors">
+                <vcl:configGroup name="antennaSector">
+                    <vcl:configItem name="coverageStartAngle" value="179"/>
+                    <vcl:configItem name="coverageStopAngle" value="181"/>
+                    <vcl:configItem name="enabled" value="true"/>
+                    <vcl:configItem name="sectorId" value="411"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="deviceCapabilities">
+                <vcl:configItem name="deviceCapability" value="RADIO_JAMMING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/ewDevice"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="1000"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="5000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="a81d4fae-7dec-11d0-a765-00a0c91e6b70"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10170"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.112:8080/ElectronicWarfare/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="SHARED_PROCESSING_UNIT" name="DBHSharedProcessingUnit">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DBHSharedProcessingUnit/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="GENERIC_END_NODE" name="soapComponent">
+            <vcl:configItem name="autodiscoveryEnabled" value="true"/>
+            <vcl:configItem name="dateTime" value="2013-10-31T09:06:12Z"/>
+            <vcl:configItem name="displayBlackoutEnabled" value="false"/>
+            <vcl:configItem name="hostname" value="dbh-670"/>
+            <vcl:configGroup name="ethernetInterfaces">
+                <vcl:configGroup name="ethernetInterface">
+                    <vcl:configItem name="interfaceName" value="eth0"/>
+                    <vcl:configItem name="uniqueName" value="5b5dfeea-1955-11e3-9a3b-f23c91aec05e"/>
+                    <vcl:configItem name="macAddress" value="00-1b-ac-00-35-8e"/>
+                    <vcl:configItem name="dhcpv4Enabled" value="true"/>
+                    <vcl:configItem name="dhcpv6Enabled" value="false"/>
+                    <vcl:configGroup name="staticIpConfigurations">
+                        <vcl:configGroup name="staticIpConfiguration">
+                            <vcl:configItem name="uniqueName" value="5b5e0160-1955-11e3-9a3b-f23c91aec05e"/>
+                            <vcl:configItem name="address" value="10.50.50.111"/>
+                            <vcl:configItem name="subnet" value="255.255.255.0"/>
+                            <vcl:configItem name="broadcast" value="10.50.50.255"/>
+                            <vcl:configItem name="gateway" value="10.50.50.1"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                    <vcl:configGroup name="autoIpConfigurations">
+                        <vcl:configGroup name="autoIpConfiguration">
+                            <vcl:configItem name="uniqueName" value="5b5e035e-1955-11e3-9a3b-f23c91aec05e"/>
+                            <vcl:configItem name="type" value="DHCP_V4"/>
+                            <vcl:configItem name="address" value="10.50.50.111"/>
+                            <vcl:configItem name="subnet" value="255.255.255.0"/>
+                            <vcl:configItem name="broadcast" value="10.50.50.255"/>
+                            <vcl:configItem name="gateway" value="10.50.50.1"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DBHSharedProcessingUnit/genericEndNode"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="1000"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="5000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="spuHealthUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10100"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DBHSharedProcessingUnit/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="SHARED_PROCESSING_UNIT" name="soapComponent">
+            <vcl:configGroup name="services">
+                <vcl:configGroup name="service">
+                    <vcl:configItem name="uniqueName" value="PositionService"/>
+                    <vcl:configItem name="startService" value="false"/>
+                    <vcl:configGroup name="victoryComponentTypes">
+                        <vcl:configGroup name="victoryComponentType">
+                            <vcl:configItem name="uniqueName" value="PositionService"/>
+                            <vcl:configItem name="type" value="POSITION_SERVICE"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="service">
+                    <vcl:configItem name="uniqueName" value="OrientationService"/>
+                    <vcl:configItem name="startService" value="false"/>
+                    <vcl:configGroup name="victoryComponentTypes">
+                        <vcl:configGroup name="victoryComponentType">
+                            <vcl:configItem name="uniqueName" value="OrientationService"/>
+                            <vcl:configItem name="type" value="ORIENTATION_SERVICE"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="service">
+                    <vcl:configItem name="uniqueName" value="DirectionOfTravelService"/>
+                    <vcl:configItem name="startService" value="false"/>
+                    <vcl:configGroup name="victoryComponentTypes">
+                        <vcl:configGroup name="victoryComponentType">
+                            <vcl:configItem name="uniqueName" value="DirectionOfTravelService"/>
+                            <vcl:configItem name="type" value="DIRECTION_OF_TRAVEL_SERVICE"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup name="service">
+                    <vcl:configItem name="uniqueName" value="GPSReceiver"/>
+                    <vcl:configItem name="startService" value="false"/>
+                    <vcl:configGroup name="victoryComponentTypes">
+                        <vcl:configGroup name="victoryComponentType">
+                            <vcl:configItem name="uniqueName" value="GPSReceiver"/>
+                            <vcl:configItem name="type" value="GPS_RECEIVER"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DBHSharedProcessingUnit/sharedProcessingUnit"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DBHSharedProcessingUnit/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="POSITION_SERVICE" name="PositionService">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configItem name="interfaceId" value="10"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/PositionService/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="500"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="TestUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10110"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/PositionService/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="POSITION_DATA" name="soapComponent">
+            <vcl:configItem name="geodeticDatum" value="WGS_84"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/PositionService/positionData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/PositionService/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VICTORY_DATA" name="soapComponent">
+            <vcl:configItem name="dataEnabled" value="true"/>
+            <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+            <vcl:configItem name="updatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="a81d4fae-7dec-11d0-a765-00a0c91e6b11"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10111"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/PositionService/victoryData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="ORIENTATION_SERVICE" name="OrientationService">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configItem name="interfaceId" value="20"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/OrientationService/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="500"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="TestUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10120"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/OrientationService/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="ORIENTATION_DATA" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/OrientationService/positionData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/OrientationService/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VICTORY_DATA" name="soapComponent">
+            <vcl:configItem name="dataEnabled" value="true"/>
+            <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+            <vcl:configItem name="updatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="a81d4fae-7dec-11d0-a765-00a0c91e6b21"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10121"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/OrientationService/victoryData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="DIRECTION_OF_TRAVEL_SERVICE" name="DirectionOfTravelService">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configItem name="interfaceId" value="30"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DirectionOfTravelService/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultUpdatePeriod" value="500"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="TestUri"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10130"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DirectionOfTravelService/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="DIRECTION_OF_TRAVEL_DATA" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DirectionOfTravelService/positionData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DirectionOfTravelService/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VICTORY_DATA" name="soapComponent">
+            <vcl:configItem name="dataEnabled" value="true"/>
+            <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+            <vcl:configItem name="updatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="a81d4fae-7dec-11d0-a765-00a0c91e6b31"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10131"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/DirectionOfTravelService/victoryData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+    <vcl:configGroup type="GPS_RECEIVER" name="GPSReceiver">
+        <vcl:configItem name="announcementEnabled" value="true"/>
+        <vcl:configItem name="interfaceId" value="40"/>
+        <vcl:configGroup type="CONFIGURATION" name="soapComponent">
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.6"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/configuration"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="DEVICE_INFORMATION" name="soapComponent">
+            <vcl:configItem name="equipmentId" value="10000"/>
+            <vcl:configItem name="manufacturer" value="PM PNT"/>
+            <vcl:configItem name="model" value="AN_PSN-13"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/deviceInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="GPS_RECEIVER_DATA" name="soapComponent">
+            <vcl:configGroup name="gpsReceiverDataTypes">
+                <vcl:configGroup type="GPS_RECEIVER_IONOSPHERIC_CORRECTIONS" name="gpsReceiverDataType">
+                    <vcl:configItem name="dataOfInterest" value="true"/>
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configItem name="updatePeriod" value="1000"/>
+                    <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-00a0c91e6b41"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10141"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup type="GPS_RECEIVER_SATELLITE_HEALTH_STATUS" name="gpsReceiverDataType">
+                    <vcl:configItem name="dataOfInterest" value="true"/>
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configItem name="updatePeriod" value="1000"/>
+                    <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-00a0c91e6b43"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10142"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+                <vcl:configGroup type="GPS_RECEIVER_STATUS" name="gpsReceiverDataType">
+                    <vcl:configItem name="dataOfInterest" value="true"/>
+                    <vcl:configItem name="dataEnabled" value="true"/>
+                    <vcl:configItem name="updatePeriod" value="1000"/>
+                    <vcl:configItem name="minimumUpdatePeriod" value="100"/>
+                    <vcl:configGroup name="dataTransportConfigurations">
+                        <vcl:configGroup name="transportConfiguration">
+                            <vcl:configItem name="uniqueName" value="b0594fae-7dec-11d0-a765-00a0c91e6b43"/>
+                            <vcl:configItem name="uri" value="multicast://239.192.1.1:10143"/>
+                        </vcl:configGroup>
+                    </vcl:configGroup>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/gpsReceiverData"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="GPS_RECEIVER_DEVICE" name="soapComponent">
+            <vcl:configItem name="datumCode" value="WGE"/>
+            <vcl:configItem name="magneticVariation" value="7.8"/>
+            <vcl:configItem name="operatingMode" value="CONTINUOUS"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/gpsReceiverDevice"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="HEALTH_PUBLISHING" name="soapComponent">
+            <vcl:configItem name="faultEnabled" value="true"/>
+            <vcl:configItem name="faultUpdatePeriod" value="1000"/>
+            <vcl:configItem name="statusEnabled" value="true"/>
+            <vcl:configItem name="statusUpdatePeriod" value="1000"/>
+            <vcl:configGroup name="dataTransportConfigurations">
+                <vcl:configGroup name="transportConfiguration">
+                    <vcl:configItem name="uniqueName" value="a81d4fae-7dec-11d0-a765-00a0c91e6b40"/>
+                    <vcl:configItem name="uri" value="multicast://239.192.1.1:10140"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+            <vcl:configGroup name="enabledFaultSeverityLevels">
+                <vcl:configItem name="enabledFaultSeverityLevel" value="EMERGENCY"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ALERT"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="CRITICAL"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="ERROR"/>
+                <vcl:configItem name="enabledFaultSeverityLevel" value="WARNING"/>
+            </vcl:configGroup>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.7"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/healthPublishing"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+        <vcl:configGroup type="VERSION_INFORMATION" name="soapComponent">
+            <vcl:configItem name="interfaceStandardVersion" value="1.7"/>
+            <vcl:configGroup name="ports">
+                <vcl:configGroup name="port">
+                    <vcl:configItem name="portStandardVersion" value="1.4"/>
+                    <vcl:configItem name="uri" 
+                        value="http://10.50.50.111:8080/GPSReceiver/versionInformation"/>
+                </vcl:configGroup>
+            </vcl:configGroup>
+        </vcl:configGroup>
+    </vcl:configGroup>
+</vcl:VCL>

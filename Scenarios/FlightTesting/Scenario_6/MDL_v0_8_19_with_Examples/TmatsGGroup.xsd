@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSpy v2009 (http://www.altova.com) by Timothy Darr (KBSI) -->
+<xs:schema 
+xmlns:TmatsG="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsG" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+xmlns:TmatsB="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" 
+xmlns:TmatsC="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" 
+xmlns:TmatsD="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" 
+xmlns:TmatsH="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" 
+xmlns:TmatsM="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" 
+xmlns:TmatsP="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" 
+xmlns:TmatsR="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" 
+xmlns:TmatsS="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" 
+xmlns:TmatsT="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" 
+xmlns:TmatsV="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" 
+targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsG" 
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" schemaLocation="TmatsBGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" schemaLocation="TmatsCGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" schemaLocation="TmatsDGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" schemaLocation="TmatsHGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" schemaLocation="TmatsMGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" schemaLocation="TmatsPGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" schemaLocation="TmatsRGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" schemaLocation="TmatsSGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" schemaLocation="TmatsTGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" schemaLocation="TmatsVGroup.xsd"/>
+	<xs:complexType name="DataLinkType">
+		<xs:sequence minOccurs="0">
+			<xs:choice minOccurs="0">
+				<xs:element name="PCMFormatAttributes" type="TmatsP:PCMFormatAttributesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>TMATS P-Group</xs:documentation>
+					</xs:annotation>
+					<xs:key name="MeasurementListKey">
+						<xs:selector xpath="TmatsP:PCMMeasurements/TmatsD:MeasurementList"/>
+						<xs:field xpath="@Name"/>
+					</xs:key>
+					<xs:keyref name="FormatMeasurementListRef" refer="TmatsG:MeasurementListKey">
+						<xs:selector xpath="TmatsP:FormatChange/TmatsP:MeasurementListChange"/>
+						<xs:field xpath="TmatsP:MeasurementListName"/>
+					</xs:keyref>
+				</xs:element>
+				<xs:element name="BusAttributes" type="TmatsB:BusAttributesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>TMATS B Group</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="MessageDataAttributes" type="TmatsS:MessageDataAttributesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>TMATS S-Group</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="DataConversionAttributes" type="TmatsC:DataConversionAttributesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TMATS C-Group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+		<xs:attribute ref="TmatsCommon:TmatsVersion" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="DataSourceType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataSourceSecurityClassification" type="TmatsCommon:GeneralSecurityClassificationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DSC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="TransmissionAttributes" type="TmatsT:TransmissionAttributesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>TMATS T Group</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="RecorderReproducerAttributes" type="TmatsR:RecorderReproducerAttributesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>TMATS R Group</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="MultiplexModulationGroup" type="TmatsM:MultiplexModulationGroupType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TMATS M Group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataLink" type="TmatsG:DataLinkType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Starting point for all DataLink threads</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VendorSpecificAttributes" type="TmatsV:VendorSpecificAttributesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TMATS V-Group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="optional"/>
+		<xs:attribute name="Type" type="TmatsCommon:DataSourceType" use="required"/>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RevisionAndUpdateType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Number" type="xs:string" minOccurs="0"/>
+			<xs:element name="Date" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="TestInformationType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Duration" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TI1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PreTestRequirement" type="TmatsCommon:YesNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TI2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostTestRequirement" type="TmatsCommon:YesNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TI3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="Tmats">
+		<xs:annotation>
+			<xs:documentation>TMATS G-Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>TMATS G Group</xs:documentation>
+			</xs:annotation>
+			<xs:element name="ProgramName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TestItem" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TmatsFileName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>FN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginationDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>OD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Revision" type="TmatsG:RevisionAndUpdateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RN and RD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Update" type="TmatsG:RevisionAndUpdateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UN and UD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TestNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PointOfContact" type="TmatsCommon:PointOfContactType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>POC1, POC2, POC3, POC4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataSource" type="TmatsG:DataSourceType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DSI, DST</xs:documentation>
+				</xs:annotation>
+				<xs:key name="DataLinkKey">
+					<xs:selector xpath="TmatsG:DataLink"/>
+					<xs:field xpath="@Name"/>
+				</xs:key>
+				<xs:keyref name="ChannelDataLinkRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:RecorderReproducerAttributes/TmatsR:Data"/>
+					<xs:field xpath="TmatsR:ChannelDataLinkName"/>
+				</xs:keyref>
+				<xs:keyref name="ARINC429BusDataTypeRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:RecorderReproducerAttributes/TmatsR:Data/TmatsR:ARINC429BusDataTypeAttributes/TmatsR:SubChannel"/>
+					<xs:field xpath="TmatsR:Name"/>
+				</xs:keyref>
+				<xs:keyref name="UARTDataTypeRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:RecorderReproducerAttributes/TmatsR:Data/TmatsR:UARTDataTypeAttributes/TmatsR:SubChannel"/>
+					<xs:field xpath="TmatsR:Name"/>
+				</xs:keyref>
+				<xs:keyref name="MessageDataTypeRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:RecorderReproducerAttributes/TmatsR:Data/TmatsR:MessageDataTypeAttributes/TmatsR:SubChannel"/>
+					<xs:field xpath="TmatsR:Name"/>
+				</xs:keyref>
+				<xs:keyref name="EthernetDataTypeRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:RecorderReproducerAttributes/TmatsR:Data/TmatsR:EthernetDataTypeAttributes/TmatsR:Network"/>
+					<xs:field xpath="TmatsR:Name"/>
+				</xs:keyref>
+				<xs:keyref name="BaseBandSignalDataLinkRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:MultiplexModulationGroup/TmatsM:BasebandSignal"/>
+					<xs:field xpath="TmatsM:DataLinkName"/>
+				</xs:keyref>
+				<xs:keyref name="IRIGSubcarrierDataLinkRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:MultiplexModulationGroup/TmatsM:Subcarriers/TmatsM:IRIGSubcarrier"/>
+					<xs:field xpath="TmatsM:DataLinkName"/>
+				</xs:keyref>
+				<xs:keyref name="AsyncEmbeddedFormatDataLinkRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:DataLink/TmatsG:PCMFormatAttributes/AsyncEmbeddedFormat"/>
+					<xs:field xpath="DataLinkName"/>
+				</xs:keyref>
+				<xs:keyref name="FormatStructureChangeDataLinkRef" refer="TmatsG:DataLinkKey">
+					<xs:selector xpath="TmatsG:DataLink/TmatsG:PCMFormatAttributes/TmatsP:FormatChange/TmatsP:FormatStructureChange"/>
+					<xs:field xpath="TmatsP:DataLinkName"/>
+				</xs:keyref>
+			</xs:element>
+			<xs:element name="TestInformation" type="TmatsG:TestInformationType" minOccurs="0"/>
+			<xs:element name="SecurityClassification" type="TmatsCommon:GeneralSecurityClassificationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Comments" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>COM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AirborneHardwareAttributes" type="TmatsH:AirborneHardwareAttributesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TMATS H-Group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+	</xs:complexType>
+</xs:schema>

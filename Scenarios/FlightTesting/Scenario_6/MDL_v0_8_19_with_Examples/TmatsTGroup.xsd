@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="AntennaPatternsType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Document" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PointOfContact" type="TmatsCommon:PointOfContactType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AP\POC1, AP\POC2, AP\POC3, AP\POC4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FMSystemsType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="DiscriminatorBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FM1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DiscriminatorLinearity" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FM2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="GainControlType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="AGCTimeConstant" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MGCGainSetPoint" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AFC_APC" type="TmatsCommon:AFCAPCType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TrackingBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PolarizationReception" type="TmatsCommon:PolarizationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="GroundStationAttributesType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="IFBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BasebandCompositeBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>GST2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GainControl" type="GainControlType" minOccurs="0"/>
+         <xs:element name="FMSystems" type="FMSystemsType" minOccurs="0"/>
+         <xs:element name="PMSystems" type="PMSystemsType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PMSystemsType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="PhaseLockLoopBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PLL</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PremodulationFilterType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Bandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PMF1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Slope" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PMF2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Type" type="TmatsCommon:PremodFilterType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PMF3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="SourceRFAttributesType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="TransmitterID" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TID</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Frequency" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RFBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataBandwidth" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ModulationType" type="TmatsCommon:ModulationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TotalCarrierModulation" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Power" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Subcarrier" type="SubcarrierType" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="ModulatorNonLinearity" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>RF7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PremodulationFilter" type="PremodulationFilterType" minOccurs="0"/>
+         <xs:element name="TransmitAntenna" type="TransmitAntennaType" minOccurs="0"/>
+         <xs:element name="AntennaPatterns" type="AntennaPatternsType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="SubcarrierType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Number" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SCO1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ModulationIndex" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SCO2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="TransmitAntennaType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Type" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AN1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Polarization" type="TmatsCommon:TransmitAntennaType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AN2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AN3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="TransmissionAttributesType">
+      <xs:annotation>
+         <xs:documentation>TMATS T-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element name="SourceRFAttributes" type="SourceRFAttributesType" minOccurs="0"/>
+         <xs:element name="GroundStationAttributes" type="GroundStationAttributesType" minOccurs="0"/>
+         <xs:element name="Comments" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>COM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

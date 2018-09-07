@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_17.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Measurements and Data Operations Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>-TBD-</TmNSCompletenessDescription>
+      <NetworkReferences>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="ByteEU">
+      <Name>Byte</Name>
+      <Description>8 binary digits (1 byte)</Description>
+      <Symbol>B</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>8.0</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>9.80665</NumericalConstant>
+        <SIUnits>MeterPerSecondSquared</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+        <Measurement ID="GearVibMeas">
+          <Name>GEARVIB</Name>
+          <Description>Gear Box Vibration</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <UnitsRef IDREF="GForceUnits"/>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>24</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <Packages>
+        <PackageDefinition ID="PackageDefinition1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000010</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>32</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="GearVibMeas"/>
+                  <SyllableMask>0xFFFF00</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>9</SyllableStartBit>
+                  <DataWordOffset>16</DataWordOffset>
+                </Syllable>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="GearVibMeas"/>
+                  <SyllableMask>0xFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldSetRef IDREF="Package1_Field_3_4_Set"/>
+              <FillValue>0</FillValue>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+        <PackageStructure ID="PackageStructure1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PackageDataField ID="Package1_Field1_FrameSync">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field1_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>12</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>4</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field2_FrameID">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field2_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>14</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field5">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field5_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>20</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataFieldSet ID="Package1_Field_3_4_Set">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <PackageDataField ID="PDF1">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <FieldLocation ID="Package1_Field3_Location">
+                <FieldOffset>
+                  <OffsetValue>
+                    <FlexValue>16</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                    <UnitsRef IDREF="ByteEU"/>
+                  </OffsetValue>
+                </FieldOffset>
+                <FieldWidth>
+                  <FlexValue>2</FlexValue>
+                  <UnitsRef IDREF="ByteEU"/>
+                </FieldWidth>
+              </FieldLocation>
+              <FieldEncoding>
+                <Endianness>BigEndian</Endianness>
+                <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              </FieldEncoding>
+              <FieldRepetitions>1</FieldRepetitions>
+            </PackageDataField>
+            <PackageDataField ID="PDF_2">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <FieldLocation ID="Package1_Field4_Location">
+                <FieldOffset>
+                  <OffsetValue>
+                    <FlexValue>18</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                    <UnitsRef IDREF="ByteEU"/>
+                  </OffsetValue>
+                </FieldOffset>
+                <FieldWidth>
+                  <FlexValue>2</FlexValue>
+                  <UnitsRef IDREF="ByteEU"/>
+                </FieldWidth>
+              </FieldLocation>
+              <FieldEncoding>
+                <Endianness>BigEndian</Endianness>
+                <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              </FieldEncoding>
+              <FieldRepetitions>1</FieldRepetitions>
+            </PackageDataField>
+          </PackageDataFieldSet>
+        </PackageStructure>
+      </Packages>
+    </MeasurementDomain>
+  </MeasurementDomains>
+</MDLRoot>

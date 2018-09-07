@@ -1,0 +1,12 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsH="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="AirborneHardwareAttributesType" mixed="true">
+      <xs:annotation>
+         <xs:documentation>TMATS H-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

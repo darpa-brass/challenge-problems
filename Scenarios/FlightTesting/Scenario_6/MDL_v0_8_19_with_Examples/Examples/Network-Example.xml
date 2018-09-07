@@ -1,0 +1,1408 @@
+<?xml version="1.0"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Networking Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>4 Dau Test</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="ExampleNetworkID"/>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>LabNetworkSwRI</Name>
+      <Description>lab network</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="TmNSDataServer">
+        <Name>TmNS Data Server Computer</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00010</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DataServerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-DS-00010</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="DataServerComputerModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DataServerApp"/>
+            </RunningApps>
+            <NetworkInterface ID="TmNSDataServerIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="TmNSDataServerPhyNetPort">
+                <Name>TmNSDataServerPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="TmNSDataServerPort" Index="1">
+                <Name>TmNSDataServerPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="TmNSDataServerPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="MissionCtrlProc">
+        <Name>Mission Control Processor</Name>
+        <Description>TBD description</Description>
+        <InventoryID>COMP-00011</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="MissionCtrlProcApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>MCP-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="MissionCtrlProcModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="MissionCtrlProcApp"/>
+            </RunningApps>
+            <NetworkInterface ID="MissionCtrlProcIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="MissionCtrlProcPhyNetPort">
+                <Name>Mission Control Proc Port 1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="MissionCtrlProcPort" Index="1">
+                <Name>MissionCtrlProcPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="MissionCtrlProcPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Switch1">
+        <Name>Switch 1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Switch1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Switch1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Switch1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              <IGMPRouterPortRef IDREF="Sw1PhyNetPort1"/>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Switch1Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Switch1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Switch1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.254</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort1">
+                <Name>Sw1PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort2">
+                <Name>Sw1PhyNetPort2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>2</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort3">
+                <Name>Sw1PhyNetPort3</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>3</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort4">
+                <Name>Sw1PhyNetPort4</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>4</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort5">
+                <Name>Sw1PhyNetPort5</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>5</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort6">
+                <Name>Sw1PhyNetPort6</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>6</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort21">
+                <Name>Sw1PhyNetPort21</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>21</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort22">
+                <Name>Sw1PhyNetPort22</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>22</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Switch1Port1" Index="1">
+                <Name>Switch1Port1</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort1"/>
+              </Port>
+              <Port ID="Switch1Port2" Index="2">
+                <Name>Switch1Port2</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort2"/>
+              </Port>
+              <Port ID="Switch1Port3" Index="3">
+                <Name>Switch1Port3</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort3"/>
+              </Port>
+              <Port ID="Switch1Port4" Index="4">
+                <Name>Switch1Port4</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort4"/>
+              </Port>
+              <Port ID="Switch1Port5" Index="5">
+                <Name>Switch1Port5</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort5"/>
+              </Port>
+              <Port ID="Switch1Port6" Index="6">
+                <Name>Switch1Port6</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort6"/>
+              </Port>
+              <Port ID="Switch1Port21" Index="21">
+                <Name>Switch1Port21</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort21"/>
+              </Port>
+              <Port ID="Switch1Port22" Index="22">
+                <Name>Switch1Port22</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort22"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Switch2">
+        <Name>Switch2</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Switch2</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Switch2App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Switch2</RoleID>
+            <LoggingLevels>
+              <Trace>false</Trace>
+              <Debug>false</Debug>
+              <Info>false</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Switch2Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Switch2App"/>
+            </RunningApps>
+            <NetworkInterface ID="Switch2IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.253</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort1">
+                <Name>Sw2PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort2">
+                <Name>Sw2PhyNetPort2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>2</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort3">
+                <Name>Sw2PhyNetPort3</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>3</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort4">
+                <Name>Sw2PhyNetPort4</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>4</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort5">
+                <Name>Sw2PhyNetPort5</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>5</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort6">
+                <Name>Sw2PhyNetPort6</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>6</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort7">
+                <Name>Sw2PhyNetPort7</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>7</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw2PhyNetPort8">
+                <Name>Sw2PhyNetPort8</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>8</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Switch2Port1" Index="1">
+                <Name>Switch2Port1</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort1"/>
+              </Port>
+              <Port ID="Switch2Port2" Index="2">
+                <Name>Switch2Port2</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort2"/>
+              </Port>
+              <Port ID="Switch2Port3" Index="3">
+                <Name>Switch2Port3</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort3"/>
+              </Port>
+              <Port ID="Switch2Port4" Index="4">
+                <Name>Switch2Port4</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort4"/>
+              </Port>
+              <Port ID="Switch2Port5" Index="5">
+                <Name>Switch2Port5</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort5"/>
+              </Port>
+              <Port ID="Switch2Port6" Index="6">
+                <Name>Switch2Port6</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort6"/>
+              </Port>
+              <Port ID="Switch2Port7" Index="7">
+                <Name>Switch2Port7</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort7"/>
+              </Port>
+              <Port ID="Switch2Port8" Index="8">
+                <Name>Switch 2 Port 8</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw2PhyNetPort8"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Dau1">
+        <Name>Dau1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU/>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module1">
+            <Name>TBD Module Name 1</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Dau1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.21</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau1PhyNetPort">
+                <Name>Dau1PhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="DAU1Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau1NetworkPort" Index="1">
+                <Name>Dau1Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau1PhyNetPort"/>
+              </Port>
+              <Port ID="Dau1Pin1InputPort" Index="2">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="DAU1Pin1ID"/>
+              </Port>
+            </Ports>
+          </Module>
+          <Module ID="Module5">
+            <Name>TBD Module Name 2</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU1App"/>
+            </RunningApps>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="DAU1Pin2ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau1Pin2InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="DAU1Pin2ID"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="SystemManager">
+        <Name>SystemManager</Name>
+        <Description>TBD description</Description>
+        <InventoryID>SystemManager</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="SystemManagerApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>SystemManager</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSConsolidatedManager>
+              <ManagedApps>
+                <ManageableAppRef IDREF="DAU1App"/>
+                <ManageableAppRef IDREF="DAU2App"/>
+                <ManageableAppRef IDREF="DAU3App"/>
+                <ManageableAppRef IDREF="DAU4App"/>
+                <ManageableAppRef IDREF="Recorder1App"/>
+                <ManageableAppRef IDREF="Recorder2App"/>
+                <ManageableAppRef IDREF="Switch1App"/>
+                <ManageableAppRef IDREF="Switch2App"/>
+                <ManageableAppRef IDREF="DataServerApp"/>
+                <ManageableAppRef IDREF="MissionCtrlProcApp"/>
+              </ManagedApps>
+            </TmNSConsolidatedManager>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="SystemManagerComputerModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="SystemManagerApp"/>
+            </RunningApps>
+            <NetworkInterface ID="SystemManagerIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.14</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="SystemManagerPhyNetPort">
+                <Name>SystemManagerPhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="SystemManagerNetworkPort" Index="1">
+                <Name>System Manager Network Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="SystemManagerPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Dau2">
+        <Name>Dau2</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau2</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU2App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau2</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU>
+            </TmNSDAU>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module2">
+            <Name>TBD Module Name 1</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU2App"/>
+            </RunningApps>
+            <NetworkInterface ID="Dau2IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.22</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau2PhyNetPort">
+                <Name>Dau2PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="DAU2Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau2Pin1InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="DAU2Pin1ID"/>
+              </Port>
+              <Port ID="Dau2NetworkPort" Index="2">
+                <Name>Dau2Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau2PhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Dau3">
+        <Name>Dau3</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau3</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU3App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau3</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU>
+            </TmNSDAU>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module3">
+            <Name>TBD Module Name 1</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU3App"/>
+            </RunningApps>
+            <NetworkInterface ID="Dau3IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.23</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau3PhyNetPort">
+                <Name>Dau3PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="DAU3Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau3Pin1InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="DAU3Pin1ID"/>
+              </Port>
+              <Port ID="Dau3NetworkPort" Index="2">
+                <Name>Dau 3 Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau3PhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Dau4">
+        <Name>Dau4</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau4</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU4App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau4</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU>
+            </TmNSDAU>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module4">
+            <Name>TBD Module Name 1</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU4App"/>
+            </RunningApps>
+            <NetworkInterface ID="Dau4IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.24</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau4PhyNetPort">
+                <Name>Dau4PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="Dau4Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau4Pin1InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="Dau4Pin1ID"/>
+              </Port>
+              <Port ID="Dau4NetworkPort" Index="2">
+                <Name>Dau4Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau4PhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Recorder1">
+        <Name>Recorder1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Recorder1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Recorder1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Recorder1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSRecorder/>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Recorder1Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Recorder1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Recorder1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Recorder1PhyNetPort">
+                <Name>Recorder1PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Recorder1Port" Index="1">
+                <Name>Recorder1Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Recorder1PhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Recorder2">
+        <Name>Recorder2</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Recorder2</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Recorder2App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Recorder2</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSRecorder/>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Recorder2Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Recorder2App"/>
+            </RunningApps>
+            <NetworkInterface ID="Recorder2IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.3</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Recorder2PhyNetPort">
+                <Name>Recorder2PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Recorder2Port" Index="1">
+                <Name>Recorder2Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Recorder2PhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="INE-3">
+        <Name>Encryptor</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Encryptor1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="EncryptorApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Encryptor</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSEncryptor>
+              <RedNetworkInterfaceRef IDREF="EncryptorRedIFace"/>
+              <BlackNetworkInterfaceRef IDREF="EncryptorBlackIFace"/>
+            </TmNSEncryptor>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="EncryptorModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="EncryptorApp"/>
+            </RunningApps>
+            <NetworkInterface ID="EncryptorRedIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.3</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="EncryptorRedPhyNetPort">
+                <Name>EncryptorRedPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <NetworkInterface ID="EncryptorBlackIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>123.111.0.5</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>123.111.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="EncryptorBlackPhyNetPort">
+                <Name>EncryptorBlackPhyNetPort</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="EncryptorBlackPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="EncryptorBlackPhyNetPort"/>
+              </Port>
+              <Port ID="EncryptorRedPort" Index="2">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="EncryptorRedPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1NetworkPort"/>
+          <PortRef IDREF="Switch1Port1"/>
+        </PortMapping>
+        <PortMapping ID="PM2">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau2NetworkPort"/>
+          <PortRef IDREF="Switch1Port2"/>
+        </PortMapping>
+        <PortMapping ID="PM3">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau3NetworkPort"/>
+          <PortRef IDREF="Switch2Port4"/>
+        </PortMapping>
+        <PortMapping ID="PM4">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau4NetworkPort"/>
+          <PortRef IDREF="Switch1Port4"/>
+        </PortMapping>
+        <PortMapping ID="PM5">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Recorder1Port"/>
+          <PortRef IDREF="Switch1Port5"/>
+        </PortMapping>
+        <PortMapping ID="PM6">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Recorder2Port"/>
+          <PortRef IDREF="Switch2Port3"/>
+        </PortMapping>
+        <PortMapping ID="PM7">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="SystemManagerNetworkPort"/>
+          <PortRef IDREF="Switch1Port21"/>
+        </PortMapping>
+        <PortMapping ID="PM8">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Switch2Port2"/>
+          <PortRef IDREF="Switch1Port22"/>
+        </PortMapping>
+        <PortMapping ID="PM9">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="EncryptorRedPort"/>
+          <PortRef IDREF="Switch2Port1"/>
+        </PortMapping>
+        <PortMapping ID="PM10">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="TmNSDataServerPort"/>
+          <PortRef IDREF="Switch2Port5"/>
+        </PortMapping>
+        <PortMapping ID="PM11">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="MissionCtrlProcPort"/>
+          <PortRef IDREF="Switch2Port6"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+  </NetworkDomains>
+  <DSCPTable>
+    <ReadOnly>true</ReadOnly>
+    <Owner>SDD Range Rules</Owner>
+    <DSCPTableEntry ID="DiffservLTC">
+      <Name>Diffserv LTC (Best Effort)</Name>
+      <Description>Diffserv LTC (Best Effort PHB)</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCLow">
+      <Name>Diffserv RC Low (Assured Forwarding DSCP 8)</Name>
+      <Description>Diffserv RC Low (Assured Forwarding DSCP 8)</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCMed">
+      <Name>Diffserv RC Med (Assured Forwarding DSCP 16)</Name>
+      <Description>Diffserv RC Med (Assured Forwarding DSCP 16)</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCHigh">
+      <Name>Diffserv RC High (Assured Forwarding DSCP 24)</Name>
+      <Description>Diffserv RC High (Assured Forwarding DSCP 24)</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservVideo">
+      <Name>Diffserv Video (Assured Forwarding DSCP 32)</Name>
+      <Description>Diffserv Video (Assured Forwarding DSCP 32)</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservVoice">
+      <Name>Diffserv Voice (Expedited Forwarding DSCP 40)</Name>
+      <Description>Diffserv Voice (Expedited Forwarding PHB)</Description>
+      <DSCPValue>0b101000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLMLow">
+      <Name>Diffserv Link Manager Low (DSCP 48)</Name>
+      <Description>Diffserv Link Manager Low (DSCP 48)</Description>
+      <DSCPValue>0b110000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLMHigh">
+      <Name>Diffserv Link Manager High (DSCP 56)</Name>
+      <Description>Diffserv Link Manager High (DSCP 56)</Description>
+      <DSCPValue>0b111000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>

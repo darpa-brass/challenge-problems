@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_17.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>0.0.1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+        <Measurement ID="GearVibMeas">
+          <Name>GEARVIB</Name>
+          <Description>Gear Box Vibration</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="GearVibCountsToGsConversion"/>
+            </UnitsConversions>
+            <Uncertainty>
+              <ConfidenceInterval>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.2</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </ConfidenceInterval>
+              <ConfidenceLevel>95</ConfidenceLevel>
+            </Uncertainty>
+            <AnalogAttributes>
+              <EUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFlex>-3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFlex>3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </EUSignalRange>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>-1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.025</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.05</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValueFlex>200</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                </FrequencyBand>
+                <PercentSignal>99</PercentSignal>
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <ActiveInputRange>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>98.3</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>1.17</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+              </ActiveInputRange>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="FrameID">
+          <Name>FRAMEID</Name>
+          <Description>Placeholder for the frameID</Description>
+          <MeasurementID>0x00000002</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>16</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <Packages>
+        <PackageDefinition ID="VariablePackageDefinition1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000010</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>1</FlexValue>
+                  <SIUnits>Byte</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="GearVibMeas"/>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="Package1_Field3"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+        <PackageStructure ID="PackageStructure1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PackageDataField ID="Package1_Field1_FrameSync">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field1_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>12</FlexValue> <!--offset from the start of the message.  Standard header is 12 bytes -->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>4</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field2_FrameID">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field2_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>16</FlexValue> <!--offset from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field3">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field3_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>18</FlexValue> <!--offset from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field4">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field4_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>20</FlexValue> <!--offset from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+          <PackageDataField ID="Package1_Field5">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="Package1_Field5_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>22</FlexValue> <!--offset from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>1</FieldRepetitions>
+          </PackageDataField>
+        </PackageStructure>
+      </Packages>
+      <Messages>
+        <MessageDefinition ID="MessageDefinition1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <MessageDefinitionID>0x80808080</MessageDefinitionID>
+          <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+          <DestinationAddress>230.0.0.10</DestinationAddress>
+          <MaximumMessageLength>
+            <FlexValue>512</FlexValue>
+            <UnitsRef IDREF="ByteEU"/>
+          </MaximumMessageLength>
+          <FixedPackageOrder>true</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstance>
+            <PackageDefinitionRef IDREF="PackageDefinition1"/>
+          </PackageInstance>
+        </MessageDefinition>
+      </Messages>
+      <DataOperations>
+        <DataOperation ID="AccelerometerTransducerDataOp">
+          <Name>Accelerometer Transducer</Name>
+          <Description>This operation represents the accelerometer transducer transfer function.</Description>
+          <DataOperationType>EUtoIU</DataOperationType>
+          <Method ID="Method1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.4917</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+                <Term>
+                  <Coefficient>0.045</Coefficient>
+                  <Exponent>0</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <UnitsRef IDREF="GForceUnits"/>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Volt</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+        <DataOperation ID="GearVibCountsToGsConversion">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <DataOperation ID="IUBitWeighting" SubOperationOrderIndex="1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>CountstoIU</DataOperationType>
+            <Method ID="IUBitWeightingMethod">
+              <Name>IU Bit Weighting</Name>
+              <Description>This operation represents the conversion from Counts to Volts.</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>0.000732</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Counts</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <SIUnits>Volt</SIUnits>
+            </OutputUnits>
+          </DataOperation>
+          <DataOperation ID="InverseTransducer" SubOperationOrderIndex="2">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>IUtoEU</DataOperationType>
+            <Method ID="InverseTransducerMethod">
+              <Name>Inverse Transducer</Name>
+              <Description>This operation represents the inverse of the transducer to convert from volts to G's.  
+              The equation is  G's = (Vin - 0.045) / 0.4917</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>1.0</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                  <Term>
+                    <Coefficient>-0.045</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+                <PolynomialDenominator>
+                  <Term>
+                    <Coefficient>0.4917</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialDenominator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Volt</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <UnitsRef IDREF="GForceUnits"/>
+            </OutputUnits>
+          </DataOperation>
+        </DataOperation>
+      </DataOperations>
+    </MeasurementDomain>
+  </MeasurementDomains>
+</MDLRoot>

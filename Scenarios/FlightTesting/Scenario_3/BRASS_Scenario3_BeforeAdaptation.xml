@@ -1,0 +1,1784 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL" xmlns:tmatsCommon="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsCommonTypes" xmlns:tmatsP="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup" xmlns:tmatsD="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+  <Name>MDLRoot</Name>
+  <Description>TBD</Description>
+  <DatabaseID/>
+  <Checksum/>
+  <ConfigurationVersion>2015-10-14_20:31:46_TA1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <Units>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <Numerators>
+        <Numerator>
+          <NumericalConstant>9.80665</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Numerator>
+      </Numerators>
+    </DerivedUnit>
+    <DerivedUnit ID="Mbps">
+      <Name>Mega-bits per second</Name>
+      <Description>Rate - number of mega-bits per second</Description>
+      <Symbol>Mbps</Symbol>
+      <Numerators>
+        <Numerator>
+          <NumericalConstant>1000000.0</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Numerator>
+      </Numerators>
+      <Denominators>
+        <Denominator>
+          <NumericalConstant>1.0</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Denominator>
+      </Denominators>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>iSIL</Name>
+      <Description>iSIL Measurement Domain</Description>
+      <Measurements>
+        <Measurement ID="meas-1-1">
+          <Name>Vendor1_meas1</Name>
+          <Description>MSCD</Description>
+          <MeasurementID>0x10000001</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>128</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>              
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>        
+        <Measurement ID="meas-1-2">
+          <Name>Vendor1_meas2</Name>
+          <Description>MSCD</Description>
+          <MeasurementID>0x10000021</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>128</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>        
+        <Measurement ID="meas-1-3">
+          <Name>Vendor1_meas3</Name>
+          <Description>MSCD Acceleration Y</Description>
+          <MeasurementID>0x10000011</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>128</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>              
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>          
+      </Measurements>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomain>
+    <Networks>
+      <Network ID="TA1-iSIL">
+        <Name>Test Article Network</Name>
+        <Description>Test article network for iSIL TA1</Description>
+        <NetworkType>TestArticleNetwork</NetworkType>
+        <NetworkNodes>
+          <NetworkNode ID="TA1-Vendor1-DAU1">
+            <Name>TA1 Vendor1 DAU1</Name>
+            <Description>TA1 Vendor1 DAU1 Network Node</Description>
+            <InventoryID>TA1-Vendor1-DAU1</InventoryID>
+            <HostName>Vendor1</HostName>
+            <Manufacturer>Vendor1</Manufacturer>
+            <Model>DAU Model TBD</Model>
+            <ModelVersion>iNET</ModelVersion>
+            <SerialID>258089</SerialID>
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <TmNSApps>
+              <TmNSApp ID="TA1-Vendor1-DAU1-DAUTma">
+                <Name>TA1 Vendor1 DAU1</Name>
+                <Description>TA1 Vendor1 DAU1 TMA</Description>
+                <RoleID>Vendor1_DAU1</RoleID>
+                <LoggingLevel>Warning</LoggingLevel>
+                <Manufacturer>Vendor1</Manufacturer>
+                <Product>TBD</Product>
+                <ProductVersion>iNET</ProductVersion>
+                <ConfigurationVersion>iDAU: app mu.7115+, kernel #6983 PREEMPT Tue May 19 13:32:41 EDT 2015</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>SMS v0.8.7</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                  <LTCInterfaces>
+                    <LTCInterface>
+                      <TimeToLive>10</TimeToLive>
+                    </LTCInterface>
+                  </LTCInterfaces>
+                </TmNSLTCDataSource>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="TA1-Vendor1-DAU1-module-101">
+                  <Name>Processor</Name>
+                  <Description>TA1 Vendor1 DAU1 Processor</Description>
+                  <Manufacturer>Vendor1</Manufacturer>
+                  <Model>Processor</Model>
+                  <SerialID>258085</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>101</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <RunningAppRefs>
+                    <TmNSAppRef IDREF="TA1-Vendor1-DAU1-DAUTma"/>
+                  </RunningAppRefs>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1 Serial Port</Name>
+                      <Description>J1: 9 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-MppcJ1Pin2" Index="1">
+                          <Name>RS232 RCV</Name>
+                          <Description>RS-232: receive signal from the host</Description>
+                          <Designator>SerialRx</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-MppcJ1Pin3" Index="2">
+                          <Name>RS232 XMT</Name>
+                          <Description>RS-232: transmit signal to the host</Description>
+                          <Designator>SerialTx</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-MppcJ1Pin9" Index="3">
+                          <Name>1PPS OUT</Name>
+                          <Description>One pulse per second output</Description>
+                          <Designator>1PPS</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="TA1-Vendor1-DAU1-MppcRs232" Index="1">
+                      <Name>Console</Name>
+                      <Description>Console Serial Port</Description>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PortTypes>
+                        <PortType>Serial</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-MppcJ1Pin2"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-MppcJ1Pin3"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-MppcJ1Pin9"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </Module>
+                <Module ID="TA1-Vendor1-DAU1-module-1">
+                  <Name>MSCD at Position 1</Name>
+                  <Description>6-channel Simultaneous Sampling Signal Conditioner</Description>
+                  <Manufacturer>Vendor1</Manufacturer>
+                  <Model>MSCD</Model>
+                  <SerialID>250020</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Children>
+                    <Child>
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                      <ChildRefs>
+                        <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationValue-pos1"/>
+                      </ChildRefs>
+                    </Child>
+                  </Children>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin1" Index="1">
+                          <Name>EX1</Name>
+                          <Description>Channel 1 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin2" Index="2">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 Differential Signal Input +</Description>
+                          <Designator>Pos1-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin3" Index="3">
+                          <Name>IOUT_1</Name>
+                          <Description>Channel 1 Current Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin4" Index="4">
+                          <Name>EX2</Name>
+                          <Description>Channel 2 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin5" Index="5">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 Differential Signal Input +</Description>
+                          <Designator>Pos1-J1-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin6" Index="6">
+                          <Name>RSVD 0</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin7" Index="7">
+                          <Name>RSVD 1</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin8" Index="8">
+                          <Name>AGND 0</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos1-J1-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin9" Index="9">
+                          <Name>IOUT_2</Name>
+                          <Description>Channel 2 Current Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin10" Index="10">
+                          <Name>EX3</Name>
+                          <Description>Channel 3 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin11" Index="11">
+                          <Name>IN3+</Name>
+                          <Description>Channel 3 Differential Signal Input +</Description>
+                          <Designator>Pos1-J1-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin12" Index="12">
+                          <Name>IOUT_3</Name>
+                          <Description>Channel 3 Current Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin12</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin13" Index="13">
+                          <Name>CGND</Name>
+                          <Description>Chassis Ground</Description>
+                          <Designator>Pos1-J1-Pin13</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin14" Index="14">
+                          <Name>REX1</Name>
+                          <Description>Channel 1 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin14</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin15" Index="15">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 Differential Signal Input -</Description>
+                          <Designator>Pos1-J1-Pin15</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin16" Index="16">
+                          <Name>IRTN_1</Name>
+                          <Description>Channel 1 Current Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin16</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin17" Index="17">
+                          <Name>REX2</Name>
+                          <Description>Channel 2 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin17</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin18" Index="18">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 Differential Signal Input -</Description>
+                          <Designator>Pos1-J1-Pin18</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin19" Index="19">
+                          <Name>RSVD 2</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J1-Pin19</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin20" Index="20">
+                          <Name>RSVD 3</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J1-Pin20</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin21" Index="21">
+                          <Name>AGND 1</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos1-J1-Pin21</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin22" Index="22">
+                          <Name>IRTN_2</Name>
+                          <Description>Channel 2 Current Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin22</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin23" Index="23">
+                          <Name>REX3</Name>
+                          <Description>Channel 3 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin23</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin24" Index="24">
+                          <Name>IN3-</Name>
+                          <Description>Channel 3 Differential Signal Input -</Description>
+                          <Designator>Pos1-J1-Pin24</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J1-Pin25" Index="25">
+                          <Name>IRTN_3</Name>
+                          <Description>Channel 3 Current Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin25</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                    <Connector>
+                      <Name>J2</Name>
+                      <Description>J2: 25 pin D-subminiature, Signal I/O, Channels 4-6</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin1" Index="1">
+                          <Name>EX4</Name>
+                          <Description>Channel 4 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin2" Index="2">
+                          <Name>IN4+</Name>
+                          <Description>Channel 4 Differential Signal Input +</Description>
+                          <Designator>Pos1-J2-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin3" Index="3">
+                          <Name>IOUT_4</Name>
+                          <Description>Channel 4 Current Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin4" Index="4">
+                          <Name>EX5</Name>
+                          <Description>Channel 5 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin5" Index="5">
+                          <Name>IN5+</Name>
+                          <Description>Channel 5 Differential Signal Input +</Description>
+                          <Designator>Pos1-J2-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin6" Index="6">
+                          <Name>RSVD 0</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J2-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin7" Index="7">
+                          <Name>RSVD 1</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J2-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin8" Index="8">
+                          <Name>AGND 0</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos1-J2-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin9" Index="9">
+                          <Name>IOUT_5</Name>
+                          <Description>Channel 5 Current Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin10" Index="10">
+                          <Name>EX6</Name>
+                          <Description>Channel 6 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin11" Index="11">
+                          <Name>IN6+</Name>
+                          <Description>Channel 6 Differential Signal Input +</Description>
+                          <Designator>Pos1-J2-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin12" Index="12">
+                          <Name>IOUT_6</Name>
+                          <Description>Channel 6 Current Excitation Out</Description>
+                          <Designator>Pos1-J2-Pin12</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin13" Index="13">
+                          <Name>CGND</Name>
+                          <Description>Chassis Ground</Description>
+                          <Designator>Pos1-J2-Pin13</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin14" Index="14">
+                          <Name>REX4</Name>
+                          <Description>Channel 4 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin14</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin15" Index="15">
+                          <Name>IN4-</Name>
+                          <Description>Channel 4 Differential Signal Input -</Description>
+                          <Designator>Pos1-J2-Pin15</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin16" Index="16">
+                          <Name>IRTN_4</Name>
+                          <Description>Channel 4 Current Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin16</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin17" Index="17">
+                          <Name>REX5</Name>
+                          <Description>Channel 5 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin17</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin18" Index="18">
+                          <Name>IN5-</Name>
+                          <Description>Channel 5 Differential Signal Input -</Description>
+                          <Designator>Pos1-J2-Pin18</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin19" Index="19">
+                          <Name>RSVD 2</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J2-Pin19</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin20" Index="20">
+                          <Name>RSVD 3</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos1-J2-Pin20</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin21" Index="21">
+                          <Name>AGND 1</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos1-J2-Pin21</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin22" Index="22">
+                          <Name>IRTN_5</Name>
+                          <Description>Channel 5 Current Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin22</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin23" Index="23">
+                          <Name>REX6</Name>
+                          <Description>Channel 6 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin23</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin24" Index="24">
+                          <Name>IN6-</Name>
+                          <Description>Channel 6 Differential Signal Input -</Description>
+                          <Designator>Pos1-J2-Pin24</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos1-J2-Pin25" Index="25">
+                          <Name>IRTN_6</Name>
+                          <Description>Channel 6 Current Excitation Return</Description>
+                          <Designator>Pos1-J2-Pin25</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module1-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description>MSCD Channel 1 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin2"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin15"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module1-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description>MSCD Channel 2 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin5"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin18"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module1-Ch3" Index="3">
+                      <Name>Ch3</Name>
+                      <Description>MSCD Channel 3 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin11"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin24"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="TA1-Vendor1-DAU1-Module1-Ch4" Index="4">
+                      <Name>Ch4</Name>
+                      <Description>MSCD Channel 4 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin2"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin15"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="TA1-Vendor1-DAU1-Module1-Ch5" Index="5">
+                      <Name>Ch5</Name>
+                      <Description>MSCD Channel 5 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin5"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin18"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="TA1-Vendor1-DAU1-Module1-Ch6" Index="6">
+                      <Name>Ch6</Name>
+                      <Description>MSCD Channel 6 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin11"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin24"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch1-EC" Index="21">
+                      <Name>Ch1-EC</Name>
+                      <Description>MSCD Channel 1 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin3"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin16"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch2-EC" Index="22">
+                      <Name>Ch2-EC</Name>
+                      <Description>MSCD Channel 2 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin9"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin22"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch3-EC" Index="23">
+                      <Name>Ch3-EC</Name>
+                      <Description>MSCD Channel 3 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin12"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin25"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch4-EC" Index="24">
+                      <Name>Ch4-EC</Name>
+                      <Description>MSCD Channel 4 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin3"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin16"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch5-EC" Index="25">
+                      <Name>Ch5-EC</Name>
+                      <Description>MSCD Channel 5 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin9"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin22"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module1-Ch6-EC" Index="26">
+                      <Name>Ch6-EC</Name>
+                      <Description>MSCD Channel 6 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin12"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin25"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                  <SubModules>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationValue-pos1">
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1000</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitationOnOff123</Name>
+                          <Description>Voltage Excitation Ports 1,2,3 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationOnOff123-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                        <Child>
+                          <Name>VoltageExcitationOnOff456</Name>
+                          <Description>Voltage Excitation Ports 4,5,6 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationOnOff456-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-VoltageExcitationValuePort-pos1" Index="1">
+                          <Name>VoltageExcitationValuePort</Name>
+                          <Description>MSCD Constant Voltage Excitation value for all ports</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <Excitation>
+                            <Polarity>Unipolar</Polarity>
+                            <Values>
+                              <ConditionParameter>
+                                <ConditionOperation>==</ConditionOperation>
+                                <ConditionValue>5</ConditionValue>
+                                <BaseUnit>Volt</BaseUnit>
+                              </ConditionParameter>
+                            </Values>
+                          </Excitation>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff123-pos1">
+                      <Name>VoltageExcitationOnOff123</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 1,2,3 Voltage Excitation</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1010</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation123</Name>
+                          <Description>Voltage Excitation Ports 1,2,3 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationPorts123-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff123Port-pos1" Index="1">
+                          <Name>VoltageExcitationOnOff123Port</Name>
+                          <Description>MSCD Constant Voltage Excitation enable ports 1,2,3</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationPorts123-pos1">
+                      <Name>VoltageExcitationPorts123</Name>
+                      <Description>Container for Voltage Excitation ports 1,2,3</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1011</Position>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch1-EV" Index="11">
+                          <Name>Ch1-EV</Name>
+                          <Description>MSCD Channel 1 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin1"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin14"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch2-EV" Index="12">
+                          <Name>Ch2-EV</Name>
+                          <Description>MSCD Channel 2 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin4"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin17"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch3-EV" Index="13">
+                          <Name>Ch3-EV</Name>
+                          <Description>MSCD Channel 3 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin10"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J1-Pin23"/>
+                          </PinRefs>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff456-pos1">
+                      <Name>VoltageExcitationOnOff456</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 4,5,6 Voltage Excitation</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1020</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation456</Name>
+                          <Description>Voltage Excitation Ports 4,5,6 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationPorts456-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff456Port-pos1" Index="1">
+                          <Name>VoltageExcitationOnOff456Port</Name>
+                          <Description>MSCD Constant Voltage Excitation enable ports 4,5,6</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationPorts456-pos1">
+                      <Name>VoltageExcitationPorts456</Name>
+                      <Description>Container for Voltage Excitation ports 4,5,6</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1021</Position>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch4-EV" Index="14">
+                          <Name>Ch4-EV</Name>
+                          <Description>MSCD Channel 4 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin1"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin14"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch5-EV" Index="15">
+                          <Name>Ch5-EV</Name>
+                          <Description>MSCD Channel 5 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin4"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin17"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module1-Ch6-EV" Index="16">
+                          <Name>Ch6-EV</Name>
+                          <Description>MSCD Channel 6 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin10"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos1-J2-Pin23"/>
+                          </PinRefs>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                  </SubModules>
+                </Module>
+                <Module ID="TA1-Vendor1-DAU1-module-2">
+                  <Name>MSCD at Position 2</Name>
+                  <Description>6-channel Simultaneous Sampling Signal Conditioner</Description>
+                  <Manufacturer>Vendor1</Manufacturer>
+                  <Model>MSCD</Model>
+                  <SerialID>250021</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>2</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Children>
+                    <Child>
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                      <ChildRefs>
+                        <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationValue-pos2"/>
+                      </ChildRefs>
+                    </Child>
+                  </Children>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin1" Index="1">
+                          <Name>EX1</Name>
+                          <Description>Channel 1 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin2" Index="2">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 Differential Signal Input +</Description>
+                          <Designator>Pos2-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin3" Index="3">
+                          <Name>IOUT_1</Name>
+                          <Description>Channel 1 Current Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin4" Index="4">
+                          <Name>EX2</Name>
+                          <Description>Channel 2 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin5" Index="5">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 Differential Signal Input +</Description>
+                          <Designator>Pos2-J1-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin6" Index="6">
+                          <Name>RSVD 0</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin7" Index="7">
+                          <Name>RSVD 1</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin8" Index="8">
+                          <Name>AGND 0</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos2-J1-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin9" Index="9">
+                          <Name>IOUT_2</Name>
+                          <Description>Channel 2 Current Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin10" Index="10">
+                          <Name>EX3</Name>
+                          <Description>Channel 3 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin11" Index="11">
+                          <Name>IN3+</Name>
+                          <Description>Channel 3 Differential Signal Input +</Description>
+                          <Designator>Pos2-J1-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin12" Index="12">
+                          <Name>IOUT_3</Name>
+                          <Description>Channel 3 Current Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin12</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin13" Index="13">
+                          <Name>CGND</Name>
+                          <Description>Chassis Ground</Description>
+                          <Designator>Pos2-J1-Pin13</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin14" Index="14">
+                          <Name>REX1</Name>
+                          <Description>Channel 1 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin14</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin15" Index="15">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 Differential Signal Input -</Description>
+                          <Designator>Pos2-J1-Pin15</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin16" Index="16">
+                          <Name>IRTN_1</Name>
+                          <Description>Channel 1 Current Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin16</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin17" Index="17">
+                          <Name>REX2</Name>
+                          <Description>Channel 2 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin17</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin18" Index="18">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 Differential Signal Input -</Description>
+                          <Designator>Pos2-J1-Pin18</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin19" Index="19">
+                          <Name>RSVD 2</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J1-Pin19</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin20" Index="20">
+                          <Name>RSVD 3</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J1-Pin20</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin21" Index="21">
+                          <Name>AGND 1</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos2-J1-Pin21</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin22" Index="22">
+                          <Name>IRTN_2</Name>
+                          <Description>Channel 2 Current Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin22</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin23" Index="23">
+                          <Name>REX3</Name>
+                          <Description>Channel 3 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin23</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin24" Index="24">
+                          <Name>IN3-</Name>
+                          <Description>Channel 3 Differential Signal Input -</Description>
+                          <Designator>Pos2-J1-Pin24</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J1-Pin25" Index="25">
+                          <Name>IRTN_3</Name>
+                          <Description>Channel 3 Current Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin25</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                    <Connector>
+                      <Name>J2</Name>
+                      <Description>J2: 25 pin D-subminiature, Signal I/O, Channels 4-6</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin1" Index="1">
+                          <Name>EX4</Name>
+                          <Description>Channel 4 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin2" Index="2">
+                          <Name>IN4+</Name>
+                          <Description>Channel 4 Differential Signal Input +</Description>
+                          <Designator>Pos2-J2-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin3" Index="3">
+                          <Name>IOUT_4</Name>
+                          <Description>Channel 4 Current Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin4" Index="4">
+                          <Name>EX5</Name>
+                          <Description>Channel 5 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin5" Index="5">
+                          <Name>IN5+</Name>
+                          <Description>Channel 5 Differential Signal Input +</Description>
+                          <Designator>Pos2-J2-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin6" Index="6">
+                          <Name>RSVD 0</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J2-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin7" Index="7">
+                          <Name>RSVD 1</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J2-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin8" Index="8">
+                          <Name>AGND 0</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos2-J2-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin9" Index="9">
+                          <Name>IOUT_5</Name>
+                          <Description>Channel 5 Current Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin10" Index="10">
+                          <Name>EX6</Name>
+                          <Description>Channel 6 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin11" Index="11">
+                          <Name>IN6+</Name>
+                          <Description>Channel 6 Differential Signal Input +</Description>
+                          <Designator>Pos2-J2-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin12" Index="12">
+                          <Name>IOUT_6</Name>
+                          <Description>Channel 6 Current Excitation Out</Description>
+                          <Designator>Pos2-J2-Pin12</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin13" Index="13">
+                          <Name>CGND</Name>
+                          <Description>Chassis Ground</Description>
+                          <Designator>Pos2-J2-Pin13</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin14" Index="14">
+                          <Name>REX4</Name>
+                          <Description>Channel 4 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin14</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin15" Index="15">
+                          <Name>IN4-</Name>
+                          <Description>Channel 4 Differential Signal Input -</Description>
+                          <Designator>Pos2-J2-Pin15</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin16" Index="16">
+                          <Name>IRTN_4</Name>
+                          <Description>Channel 4 Current Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin16</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin17" Index="17">
+                          <Name>REX5</Name>
+                          <Description>Channel 5 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin17</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin18" Index="18">
+                          <Name>IN5-</Name>
+                          <Description>Channel 5 Differential Signal Input -</Description>
+                          <Designator>Pos2-J2-Pin18</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin19" Index="19">
+                          <Name>RSVD 2</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J2-Pin19</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin20" Index="20">
+                          <Name>RSVD 3</Name>
+                          <Description>Reserved</Description>
+                          <Designator>Pos2-J2-Pin20</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin21" Index="21">
+                          <Name>AGND 1</Name>
+                          <Description>Analog Ground</Description>
+                          <Designator>Pos2-J2-Pin21</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin22" Index="22">
+                          <Name>IRTN_5</Name>
+                          <Description>Channel 5 Current Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin22</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin23" Index="23">
+                          <Name>REX6</Name>
+                          <Description>Channel 6 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin23</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin24" Index="24">
+                          <Name>IN6-</Name>
+                          <Description>Channel 6 Differential Signal Input -</Description>
+                          <Designator>Pos2-J2-Pin24</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-Pos2-J2-Pin25" Index="25">
+                          <Name>IRTN_6</Name>
+                          <Description>Channel 6 Current Excitation Return</Description>
+                          <Designator>Pos2-J2-Pin25</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module2-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description>MSCD Channel 1 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin2"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin15"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module2-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description>MSCD Channel 2 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin5"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin18"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module2-Ch3" Index="3">
+                      <Name>Ch3</Name>
+                      <Description>MSCD Channel 3 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin11"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin24"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="TA1-Vendor1-DAU1-Module2-Ch4" Index="4">
+                      <Name>Ch4</Name>
+                      <Description>MSCD Channel 4 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin2"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin15"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="TA1-Vendor1-DAU1-Module2-Ch5" Index="5">
+                      <Name>Ch5</Name>
+                      <Description>MSCD Channel 5 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin5"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin18"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="TA1-Vendor1-DAU1-Module2-Ch6" Index="6">
+                      <Name>Ch6</Name>
+                      <Description>MSCD Channel 6 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin11"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin24"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch1-EC" Index="21">
+                      <Name>Ch1-EC</Name>
+                      <Description>MSCD Channel 1 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <Excitation>
+                        <Polarity>Unipolar</Polarity>
+                        <Values>
+                          <ConditionParameter>
+                            <ConditionOperation>==</ConditionOperation>
+                            <ConditionValue>3</ConditionValue>
+                            <BaseUnit>Volt</BaseUnit>
+                          </ConditionParameter>
+                        </Values>
+                      </Excitation>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin3"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin16"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch2-EC" Index="22">
+                      <Name>Ch2-EC</Name>
+                      <Description>MSCD Channel 2 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <Excitation>
+                        <Polarity>Unipolar</Polarity>
+                        <Values>
+                          <ConditionParameter>
+                            <ConditionOperation>==</ConditionOperation>
+                            <ConditionValue>3</ConditionValue>
+                            <BaseUnit>Volt</BaseUnit>
+                          </ConditionParameter>
+                        </Values>
+                      </Excitation>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin9"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin22"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch3-EC" Index="23">
+                      <Name>Ch3-EC</Name>
+                      <Description>MSCD Channel 3 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <Excitation>
+                        <Polarity>Unipolar</Polarity>
+                        <Values>
+                          <ConditionParameter>
+                            <ConditionOperation>==</ConditionOperation>
+                            <ConditionValue>3</ConditionValue>
+                            <BaseUnit>Volt</BaseUnit>
+                          </ConditionParameter>
+                        </Values>
+                      </Excitation>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin12"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin25"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch4-EC" Index="24">
+                      <Name>Ch4-EC</Name>
+                      <Description>MSCD Channel 4 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin3"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin16"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch5-EC" Index="25">
+                      <Name>Ch5-EC</Name>
+                      <Description>MSCD Channel 5 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin9"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin22"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-Module2-Ch6-EC" Index="26">
+                      <Name>Ch6-EC</Name>
+                      <Description>MSCD Channel 6 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin12"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin25"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                  <SubModules>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationValue-pos2">
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1000</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitationOnOff123</Name>
+                          <Description>Voltage Excitation Ports 1,2,3 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationOnOff123-pos2"/>
+                          </ChildRefs>
+                        </Child>
+                        <Child>
+                          <Name>VoltageExcitationOnOff456</Name>
+                          <Description>Voltage Excitation Ports 4,5,6 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationOnOff456-pos2"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-VoltageExcitationValuePort-pos2" Index="1">
+                          <Name>VoltageExcitationValuePort</Name>
+                          <Description>MSCD Constant Voltage Excitation value for all ports</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <Excitation>
+                            <Polarity>Unipolar</Polarity>
+                            <Values>
+                              <ConditionParameter>
+                                <ConditionOperation>==</ConditionOperation>
+                                <ConditionValue>5</ConditionValue>
+                                <BaseUnit>Volt</BaseUnit>
+                              </ConditionParameter>
+                            </Values>
+                          </Excitation>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff123-pos2">
+                      <Name>VoltageExcitationOnOff123</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 1,2,3 Voltage Excitation</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1010</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation123</Name>
+                          <Description>Voltage Excitation Ports 1,2,3 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationPorts123-pos2"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff123Port-pos2" Index="1">
+                          <Name>VoltageExcitationOnOff123Port</Name>
+                          <Description>MSCD Constant Voltage Excitation enable ports 1,2,3</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationPorts123-pos2">
+                      <Name>VoltageExcitationPorts123</Name>
+                      <Description>Container for Voltage Excitation ports 1,2,3</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1011</Position>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch1-EV" Index="11">
+                          <Name>Ch1-EV</Name>
+                          <Description>MSCD Channel 1 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin1"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin14"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch2-EV" Index="12">
+                          <Name>Ch2-EV</Name>
+                          <Description>MSCD Channel 2 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin4"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin17"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch3-EV" Index="13">
+                          <Name>Ch3-EV</Name>
+                          <Description>MSCD Channel 3 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin10"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J1-Pin23"/>
+                          </PinRefs>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff456-pos2">
+                      <Name>VoltageExcitationOnOff456</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 4,5,6 Voltage Excitation</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1020</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation456</Name>
+                          <Description>Voltage Excitation Ports 4,5,6 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="TA1-Vendor1-DAU1-VoltageExcitationPorts456-pos2"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="TA1-Vendor1-DAU1-VoltageExcitationOnOff456Port-pos2" Index="1">
+                          <Name>VoltageExcitationOnOff456Port</Name>
+                          <Description>MSCD Constant Voltage Excitation enable ports 4,5,6</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="TA1-Vendor1-DAU1-VoltageExcitationPorts456-pos2">
+                      <Name>VoltageExcitationPorts456</Name>
+                      <Description>Container for Voltage Excitation ports 4,5,6</Description>
+                      <Manufacturer>Vendor1</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1021</Position>
+                      <Ports>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch4-EV" Index="14">
+                          <Name>Ch4-EV</Name>
+                          <Description>MSCD Channel 4 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin1"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin14"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch5-EV" Index="15">
+                          <Name>Ch5-EV</Name>
+                          <Description>MSCD Channel 5 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin4"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin17"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="TA1-Vendor1-DAU1-Module2-Ch6-EV" Index="16">
+                          <Name>Ch6-EV</Name>
+                          <Description>MSCD Channel 6 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin10"/>
+                            <PinRef IDREF="TA1-Vendor1-DAU1-Pos2-J2-Pin23"/>
+                          </PinRefs>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                  </SubModules>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+        </NetworkNodes>
+        <Devices>
+          <Device ID="TA1-Vendor1-DAU1-id_0x00000022">
+            <Name>ACEL1</Name>
+            <Description>Accelerometer</Description>
+            <Manufacturer>PCB Piezotronics</Manufacturer>
+            <Model>356A15</Model>
+            <SerialID>1</SerialID>
+            <InventoryID>TA1-Vendor1-DAU1-id_0x00000022</InventoryID>
+            <DeviceType>Accelerometer</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="TA1-Vendor1-DAU1-d1e6178">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Sensitivity>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValue>10.2</ConditionValue>
+                      <BaseUnit>Unitless</BaseUnit>
+                    </ConditionParameter>
+                  </Sensitivity>
+                  <ExcitationSource>External</ExcitationSource>
+                  <Connectors>
+                    <Connector>
+                      <Name>Accel 1</Name>
+                      <Description>J2</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000067" Index="1">
+                          <Name>1</Name>
+                          <Description>Rd</Description>
+                          <Designator>X Axis</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x0000000c" Index="2">
+                          <Name>2</Name>
+                          <Description>Ye</Description>
+                          <Designator>Z Axis</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x000000d6" Index="3">
+                          <Name>3</Name>
+                          <Description>Wh</Description>
+                          <Designator>Y Axis</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000099" Index="4">
+                          <Name>4</Name>
+                          <Description>Bk</Description>
+                          <Designator>Ground</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x00000038" Index="1">
+                      <Name>X Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000067"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x0000000d" Index="2">
+                      <Name>Z Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x0000000c"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x0000007d" Index="3">
+                      <Name>Y Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x000000d6"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="TA1-Vendor1-DAU1-id_0x00000044">
+            <Name>RTD1</Name>
+            <Description>Surface RTD</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-RTD-B</Model>
+            <SerialID>1</SerialID>
+            <InventoryID>TA1-Vendor1-DAU1-id_0x00000044</InventoryID>
+            <DeviceType>Potentiometer</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="TA1-Vendor1-DAU1-d1e6268">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <ExcitationSource>External</ExcitationSource>
+                  <Connectors>
+                    <Connector>
+                      <Name>RTD N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000011" Index="1">
+                          <Name>1</Name>
+                          <Description>Red</Description>
+                          <Designator>J1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000013" Index="2">
+                          <Name>2</Name>
+                          <Description>Black</Description>
+                          <Designator>J1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000016" Index="3">
+                          <Name>3</Name>
+                          <Description>Black</Description>
+                          <Designator>J2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x000000bf" Index="4">
+                          <Name>1-same</Name>
+                          <Description>Red</Description>
+                          <Designator>J2</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x00000057" Index="1">
+                      <Name>Excitation</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000011"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000013"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x0000000f" Index="2">
+                      <Name>Input</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000016"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x000000bf"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="TA1-Vendor1-DAU1-id_0x00000007">
+            <Name>RTD3</Name>
+            <Description>Surface RTD</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-RTD-B</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>TA1-Vendor1-DAU1-id_0x00000007</InventoryID>
+            <DeviceType>Potentiometer</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="TA1-Vendor1-DAU1-d1e6416">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <ExcitationSource>External</ExcitationSource>
+                  <Connectors>
+                    <Connector>
+                      <Name>RTD N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000012" Index="1">
+                          <Name>1</Name>
+                          <Description>Red</Description>
+                          <Designator>J1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x00000093" Index="2">
+                          <Name>2</Name>
+                          <Description>Black</Description>
+                          <Designator>J1</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x000000bd" Index="3">
+                          <Name>3</Name>
+                          <Description>Black</Description>
+                          <Designator>J2</Designator>
+                        </Pin>
+                        <Pin ID="TA1-Vendor1-DAU1-id_0x0000003a" Index="4">
+                          <Name>1-same</Name>
+                          <Description>Red</Description>
+                          <Designator>J2</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x00000071" Index="1">
+                      <Name>Excitation</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000012"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x00000093"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="TA1-Vendor1-DAU1-id_0x00000058" Index="2">
+                      <Name>Input</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x000000bd"/>
+                        <PinRef IDREF="TA1-Vendor1-DAU1-id_0x0000003a"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+        </Devices>
+        <PortMappings>
+          <PortMapping ID="TA1-Vendor1-DAU1-Module1-Ch1-Map">
+            <Name>Module1-Ch1-Map</Name>
+            <Description>Module1-Ch1-Map</Description>
+            <PortRef IDREF="TA1-Vendor1-DAU1-id_0x00000038"/>
+            <PortRef IDREF="TA1-Vendor1-DAU1-Module1-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-1"/>
+            </MeasurementRefs>
+          </PortMapping>          
+          <PortMapping ID="TA1-Vendor1-DAU1-Module2-Ch1-Map">
+            <Name>Module2-Ch1-Map</Name>
+            <Description>Module2-Ch1-Map</Description>
+            <PortRef IDREF="TA1-Vendor1-DAU1-id_0x0000000f"/>
+            <PortRef IDREF="TA1-Vendor1-DAU1-Module2-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-2"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="TA1-Vendor1-DAU1-Module2-Ch3-Map">
+            <Name>Module2-Ch3-Map</Name>
+            <Description>Module2-Ch3-Map</Description>
+            <PortRef IDREF="TA1-Vendor1-DAU1-id_0x00000058"/>
+            <PortRef IDREF="TA1-Vendor1-DAU1-Module2-Ch3"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-3"/>
+            </MeasurementRefs>
+          </PortMapping>
+        </PortMappings>        
+      </Network>
+    </Networks>
+  </NetworkDomain>  
+</MDLRoot>
+

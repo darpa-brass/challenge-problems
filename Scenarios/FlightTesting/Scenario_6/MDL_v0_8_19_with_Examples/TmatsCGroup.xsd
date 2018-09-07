@@ -1,0 +1,422 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="AlertValueType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Low" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="High" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="BitWeightType">
+      <xs:sequence>
+         <xs:element name="BitNumber" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>BWTB</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitWeightValue" type="TmatsCommon:BitWeightValueType">
+            <xs:annotation>
+               <xs:documentation>BWTV</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="CoefficientsType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="DerivedFromPairSet" type="TmatsCommon:YesNoType" minOccurs="0"/>
+         <xs:element name="Coefficient" minOccurs="0" maxOccurs="unbounded">
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:double">
+                     <xs:attribute name="N" type="xs:nonNegativeInteger" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DataConversionType">
+      <xs:choice minOccurs="0">
+         <xs:element name="PairSets" type="PairSetsType" minOccurs="0"/>
+         <xs:element name="Coefficients" type="CoefficientsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CO1, CO\N, CO, CO-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NegativePowersOfX" type="CoefficientsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>NPC1, NPC\N, NPC, NPC-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Other" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>OTH</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Derived" type="DerivedType" minOccurs="0"/>
+         <xs:element name="Discrete" type="DiscreteType" minOccurs="0"/>
+         <xs:element name="PCMTime" type="TmatsCommon:PCMTimeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PTM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Time1553" type="TmatsCommon:Time1553Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>BTM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DigitalVoice" type="DigitalVoiceType" minOccurs="0"/>
+         <xs:element name="DigitalVideo" type="DigitalVideoType" minOccurs="0"/>
+      </xs:choice>
+      <xs:attribute name="DateAndTimeReleased" type="xs:dateTime" use="optional"/>
+      <xs:attribute name="Type" type="TmatsCommon:DataConversionType" use="required"/>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DerivedType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Algorithm" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DPAT, DPA</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                     <xs:attribute name="Type" type="TmatsCommon:DerivedAlgorithmType" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="TriggerMeasurand" type="TriggerMeasurandType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DPNO, DPTM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Measurand" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>DP-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Constant" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>DPC-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DigitalVideoType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="EncodingMethod" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>VID\E</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>VID\D</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DigitalVoiceType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="EncodingMethod" type="TmatsCommon:DigitalVoiceEncodingMethodType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>VOI\E</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>VOI\D</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DiscreteType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="NumberOfIndicators" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DICI\N</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Event" type="EventType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="EventType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="ConversionData" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DICC-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EventDefinition" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DICP-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="InflightAndAmbientType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Stimulus" type="xs:double" minOccurs="0"/>
+         <xs:element name="TelemetryValue" type="xs:double"/>
+         <xs:element name="DataValue" type="xs:double"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurandType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Alias" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MNA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ExcitationVoltage" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EngineeringUnits" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LinkType" type="TmatsCommon:LinkTypeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurementType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="TransducerInformation" type="TransducerInformationType" minOccurs="0"/>
+         <xs:element name="Measurand" type="MeasurandType" minOccurs="0"/>
+         <xs:element name="TelemetryValueDefinition" type="TelemetryValueDefinitionType" minOccurs="0"/>
+         <xs:element name="InflightCalibration" type="InflightAndAmbientType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeat MC\N times. MC1-n, MC2-n, MC3-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AmbientValue" type="InflightAndAmbientType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeat MA\N times. MA1-n, MA2-n, MA3-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OtherInformation" type="OtherInformationType" minOccurs="0"/>
+         <xs:element name="DataConversion" type="DataConversionType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CRT, DCT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Comments" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>COM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" use="required"/>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurementValueType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Low" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="High" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="OtherInformationType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="MeasurementValue" type="MeasurementValueType" minOccurs="0"/>
+         <xs:element name="AlertValue" type="AlertValueType" minOccurs="0"/>
+         <xs:element name="WarningValue" type="WarningValueType" minOccurs="0"/>
+         <xs:element name="InitialValue" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SampleRate" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SR</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PairSetsType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Application" type="TmatsCommon:PairSetsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PS1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OrderOfFit" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>PS2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Pair" type="PairType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PairType">
+      <xs:sequence>
+         <xs:element name="TmValue">
+            <xs:annotation>
+               <xs:documentation>PS3-n</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:union memberTypes="xs:int">
+                  <xs:simpleType>
+                     <xs:restriction base="xs:double">
+                        <xs:minInclusive value="-100.0"/>
+                        <xs:maxInclusive value="100.0"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:union>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="EuValue" type="xs:double">
+            <xs:annotation>
+               <xs:documentation>PS4-n</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="TelemetryValueDefinitionType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="BinaryFormat" type="TmatsCommon:BinaryFormatType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>BFM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Choice, depending on BFM value</xs:documentation>
+            </xs:annotation>
+            <xs:element name="FloatingPointFormat" type="TmatsCommon:FloatingPointFormatType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>FPF</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="BitWeight" type="BitWeightType" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>Used when BFM value = "BWT". Repeats "BWT\N" times</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="TransducerInformationType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Type" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ModelNumber" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SerialNumber" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SecurityClassification" type="TmatsCommon:EUSecurityClassificationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OriginationDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RevisionNumber" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Orientation" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TRD7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PointOfContact" type="TmatsCommon:PointOfContactType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>POC1, POC2, POC3, POC4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="TriggerMeasurandType">
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="NumberOfOccurrences" type="xs:positiveInteger" use="optional" default="1"/>
+            <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="WarningValueType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Low" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="High" type="xs:double" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MOT5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="DataConversionAttributesType">
+      <xs:annotation>
+         <xs:documentation>TMATS C-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element name="Measurement" type="MeasurementType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>DCN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

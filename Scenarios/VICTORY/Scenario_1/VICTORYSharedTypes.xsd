@@ -1,0 +1,2200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+        UNCLASSIFIED//FOR OFFICIAL USE ONLY
+        DISTRIBUTION STATEMENT C
+    This document is property of the U.S. Government. Distribution authorized to U.S. Government 
+    Agencies and their contractors (date of determination as of February 15, 2018). Other 
+    requests for this document shall be referred to the VICTORY Standards Support Office (VSSO).
+-->
+<!--
+    Version = 1.7
+    Release Date = 20180215
+-->
+<xsd:schema xmlns:vst="http://www.victory-standards.org/Schemas/VICTORYSharedTypes.xsd"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.victory-standards.org/Schemas/VICTORYSharedTypes.xsd"
+    elementFormDefault="qualified" version="1.7">
+    <!--ATTRIBUTES-->
+    <!--SIMPLE TYPES-->
+    <xsd:simpleType name="azimuthBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:maxInclusive value="360"/>
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="degreesCelsiusBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-273.15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="elevationBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-90"/>
+            <xsd:maxInclusive value="90"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="headingBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:maxInclusive value="360"/>
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="latitudeBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-90"/>
+            <xsd:maxInclusive value="90"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="longitudeBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:maxInclusive value="180"/>
+            <xsd:minExclusive value="-180"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="percentBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:maxInclusive value="100"/>
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="pitchBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-90"/>
+            <xsd:maxInclusive value="90"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="rollBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-180"/>
+            <xsd:maxInclusive value="180"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="transmissionGearBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="-125"/>
+            <xsd:maxInclusive value="125"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="yawBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-180"/>
+            <xsd:maxInclusive value="180"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--COMPLEX TYPES-->
+    <xsd:complexType name="absolutePosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="latitude" type="vst:latitudeBounds_t"/>
+            <xsd:element name="longitude" type="vst:longitudeBounds_t"/>
+            <xsd:element name="altitude" type="xsd:double"/>
+            <xsd:element name="MGRS" type="vst:mgrs_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="generator_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="voltage" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="temperature" type="vst:degreesCelsiusBounds_t"/>
+            <xsd:element minOccurs="0" name="shaftSpeed" type="vst:unsignedDouble_t"/>
+            <xsd:element minOccurs="0" name="utilization" type="vst:percentBounds_t"/>
+            <xsd:element minOccurs="0" name="faults">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="fault"
+                            type="vst:powerGenerationFault_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="outputEnabled" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveAmbientConditions_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="barometricPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="cabInteriorTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ambientAirTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAirIntakeTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="roadSurfaceTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveDashDisplay_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="washerFluidLevel" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelFilterDifferentialPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineOilFilterDifferentialPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="cargoAmbientTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="fuelLevel1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="fuelLevel2" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveDirectLampControlData1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineProtectLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAmberWarningLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRedStopLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obdMalfunctionIndicatorLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineBrakeActiveLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="compressionBrakeEnableSwitchIndicatorLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineOilPressureLowLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineCoolantTemperatureHighLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineCoolantLevelLowLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineIdleManagementActiveLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAirFilterRestrictionLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelFilterRestrictionLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineWaitToStartLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineControlModule1ReadyForUseLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineControlModule2ReadyForUseLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineControlModule3ReadyForUseLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveDirectLampControlData2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vehicleBatteryVoltageLowLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleFuelLevelLowLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleAirPressureLowLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleHvacRecirculationLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleBatteryChargingLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveDistance_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tripDistance" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="totalVehicleDistance" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveElectricalPower1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="netBatteryCurrent" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="alternatorCurrent" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="chargingSystemPotential" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="powerInput1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="keyswitchBatteryPotential" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveElectricalPower2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="powerInput2" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ecuPowerOutputSupplyVoltage1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ecuPowerOutputSupplyVoltage2" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ecuPowerOutputSupplyVoltage3" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveElectronicTransmissionController2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="transmissionCurrentGear" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:integer"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="transmissionActualGearRatio" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="transmissionSelectedGear" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:integer"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="transmissionRequestedRange" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="transmissionCurrentRange" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineFluidLevelAndPressure1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineFuelDeliveryPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineExtendedCrankcaseBlowbyPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineOilLevel" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineOilPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineCrankcasePressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineCoolantPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineCoolantLevel" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineHoursAndRevolutions_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineHoursOfOperation" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRevolutions" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:unsignedInt"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineSpeedAndLoadFactor_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tripMaximumEngineSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tripAverageEngineSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tripDriveAverageLoadFactor" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="totalDriveAverageLoadFactor" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="totalEngineCruiseTime" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineTemperature1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineCoolantTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelTemperature1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineOilTemperature1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineTurbochargerOilTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineIntercoolerTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineIntercoolerThermostatOpening" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineTemperature2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineOilTemperature2" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineEcuTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineExhaustGasRecirculation1DifferentialPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineExhaustGasRecirculation1Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveEngineValve_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineDesiredThrottleValve1Position" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve1FailureMode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve1TemperatureStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve1OperationStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineDesiredThrottleValve2Position" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve2FailureMode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve2TemperatureStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve2OperationStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve1FailureMode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve1TemperatureStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve1OperationStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve2FailureMode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve2TemperatureStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineFuelValve2OperationStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveFuelConsumption_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineTripFuel" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineTotalFuelUsed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveFuelEconomy_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineFuelRate" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineInstantaneousFuelEconomy" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAverageFuelEconomy" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve1Position" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineThrottleValve2Position" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="auxiliaryPowerUnit_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="power" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="voltage" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="temperature" type="vst:degreesCelsiusBounds_t"/>
+            <xsd:element minOccurs="0" name="faults">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="fault"
+                            type="vst:powerGenerationFault_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="outputEnabled" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="lowVoltageThresholds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="currentTripThreshold" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="currentOnlineThreshold" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="voltageUpperThreshold" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="voltageLowerThreshold" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformBattery_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="batteryId" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="stateOfCharge" type="vst:percentBounds_t"/>
+            <xsd:element minOccurs="0" name="stateOfHealth" type="vst:percentBounds_t"/>
+            <xsd:element minOccurs="0" name="current" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="lowVoltage" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="temperature" type="vst:degreesCelsiusBounds_t"/>
+            <xsd:element name="chargeEnabled" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="interconnected" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="chargeCurrent" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="chargeVoltage" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformPower_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="instantaneousPowerConsumed" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="instantaneousPowerGenerated" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="systemVoltage" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="totalInstantaneousEnginePower" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="availableEnginePower" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformPowerGeneration_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="generator" type="vst:generator_t"/>
+            <xsd:element minOccurs="0" name="auxiliaryPowerUnit" type="vst:auxiliaryPowerUnit_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerGenerationFault_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="faultCode" type="xsd:string"/>
+            <xsd:element name="faultStatus" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDevice_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="vst:powerSystemDeviceBase_t">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="loadDevices">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element maxOccurs="unbounded" name="loadDevice"
+                                    type="vst:powerSystemDeviceBase_t"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceBase_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deviceId" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="current" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="lowVoltage" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="temperature" type="vst:degreesCelsiusBounds_t"/>
+            <xsd:element minOccurs="0" name="tripStatus" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="combatOverride" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="powerModeStatus" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="powerConnectorDisconnectInterlockStatus"
+                type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceThreshold_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="vst:powerSystemDeviceThresholdBase_t">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="loadDevices">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element maxOccurs="unbounded" name="loadDevice"
+                                    type="vst:powerSystemDeviceThresholdBase_t"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceThresholdBase_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deviceId" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="lowVoltageThresholds" type="vst:lowVoltageThresholds_t"/>
+            <xsd:element minOccurs="0" name="temperatureThresholds"
+                type="vst:temperatureThresholds_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="relativePosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="azimuth" type="vst:azimuthBounds_t"/>
+            <xsd:element name="elevation" type="vst:elevationBounds_t"/>
+            <xsd:element name="range" type="vst:unsignedDouble_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="temperatureThresholds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="temperatureUpperThreshold"
+                type="vst:degreesCelsiusBounds_t"/>
+            <xsd:element minOccurs="0" name="temperatureLowerThreshold"
+                type="vst:degreesCelsiusBounds_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="threat_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element name="relativePosition" type="vst:threatRelativePosition_t"/>
+            <xsd:element minOccurs="0" name="observerPosition" nillable="true"
+                type="vst:threatAbsolutePosition_t"/>
+            <xsd:element minOccurs="0" name="absolutePosition" type="vst:threatAbsolutePosition_t"/>
+            <xsd:element minOccurs="0" name="threatType" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="threatDescription">
+                <xsd:complexType>
+                    <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                            <xsd:attribute name="usingSIDC" type="xsd:boolean"/>
+                        </xsd:extension>
+                    </xsd:simpleContent>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="threatAbsolutePosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="latitude" type="vst:threatLatitude_t"/>
+            <xsd:element name="longitude" type="vst:threatLongitude_t"/>
+            <xsd:element name="altitude" type="vst:threatAltitude_t"/>
+            <xsd:element name="MGRS" type="vst:mgrs_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="threatAltitude_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:double">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="threatLatitude_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="vst:latitudeBounds_t">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="threatLongitude_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="vst:longitudeBounds_t">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="threatRelativePosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="azimuth" type="vst:threatAzimuth_t"/>
+            <xsd:element name="elevation" type="vst:threatElevation_t"/>
+            <xsd:element name="range" type="vst:threatRange_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="threatAzimuth_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="vst:azimuthBounds_t">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="threatElevation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="vst:elevationBounds_t">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="threatRange_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="vst:unsignedDouble_t">
+                <xsd:attribute name="uncertainty" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="unsignedDouble_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="dataLoggerSize_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="size" type="xsd:double"/>
+            <xsd:element name="units" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveActiveDiagnosticTroubleCodes_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineProtectLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAmberWarningLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRedStopLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obdMalfunctionIndicatorLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flashProtectLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flashAmberWarningLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flashRedStopLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="flashMalfunctionIndicatorLamp" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="suspectParameterNumber" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="failureModeIdentifier" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="occurrenceCount" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:occurrenceCountBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="spnConversionMethod" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:spnConversionMethodBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveAlternatorTemperature_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineAlternatorBearing1Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAlternatorBearing2Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAlternatorWinding1Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAlternatorWinding2Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAlternatorWinding3Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveBatteryTemperature_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="battery1Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="battery2Temperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="occurrenceCountBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:maxInclusive value="126"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="spnConversionMethodBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:maxInclusive value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="engineAlternatorTemperatureBounds_t">        <xsd:annotation>
+        <xsd:appinfo>
+            <maturity>Proposed Standard</maturity>
+        </xsd:appinfo>
+    </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="batteryTemperatureBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="-40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="automotiveCabMessage1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="requestedPercentFanSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="operatorSeatDirectionSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="seatBeltSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vlsgDecrementSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vlsgIncrementSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vlsgEnableSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dieselParticulateFilterRegenerationInhibitSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dieselParticulateFilterRegenerationForceSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="automaticGearShiftingEnableSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineAutomaticStartEnableSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="selectedMaximumVehicleSpeedLimit" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveCombinationVehicleWeight_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="poweredVehicleWeight" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:unsignedInt"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="grossCombinationVehicleWeight" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:unsignedInt"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveElectronicEngineController1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineTorqueMode">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="driversDemandEnginePercentTorque" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="actualEnginePercentTorque" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineStarterMode">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineDemandPercentTorque" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="percentTorqueHighResolutionBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value=".875"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="percentTorqueBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="-125"/>
+            <xsd:maxInclusive value="125"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="automotiveElectronicEngineController2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="acceleratorPedal1LowIdleSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="acceleratorPedalKickdownSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="roadSpeedLimitStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="acceleratorPedal2LowIdleSwitch" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="acceleratorPedalPosition1" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="enginePercentLoadAtCurrentSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="remoteAcceleratorPedalPosition" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="acceleratorPedalPosition2" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleAccelerationRateLimitStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="momentaryEngineMaximumPowerEnableFeedback" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dpfThermalManagementActive" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="scrThermalManagementActive" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="actualMaximumAvailableEnginePercentTorque" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="estimatedPumpingPercentTorque" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="enginePercentLoad_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="125"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="automotiveFanDrive1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="estimatedPercentFanSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="fanDriveState">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="fanSpeed" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="hydraulicFanMotorPressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="fanDriveBypassCommandStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:percentBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveTireCondition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tireLocation" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tirePressure" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tireTemperature" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:degreesCelsiusBounds_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ctiWheelSensorStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ctiTireStatus" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="ctiWheelEndElectricalFault" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:boolean"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tireAirLeakageRate" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tirePressureThresholdDetection" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="tireLocationBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:maxInclusive value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="automotiveTorqueSpeedControl1_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineOverrideControlMode">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRequestedSpeedControlConditions">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="overrideControlModePriority">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRequestedSpeedAndSpeedLimit" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="vst:unsignedDouble_t"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="engineRequestedTorqueAndTorqueLimit" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:double"/>
+                        <xsd:element name="error" type="xsd:string"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tsc1TransmissionRate">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tsc1ControlPurpose">
+                <xsd:complexType>
+                    <xsd:choice>
+                        <xsd:element name="data" type="xsd:string" minOccurs="0"/>
+                    </xsd:choice>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="degreesBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxExclusive value="360"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="pointingDirection_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="azimuth" type="vst:azimuthBounds_t"/>
+            <xsd:element name="elevation" type="vst:elevationBounds_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="greaterThanZeroDouble_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="greaterThanZeroInt_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:integer">
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="mgrs_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern
+                value="((([1-9]|[1-5][0-9]|[6][0])([C-H]|[J-N]|[P-X]))|[A,B,Y,Z])([A-H]|[J-N]|[P-Z])([A-H]|[J-N]|[P-V])([0-9]{2}|[0-9]{4}|[0-9]{6}|[0-9]{8}|[0-9]{10})?"
+            />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="homePosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="absolutePan" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="absoluteTilt" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="absoluteCameraRoll" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cameraOrientation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="pan" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="tilt" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="cameraRoll" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+<!--    DISTRIBUTION STATEMENT C    -->
+<!--    UNCLASSIFIED//FOR OFFICIAL USE ONLY    -->

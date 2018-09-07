@@ -1,0 +1,1564 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL" xmlns:tmatsCommon="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsCommonTypes" xmlns:tmatsP="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup" xmlns:tmatsD="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+  <Name>MDLRoot</Name>
+  <Description>TBD</Description>
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>0.0.1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Test Mission 1</Name>
+      <Description>Test Mission 1: Frequency change</Description>
+      <TmNSCompleteness>true</TmNSCompleteness>
+      <TmNSCompletenessDescription>Complete</TmNSCompletenessDescription>
+      <QoSPolicies>
+        <QoSPolicy ID="GR1_to_TA1_MissionSLP">
+            <Name>GR1_to_TA1_MissionSLP</Name>
+            <Description>GR1_to_TA1 Mission Service Level Profile for Test Mission 1</Description>
+            <QoSPolicyID>0x01123600</QoSPolicyID>
+            <RadioLinkRefs>
+                <RadioLinkRef IDREF="GndRadio_to_TA"/>
+            </RadioLinkRefs>
+            <Priority>4</Priority>
+            <LinkManagementMinCapacity>
+                <Value>100000</Value>
+                <BaseUnit>BitPerSecond</BaseUnit>
+            </LinkManagementMinCapacity>
+            <AssuredCapacity>
+                <Value>200000</Value>
+                <BaseUnit>BitPerSecond</BaseUnit>
+            </AssuredCapacity>
+            <ServiceLevelProfiles>
+                <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_0">
+                    <Name>GR1_to_TA1_SLP_1_0</Name>
+                    <Description>Top level queue discipline</Description>
+                    <SLPHandle>0x00010000</SLPHandle>
+                    <QueueConstruct>
+                        <QDisc>
+                            <HTB>
+                                <DefaultClassHandle>0x00010028</DefaultClassHandle>
+                            </HTB>
+                        </QDisc>
+                    </QueueConstruct>
+                    <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_1">
+                            <Name>GR1_to_TA1_SLP_1_1</Name>
+                            <Description>Primary HTB rollup class to enable sharing between subclasses</Description>
+                            <SLPHandle>0x00010001</SLPHandle>
+                            <QueueConstruct>
+                                <Class>
+                                    <HTB>
+                                        <Priority>1</Priority>
+                                        <Rate>
+                                            <Value>1000000000</Value>
+                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                        </Rate>
+                                        <Ceiling>
+                                            <Value>1000000000</Value>
+                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                        </Ceiling>
+                                    </HTB>
+                                </Class>
+                            </QueueConstruct>
+                            <ServiceLevelProfiles>
+                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_10">
+                                    <Name>GR1_to_TA1_SLP_1_10</Name>
+                                    <Description>HTB class for Network Control and Internetwork Control Traffic</Description>
+                                    <SLPHandle>0x0001000A</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>1</Priority>
+                                                <Rate>
+                                                    <Value>10000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>1000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 0</Name>
+                                            <Description>Filter for Link Manager Messages And Routing Protocol Keep Alive DCSP range 56-63 (class 7)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>1</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xe0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                        <TrafficFilter>
+                                            <Name>TBD name 1</Name>
+                                            <Description>Filter for RAN Messages, routing protocols DCSP range 48-55 (class 6)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>2</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xc0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_10_0">
+                                            <Name>GR1_to_TA1_SLP_10_0</Name>
+                                            <Description>FIFO Qdisc Network/Internetwork Control Traffic</Description>
+                                            <SLPHandle>0x000A0000</SLPHandle>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>50</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_20">
+                                    <Name>GR1_to_TA1_SLP_1_20</Name>
+                                    <Description>HTB class for Expedited Forwarding Voice Traffic</Description>
+                                    <SLPHandle>0x00010014</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>2</Priority>
+                                                <Rate>
+                                                    <Value>50000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>512000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 2</Name>
+                                            <Description>Filter for Voice traffic DCSP range 40-47 (class 5)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>3</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xa0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_20_0">
+                                            <Name>GR1_to_TA1_SLP_20_0</Name>
+                                            <Description>FIFO Qdisc for "Expedited Forwarding" Voice Traffic</Description>
+                                            <SLPHandle>0x00140000</SLPHandle>
+                                            <AveragePacketDelay>
+                                                <Value>0.05</Value>
+                                                <BaseUnit>Second</BaseUnit>
+                                            </AveragePacketDelay>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>150</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_30">
+                                    <Name>GR1_to_TA1_SLP_1_30</Name>
+                                    <Description>HTB rollup class for DSCP Class Selector ranges (Class 1, Class2, Class3, Class4)</Description>
+                                    <SLPHandle>0x0001001e</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>3</Priority>
+                                                <Rate>
+                                                    <Value>1750000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>5000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_300">
+                                            <Name>GR1_to_TA1_SLP_1_300</Name>
+                                            <Description>HTB DSCP Class Selector 4 (including all Class 4) traffic</Description>
+                                            <SLPHandle>0x0001012c</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>1</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 3</Name>
+                                                    <Description>Filter for System Management and Video DCSP range 32-39 (class 4)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>4</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x80</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_30_0">
+                                                    <Name>GR1_to_TA1_SLP_30_0</Name>
+                                                    <Description>RED Qdisc for Class 4 "System Management And Video" traffic</Description>
+                                                    <SLPHandle>0x001e0000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1024000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>42400</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>128000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>8000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>9</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>256000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>2.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_301">
+                                            <Name>GR1_to_TA1_SLP_1_301</Name>
+                                            <Description>htb DSCP Class Selector 3 (including all Class 3) traffic</Description>
+                                            <SLPHandle>0x0001012d</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>2</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 4</Name>
+                                                    <Description>Filter for RC Delivery at High Priority DCSP range 24-31 (class 3)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>5</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x60</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_40_0">
+                                                    <Name>GR1_to_TA1_SLP_40_0</Name>
+                                                    <Description>RED Qdisc for Class 3 "RC Delivery at High Priority" traffic</Description>
+                                                    <SLPHandle>0x00280000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1024000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>42400</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>128000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>8000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>9</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>256000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>2.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_302">
+                                            <Name>GR1_to_TA1_SLP_1_302</Name>
+                                            <Description>HTB DSCP Class Selector 2 (including all Class 2) traffic</Description>
+                                            <SLPHandle>0x0001012e</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>3</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 5</Name>
+                                                    <Description>Filter for LTC Delivery DCSP range 16-23 (class 2)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>6</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x40</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_50_0">
+                                                    <Name>GR1_to_TA1_SLP_50_0</Name>
+                                                    <Description>RED Qdisc for Class 2 "LTC Delivery" traffic</Description>
+                                                    <SLPHandle>0x00320000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1024000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>42400</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>128000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>8000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>9</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>256000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>2.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_303">
+                                            <Name>GR1_to_TA1_SLP_1_303</Name>
+                                            <Description>HTB DSCP Class Selector 1 (including all Class 1) traffic</Description>
+                                            <SLPHandle>0x0001012f</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>4</Priority>
+                                                        <Rate>
+                                                            <Value>1000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 6</Name>
+                                                    <Description>Filter for RC Delivery at Normal Priority And System Management Status DCSP range 8-15 (class 1)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>7</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x20</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_60_0">
+                                                    <Name>GR1_to_TA1_SLP_60_0</Name>
+                                                    <Description>RED Qdisc for Class 1 "RC Delivery at Normal Priority And System Management Status" traffic</Description>
+                                                    <SLPHandle>0x003c0000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1024000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>168000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>512000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>8000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>35</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>1024000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>2.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="GR1_to_TA1_SLP_1_40">
+                                    <Name>GR1_to_TA1_SLP_1_40</Name>
+                                    <Description>htb class for DCSP "Best Effort" range and all other default traffic</Description>
+                                    <SLPHandle>0x00010028</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>4</Priority>
+                                                <Rate>
+                                                    <Value>1000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>1000000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 7</Name>
+                                            <Description>Filter for RC General Network Traffic DCSP range 0-7 (class 0)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>8</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0x00</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="GR1_to_TA1_SLP_70_0">
+                                            <Name>GR1_to_TA1_SLP_70_0</Name>
+                                            <Description>FIFO Qdisc for "Best Effort" default traffic</Description>
+                                            <SLPHandle>0x00460000</SLPHandle>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>150</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                            </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                    </ServiceLevelProfiles>
+                </ServiceLevelProfile>
+            </ServiceLevelProfiles>
+        </QoSPolicy>
+        <QoSPolicy ID="TA1_to_GndGrp1_MissionSLP">
+            <Name>TA1_to_GndGrp1_MissionSLP</Name>
+            <Description>TA1_to_GndGrp1 Mission Service Level Profile for Test Mission 1</Description>
+            <QoSPolicyID>0x01123700</QoSPolicyID>
+            <RadioLinkRefs>
+                <RadioLinkRef IDREF="TA_to_GndRadio"/>
+            </RadioLinkRefs>
+            <Priority>1</Priority>
+            <LinkManagementMinCapacity>
+                <Value>1000000</Value>
+                <BaseUnit>BitPerSecond</BaseUnit>
+            </LinkManagementMinCapacity>
+            <AssuredCapacity>
+                <Value>10000000</Value>
+                <BaseUnit>BitPerSecond</BaseUnit>
+            </AssuredCapacity>
+            <ServiceLevelProfiles>
+                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_0">
+                    <Name>TA1_to_GndGrp1_SLP_1_0</Name>
+                    <Description>Top level queue discipline</Description>
+                    <SLPHandle>0x00010000</SLPHandle>
+                    <QueueConstruct>
+                        <QDisc>
+                            <HTB>
+                                <DefaultClassHandle>0x00010028</DefaultClassHandle>
+                            </HTB>
+                        </QDisc>
+                    </QueueConstruct>
+                    <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_1">
+                            <Name>TA1_to_GndGrp1_SLP_1_1</Name>
+                            <Description>Primary HTB rollup class to enable sharing between subclasses</Description>
+                            <SLPHandle>0x00010001</SLPHandle>
+                            <QueueConstruct>
+                                <Class>
+                                    <HTB>
+                                        <Priority>1</Priority>
+                                        <Rate>
+                                            <Value>1000000000</Value>
+                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                        </Rate>
+                                        <Ceiling>
+                                            <Value>1000000000</Value>
+                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                        </Ceiling>
+                                    </HTB>
+                                </Class>
+                            </QueueConstruct>
+                            <ServiceLevelProfiles>
+                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_10">
+                                    <Name>TA1_to_GndGrp1_SLP_1_10</Name>
+                                    <Description>HTB class for Network Control and Internetwork Control Traffic</Description>
+                                    <SLPHandle>0x0001000A</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>1</Priority>
+                                                <Rate>
+                                                    <Value>10000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>1000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 0</Name>
+                                            <Description>Filter for Link Manager Messages And Routing Protocol Keep Alive DCSP range 56-63 (class 7)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>1</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xe0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                        <TrafficFilter>
+                                            <Name>TBD name 1</Name>
+                                            <Description>Filter for RAN Messages, routing protocols DCSP range 48-55 (class 6)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>2</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xc0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_10_0">
+                                            <Name>TA1_to_GndGrp1_SLP_10_0</Name>
+                                            <Description>FIFO Qdisc Network/Internetwork Control Traffic</Description>
+                                            <SLPHandle>0x000A0000</SLPHandle>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>50</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_20">
+                                    <Name>TA1_to_GndGrp1_SLP_1_20</Name>
+                                    <Description>HTB class for Expedited Forwarding Voice Traffic</Description>
+                                    <SLPHandle>0x00010014</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>2</Priority>
+                                                <Rate>
+                                                    <Value>256000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>512000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 2</Name>
+                                            <Description>Filter for Voice traffic DCSP range 40-47 (class 5)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>3</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0xa0</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_20_0">
+                                            <Name>TA1_to_GndGrp1_SLP_20_0</Name>
+                                            <Description>FIFO Qdisc for "Expedited Forwarding" Voice Traffic</Description>
+                                            <SLPHandle>0x00140000</SLPHandle>
+                                            <AveragePacketDelay>
+                                                <Value>0.05</Value>
+                                                <BaseUnit>Second</BaseUnit>
+                                            </AveragePacketDelay>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>150</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_30">
+                                    <Name>TA1_to_GndGrp1_SLP_1_30</Name>
+                                    <Description>HTB rollup class for DSCP Class Selector ranges (Class 1, Class2, Class3, Class4)</Description>
+                                    <SLPHandle>0x0001001e</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>3</Priority>
+                                                <Rate>
+                                                    <Value>1750000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>1000000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_300">
+                                            <Name>TA1_to_GndGrp1_SLP_1_300</Name>
+                                            <Description>HTB DSCP Class Selector 4 (including all Class 4) traffic</Description>
+                                            <SLPHandle>0x0001012c</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>1</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>1000000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 3</Name>
+                                                    <Description>Filter for System Management and Video DCSP range 32-39 (class 4)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>4</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x80</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_30_0">
+                                                    <Name>TA1_to_GndGrp1_SLP_30_0</Name>
+                                                    <Description>RED Qdisc for Class 4 "System Management And Video" traffic</Description>
+                                                    <SLPHandle>0x001e0000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>730000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>1460000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>12000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>61</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>5.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_301">
+                                            <Name>TA1_to_GndGrp1_SLP_1_301</Name>
+                                            <Description>htb DSCP Class Selector 3 (including all Class 3) traffic</Description>
+                                            <SLPHandle>0x0001012d</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>2</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>1000000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 4</Name>
+                                                    <Description>Filter for RC Delivery at High Priority DCSP range 24-31 (class 3)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>5</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x60</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_40_0">
+                                                    <Name>TA1_to_GndGrp1_SLP_40_0</Name>
+                                                    <Description>RED Qdisc for Class 3 "RC Delivery at High Priority" traffic</Description>
+                                                    <SLPHandle>0x00280000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>50000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>100000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>12000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>5</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>10.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_302">
+                                            <Name>TA1_to_GndGrp1_SLP_1_302</Name>
+                                            <Description>HTB DSCP Class Selector 2 (including all Class 2) traffic</Description>
+                                            <SLPHandle>0x0001012e</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>3</Priority>
+                                                        <Rate>
+                                                            <Value>250000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>1000000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 5</Name>
+                                                    <Description>Filter for LTC Delivery DCSP range 16-23 (class 2)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>6</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x40</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_50_0">
+                                                    <Name>TA1_to_GndGrp1_SLP_50_0</Name>
+                                                    <Description>RED Qdisc for Class 2 "LTC Delivery" traffic</Description>
+                                                    <SLPHandle>0x00320000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>170000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>510000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>8000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>22</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>20.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_303">
+                                            <Name>TA1_to_GndGrp1_SLP_1_303</Name>
+                                            <Description>HTB DSCP Class Selector 1 (including all Class 1) traffic</Description>
+                                            <SLPHandle>0x0001012f</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>4</Priority>
+                                                        <Rate>
+                                                            <Value>1000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>1000000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>TBD name 6</Name>
+                                                    <Description>Filter for RC Delivery at Normal Priority And System Management Status DCSP range 8-15 (class 1)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>7</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Protocol>IPv4</Protocol>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x20</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_60_0">
+                                                    <Name>TA1_to_GndGrp1_SLP_60_0</Name>
+                                                    <Description>RED Qdisc for Class 1 "RC Delivery at Normal Priority And System Management Status" traffic</Description>
+                                                    <SLPHandle>0x003c0000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <RED>
+                                                                <Limit>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Limit>
+                                                                <Min>
+                                                                    <Value>525000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Min>
+                                                                <Max>
+                                                                    <Value>1575000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Max>
+                                                                <Avpkt>
+                                                                    <Value>12000</Value>
+                                                                    <BaseUnit>Bit</BaseUnit>
+                                                                </Avpkt>
+                                                                <Burst>44</Burst>
+                                                                <EnableECN>true</EnableECN>
+                                                                <Bandwidth>
+                                                                    <Value>1000000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Bandwidth>
+                                                                <Probability>40.0</Probability>
+                                                            </RED>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                                <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_1_40">
+                                    <Name>TA1_to_GndGrp1_SLP_1_40</Name>
+                                    <Description>htb class for DCSP "Best Effort" range and all other default traffic</Description>
+                                    <SLPHandle>0x00010028</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>4</Priority>
+                                                <Rate>
+                                                    <Value>1000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>1000000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <TrafficFilters>
+                                        <TrafficFilter>
+                                            <Name>TBD name 7</Name>
+                                            <Description>Filter for RC General Network Traffic DCSP range 0-7 (class 0)</Description>
+                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                            <Protocol>IPv4</Protocol>
+                                            <Priority>8</Priority>
+                                            <Classifier>PacketFields</Classifier>
+                                            <Conditions>
+                                                <Condition>
+                                                    <MatchField>
+                                                        <Protocol>IPv4</Protocol>
+                                                        <Offset>1</Offset>
+                                                        <FieldWidth>8-bit</FieldWidth>
+                                                        <Pattern>0x00</Pattern>
+                                                        <Mask>0xe0</Mask>
+                                                    </MatchField>
+                                                </Condition>
+                                            </Conditions>
+                                        </TrafficFilter>
+                                    </TrafficFilters>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="TA1_to_GndGrp1_SLP_70_0">
+                                            <Name>TA1_to_GndGrp1_SLP_70_0</Name>
+                                            <Description>FIFO Qdisc for "Best Effort" default traffic</Description>
+                                            <SLPHandle>0x00460000</SLPHandle>
+                                            <QueueConstruct>
+                                                <QDisc>
+                                                    <FIFO>
+                                                        <LimitInPackets>150</LimitInPackets>
+                                                    </FIFO>
+                                                </QDisc>
+                                            </QueueConstruct>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                            </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                    </ServiceLevelProfiles>
+                </ServiceLevelProfile>
+            </ServiceLevelProfiles>
+        </QoSPolicy>
+      </QoSPolicies>
+      <RadioLinks>
+        <RadioLink ID="TA_to_GndRadio">
+            <Name>TA_to_GndRadio</Name>		 
+            <Description>TA_to_GndRadio Downlink for Test Mission 1</Description>
+            <SourceRadioRef IDREF="TA_RadioTMA1"/>
+            <DestinationRadioGroupRef IDREF="GROUND_GROUP_1"/>
+            <TxRxEnable>true</TxRxEnable>
+            <HeartbeatTimeout>65535</HeartbeatTimeout>
+            <EncryptionEnabled>false</EncryptionEnabled>
+            <EncryptionKeyID>0</EncryptionKeyID>
+            <TransmissionSchedule>
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>12500</StartUSec>
+                    <StopUSec>24000</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp>   
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>62500</StartUSec>
+                    <StopUSec>74000</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp> 
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>87500</StartUSec>
+                    <StopUSec>99000</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp>                 
+            </TransmissionSchedule>
+        </RadioLink>
+        <RadioLink ID="GndRadio_to_TA">
+            <Name>GndRadio_to_TA</Name>
+            <Description>GndRadio_to_TA Uplink for Test Mission 1</Description>
+            <SourceRadioRef IDREF="RAN_GroundRadio1TMA1"/>
+            <DestinationRadioGroupRef IDREF="TA_RADIO_GROUP_1"/>
+            <TxRxEnable>true</TxRxEnable>
+            <HeartbeatTimeout>65535</HeartbeatTimeout>
+            <EncryptionEnabled>false</EncryptionEnabled>
+            <EncryptionKeyID>0</EncryptionKeyID>
+            <TransmissionSchedule>
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>0</StartUSec>
+                    <StopUSec>11500</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp>   
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>25000</StartUSec>
+                    <StopUSec>36500</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp> 
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>50000</StartUSec>
+                    <StopUSec>61500</StopUSec>
+                    <TxOpTimeout>255</TxOpTimeout>
+                </TxOp>
+                <TxOp>
+                    <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+                    <StartUSec>75000</StartUSec>
+                    <StopUSec>86500</StopUSec>
+                    <TxOpTimeout>0</TxOpTimeout>
+                </TxOp>                  
+            </TransmissionSchedule>
+        </RadioLink>
+	  </RadioLinks>
+    </TestMission>
+  </TestMissions>  
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>iSIL</Name>
+      <Description>iSIL Measurement Domain</Description>
+      <DataProcessing/>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomain>
+    <Networks>
+        <Network ID="TestArticle_Network">
+            <Name>TestArticle_Network</Name>
+            <Description>Network for TA Components</Description>
+            <NetworkType>TestArticleNetwork</NetworkType>
+            <NetworkNodes>
+                <NetworkNode ID="TA_RadioComponent1">
+                    <Name>TA_RadioComponent</Name>
+                    <Description>TA Radio Component (on Test Article 1)</Description>
+                    <InventoryID>COMP-00109</InventoryID>
+                    <HostName>TARadio_Component1</HostName>
+                    <Manufacturer>Radio Vendor</Manufacturer>
+                    <Model>Radio Vendor TA Radio Model X?</Model>
+                    <ModelVersion>Radio Vendor TA Radio Model Version X?</ModelVersion>
+                    <SerialID>Radio Vendor TA Radio Serial Identifier X?</SerialID>
+                    <IEEE1588Version>2008e2e</IEEE1588Version>
+                    <TmNSApps>
+                        <TmNSApp ID="TA_RadioTMA1">
+                            <Name>TA_RadioTMA1</Name>
+                            <Description>TA Radio TMA 1 (on Test Article 1)</Description>
+                            <RoleID>TARadio1</RoleID>
+                            <LoggingLevel>Trace</LoggingLevel>
+                            <Manufacturer>Radio Vendor</Manufacturer>
+                            <Product>TBD App</Product>
+                            <ProductVersion>X?</ProductVersion>
+                            <ConfigurationVersion>Radio Vendor TA Radio Software Version X?</ConfigurationVersion>
+                            <TmNSManagementResourcesVersion>TBD</TmNSManagementResourcesVersion>
+                            <DirtyBit>false</DirtyBit>
+                            <TmNSNetworkFabricDevice>
+                                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                                <IGMPQuerier>Off</IGMPQuerier>
+                                <IGMPQuerierInterval>15</IGMPQuerierInterval>
+                            </TmNSNetworkFabricDevice>								
+                            <TmNSRadio>
+                                <RANConfigurationRef IDREF="RANConfig1"/>
+                                <RFMACAddress>4098</RFMACAddress>
+                                <JoinRadioGroupRefs>
+                                    <RadioGroupRef IDREF="TA_RADIO_GROUP_1"/>
+                                </JoinRadioGroupRefs>
+                                <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                                <TxPowerLeveldBm>42</TxPowerLeveldBm>
+                                <LowPowerModeEnable>false</LowPowerModeEnable>
+                                <LinkAgent>
+                                    <NetworkInterfaceRef IDREF="TA_RadioComponent1_Wired_Interface"/>
+                                    <ListeningPort>12345</ListeningPort>
+                                </LinkAgent>
+                            </TmNSRadio>								
+                            <SMInterface>
+                                <SNMPSetup>
+                                    <SNMPVersions>
+                                        <SNMPVersion>v3</SNMPVersion>
+                                    </SNMPVersions>
+                                    <SNMPPort>161</SNMPPort>
+                                    <NotificationPort>162</NotificationPort>
+                                    <DSCPTableEntryRef IDREF="Diffserv_DSCP32_System_Management_and_Video"/>
+                                    <NetworkInterfaceRefs>
+                                        <NetworkInterfaceRef IDREF="TA_RadioComponent1_Wired_Interface"/>
+                                    </NetworkInterfaceRefs>
+                                </SNMPSetup>
+                            </SMInterface>
+                        </TmNSApp>
+                    </TmNSApps>
+                    <InternalStructure>
+                        <Modules>
+                            <Module ID="d8e5287">
+                                <Name>Generated Module</Name>
+                                <Description>Generated Module</Description>
+                                <Manufacturer>n/a</Manufacturer>
+                                <Model>n/a</Model>
+                                <SerialID>n/a</SerialID>
+                                <InventoryID>n/a</InventoryID>
+                                <Position>1</Position>
+                                <PositionsOccupied>1</PositionsOccupied>
+                                <RunningAppRefs>
+                                    <TmNSAppRef IDREF="TA_RadioTMA1"/>
+                                </RunningAppRefs>
+                                <NetworkInterfaces>
+                                    <NetworkInterface ID="TA_RadioComponent1_Wired_Interface">
+                                        <Name>eth0</Name>
+                                        <Description>Wired Interface for TA Radio Component 1 on Test Article 1</Description>
+                                        <DHCPEnable>false</DHCPEnable>
+                                        <IPAddress>10.1.1.1</IPAddress>
+                                        <Netmask>255.255.255.0</Netmask>
+                                        <MACAddress>00:00:00:00:00:00</MACAddress>
+                                        <PhysicalNetworkPorts>
+                                            <PhysicalNetworkPort ID="TA_RadioComponent1_Wired_PhyNetPort">
+                                                <Name>port1</Name>
+                                                <Description>TBD description</Description>
+                                                <Medium>Copper</Medium>
+                                                <PortNumber>1</PortNumber>
+                                                <PortDataRate>
+                                                    <Value>1e9</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </PortDataRate>
+                                            </PhysicalNetworkPort>
+                                        </PhysicalNetworkPorts>
+                                    </NetworkInterface>
+                                    <NetworkInterface ID="TA_RadioComponent1_RF_Interface">
+                                        <Name>rfnet0</Name>
+                                        <Description>Wireless Interface for TA Radio Component 1 on Test Article 1</Description>
+                                        <DHCPEnable>false</DHCPEnable>
+                                        <IPAddress>10.1.2.1</IPAddress>
+                                        <Netmask>255.255.255.0</Netmask>
+                                        <MACAddress>02:00:00:00:10:0F</MACAddress>
+                                        <PhysicalNetworkPorts>
+                                            <PhysicalNetworkPort ID="TA_RadioComponent1_RF_PhyNetPort">
+                                                <Name>port1</Name>
+                                                <Description>TBD description</Description>
+                                                <Medium>Wireless</Medium>
+                                                <PortNumber>1</PortNumber>
+                                                <PortDataRate>
+                                                    <Value>2e7</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </PortDataRate>
+                                            </PhysicalNetworkPort>
+                                        </PhysicalNetworkPorts>
+                                    </NetworkInterface>
+                                </NetworkInterfaces>
+                                <Ports>
+                                    <Port ID="TA_RadioComponent1_RF_Port" Index="1">
+                                        <Name>TA Radio Component1 RF Port</Name>
+                                        <Description>TBD description</Description>
+                                        <PortDirection>Bidirectional</PortDirection>
+                                        <PhysicalNetworkPortRef IDREF="TA_RadioComponent1_RF_PhyNetPort"/>
+                                    </Port>
+                                    <Port ID="TA_RadioComponent1_Wired_Port" Index="2">
+                                        <Name>TA Radio Component1 Wired Port</Name>
+                                        <Description>TBD description</Description>
+                                        <PortDirection>Bidirectional</PortDirection>
+                                        <PhysicalNetworkPortRef IDREF="TA_RadioComponent1_Wired_PhyNetPort"/>
+                                    </Port>
+                                </Ports>
+                            </Module>
+                        </Modules>
+                    </InternalStructure>
+                </NetworkNode>
+            </NetworkNodes>
+        </Network>
+        <Network ID="RAN_Network">
+            <Name>RAN_Network</Name>
+            <Description>Network for Ground RAN Components</Description>
+            <NetworkType>RadioAccessNetwork</NetworkType>
+            <NetworkNodes>
+                <NetworkNode ID="RAN_GroundRadio1">
+                    <Name>RAN_GroundRadio1</Name>
+                    <Description>Ground Radio 1 (on Radio Access Network)</Description>
+                    <InventoryID>COMP-00112</InventoryID>
+                    <HostName>RAN_GroundRadio1</HostName>
+                    <Manufacturer>Radio Vendor</Manufacturer>
+                    <Model>Model</Model>
+                    <ModelVersion>Model Version</ModelVersion>
+                    <SerialID>Serial Identifier</SerialID>
+                    <IEEE1588Version>2008e2e</IEEE1588Version>
+                    <TmNSApps>
+                        <TmNSApp ID="RAN_GroundRadio1TMA1">
+                            <Name>RAN1_GroundRadio1TMA1</Name>
+                            <Description>Ground Radio TMA 1 (on Radio Access Network 1)</Description>
+                            <RoleID>GroundRadio1</RoleID>
+                            <LoggingLevel>Trace</LoggingLevel>
+                            <Manufacturer>Radio Vendor</Manufacturer>
+                            <Product>TBD App</Product>
+                            <ProductVersion>X?</ProductVersion>
+                            <ConfigurationVersion>Radio Vendor Ground Radio Software Version X?</ConfigurationVersion>
+                            <TmNSManagementResourcesVersion>TBD</TmNSManagementResourcesVersion>
+                            <DirtyBit>false</DirtyBit>
+                            <TmNSNetworkFabricDevice>
+                                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                                <IGMPQuerier>Off</IGMPQuerier>
+                                <IGMPQuerierInterval>15</IGMPQuerierInterval>
+                            </TmNSNetworkFabricDevice>
+                            <TmNSRadio>                  
+                                <RANConfigurationRef IDREF="RANConfig1"/>
+                                <RFMACAddress>4097</RFMACAddress>
+                                <JoinRadioGroupRefs>
+                                    <RadioGroupRef IDREF="GROUND_GROUP_1"/>
+                                </JoinRadioGroupRefs>
+                                <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                                <TxPowerLeveldBm>42</TxPowerLeveldBm>
+                                <LowPowerModeEnable>false</LowPowerModeEnable>
+                                <LinkAgent>
+                                    <NetworkInterfaceRef IDREF="RAN_GroundRadio1_Wired_Interface"/>
+                                    <ListeningPort>12345</ListeningPort>
+                                </LinkAgent>                 
+                            </TmNSRadio>
+                            <SMInterface>
+                                <SNMPSetup>
+                                    <SNMPVersions>
+                                        <SNMPVersion>v3</SNMPVersion>
+                                    </SNMPVersions>
+                                    <SNMPPort>161</SNMPPort>
+                                    <NotificationPort>162</NotificationPort>
+                                    <DSCPTableEntryRef IDREF="Diffserv_DSCP32_System_Management_and_Video"/>
+                                    <NetworkInterfaceRefs>
+                                        <NetworkInterfaceRef IDREF="RAN_GroundRadio1_Wired_Interface"/>
+                                    </NetworkInterfaceRefs>
+                                </SNMPSetup>
+                            </SMInterface>
+                        </TmNSApp>
+                    </TmNSApps>
+                    <InternalStructure>
+                        <Modules>
+                            <Module ID="d8e4632">
+                                <Name>Generated Module</Name>
+                                <Description>Generated Module</Description>
+                                <Manufacturer>n/a</Manufacturer>
+                                <Model>n/a</Model>
+                                <SerialID>n/a</SerialID>
+                                <InventoryID>COMP-00112</InventoryID>
+                                <Position>1</Position>
+                                <PositionsOccupied>1</PositionsOccupied>
+                                <RunningAppRefs>
+                                    <TmNSAppRef IDREF="RAN_GroundRadio1TMA1"/>
+                                </RunningAppRefs>
+                                <NetworkInterfaces>
+                                    <NetworkInterface ID="RAN_GroundRadio1_Wired_Interface">
+                                        <Name>eth0</Name>
+                                        <Description>Wired Interface for Ground Radio Component 1 on Radio Access Network 1</Description>
+                                        <DHCPEnable>false</DHCPEnable>
+                                        <IPAddress>10.1.3.1</IPAddress>
+                                        <Netmask>255.255.255.0</Netmask>
+                                        <MACAddress>00:00:00:00:00:00</MACAddress>
+                                        <PhysicalNetworkPorts>
+                                            <PhysicalNetworkPort ID="RAN_GroundRadio1_Wired_PhyNetPort">
+                                                <Name>port1</Name>
+                                                <Description>TBD description</Description>
+                                                <Medium>Copper</Medium>
+                                                <PortNumber>1</PortNumber>
+                                                <PortDataRate>
+                                                    <Value>1e9</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </PortDataRate>
+                                            </PhysicalNetworkPort>
+                                        </PhysicalNetworkPorts>
+                                    </NetworkInterface>
+                                    <NetworkInterface ID="RAN_GroundRadio1_RF_Interface">
+                                        <Name>rfnet0</Name>
+                                        <Description>Wireless Interface for Ground Radio Component 1 on Radio Access Network 1</Description>
+                                        <DHCPEnable>false</DHCPEnable>
+                                        <IPAddress>10.1.2.2</IPAddress>
+                                        <Netmask>255.255.255.0</Netmask>
+                                        <MACAddress>02:00:00:00:10:01</MACAddress>
+                                        <PhysicalNetworkPorts>
+                                            <PhysicalNetworkPort ID="RAN_GroundRadio1_RF_PhyNetPort">
+                                                <Name>port1</Name>
+                                                <Description>TBD description</Description>
+                                                <Medium>Wireless</Medium>
+                                                <PortNumber>1</PortNumber>
+                                                <PortDataRate>
+                                                    <Value>2e7</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </PortDataRate>
+                                            </PhysicalNetworkPort>
+                                        </PhysicalNetworkPorts>
+                                    </NetworkInterface>
+                                </NetworkInterfaces>
+                                <Ports>
+                                    <Port ID="RAN_GroundRadio1_Wired_Port" Index="1">
+                                        <Name>RAN1 Ground Radio Component Wired Port</Name>
+                                        <Description>TBD description</Description>
+                                        <PortDirection>Bidirectional</PortDirection>
+                                        <PhysicalNetworkPortRef IDREF="RAN_GroundRadio1_Wired_PhyNetPort"/>
+                                    </Port>
+                                    <Port ID="RAN_GroundRadio1_RF_Port" Index="2">
+                                        <Name>RAN Ground Radio Component1 RF Port</Name>
+                                        <Description>TBD description</Description>
+                                        <PortDirection>Bidirectional</PortDirection>
+                                        <PhysicalNetworkPortRef IDREF="RAN_GroundRadio1_RF_PhyNetPort"/>
+                                    </Port>
+                                </Ports>
+                            </Module>
+                        </Modules>
+                    </InternalStructure>
+                </NetworkNode>
+            </NetworkNodes>
+        </Network>			
+    </Networks>
+  </NetworkDomain>
+  <RANConfigurations>
+    <RANConfiguration ID="RANConfig1">
+        <Name>RANConfig1</Name>
+        <Description>Common RAN configuration parameters for Dynamic Configuration for 2 TA Radios and 3 Ground Radios with 04bpb</Description>
+        <LinkAgentConnectionTimeout>30</LinkAgentConnectionTimeout>
+        <LinkAgentConnectionEncryptionEnabled>true</LinkAgentConnectionEncryptionEnabled>
+        <TSSTunnelEncryptionEnabled>true</TSSTunnelEncryptionEnabled>
+        <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+        <ModulationType>SOQPSK-TG</ModulationType>
+        <EpochSize>100</EpochSize>
+        <LDPCBlocksPerBurst>4</LDPCBlocksPerBurst>
+        <MaxGuardTimeSec>0.001</MaxGuardTimeSec>
+        <RadioControlLoopDSCPRef IDREF="Diffserv_DSCP56_NetworkControl"/>
+        <RANCommandControlDSCPRef IDREF="Diffserv_DSCP48_InterNetworkControl"/>
+        <RadioGroups>
+            <RadioGroup ID="GROUND_GROUP_1">
+                <Name>RadioGroup_Ground</Name>
+                <Description>The members of this radio group are ground radios for Test 1</Description>
+                <GroupRFMACAddress>65282</GroupRFMACAddress>
+            </RadioGroup>
+            <RadioGroup ID="TA_RADIO_GROUP_1">
+                <Name>RadioGroup_TA</Name>
+                <Description>The member of this group is the TA radio for Test 1</Description>
+                <GroupRFMACAddress>65281</GroupRFMACAddress>
+            </RadioGroup>
+        </RadioGroups>        
+    </RANConfiguration>
+  </RANConfigurations>	
+  <DSCPTable>
+    <DSCPTableEntry ID="Diffserv_DSCP32_System_Management_and_Video">
+        <Name>Diffserv (Class4 DSCP 32)</Name>
+        <Description>Diffserv (Class4 DSCP 32) for System Management and Video</Description>
+        <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="Diffserv_DSCP48_InterNetworkControl">
+        <Name>Diffserv (InterNetwork Control DSCP 48)</Name>
+        <Description>Diffserv (InterNetwork Control PHB DSCP 48) for RAN Command/Control Messaging</Description>
+        <DSCPValue>0b110000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="Diffserv_DSCP56_NetworkControl">
+        <Name>Diffserv (Network Control DSCP 56)</Name>
+        <Description>Diffserv (Network Control PHB DSCP 56) for Link Manager Messaging</Description>
+        <DSCPValue>0b111000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+
+</MDLRoot>
+

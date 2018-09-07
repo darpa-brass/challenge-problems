@@ -1,0 +1,1009 @@
+<?xml version="1.0"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xmlns:tmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+         xmlns:tmatsP="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP"
+         xmlns:tmatsD="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD"
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>0.0.1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Packaging a PCM Stream Example</Name>
+      <Description>TBD description</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>4 Dau Test</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="TestArticleNetworkID"/>
+        <NetworkRef IDREF="GroundNetworkID"/>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="Bits16EU">
+      <Name>Two Bytes</Name>
+      <Description>16 binary digits (2 bytes)</Description>
+      <Symbol>W16</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>16</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Packages>
+        <PackageDefinition ID="PCM_Ex1_Definition">
+          <Name>TBD name</Name>
+          <Description>This describes packaging the entire PCM stream</Description>
+          <PackageDefinitionID>0x00001001</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStreamRef IDREF="TMATS-PCM-SAMPLE"/>
+        </PackageDefinition>
+        <PackageDefinition ID="PCM_Ex1_Definition2">
+          <Name>TBD name</Name>
+          <Description>This describes packaging only minor frames 2, 4, and 6 from the PCM stream</Description>
+          <PackageDefinitionID>0x00001002</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStreamRef IDREF="TMATS-PCM-SAMPLE"/>
+          <PCMMinorFrame Index="1">2</PCMMinorFrame>
+          <PCMMinorFrame Index="2">4</PCMMinorFrame>
+          <PCMMinorFrame Index="3">6</PCMMinorFrame>
+        </PackageDefinition>
+        <PackageDefinition ID="PCM_Ex1_Definition3">
+          <Name>TBD name</Name>
+          <Description>This describes packaging only minor frames 2, 4, and 6 from the PCM stream</Description>
+          <PackageDefinitionID>0x00001003</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStreamRef IDREF="TMATS-PCM-SAMPLE"/>
+          <PCMMinorFrame Index="1">1</PCMMinorFrame>
+          <PCMMinorFrame Index="2">3</PCMMinorFrame>
+          <PCMMinorFrame Index="3">5</PCMMinorFrame>
+        </PackageDefinition>
+      </Packages>
+      <Messages>
+        <MessageDefinition ID="PCM_Ex1_Message">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <MessageDefinitionID>0x00020001</MessageDefinitionID>
+          <DSCPTableEntryRef IDREF="DiffservExpeditedForwarding"/>
+          <DestinationAddress>230.0.0.10</DestinationAddress>
+          <MaximumMessageLength>
+            <FlexValue>500</FlexValue>
+            <UnitsRef IDREF="Bits16EU"/>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <FloatValue>3</FloatValue>
+            <SIUnits>Second</SIUnits>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>true</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstance Index="1">
+            <PackageDefinitionRef IDREF="PCM_Ex1_Definition"/>
+          </PackageInstance>
+        </MessageDefinition>
+      </Messages>
+      <DataStreams>
+        <DataStream ID="TMATS-PCM-SAMPLE">
+          <Name>TMATS Sample</Name>
+          <Description>TBD description</Description>
+          <PCMDataLink ID="PCMStream1">
+            <!-- P Group -->
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <PCMFormatAttributes tmatsCommon:TmatsVersion="106-13">
+              <tmatsP:InputData>
+                <tmatsP:PCMCode>NRZ-L</tmatsP:PCMCode>
+                <tmatsP:BitRate>100000</tmatsP:BitRate>
+                <tmatsP:Encrypted>Encrypted</tmatsP:Encrypted>
+                <tmatsP:Polarity>Inverted</tmatsP:Polarity>
+                <tmatsP:AutoPolarityCorrection>Yes</tmatsP:AutoPolarityCorrection>
+                <tmatsP:DataDirection>Normal</tmatsP:DataDirection>
+                <tmatsP:DataRandomized>Yes</tmatsP:DataRandomized>
+                <tmatsP:RandomizerLength>Not Applicable</tmatsP:RandomizerLength>
+              </tmatsP:InputData>
+              <tmatsP:Format>
+                <tmatsP:TypeFormat>Class 1</tmatsP:TypeFormat>
+                <tmatsP:CommonWordLength>12</tmatsP:CommonWordLength>
+                <tmatsP:WordTransferOrder>LSB First</tmatsP:WordTransferOrder>
+                <tmatsP:Parity>Odd</tmatsP:Parity>
+                <tmatsP:ParityTransferOrder>Leads Word</tmatsP:ParityTransferOrder>
+                <tmatsP:MinorFrame>
+                  <tmatsP:NumberOfMinorFrames>15</tmatsP:NumberOfMinorFrames>
+                  <tmatsP:WordsPerMinorFrame>25</tmatsP:WordsPerMinorFrame>
+                  <tmatsP:BitsPerMinorFrame>320</tmatsP:BitsPerMinorFrame>
+                  <tmatsP:SyncType>Fixed Pattern</tmatsP:SyncType>
+                  <tmatsP:SyncPattern>11111110011010110010100001000000</tmatsP:SyncPattern>
+                </tmatsP:MinorFrame>
+              </tmatsP:Format>
+              <tmatsP:SyncCriteria>
+                <tmatsP:InSync>
+                  <tmatsP:Criteria>Not Specified</tmatsP:Criteria>
+                  <tmatsP:NumberOfFSPBits>0</tmatsP:NumberOfFSPBits>
+                </tmatsP:InSync>
+                <tmatsP:OutOfSync>
+                  <tmatsP:NumberOfDisagrees>Not Specified</tmatsP:NumberOfDisagrees>
+                  <tmatsP:NumberOfFSPBits>0</tmatsP:NumberOfFSPBits>
+                </tmatsP:OutOfSync>
+              </tmatsP:SyncCriteria>
+              <tmatsP:Comments>Sample PCM Comment</tmatsP:Comments>
+              <!-- D Group -->
+              <tmatsP:PCMMeasurements tmatsCommon:TmatsVersion="106-13">
+                <tmatsD:MeasurementList Name="Measurement List">
+                  <tmatsD:Measurement Name="PairSetTableLookup">
+                    <!-- <tmatsD:Length>12</tmatsD:Length>  TBD Not in new schema-->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>1</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>1</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="PairSetCurve">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>2</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>2</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="Coefficients">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>3</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>3</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111000000</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="Discrete">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>4</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>4</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="None">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>5</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>5</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="BTM">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>6</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>6</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="PTM">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>7</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>7</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="NPC">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>8</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>8</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="Derived">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>9</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>9</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="SpecialProcessing">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>10</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>10</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="Other">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>11</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>11</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111111111</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                  <tmatsD:Measurement Name="Fragment">
+                    <!-- <tmatsD:Length>12</tmatsD:Length> -->
+                    <tmatsD:Parity>Even</tmatsD:Parity>
+                    <tmatsD:ParityTransferOrder>Default</tmatsD:ParityTransferOrder>
+                    <tmatsD:MeasurementTransferOrder>MSB First</tmatsD:MeasurementTransferOrder>
+                    <tmatsD:LocationType>Word and Frame</tmatsD:LocationType>
+                    <tmatsD:WordAndFrame>
+                      <tmatsD:MeasurementLocation>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>12</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>12</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111000000</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                        <tmatsD:MeasurementFragments  tmatsCommon:TmatsVersion="106-13">
+                          <tmatsD:FragmentTransferOrder>MSB First</tmatsD:FragmentTransferOrder>
+                          <tmatsD:StartWord>15</tmatsD:StartWord>
+                          <tmatsD:WordInterval>0</tmatsD:WordInterval>
+                          <tmatsD:EndWord>15</tmatsD:EndWord>
+                          <tmatsD:StartFrame>1</tmatsD:StartFrame>
+                          <tmatsD:FrameInterval>1</tmatsD:FrameInterval>
+                          <tmatsD:EndFrame>15</tmatsD:EndFrame>
+                          <tmatsD:BitMask>111111000000</tmatsD:BitMask>
+                        </tmatsD:MeasurementFragments>
+                      </tmatsD:MeasurementLocation>
+                    </tmatsD:WordAndFrame>
+                  </tmatsD:Measurement>
+                </tmatsD:MeasurementList>
+              </tmatsP:PCMMeasurements>
+            </PCMFormatAttributes>
+          </PCMDataLink>
+        </DataStream>
+      </DataStreams>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomains>
+    <Network ID="TestArticleNetworkID">
+      <Name>Test Article Network</Name>
+      <Description>TA network</Description>
+      <NetworkType>TestArticleNetwork</NetworkType>
+      <NetworkNode ID="Recorder">
+        <Name>Recorder</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Recorder</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="RecorderApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Recorder</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>0.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+            <TmNSRecorder/>
+            <TmNSRCDataSource>
+              <MessageDefinitionRef IDREF="PCM_Ex1_Message"/>
+              <PackageDefinitionRef IDREF="PCM_Ex1_Definition"/>
+            </TmNSRCDataSource>
+            <TmNSLTCDataSink>
+              <MessageDefinitionRef IDREF="PCM_Ex1_Message"/>
+            </TmNSLTCDataSink>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Recorder1Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="RecorderApp"/>
+            </RunningApps>
+            <NetworkInterface ID="RecorderIFace">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.7</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="RecorderPhyNetPort">
+                <Name>Recorder Phy Net Port</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="RecorderPort" Index="1">
+                <Name>RecorderPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="RecorderPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="SSTTransmitter">
+        <Name>SST Transmitter</Name>
+        <Description>TBD description</Description>
+        <InventoryID>SST-00010</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="SSTTxApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SSTTx-00010</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>0.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+            <TmNSSSTTx>
+              <SSTTxRCCVersion>TBD</SSTTxRCCVersion>
+              <Channel ID="SSTTxAppChan1">
+<Name>TBD name</Name>
+                <ChannelNumber>30</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1800e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <DiffEncoding>true</DiffEncoding>
+                <Randomize>false</Randomize>
+                <RFEnable>true</RFEnable>
+                <RFHighPowerEnable>true</RFHighPowerEnable>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <DataSourceInternal>false</DataSourceInternal>
+                <InternalClock>true</InternalClock>
+                <FECEnable>false</FECEnable>
+                <FECType>undefined</FECType>
+                <SleepMode>false</SleepMode>
+              </Channel>
+            </TmNSSSTTx>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="SSTTxModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="SSTTxApp"/>
+            </RunningApps>
+            <NetworkInterface ID="SSTTxIFace">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.8</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="SSTTxPhyNetPort">
+                <Name>SST Tx Phy Net Port</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>TBD name</Name>
+              <Description>This is the connector</Description>
+              <Pin ID="SSTTxInputPinID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the (first) physical pin</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="SSTTxPort" Index="1">
+                <Name>SSTTxPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="SSTTxPhyNetPort"/>
+              </Port>
+              <Port ID="SSTTxInputPort" Index="2">
+                <Name>SST Input Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="SSTTxInputPinID"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="PCMGateway">
+        <Name>PCM Gateway DAU</Name>
+        <Description>TBD description</Description>
+        <InventoryID>PCM-Gate-DAU-00011</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="PCMGatewayApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>PCM-Gate-DAU-001</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>0.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSLTCDataSource>
+              <TTL>255</TTL>
+            </TmNSLTCDataSource>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="PCMGatewayModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="PCMGatewayApp"/>
+            </RunningApps>
+            <NetworkInterface ID="PCMGatewayIFace">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.9</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="PCMGatewayPhyNetPort">
+                <Name>PCM Gateway Phy Net Port</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>TBD name</Name>
+              <Description>This is the connector</Description>
+              <Pin ID="PCMGatewayPin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the (first) physical pin</Description>
+                <Designator>A</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="PCMGatewayPort" Index="1">
+                <Name>PCMGatewayPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="PCMGatewayPhyNetPort"/>
+              </Port>
+              <Port ID="PCMGatewayInputPort" Index="2">
+                <Name>SST Input Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="PCMGatewayPin1ID"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Switch1">
+        <Name>Switch 1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Switch1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="SwitchApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Switch</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>0.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="SwitchModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="SwitchApp"/>
+            </RunningApps>
+            <NetworkInterface ID="Switch1IFace">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.254</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort1">
+                <Name>Sw1 Phy Net Port1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort2">
+                <Name>Sw1 Phy Net Port2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>2</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort3">
+                <Name>Sw1 Phy Net Port2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>3</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort4">
+                <Name>Sw1 Phy Net Port4</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>4</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Switch1Port1" Index="1">
+                <Name>Switch1Port1</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort1"/>
+              </Port>
+              <Port ID="Switch1Port2" Index="2">
+                <Name>Switch1Port2</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort2"/>
+              </Port>
+              <Port ID="Switch1Port3" Index="3">
+                <Name>Switch1Port3</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort3"/>
+              </Port>
+              <Port ID="Switch1Port4" Index="4">
+                <Name>Switch1Port4</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort4"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="SSTTxInputPort"/>
+          <DataStreamRef IDREF="TMATS-PCM-SAMPLE"/>
+        </PortMapping>
+        <PortMapping ID="PM2">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="PCMGatewayInputPort"/>
+          <DataStreamRef IDREF="TMATS-PCM-SAMPLE"/>
+        </PortMapping>
+        <PortMapping ID="PM3">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="SSTTxPort"/>
+          <PortRef IDREF="Switch1Port2"/>
+        </PortMapping>
+        <PortMapping ID="PM4">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="PCMGatewayPort"/>
+          <PortRef IDREF="Switch1Port3"/>
+        </PortMapping>
+        <PortMapping ID="PM5">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="RecorderPort"/>
+          <PortRef IDREF="Switch1Port4"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+    <Network ID="GroundNetworkID">
+      <Name>Ground Network</Name>
+      <Description>Ground Network</Description>
+      <NetworkType>GroundNetwork</NetworkType>
+      <NetworkNode ID="SSTReceiver">
+        <Name>SST Receiver</Name>
+        <Description>TBD description</Description>
+        <InventoryID>SST-RX-00010</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="SSTRxApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>TmNS-SSTRx-00010</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>0.0.1</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+            <TmNSSSTRx>
+              <Channel ID="SSTRxAppChan1">
+                <Name>TBD name</Name>
+                <ChannelNumber>30</ChannelNumber>
+                <CenterFrequency>
+                  <FloatValue>1800e6</FloatValue>
+                  <SIUnits>Hertz</SIUnits>
+                </CenterFrequency>
+                <AutoGainMode>true</AutoGainMode>
+                <ClockPolarityInverted>false</ClockPolarityInverted>
+                <DataPolarityInverted>false</DataPolarityInverted>
+                <SweepEnable>false</SweepEnable>
+                <DiffDecoding>true</DiffDecoding>
+                <Derandomize>false</Derandomize>
+                <DataSourceSimulated>false</DataSourceSimulated>
+                <FECEnable>false</FECEnable>
+              </Channel>
+            </TmNSSSTRx>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="SSTRxModule">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="SSTRxApp"/>
+            </RunningApps>
+            <NetworkInterface ID="SSTRxIFace">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.10</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="SSTRxPhyNetPort">
+                <Name>SST Tx Phy Net Port</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="SSTRxPort" Index="1">
+                <Name>SSTRxPort</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="SSTRxPhyNetPort"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+    </Network>
+    <N2NPortMapping ID="PM6">
+      <Name>TBD name</Name>
+      <Description>For simplicity of the example, this PortMapping represents the RF Network, Encryptors, 
+      Routers, and Switches that connect the TA to the ground system.</Description>
+      <PortRef IDREF="SSTRxPort"/>
+      <PortRef IDREF="Switch1Port1"/>
+    </N2NPortMapping>
+  </NetworkDomains>
+  <DSCPTable>
+    <DSCPTableEntry ID="DiffservBestEffort">
+      <Name>Best Effort Diffserv</Name>
+      <Description>Best Effort PHB</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservExpeditedForwarding">
+      <Name>Expedited Forwarding Diffserv</Name>
+      <Description>Expedited Forwarding PHB</Description>
+      <DSCPValue>0b101110</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding1">
+      <Name>Assured Forwarding 1 Diffserv</Name>
+      <Description>Assured Forwarding Class 1</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding2">
+      <Name>Assured Forwarding 2 Diffserv</Name>
+      <Description>Assured Forwarding Class 2</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding3">
+      <Name>Assured Forwarding 3 Diffserv</Name>
+      <Description>Assured Forwarding Class 3</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding4">
+      <Name>Assured Forwarding 4 Diffserv</Name>
+      <Description>Assured Forwarding Class 4</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>

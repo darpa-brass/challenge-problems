@@ -1,0 +1,1552 @@
+<?xml version="1.0"?>
+<xs:schema targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="RemoteTerminalAddress" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\TRA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TransmitReceiveMode" type="TmatsCommon:TransmitReceiveModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\TRM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubTerminalAddress" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\STA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataWordCountOrModeCode" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\DWC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="AnalogDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:AnalogDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ATF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataPackingOption" type="TmatsCommon:AnalogDataPackingOptionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ADP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SampleRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="ChannelType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ARINC429BusDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:Arinc429DataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ABTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubChannel" type="ARINCSubChannelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats NAS\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ARINCSubChannelType">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>ASN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ANM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="AudioChannelInputType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Left" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASI\ASL</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Right" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASI\ASR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="CanBusDataSubChannelDefinitionType">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>CBN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>CBM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitRate" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>CBBS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="CanBusDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:CanBusDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CBTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubChannel" type="CanBusDataSubChannelDefinitionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat NCB\N-n times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ChannelGroupType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Name" type="TmatsCommon:StringBeginningWithAlpha" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CGNM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StreamNumber" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>CGSN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>CGCN Repeats CGCH\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ChannelType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="MeasurementName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AMN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataLength" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ADL</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AMSK</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasurementTransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AMTO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SampleFactor" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SampleFilter3dbBandwidth" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ASBW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Coupling" type="TmatsCommon:AnalogCouplingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ACP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecorderInputImpedance" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AII</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputChannelGain" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AGI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputFullScaleRange" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AFSI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputOffsetVoltage" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AOVI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordedAnalogFormat" type="TmatsCommon:AnalogRecordedFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputType" type="TmatsCommon:AnalogInputTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AIT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Audio" type="TmatsCommon:AnalogAudioType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AudioFormat" type="TmatsCommon:AnalogAudioFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AVF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="CharacteristicsType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Type" type="TmatsCommon:RecorderCharacteristicsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Manufacturer" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Code" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MediaLocation" type="TmatsCommon:MediaLocationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RML</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExternalRMMBusSpeed" type="TmatsCommon:RMMBusSpeedType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ERBS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Width" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Housing" type="TmatsCommon:HousingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TypeOfTracks" type="TmatsCommon:TypeOfTrackType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberOfTracksOrChannels" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>N</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordSpeed" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataPackingDensity" type="TmatsCommon:DataPackingDensityType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC7</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Rewound" type="TmatsCommon:YesNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TC8</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumberOfSourceBits" type="xs:nonNegativeInteger" default="0" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>NSB</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="DataPacketType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="UserDefinedChannelID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UD\TK1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="DataType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="TrackNumberOrChannelID" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TK1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordingTechnique" type="TmatsCommon:RecordingTechniqueType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TK2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputStreamDerandomized" type="TmatsCommon:YesNoType" default="No" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDDR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataSourceID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DSI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataDirection" type="TmatsCommon:DataDirectionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TK3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecorderPhysicalChannelNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TK4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelEnable" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CHE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelDataType" type="TmatsCommon:ChannelDataTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CDT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelDataLinkName" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CDLN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SecondaryHeaderTimeFormat" type="TmatsCommon:SecondaryHeaderTimeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SHTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Based upon value of ChannelDataType</xs:documentation>
+				</xs:annotation>
+				<xs:element name="PCMDataTypeAttributes" type="PCMDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="MIL-STD-1553BusDataTypeAttributes" type="MIL-STD-1553BusDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="AnalogDataTypeAttributes" type="AnalogDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="DiscreteDataTypeAttributes" type="DiscreteDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="ARINC429BusDataTypeAttributes" type="ARINC429BusDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="VideoDataTypeAttributes" type="VideoDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="TimeDataTypeAttributes" type="TimeDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="ImageDataTypeAttributes" type="ImageDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="UARTDataTypeAttributes" type="UARTDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="MessageDataTypeAttributes" type="MessageDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="IEEE1394DataTypeAttributes" type="IEEE1394DataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="ParallelDataTypeAttributes" type="ParallelDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="EthernetDataTypeAttributes" type="EthernetDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="TSPICTSDataTypeAttributes" type="TSPICTSDataTypeAttributesType" minOccurs="0"/>
+				<xs:element name="CanBusDataTypeAttributes" type="CanBusDataTypeAttributesType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="DiscreteDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:DiscreteDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscreteMode" type="TmatsCommon:DiscreteModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DMOD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SampleRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DSR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Measurement" type="MeasurementType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="DrivesAndVolumesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Name" type="TmatsCommon:StringBeginningWithAlpha" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DRNM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>DRN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockSize" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>DRBS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Volume" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats DRVL\N times</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="0">
+						<xs:element name="Name" type="TmatsCommon:StringBeginningWithAlpha" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>VLNM</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>VLN</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="BlocksToAllocate" type="TmatsCommon:BlocksToAllocateType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>VLBA</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NumberOfBlocks" type="xs:nonNegativeInteger" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>VLNB</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="EthernetDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:EthernetDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ENTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Network" type="NetworkType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats NNET\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="EthernetInterfacesType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EINM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="TmatsCommon:EthernetType">
+				<xs:annotation>
+					<xs:documentation>EIT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IPAddress" type="TmatsCommon:IPAddressType">
+				<xs:annotation>
+					<xs:documentation>EIIP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ports" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats EIIP\N times</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Address">
+							<xs:annotation>
+								<xs:documentation>EI\PA</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:nonNegativeInteger">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="Type" type="TmatsCommon:EthernetType">
+							<xs:annotation>
+								<xs:documentation>EI\PT</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="EventProcessingMeasurementType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\PM\MN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PreEventDuration" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\PM\PRE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostEventDuration" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\PM\PST</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="EventProcessingType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataLink" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\DLN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Measurement" type="EventProcessingMeasurementType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat EV\PM\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="IEEE1394DataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:IEEE1394DataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IETF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ImageDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:ImageDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ITF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StillImageType" type="TmatsCommon:StillImageTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SIT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DynamicImageFormat" type="TmatsCommon:DynamicImageFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DIF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeStampMode" type="TmatsCommon:ImageTimeStampModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ITSM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DynamicImageAcquisitionMode" type="TmatsCommon:DynamicImageAcquisitionModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DIAM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImageFrameRate" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IFR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PreTriggerFrames" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PTG</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalFrames" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TOTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExposureTime" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EXP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorRotation" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ROT</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="360"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SensorGain" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SGV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorAutoGain" type="TmatsCommon:OnOffType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SAG</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorWidth" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ISW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorHeight" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ISH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaximumImageWidth" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MIW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaximumImageHeight" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MIH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImageWidth" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImageHeight" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImageOffsetX" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IOX</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImageOffsetY" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IOY</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LinePitch" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ILP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BinningHorizontal" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IBH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BinningVertical" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IBV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecimationHorizontal" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DecimationVertical" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReverseX" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IRX</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReverseY" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IRY</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PixelDynamicRangeMinimum" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IPMN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PixelDynamicRangeMaximum" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IPMX</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TestImageType" type="TmatsCommon:TestImageTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TIT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementOverwriteType">
+		<xs:sequence>
+			<xs:element name="Measurement" type="xs:string"/>
+			<xs:element name="OverwriteTag" type="TmatsCommon:OverwriteTagType" default="No Overwriting"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DMN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DMSK</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasurementTransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DMTO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MessageDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:MessageDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubChannel" type="MessageSubChannelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat NMS\N times.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MessageFilteringDefinitionsType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="MessageNumber" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\MID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="TmatsCommon:MessageType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\MT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandWordEntry" type="TmatsCommon:CommandWordTypeType" default="Address Fields" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CWE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Depending on CWE value.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CommandWord" type="TmatsCommon:HexType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>CMD</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Address" type="AddressType" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="RTRT" type="RTRTType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MessageSubChannelType">
+		<xs:sequence>
+			<xs:element name="Number" type="xs:nonNegativeInteger">
+				<xs:annotation>
+					<xs:documentation>MSCN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>MCNM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MIL-STD-1553BusDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="BusDataTypeFormat" type="TmatsCommon:BusDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FilteringEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRF\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostProcessOverwriteAndFilteringEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MOF\T</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageFilteringType" type="TmatsCommon:FilterType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\FDT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageFilteringDefinitions" type="MessageFilteringDefinitionsType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats MFD\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasurementOverwriteDefinitions" type="MeasurementOverwriteType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>BME\SMN and BME\MFOT. Repeat BME\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MinorFrameFilteringType">
+		<xs:sequence>
+			<xs:element name="Type" type="TmatsCommon:FilterType">
+				<xs:annotation>
+					<xs:documentation>MFF\FDT-n</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinorFrameNumber" type="xs:positiveInteger" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MFF\MFN-n-m (repeats MFF\N-n  times)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ModuleType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Identifier" minOccurs="0"/>
+			<xs:element name="SerialNumber" minOccurs="0"/>
+			<xs:element name="FirmwareRevision" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="NetworkType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ENBR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ENAM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="OverlayType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Enabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\OE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XPosition" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\X</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="YPosition" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\Y</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EventToggleEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\OET</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Format" type="TmatsCommon:VideoOverlayFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\OLF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Background" type="TmatsCommon:VideoOverlayBackgroundType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VCO\OBG</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ParallelDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:ParallelDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PLTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="PCMDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:PCMDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PDTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataPackingOption" type="TmatsCommon:PCMDataPackingOptionType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PDP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputClockEdge" type="TmatsCommon:PCMDataClockEdgeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ICE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputSignalType" type="TmatsCommon:PCMDataInputSignalTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IST</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputThreshold" type="xs:float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ITH</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputTermination" type="TmatsCommon:InputTerminationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ITM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VideoTypeFormat" type="TmatsCommon:VideoTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinorFrameFilteringEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFF\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostProcessOverwriteAndFiltering" type="PostProcessOverwriteAndFilteringType" minOccurs="0"/>
+			<xs:element name="MinorFrameFiltering" type="MinorFrameFilteringType" minOccurs="0"/>
+			<xs:element name="MeasurementOverwrite" type="MeasurementOverwriteType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>SMF\SMN and SMF\MFOT. Repeats SMF\N-n times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="PostProcessOverwriteAndFilteringType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Enabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>POF\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="TmatsCommon:PostProcessOverwriteAndFilteringTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>POF\T</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecorderControlType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="MessageMonitorRecordControlEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC\ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MessageRecordControlType" type="TmatsCommon:MessageRecordControlTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC\RCT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopPauseCommandWord" type="TmatsCommon:HexType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC\SPM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartResumeCommandWord" type="TmatsCommon:HexType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MRC\SRM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecorderReproducerInfoType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Manufacturer" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Model" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginalRecording" type="TmatsCommon:YesNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginalRecordingDateAndTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreatingOrganizationPointOfContact" type="TmatsCommon:PointOfContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>POC1, POC2, POC3, POC4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateAndTimeOfCopy" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CopyingOrganizationPointOfContact" type="TmatsCommon:PointOfContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DPOC1, DPOC2, DPOC3, DPOC4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostProcessModifiedRecording" type="TmatsCommon:YesNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostProcessModificationType" type="TmatsCommon:PostProcessModificationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI7</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DateAndTimeOfModification" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI8</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModifyingOrganizationPOC" type="TmatsCommon:PointOfContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MPOC1, MPOC2, MPOC3, MPOC4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContinuousRecordingEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CRE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SetupSource" type="TmatsCommon:SetupSourceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RSS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SerialNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI9</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FirmwareRevision" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RI10</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Module" type="ModuleType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats RIM\N times. RIMI-n, RIMS-n, RIMF-n</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RMM" type="ModuleType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats RMM\N times. RMMID-n, RMMS-n, RMMF-n</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EthernetInterface" type="EthernetInterfacesType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats EI\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelGroup" type="ChannelGroupType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats CG\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DrivesAndVolumes" type="DrivesAndVolumesType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats DR\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StreamDriveVolumeLinks" type="StreamDriveVolumeLinksType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats L\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecordingEventDefinitionsType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Enabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\TK1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InternalEventsEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\IEE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordingEvent" type="RecordingEventType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats EV\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RecordingIndex" type="RecordingIndexType" minOccurs="0"/>
+			<xs:element name="RecorderControl" type="RecorderControlType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecordingEventType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="ID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\ID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\D</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataProcessingEnabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\EDP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="TmatsCommon:RecordingEventType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\T</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Priority" type="TmatsCommon:EventPriorityModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\P</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EventCaptureMode" type="TmatsCommon:EventCaptureModeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\CM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EventInitialCapture" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\IC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LimitCount" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\LC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TriggerMeasurement" type="TriggerMeasurementType" minOccurs="0"/>
+			<xs:element name="EventProcessing" type="EventProcessingType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecordingIndexType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Enabled" type="TmatsCommon:TrueFalseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDX\E</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDX\TK1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Type" type="TmatsCommon:RecordingIndexTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDX\IT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Depending on value of Type</xs:documentation>
+				</xs:annotation>
+				<xs:element name="TimeValue" type="xs:nonNegativeInteger" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>IDX\ITV</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CountValue" type="xs:nonNegativeInteger" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>IDX\ICV</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="ReferenceTrackType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="TrackNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RT1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenceFrequency" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RT2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RTRTAddressType">
+		<xs:sequence>
+			<xs:element name="RemoteTerminalAddress" type="TmatsCommon:BinaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\RTRA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubTerminalAddress" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\RSTA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataWordCount" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MFD\RDWC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RTRTType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="CommandWordEntry" type="TmatsCommon:CommandWordTypeType" default="Address Fields" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RCWE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Depending on RCWE value.</xs:documentation>
+				</xs:annotation>
+				<xs:element name="CommandWord" type="TmatsCommon:HexType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>RCMD</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Address" type="RTRTAddressType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="StreamDriveVolumeLinksType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Name" type="TmatsCommon:StringBeginningWithAlpha" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>LNM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SourceStream" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence minOccurs="0">
+						<xs:element name="Name" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>LSNM</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>LSSN</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LinkDestinationDriveNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>LDDN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LinkDestinationVolumeNumber" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>LDVN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="TimeDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:TimeDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeFormat" type="TmatsCommon:TimeDataTimeFormatType" default="None" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TFMT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TimeSource" type="TmatsCommon:TimeDataTimeSourceType" default="None" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TSRC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="TriggerMeasurementType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Source" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\MS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EV\MN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="TSPICTSDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Format" type="TmatsCommon:TSPIDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TDTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="UARTDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:UARTDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubChannel" type="UARTSubChannelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat NUS\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="UARTSubChannelType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>USCN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCNM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaudRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitsPerWord" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCB</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="7"/>
+						<xs:maxInclusive value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopBits" type="TmatsCommon:UARTStopBitsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Interface" type="TmatsCommon:UARTInterfaceType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCIN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockSize" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCBS</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SyncWordLength" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCSL</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="BlockSyncValue" type="TmatsCommon:BinaryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCSV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UCBR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="VideoDataTypeAttributesType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="DataTypeFormat" type="TmatsCommon:VideoDataTypeFormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VTF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MPEG2ChannelXON2Format" type="TmatsCommon:VideoMPEG2FormatType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VXF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignalType" type="TmatsCommon:VideoSignalTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VST</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SignalFormatType" type="TmatsCommon:VideoSignalFormatTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VSF</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConstantBitRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CBR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VariablePeakBitRate" type="xs:double" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VBR</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EncodingDelay" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VED</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Overlay" type="OverlayType" minOccurs="0"/>
+			<xs:element name="AudioChannelInput" type="AudioChannelInputType" minOccurs="0"/>
+			<xs:element name="VideoDataAlignment" type="TmatsCommon:EndianType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VDA</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RecorderReproducerAttributesType">
+		<xs:annotation>
+			<xs:documentation>TMATS R-Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="ID" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>R1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Characteristics" type="CharacteristicsType" minOccurs="0"/>
+			<xs:element name="RecorderReproducerInfo" type="RecorderReproducerInfoType" minOccurs="0"/>
+			<xs:element name="DataPacket" type="DataPacketType" minOccurs="0"/>
+			<xs:element name="RecordingEventDefinitions" type="RecordingEventDefinitionsType" minOccurs="0"/>
+			<xs:element name="Data" type="DataType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenceTrack" type="ReferenceTrackType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeats RT\N times</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Comments" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>COM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+	</xs:complexType>
+</xs:schema>

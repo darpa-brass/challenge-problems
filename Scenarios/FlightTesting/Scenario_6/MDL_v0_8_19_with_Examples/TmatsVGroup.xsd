@@ -1,0 +1,21 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsV="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="VendorSpecificAttributesType" mixed="true">
+      <xs:annotation>
+         <xs:documentation>TMATS V Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Contents undefined, because TMATS does not define the content of this section</xs:documentation>
+            </xs:annotation>
+         </xs:any>
+      </xs:sequence>
+      <xs:attribute name="Vendor" type="xs:string" use="required">
+         <xs:annotation>
+            <xs:documentation source="VN"/>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

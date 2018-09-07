@@ -1,0 +1,1485 @@
+<?xml version="1.0"?>
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:simpleType name="AFCAPCType">
+		<xs:annotation>
+			<xs:documentation>T-Group GST5</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Automatic Frequency Control"/>
+			<xs:enumeration value="Automatic Phase Control"/>
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogAudioFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group AVF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Raw"/>
+			<xs:enumeration value="WAV"/>
+			<xs:enumeration value="LPCM"/>
+			<xs:enumeration value="AC3"/>
+			<xs:enumeration value="PreD"/>
+			<xs:enumeration value="PstD"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogAudioType">
+		<xs:annotation>
+			<xs:documentation>R-Group AV</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Audio Present"/>
+			<xs:enumeration value="Audio Not Present"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogCouplingType">
+		<xs:annotation>
+			<xs:documentation>R-Group ACP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AC"/>
+			<xs:enumeration value="DC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogDataPackingOptionType">
+		<xs:annotation>
+			<xs:documentation>R-Group ADP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Packed"/>
+			<xs:enumeration value="Unpacked"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group ATF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Reserved)"/>
+			<xs:enumeration value="Format 1 (Analog Data)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogInputTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group AIT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Single Ended"/>
+			<xs:enumeration value="Differential"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalogRecordedFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group AF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="One's Complement"/>
+			<xs:enumeration value="Two's Complement"/>
+			<xs:enumeration value="Sign and Magnitude Binary (+=0)"/>
+			<xs:enumeration value="Sign and Magnitude Binary (+=1)"/>
+			<xs:enumeration value="Offset Binary"/>
+			<xs:enumeration value="Unsigned Binary"/>
+			<xs:enumeration value="IEEE 754 Single Precision"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Arinc429DataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group ABTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (ARINC 429 Data)"/>
+			<xs:enumeration value="Format 1 (Reserved)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ArincMessageDefinitionCodeType">
+		<xs:annotation>
+			<xs:documentation>B-Group SDI</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALL SDI"/>
+			<xs:enumeration value="SDI Code 0"/>
+			<xs:enumeration value="SDI Code 1"/>
+			<xs:enumeration value="SDI Code 2"/>
+			<xs:enumeration value="SDI Code 3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BasebandSignalTypeType">
+		<xs:annotation>
+			<xs:documentation>M-Group BSG1</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="LinkTypeType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="BinaryType">
+		<xs:annotation>
+			<xs:documentation>Any Binary field (Bitmasks, etc), made up of 1's and 0's only</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-1]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BinaryFormatType">
+		<xs:annotation>
+			<xs:documentation>C-Group BFM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Integer"/>
+			<xs:enumeration value="Unsigned Binary"/>
+			<xs:enumeration value="Sign and Magnitude Binary (+=0)"/>
+			<xs:enumeration value="Sign and Magnitude Binary (+=1)"/>
+			<xs:enumeration value="One's Complement"/>
+			<xs:enumeration value="Two's Complement"/>
+			<xs:enumeration value="Offset Binary"/>
+			<xs:enumeration value="Floating Point"/>
+			<xs:enumeration value="Binary Coded Decimal"/>
+			<xs:enumeration value="Bit Weight"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BinaryWithDontCareType">
+		<xs:annotation>
+			<xs:documentation>Generic binary type with don't care character. Legal values, 0,1,X</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-1|X]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BitWeightValueType">
+		<xs:annotation>
+			<xs:documentation>C-Group BWTV</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:double">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="S"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="BlocksToAllocateType">
+		<xs:annotation>
+			<xs:documentation>R-Group VLBA</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="All"/>
+			<xs:enumeration value="Available"/>
+			<xs:enumeration value="Number of Blocks"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BusDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group BTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Reserved)"/>
+			<xs:enumeration value="Format 1 (MIL-STD-1553B Data)"/>
+			<xs:enumeration value="Format 2 (16PP194 Bus)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BusTypeType">
+		<xs:annotation>
+			<xs:documentation>B-Group BT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1553"/>
+			<xs:enumeration value="ARINC 429"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CanBusDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group CBTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Can Bus)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Ch8MeasurementTypeType">
+		<xs:annotation>
+			<xs:documentation>B-Group MT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Data Word"/>
+			<xs:enumeration value="Command Word"/>
+			<xs:enumeration value="Status Word"/>
+			<xs:enumeration value="Time Word"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChannelDataTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group CDT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PCM Input"/>
+			<xs:enumeration value="Analog Input"/>
+			<xs:enumeration value="Discrete Input"/>
+			<xs:enumeration value="Time Input"/>
+			<xs:enumeration value="Video Input"/>
+			<xs:enumeration value="UART Input"/>
+			<xs:enumeration value="1553 Input"/>
+			<xs:enumeration value="ARINC-429 Input"/>
+			<xs:enumeration value="Message Data Input"/>
+			<xs:enumeration value="Image Data Input"/>
+			<xs:enumeration value="IEEE 1394 Input"/>
+			<xs:enumeration value="Parallel Input"/>
+			<xs:enumeration value="Ethernet Input"/>
+			<xs:enumeration value="TSPI/CTS Input"/>
+			<xs:enumeration value="Can Bus Input"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommandWordTypeType">
+		<xs:annotation>
+			<xs:documentation>B-Group and R-Group CWE, RCWE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Command Word"/>
+			<xs:enumeration value="Address Fields"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataConversionType">
+		<xs:annotation>
+			<xs:documentation>C-Group DCT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="Pair Sets"/>
+			<xs:enumeration value="Coefficients"/>
+			<xs:enumeration value="Coefficients (Negative Powers Of X)"/>
+			<xs:enumeration value="Derived"/>
+			<xs:enumeration value="Discrete"/>
+			<xs:enumeration value="PCM Time"/>
+			<xs:enumeration value="1553 Time"/>
+			<xs:enumeration value="Voice"/>
+			<xs:enumeration value="Video"/>
+			<xs:enumeration value="Special Processing"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataDirectionType">
+		<xs:annotation>
+			<xs:documentation>R-Group TK3</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Forward"/>
+			<xs:enumeration value="Reverse"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataPackingDensityType">
+		<xs:annotation>
+			<xs:documentation>R-Group TC7</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Intermediate Band"/>
+			<xs:enumeration value="Wide Band"/>
+			<xs:enumeration value="Double Density"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataSourceType">
+		<xs:annotation>
+			<xs:documentation>G-Group DST</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RF"/>
+			<xs:enumeration value="Tape"/>
+			<xs:enumeration value="Storage"/>
+			<xs:enumeration value="Distributed Source"/>
+			<xs:enumeration value="Direct Source"/>
+			<xs:enumeration value="Reproducer"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DefaultType">
+		<xs:annotation>
+			<xs:documentation>Any element, with "Default" as the enumerated value</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Default"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DerivedAlgorithmType">
+		<xs:annotation>
+			<xs:documentation>C-Group DPAT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Name Of Algorithm"/>
+			<xs:enumeration value="Algorithm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DigitalVoiceEncodingMethodType">
+		<xs:annotation>
+			<xs:documentation>C-Group VOI\E</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CVSD"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiscreteDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group DTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Reserved)"/>
+			<xs:enumeration value="Format 1 (Discrete Data)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiscreteModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group DMOD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Event Mode"/>
+			<xs:enumeration value="Sample Mode"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DynamicImageAcquisitionModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group DIAM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Single Frame"/>
+			<xs:enumeration value="Multi Frame"/>
+			<xs:enumeration value="Continuous"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DynamicImageFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group DIF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mono 8"/>
+			<xs:enumeration value="Mono 8 Signed"/>
+			<xs:enumeration value="Mono 10"/>
+			<xs:enumeration value="Mono 10 Packed"/>
+			<xs:enumeration value="Mono 12"/>
+			<xs:enumeration value="Mono 12 Packed"/>
+			<xs:enumeration value="Mono 14"/>
+			<xs:enumeration value="Mono 16"/>
+			<xs:enumeration value="Bayer GR8"/>
+			<xs:enumeration value="Bayer RG8"/>
+			<xs:enumeration value="Bayer GB8"/>
+			<xs:enumeration value="Bayer BG8"/>
+			<xs:enumeration value="Bayer GR10"/>
+			<xs:enumeration value="Bayer RG10"/>
+			<xs:enumeration value="Bayer GB10"/>
+			<xs:enumeration value="Bayer BG10"/>
+			<xs:enumeration value="Bayer GR12"/>
+			<xs:enumeration value="Bayer RG12"/>
+			<xs:enumeration value="Bayer GB12"/>
+			<xs:enumeration value="Bayer BG12"/>
+			<xs:enumeration value="Bayer GR10 Packed"/>
+			<xs:enumeration value="Bayer RG10 Packed"/>
+			<xs:enumeration value="Bayer GB10 Packed"/>
+			<xs:enumeration value="Bayer BG10 Packed"/>
+			<xs:enumeration value="Bayer GR12 Packed"/>
+			<xs:enumeration value="Bayer RG12 Packed"/>
+			<xs:enumeration value="Bayer GB12 Packed"/>
+			<xs:enumeration value="Bayer BG12 Packed"/>
+			<xs:enumeration value="Bayer GR16"/>
+			<xs:enumeration value="Bayer RG16"/>
+			<xs:enumeration value="Bayer GB16"/>
+			<xs:enumeration value="Bayer BG16"/>
+			<xs:enumeration value="RGB 8 Packed"/>
+			<xs:enumeration value="BGR 8 Packed"/>
+			<xs:enumeration value="RGB A8 Packed"/>
+			<xs:enumeration value="BGR A8 Packed"/>
+			<xs:enumeration value="RGB 10 Packed"/>
+			<xs:enumeration value="BGR 10 Packed"/>
+			<xs:enumeration value="RGB 12 Packed"/>
+			<xs:enumeration value="BGR 12 Packed"/>
+			<xs:enumeration value="RGB 16 Packed"/>
+			<xs:enumeration value="BGR 16 Packed"/>
+			<xs:enumeration value="RGB 10V1 Packed"/>
+			<xs:enumeration value="BGR 10V1 Packed"/>
+			<xs:enumeration value="RGB 10V2 Packed"/>
+			<xs:enumeration value="BGR 10V2 Packed"/>
+			<xs:enumeration value="RGB 12V1 Packed"/>
+			<xs:enumeration value="RGB 565 Packed"/>
+			<xs:enumeration value="BGR 565 Packed"/>
+			<xs:enumeration value="YUV 411 Packed"/>
+			<xs:enumeration value="YUV 422 Packed"/>
+			<xs:enumeration value="YUV 444 Packed"/>
+			<xs:enumeration value="YUY V Packed"/>
+			<xs:enumeration value="RGB 8 Planar"/>
+			<xs:enumeration value="RGB 10 Planar"/>
+			<xs:enumeration value="RGB 12 Planar"/>
+			<xs:enumeration value="RGB 16 Planar"/>
+			<xs:enumeration value="Device Specific"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EncryptedType">
+		<xs:annotation>
+			<xs:documentation>P-Group D3</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Encrypted"/>
+			<xs:enumeration value="Unencrypted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EndianType">
+		<xs:annotation>
+			<xs:documentation>Generic Big/Little Endian type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Big Endian"/>
+			<xs:enumeration value="Little Endian"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EthernetDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group ENTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Ethernet Data)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EthernetType">
+		<xs:annotation>
+			<xs:documentation>R-Group EIT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Reserved"/>
+			<xs:enumeration value="Download"/>
+			<xs:enumeration value="Data Streaming"/>
+			<xs:enumeration value="Data Streaming, Download"/>
+			<xs:enumeration value="Control and Status"/>
+			<xs:enumeration value="Control and Status, Download"/>
+			<xs:enumeration value="Control and Status, Data Streaming"/>
+			<xs:enumeration value="Control and Status, Data Streaming, Download"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EUSecurityClassificationType">
+		<xs:annotation>
+			<xs:documentation>C-Group TRD4</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Unclassified"/>
+			<xs:enumeration value="Confidential"/>
+			<xs:enumeration value="Secret"/>
+			<xs:enumeration value="Top Secret"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Counts Unclassified"/>
+			<xs:enumeration value="Counts Confidential"/>
+			<xs:enumeration value="Counts Secret"/>
+			<xs:enumeration value="Counts Top Secret"/>
+			<xs:enumeration value="Counts Other"/>
+			<xs:enumeration value="EU Unclassified"/>
+			<xs:enumeration value="EU Confidential"/>
+			<xs:enumeration value="EU Secret"/>
+			<xs:enumeration value="EU Top Secret"/>
+			<xs:enumeration value="EU Other"/>
+			<xs:enumeration value="Counts And EU Unclassified"/>
+			<xs:enumeration value="Counts And EU Confidential"/>
+			<xs:enumeration value="Counts And EU Secret"/>
+			<xs:enumeration value="Counts And EU Top Secret"/>
+			<xs:enumeration value="Counts And EU Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EventCaptureModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group EV\CM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Mode 1"/>
+			<xs:enumeration value="Mode 2"/>
+			<xs:enumeration value="Mode 3"/>
+			<xs:enumeration value="Mode 4"/>
+			<xs:enumeration value="Mode 5"/>
+			<xs:enumeration value="Mode 6"/>
+			<xs:enumeration value="Mode 7"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EventPriorityModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group EV\P</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Priority 1"/>
+			<xs:enumeration value="Priority 2"/>
+			<xs:enumeration value="Priority 3"/>
+			<xs:enumeration value="Priority 4"/>
+			<xs:enumeration value="Priority 5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EvenType">
+		<xs:annotation>
+			<xs:documentation>For Parity related elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Even"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FilterOverwriteTagType">
+		<xs:annotation>
+			<xs:documentation>D-Group SMF\MFOT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Overwrite"/>
+			<xs:enumeration value="Filter"/>
+			<xs:enumeration value="Neither"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FilterType">
+		<xs:annotation>
+			<xs:documentation>R-Group MFD\FDT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Inclusive Filtering"/>
+			<xs:enumeration value="Exclusive Filtering"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FloatingPointFormatType">
+		<xs:annotation>
+			<xs:documentation>Restrictions for various floating point format elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IEEE 754 Single Precision"/>
+			<xs:enumeration value="IEEE 754 Double Precision"/>
+			<xs:enumeration value="MIL STD 1750A Single Precision"/>
+			<xs:enumeration value="MIL STD 1750A Double Precision"/>
+			<xs:enumeration value="DEC Single Precision"/>
+			<xs:enumeration value="DEC Double Precision"/>
+			<xs:enumeration value="DEC G Double Precision"/>
+			<xs:enumeration value="IBM Single Precision"/>
+			<xs:enumeration value="IBM Double Precision"/>
+			<xs:enumeration value="TI Single Precision"/>
+			<xs:enumeration value="TI Extended Precision"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GeneralSecurityClassificationType">
+		<xs:annotation>
+			<xs:documentation>G-Group SC</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Unclassified"/>
+			<xs:enumeration value="Confidential"/>
+			<xs:enumeration value="Secret"/>
+			<xs:enumeration value="Top Secret"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HexType">
+		<xs:annotation>
+			<xs:documentation>Generic hexidecimal data</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9|A-F]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HousingType">
+		<xs:annotation>
+			<xs:documentation>R-Group TC5</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="10.5"/>
+			<xs:enumeration value="14.0"/>
+			<xs:enumeration value="15.0"/>
+			<xs:enumeration value="16.0"/>
+			<xs:enumeration value="12.65"/>
+			<xs:enumeration value="19.0"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IDCountDirectionType">
+		<xs:annotation>
+			<xs:documentation>P-Group IDC10</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Increasing"/>
+			<xs:enumeration value="Decreasing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IEEE1394DataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group IETF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (IEEE-1394 Trans)"/>
+			<xs:enumeration value="Format 1 (IEEE-1394 Phy)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImageDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group ITF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Image)"/>
+			<xs:enumeration value="Format 1 (Still Imagery)"/>
+			<xs:enumeration value="Format 2 (Dynamic Imagery)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ImageTimeStampModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group ITSM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Image Capture Time"/>
+			<xs:enumeration value="Image Packetization Time"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InputTerminationType">
+		<xs:annotation>
+			<xs:documentation>R-Group ITM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Low-Z"/>
+			<xs:enumeration value="High-Z"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IPAddressType">
+		<xs:annotation>
+			<xs:documentation>The IPAddressType data type is an xsd:string of decimal digits separated by '.' (period) characters.  It represents the 32-bit dot-decimal notation of IPv4 addresses.  Valid IPv4 addresses contain a series of four one-byte long decimal numbers (0 - 255) separated by the '.' character (a total of three '.' characters appear).  A valid value of the mdl:IPv4Address data type is "212.23.123.0".  See RFC 790 in Section 2.2.2 for further details on IPv4 addresses.
+	      </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LinkTypeType">
+		<xs:annotation>
+			<xs:documentation>Generic enumeration</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Analog"/>
+			<xs:enumeration value="PCM"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MeasurementBitMaskType">
+		<xs:annotation>
+			<xs:documentation>Measurement related bitmask, made up of 1's and 0's or the string "Full Word"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-1]*"/>
+			<xs:pattern value="Full Word"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MediaLocationType">
+		<xs:annotation>
+			<xs:documentation>R-Group RML</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Internal"/>
+			<xs:enumeration value="External"/>
+			<xs:enumeration value="Both Internal And External"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageDataMeasurementDataType">
+		<xs:annotation>
+			<xs:documentation>S-Group MBFM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASCII"/>
+			<xs:enumeration value="Float"/>
+			<xs:enumeration value="Signed"/>
+			<xs:enumeration value="Unsigned"/>
+			<xs:enumeration value="Hex"/>
+			<xs:enumeration value="Octal"/>
+			<xs:enumeration value="Binary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group MTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Message Data)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageDelimiterType">
+		<xs:annotation>
+			<xs:documentation>S-Group MDEL-i</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="HexType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="CRLF"/>
+					<xs:enumeration value="CR"/>
+					<xs:enumeration value="LF"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="MessageFieldDelimiterType">
+		<xs:annotation>
+			<xs:documentation>S-Group FDEL-i</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="HexType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value=","/>
+					<xs:enumeration value="|"/>
+					<xs:enumeration value="Blank"/>
+					<xs:enumeration value="Tab"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="MessageRecordControlTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group MRC\RCT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Stop-Start"/>
+			<xs:enumeration value="Pause-Resume"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageStreamLayoutType">
+		<xs:annotation>
+			<xs:documentation>S-Group MDL-i</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Delimited"/>
+			<xs:enumeration value="Fixed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageStreamTypeType">
+		<xs:annotation>
+			<xs:documentation>S-Group MDT-i</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ASCII"/>
+			<xs:enumeration value="Binary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MessageType">
+		<xs:annotation>
+			<xs:documentation>R-Group MFD\MT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RT/RT"/>
+			<xs:enumeration value="RT/BC"/>
+			<xs:enumeration value="BC/RT"/>
+			<xs:enumeration value="Mode Code"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModulationType">
+		<xs:annotation>
+			<xs:documentation>T-Group RF4</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FM"/>
+			<xs:enumeration value="PM"/>
+			<xs:enumeration value="BPSK"/>
+			<xs:enumeration value="DPSK"/>
+			<xs:enumeration value="QPSK"/>
+			<xs:enumeration value="FQPSK-B"/>
+			<xs:enumeration value="FQPSK-JR"/>
+			<xs:enumeration value="SOQPSK-TG"/>
+			<xs:enumeration value="MULTI-H CPM"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MSBLSBFirstType">
+		<xs:annotation>
+			<xs:documentation>Generic Transfer Order (MSB First/LSB First)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MSB First"/>
+			<xs:enumeration value="LSB First"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NoneType">
+		<xs:annotation>
+			<xs:documentation>For Parity related elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NonNegativeIntegerOrNo">
+		<xs:annotation>
+			<xs:documentation>Generic non-negative integer, or the word "No"</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="No"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="NonNegativeIntegerOrNone">
+		<xs:annotation>
+			<xs:documentation>Generic non-negative integer, or the word "None"</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="NonNegativeIntegerOrNotSpecified">
+		<xs:annotation>
+			<xs:documentation>Generic non-negative integer, or the word "Not Specified"</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Not Specified"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="NormalReversedType">
+		<xs:annotation>
+			<xs:documentation>P-Group D6 and ALT4</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Reversed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OddEvenNoneType">
+		<xs:annotation>
+			<xs:documentation>For Parity related elements</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="OddType EvenType NoneType"/>
+	</xs:simpleType>
+	<xs:simpleType name="OddType">
+		<xs:annotation>
+			<xs:documentation>For Parity related elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Odd"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OnOffType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Off"/>
+			<xs:enumeration value="On"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OverwriteTagType">
+		<xs:annotation>
+			<xs:documentation>R-Group SMF\MFOT, BME\MFOT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Overwrite"/>
+			<xs:enumeration value="No Overwriting"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PairSetsType">
+		<xs:annotation>
+			<xs:documentation>C-Group PS1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Polynomial Curve Fit"/>
+			<xs:enumeration value="Table Lookup"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ParallelDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group PLTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Parallel)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ParityTransferOrderType">
+		<xs:annotation>
+			<xs:documentation>Generic Parity Transfer Order</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Leads Word"/>
+			<xs:enumeration value="Trails Word"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMCodeType">
+		<xs:annotation>
+			<xs:documentation>P-Group D1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NRZ-L"/>
+			<xs:enumeration value="NRZ-M"/>
+			<xs:enumeration value="NRZ-S"/>
+			<xs:enumeration value="BIO-L"/>
+			<xs:enumeration value="BIO-M"/>
+			<xs:enumeration value="BIO-S"/>
+			<xs:enumeration value="RNRZ-L"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMDataClockEdgeType">
+		<xs:annotation>
+			<xs:documentation>R-Group ICE</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0 Degrees"/>
+			<xs:enumeration value="180 Degrees"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMDataInputSignalTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group IST</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Single Ended"/>
+			<xs:enumeration value="Differential"/>
+			<xs:enumeration value="RS-422 Standard Differential"/>
+			<xs:enumeration value="Single Ended With TTL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMDataPackingOptionType">
+		<xs:annotation>
+			<xs:documentation>R-Group PDP</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Unpacked"/>
+			<xs:enumeration value="Packed With Frame Sync"/>
+			<xs:enumeration value="Throughput Mode"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group PDTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Reserved)"/>
+			<xs:enumeration value="Format 1 (IRIG 106 Ch 4/8)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMLocationDefinitionType">
+		<xs:annotation>
+			<xs:documentation>P-Group AEF2 and ADM2</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="First Word And Interval"/>
+			<xs:enumeration value="Every Location"/>
+			<xs:enumeration value="Contiguous Words"/>
+			<xs:enumeration value="Not Applicable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMMeasurementLocationTypeType">
+		<xs:annotation>
+			<xs:documentation>P-Group LT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Word and Frame"/>
+			<xs:enumeration value="Tagged Data"/>
+			<xs:enumeration value="Relative"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMSubframeSyncTypeType">
+		<xs:annotation>
+			<xs:documentation>P-Group ISF2</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ID Counter"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMSyncTypeType">
+		<xs:annotation>
+			<xs:documentation>P-Group MF3</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fixed Pattern"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PCMTimeType">
+		<xs:annotation>
+			<xs:documentation>C-Group PTM</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:double">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="High Order Time"/>
+					<xs:enumeration value="Low Order Time"/>
+					<xs:enumeration value="Microsecond Time"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="PCMTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>P-Group TF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Class 1"/>
+			<xs:enumeration value="Class 2"/>
+			<xs:enumeration value="Alternate Tag And Data"/>
+			<xs:enumeration value="1553 Bus"/>
+			<xs:enumeration value="Bus"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PointOfContactType">
+		<xs:annotation>
+			<xs:documentation>Generic</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string" minOccurs="0"/>
+			<xs:element name="Agency" type="xs:string" minOccurs="0"/>
+			<xs:element name="Address" type="xs:string" minOccurs="0"/>
+			<xs:element name="Telephone" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsVersion"/>
+	</xs:complexType>
+	<xs:simpleType name="PolarityType">
+		<xs:annotation>
+			<xs:documentation>Generic Polarity values</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Inverted"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PolarizationType">
+		<xs:annotation>
+			<xs:documentation>T-Group GST6</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Right Hand Circular Polarization"/>
+			<xs:enumeration value="Left Hand Circular Polarization"/>
+			<xs:enumeration value="Both"/>
+			<xs:enumeration value="Both And Pre-Detection"/>
+			<xs:enumeration value="Both And Post-Detection"/>
+			<xs:enumeration value="Pre-Detection"/>
+			<xs:enumeration value="Post-Detection"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PositiveNegative">
+		<xs:annotation>
+			<xs:documentation>Generic enumeration with values: "Positive" or "Negative"</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Positive"/>
+			<xs:enumeration value="Negative"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PostProcessModificationType">
+		<xs:annotation>
+			<xs:documentation>T-Group GST7</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Time Subset"/>
+			<xs:enumeration value="Channel Subset"/>
+			<xs:enumeration value="Time - Channel Subset"/>
+			<xs:enumeration value="Channel Superset"/>
+			<xs:enumeration value="Time Subset - Channel Superset"/>
+			<xs:enumeration value="Filter"/>
+			<xs:enumeration value="Overwrite"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PostProcessOverwriteAndFilteringTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group POF\T</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Minor Frame"/>
+			<xs:enumeration value="Selected Measurement"/>
+			<xs:enumeration value="Both"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PremodFilterType">
+		<xs:annotation>
+			<xs:documentation>T-Group PMF3</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Constant Amplitude"/>
+			<xs:enumeration value="Constant Delay"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RandomizerLengthType">
+		<xs:annotation>
+			<xs:documentation>P-Group D8</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Standard"/>
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="Not Applicable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecorderCharacteristicsType">
+		<xs:annotation>
+			<xs:documentation>R-Group TC1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Analog"/>
+			<xs:enumeration value="Cassette"/>
+			<xs:enumeration value="HDDR"/>
+			<xs:enumeration value="Parallel"/>
+			<xs:enumeration value="Solid State Recorder"/>
+			<xs:enumeration value="Magnetic Disk"/>
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecordingEventType">
+		<xs:annotation>
+			<xs:documentation>R-Group EV\T</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="External"/>
+			<xs:enumeration value="Measurement Discrete"/>
+			<xs:enumeration value="Measurement Limit"/>
+			<xs:enumeration value="Recorder"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecordingIndexTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group IDX\IT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Time"/>
+			<xs:enumeration value="Count"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RecordingTechniqueType">
+		<xs:annotation>
+			<xs:documentation>R-Group TK2</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FM/FM"/>
+			<xs:enumeration value="HDDR"/>
+			<xs:enumeration value="Pre-Detection"/>
+			<xs:enumeration value="Direct"/>
+			<xs:enumeration value="FM Wide Band Group 1"/>
+			<xs:enumeration value="FM Wide band Group 2"/>
+			<xs:enumeration value="FM Intermediate Band"/>
+			<xs:enumeration value="FM Narrow Band"/>
+			<xs:enumeration value="Double Density"/>
+			<xs:enumeration value="Rotary Single Track"/>
+			<xs:enumeration value="Rotary Multiplexed"/>
+			<xs:enumeration value="Solid State"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RMMBusSpeedType">
+		<xs:annotation>
+			<xs:documentation>R-Group ERBS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Auto"/>
+			<xs:enumeration value="S100"/>
+			<xs:enumeration value="S200"/>
+			<xs:enumeration value="S400"/>
+			<xs:enumeration value="S800"/>
+			<xs:enumeration value="S1600"/>
+			<xs:enumeration value="S3200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SecondaryHeaderTimeFormatType">
+		<xs:annotation>
+			<xs:documentation>rT-Group SHTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IRIG-106 Chapter 4 BCD"/>
+			<xs:enumeration value="IEEE-1588"/>
+			<xs:enumeration value="ERTC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SetupSourceType">
+		<xs:annotation>
+			<xs:documentation>R-Group RSS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Setup File On RMM Only"/>
+			<xs:enumeration value="Command Setup File Only"/>
+			<xs:enumeration value="RMM Primary - Command Secondary"/>
+			<xs:enumeration value="Command Primary - RMM Secondary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SignalStructureTypeType">
+		<xs:annotation>
+			<xs:documentation>M-Group BB1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PCM"/>
+			<xs:enumeration value="Analog"/>
+			<xs:enumeration value="SCO's"/>
+			<xs:enumeration value="ANA/SCO"/>
+			<xs:enumeration value="PCM/SCO"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StillImageTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group SIT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NITF"/>
+			<xs:enumeration value="JPEG"/>
+			<xs:enumeration value="JPEG2"/>
+			<xs:enumeration value="PNG"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="StringBeginningWithAlpha">
+		<xs:annotation>
+			<xs:documentation>Generic string that begins with an alpha character</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]|[a-z].*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TestImageTypeType">
+		<xs:annotation>
+			<xs:documentation>T-Group TIT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Off"/>
+			<xs:enumeration value="Black"/>
+			<xs:enumeration value="White"/>
+			<xs:enumeration value="Grey Horizontal Ramp"/>
+			<xs:enumeration value="Grey Vertical Ramp"/>
+			<xs:enumeration value="Grey Horizontal Ramp Moving"/>
+			<xs:enumeration value="Grey Vertical Ramp Moving"/>
+			<xs:enumeration value="Horizontal Line Moving"/>
+			<xs:enumeration value="Vertical Line Moving"/>
+			<xs:enumeration value="Color Bar"/>
+			<xs:enumeration value="Frame Counter"/>
+			<xs:enumeration value="Device Specific"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Time1553Type">
+		<xs:annotation>
+			<xs:documentation>C-Group BTM</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="PCMTimeType">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Response Time"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="TimeDataTimeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group TFMT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IRIG A"/>
+			<xs:enumeration value="IRIG B"/>
+			<xs:enumeration value="IRIG G"/>
+			<xs:enumeration value="Internal"/>
+			<xs:enumeration value="Native GPS Time"/>
+			<xs:enumeration value="UTC Time From GPS"/>
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimeDataTimeSourceType">
+		<xs:annotation>
+			<xs:documentation>R-Group TSRC</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Internal"/>
+			<xs:enumeration value="External"/>
+			<xs:enumeration value="Internal From RMM"/>
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimeDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group TTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (Reserved)"/>
+			<xs:enumeration value="Format 1 (Time Data)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="TmatsVersion">
+		<xs:annotation>
+			<xs:documentation>The IRIG version this document conforms to</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="106-13"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:simpleType name="TransferOrderType">
+		<xs:annotation>
+			<xs:documentation>Generic. (MSB First/LSB First/Default)</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="MSBLSBFirstType DefaultType"/>
+	</xs:simpleType>
+	<xs:simpleType name="TransmitAntennaType">
+		<xs:annotation>
+			<xs:documentation>T-Group AN1</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Right Hand Circular Polarization"/>
+			<xs:enumeration value="Left Hand Circular Polarization"/>
+			<xs:enumeration value="Linear"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TransmitReceiveModeType">
+		<xs:annotation>
+			<xs:documentation>R-Group MFD\TRM and B-Group TRM</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Transmit"/>
+			<xs:enumeration value="Receive"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TrueFalseType">
+		<xs:annotation>
+			<xs:documentation>For any element with "True" and "False" enumerations</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="True"/>
+			<xs:enumeration value="False"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TSPIDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group TDTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (NMEA-RTCM)"/>
+			<xs:enumeration value="Format 1 (EAG ACMI)"/>
+			<xs:enumeration value="Format 2 (ACTTS)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TypeOfTrackType">
+		<xs:annotation>
+			<xs:documentation>R-Group TT</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Longitudinal"/>
+			<xs:enumeration value="Rotary"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UARTDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group UTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0"/>
+			<xs:enumeration value="Format 1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UARTInterfaceType">
+		<xs:annotation>
+			<xs:documentation>R-Group UCIN</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Other"/>
+			<xs:enumeration value="RS-232"/>
+			<xs:enumeration value="RS-422"/>
+			<xs:enumeration value="RS-485"/>
+			<xs:enumeration value="TTL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UARTStopBitsType">
+		<xs:annotation>
+			<xs:documentation>R-Group UCS</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="1.0"/>
+			<xs:enumeration value="1.5"/>
+			<xs:enumeration value="2.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoDataTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group VTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Format 0 (MPEG-2/H.264)"/>
+			<xs:enumeration value="Format 1 (MPEG-2 ISO 13818)"/>
+			<xs:enumeration value="Format 2 (MPEG-4 ISO 14496)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoMPEG2FormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group VXF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="2ON2 (MPEG-2)"/>
+			<xs:enumeration value="264ON2 (H.264)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoOverlayBackgroundType">
+		<xs:annotation>
+			<xs:documentation>R-Group VCO\OBG</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Black On Transparent"/>
+			<xs:enumeration value="White On Transparent"/>
+			<xs:enumeration value="Black On White"/>
+			<xs:enumeration value="White On Black"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoOverlayFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group VCO\OLF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Day And Time"/>
+			<xs:enumeration value="Time Only"/>
+			<xs:enumeration value="Time And Milliseconds"/>
+			<xs:enumeration value="Day, Time And Milliseconds"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoSignalFormatTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group VSF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Auto Detect"/>
+			<xs:enumeration value="NTSC"/>
+			<xs:enumeration value="PAL"/>
+			<xs:enumeration value="ATSC"/>
+			<xs:enumeration value="DVB"/>
+			<xs:enumeration value="ISDB"/>
+			<xs:enumeration value="SECAM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoSignalTypeType">
+		<xs:annotation>
+			<xs:documentation>R-Group VST</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Auto Detect"/>
+			<xs:enumeration value="Composite"/>
+			<xs:enumeration value="YUV"/>
+			<xs:enumeration value="S-Video"/>
+			<xs:enumeration value="DVI"/>
+			<xs:enumeration value="RGB"/>
+			<xs:enumeration value="SDI"/>
+			<xs:enumeration value="VGA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VideoTypeFormatType">
+		<xs:annotation>
+			<xs:documentation>R-Group PTF</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="MPEG1"/>
+			<xs:enumeration value="MPEG2"/>
+			<xs:enumeration value="H261"/>
+			<xs:enumeration value="WAVE"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YesNoType">
+		<xs:annotation>
+			<xs:documentation>For any element with "Yes" and "No" enumerations</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="No"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example id string</DatabaseID>
+  <Checksum>not present</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Selecting Bus Measurements Example</Name>
+      <Description>description to be added</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>-TBD-</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="ExampleNetworkID"/>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>unused</Description>
+      <Measurements>
+        <Measurement ID="Meas_CaptureAll">
+          <Name>CAPALL</Name>
+          <Description>A Measurement to demonstrate how to capture all ARINC 429 messages from a bus</Description>
+          <MeasurementID>0x00000004</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>32</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <DataStreams>
+        <DataStream ID="ARINC429_Bus_1">
+          <Name>ARINC429_Bus_1</Name>
+          <Description>ARINC 429 Bus 1 description</Description>
+          <ARINC429Messages>
+            <ARINC429Message ID="ARINC429_Bus_1_CaptureAll">
+              <Name>CaptureAll</Name>
+              <Description>Message definition to demonstrate message selection and masks</Description>
+              <!-- Omitting the ARINC429 fields describes an "accept-all" scenario -->
+              <DataStructure ID="ARINC429_Bus_1_CaptureAll_STRUCT">
+                <Name>unused</Name>
+                <Description>unused</Description>
+                <PackageDataField ID="ARINC429_Bus_1_CaptureAll_Field">
+                  <Name>unused</Name>
+                  <Description>unused</Description>
+                  <FieldLocation ID="ARINC429_Bus_1_CaptureAll_Field_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>32</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>32</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_CaptureAll"/>
+                      <SyllableMask>0xffffffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>32</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_1_CaptureAll_Field"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </ARINC429Message>
+          </ARINC429Messages>
+        </DataStream>
+      </DataStreams>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network</Name>
+      <Description>TBD description</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="Dau1">
+        <Name>Dau1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau1</InventoryID> 
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>TBD-4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU>
+            </TmNSDAU>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module1">
+            <Name>TBD Module Name</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <NetworkInterface ID="Dau1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.21</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau1PhysNetPort1">
+                <Name>Dau1PhysNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e8</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau1Pin1InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="Pin1ID"/>
+              </Port>
+              <Port ID="Dau1NetworkPort" Index="2">
+                <Name>Dau1Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau1PhysNetPort1"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Switch1">
+        <Name>Switch 1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Switch1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Switch1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Switch1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Switch1Module">
+            <Name>TBD Module</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD </Model>
+            <SerialIdentifier>TBD</SerialIdentifier>
+            <InventoryID>TBD</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Switch1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Switch1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.254</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort1">
+                <Name>Sw1PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort2">
+                <Name>Sw1PhyNetPort2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>2</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort3">
+                <Name>Sw1PhyNetPort3</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>3</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort4">
+                <Name>Sw1PhyNetPort4</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>4</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Switch1Port1" Index="1">
+                <Name>Switch1Port1</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort1"/>
+              </Port>
+              <Port ID="Switch1Port2" Index="2">
+                <Name>Switch1Port2</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort2"/>
+              </Port>
+              <Port ID="Switch1Port3" Index="3">
+                <Name>Switch1Port3</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort3"/>
+              </Port>
+              <Port ID="Switch1Port4" Index="4">
+                <Name>Switch1Port4</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort4"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1NetworkPort"/>
+          <PortRef IDREF="Switch1Port1"/>
+        </PortMapping>
+        <PortMapping ID="PM2">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1Pin1InputPort"/>
+          <DataStreamRef IDREF="ARINC429_Bus_1"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+  </NetworkDomains>
+</MDLRoot>

@@ -1,0 +1,2550 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL" xmlns:tmatsCommon="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsCommonTypes" xmlns:tmatsP="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup" xmlns:tmatsD="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+  <Name>MDLRoot</Name>
+  <Description>TBD</Description>
+  <DatabaseID/>
+  <Checksum/>
+  <ConfigurationVersion>2015-10-14_20:31:46_TA1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <Units>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <Numerators>
+        <Numerator>
+          <NumericalConstant>9.80665</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Numerator>
+      </Numerators>
+    </DerivedUnit>
+    <DerivedUnit ID="Mbps">
+      <Name>Mega-bits per second</Name>
+      <Description>Rate - number of mega-bits per second</Description>
+      <Symbol>Mbps</Symbol>
+      <Numerators>
+        <Numerator>
+          <NumericalConstant>1000000.0</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Numerator>
+      </Numerators>
+      <Denominators>
+        <Denominator>
+          <NumericalConstant>1.0</NumericalConstant>
+          <BaseUnit>Unitless</BaseUnit>
+        </Denominator>
+      </Denominators>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Lab</Name>
+      <Description>Lab Measurement Domain</Description>
+      <Measurements>
+        <Measurement ID="meas-1-1">
+          <Name>Device1_AccelerationX</Name>
+          <Description> Acceleration X</Description>
+          <MeasurementID>0x10000001</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>        
+        <Measurement ID="meas-1-2">
+          <Name>Device1_AccelerationZ</Name>
+          <Description> Acceleration Z</Description>
+          <MeasurementID>0x10000002</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-1-3">
+          <Name>Device1_AccelerationY</Name>
+          <Description> Acceleration Y</Description>
+          <MeasurementID>0x10000003</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-1-4">
+          <Name>Device2_AccelerationX</Name>
+          <Description> Acceleration X</Description>
+          <MeasurementID>0x10000004</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>        
+        <Measurement ID="meas-1-5">
+          <Name>Device2_AccelerationZ</Name>
+          <Description> Acceleration Z</Description>
+          <MeasurementID>0x10000005</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-1-6">
+          <Name>Device2_AccelerationY</Name>
+          <Description> Acceleration Y</Description>
+          <MeasurementID>0x10000006</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>       
+        <Measurement ID="meas-2-1">
+          <Name>Temp1Therm</Name>
+          <Description>MTCD Temperature 1 Thermocouple</Description>
+          <MeasurementID>0x10000007</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>        
+        <Measurement ID="meas-2-2">
+          <Name>Temp2Therm</Name>
+          <Description>MTCD Temperature 2 Thermocouple</Description>
+          <MeasurementID>0x10000008</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-3">
+          <Name>Temp3Therm</Name>
+          <Description>MTCD Temperature 3 Thermocouple</Description>
+          <MeasurementID>0x10000009</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-4">
+          <Name>Temp4Therm</Name>
+          <Description>MTCD Temperature 4 Thermocouple</Description>
+          <MeasurementID>0x10000010</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-5">
+          <Name>Temp5Therm</Name>
+          <Description>MTCD Temperature 5 Thermocouple</Description>
+          <MeasurementID>0x10000011</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-6">
+          <Name>Temp6Therm</Name>
+          <Description>MTCD Temperature 6 Thermocouple</Description>
+          <MeasurementID>0x10000012</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-7">
+          <Name>Temp7Therm</Name>
+          <Description>MTCD Temperature 7 Thermocouple</Description>
+          <MeasurementID>0x10000013</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="meas-2-8">
+          <Name>Temp8Therm</Name>
+          <Description>MTCD Temperature 8 Thermocouple</Description>
+          <MeasurementID>0x10000014</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <BaseUnit>Counts</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8</ConditionValue>
+                  <BaseUnit>Bit</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>100</ConditionValue>
+                  <BaseUnit>Hertz</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>800</ConditionValue>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomain>
+    <Networks>
+      <Network ID="TA1-Example5">
+        <Name>Test Article Network</Name>
+        <Description>Test article network for Scenario TA1</Description>
+        <NetworkType>TestArticleNetwork</NetworkType>
+        <NetworkNodes>
+          <NetworkNode ID="TTCDAU">
+            <Name>VendorB_DAU</Name>
+            <Description>TA1 VendorB DAU Network Node</Description>
+            <InventoryID>TA1-VendorB-DAU1</InventoryID>
+            <HostName>VendorB</HostName>
+            <Manufacturer>VendorB</Manufacturer>
+            <Model>DAU Model TBD</Model>
+            <ModelVersion>model version #1</ModelVersion>
+            <SerialID>258089</SerialID>
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <TmNSApps>
+              <TmNSApp ID="DAUTma">
+                <Name>TA1 VendorB DAU1</Name>
+                <Description>TA1 VendorB DAU1 TMA</Description>
+                <RoleID>VendorB_DAU1</RoleID>
+                <LoggingLevel>Warning</LoggingLevel>
+                <Manufacturer>VendorB</Manufacturer>
+                <Product>TBD</Product>
+                <ProductVersion>Product Version #1</ProductVersion>
+                <ConfigurationVersion>iDAU: app mu.7115+, kernel #6983 PREEMPT Tue May 19 13:32:41 EDT 2015</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>SMS v0.8.7</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                  <LTCInterfaces>
+                    <LTCInterface>
+                      <TimeToLive>10</TimeToLive>
+                    </LTCInterface>
+                  </LTCInterfaces>
+                </TmNSLTCDataSource>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="module-101">
+                  <Name>VendorB Module101</Name>
+                  <Description>VendorB Processor</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>VendorB_Module_101_Model</Model>
+                  <SerialID>258085</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>101</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <RunningAppRefs>
+                    <TmNSAppRef IDREF="DAUTma"/>
+                  </RunningAppRefs>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1 Serial Port</Name>
+                      <Description>J1: 9 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="MppcJ1Pin2" Index="1">
+                          <Name>RS232 RCV</Name>
+                          <Description>RS-232: receive signal from the host</Description>
+                          <Designator>SerialRx</Designator>
+                        </Pin>
+                        <Pin ID="MppcJ1Pin3" Index="2">
+                          <Name>RS232 XMT</Name>
+                          <Description>RS-232: transmit signal to the host</Description>
+                          <Designator>SerialTx</Designator>
+                        </Pin>
+                        <Pin ID="MppcJ1Pin9" Index="3">
+                          <Name>1PPS OUT</Name>
+                          <Description>One pulse per second output</Description>
+                          <Designator>1PPS</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="MppcRs232" Index="1">
+                      <Name>Console</Name>
+                      <Description>Console Serial Port</Description>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PortTypes>
+                        <PortType>Serial</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MppcJ1Pin2"/>
+                        <PinRef IDREF="MppcJ1Pin3"/>
+                        <PinRef IDREF="MppcJ1Pin9"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </Module>
+                <Module ID="module-102">
+                  <Name>VendorB Module102</Name>
+                  <Description>VendorB Controller</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>VendorB Model</Model>
+                  <SerialID>258080</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>102</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="MacqEthIf">
+                      <Name>eth0</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.101.201</IPAddress>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="MacqEthPhy">
+                          <Name>Ethernet</Name>
+                          <Description>J2 10/100Base-T Ethernet</Description>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1e8</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1 GPIO RS422</Name>
+                      <Description>J1: 15 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="MacqJ1Pin1" Index="1">
+                          <Name>GND</Name>
+                          <Description>Digital ground</Description>
+                          <Designator>GND</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin2" Index="2">
+                          <Name>Port2+</Name>
+                          <Description>RS-422 Output port 2 +</Description>
+                          <Designator>Port2_plus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin3" Index="3">
+                          <Name>Port2-</Name>
+                          <Description>RS-422 Output port 2 -</Description>
+                          <Designator>Port2_minus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin4" Index="4">
+                          <Name>Port4+</Name>
+                          <Description>RS-422 Output port 4 +</Description>
+                          <Designator>Port4_plus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin5" Index="5">
+                          <Name>Port4-</Name>
+                          <Description>RS-422 Output port 4 -</Description>
+                          <Designator>Port4_minus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin7" Index="6">
+                          <Name>GPO1_A</Name>
+                          <Description>General-purpose opto-isolated switch 1</Description>
+                          <Designator>GPO1_A</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin8" Index="7">
+                          <Name>GPO1_B</Name>
+                          <Description>General-purpose opto-isolated switch 1</Description>
+                          <Designator>GPO1_B</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin9" Index="8">
+                          <Name>Port1+</Name>
+                          <Description>RS-422 Output port 1 +</Description>
+                          <Designator>Port1_plus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin10" Index="9">
+                          <Name>Port1-</Name>
+                          <Description>RS-422 Output port 1 -</Description>
+                          <Designator>Port1_minus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin11" Index="10">
+                          <Name>Port3+</Name>
+                          <Description>RS-422 Output port 3 +</Description>
+                          <Designator>Port3_plus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin12" Index="11">
+                          <Name>Port3-</Name>
+                          <Description>RS-422 Output port 3 -</Description>
+                          <Designator>Port3_minus</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin14" Index="12">
+                          <Name>GPO2_A</Name>
+                          <Description>General-purpose opto-isolated switch 2</Description>
+                          <Designator>GPO2_A</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ1Pin15" Index="13">
+                          <Name>GPO2_B</Name>
+                          <Description>General-purpose opto-isolated switch 2</Description>
+                          <Designator>GPO2_B</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                    <Connector>
+                      <Name>J2 Ethernet</Name>
+                      <Description>J2: 9 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="MacqJ2Pin1" Index="1">
+                          <Name>TXDN</Name>
+                          <Description>Transmit signal (negative polarity)</Description>
+                          <Designator>TXDN</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ2Pin2" Index="2">
+                          <Name>TXDP</Name>
+                          <Description>Transmit signal (positive polarity)</Description>
+                          <Designator>TXDP</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ2Pin4" Index="3">
+                          <Name>RXDN</Name>
+                          <Description>Receive signal (negative polarity)</Description>
+                          <Designator>RXDN</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ2Pin5" Index="4">
+                          <Name>RXDP</Name>
+                          <Description>Receive signal (positive polarity)</Description>
+                          <Designator>RXDP</Designator>
+                        </Pin>
+                        <Pin ID="MacqJ2Pin6" Index="5">
+                          <Name>CHASSIS GND</Name>
+                          <Description>Chassis ground</Description>
+                          <Designator>GND</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Macq-RS-422-1" Index="1">
+                      <Name>TX1</Name>
+                      <Description>RS-422 Port 1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="RS-422">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MacqJ1Pin9"/>
+                        <PinRef IDREF="MacqJ1Pin10"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="Macq-RS-422-2" Index="2">
+                      <Name>TX2</Name>
+                      <Description>RS-422 Port 2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="RS-422">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MacqJ1Pin2"/>
+                        <PinRef IDREF="MacqJ1Pin3"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="Macq-RS-422-3" Index="3">
+                      <Name>TX3</Name>
+                      <Description>RS-422 Port 3</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="RS-422">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MacqJ1Pin11"/>
+                        <PinRef IDREF="MacqJ1Pin12"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="false" ID="Macq-RS-422-4" Index="4">
+                      <Name>TX4</Name>
+                      <Description>RS-422 Port 4</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="RS-422">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MacqJ1Pin4"/>
+                        <PinRef IDREF="MacqJ1Pin5"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Macq-PCM-Multicast" Index="5">
+                      <Name>PCM Multicast</Name>
+                      <Description>Ethernet PCM Multicast</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType>Ethernet</PortType>
+                      </PortTypes>
+                    </Port>
+                    <Port ID="MacqEthernet" Index="6">
+                      <Name>Ethernet</Name>
+                      <Description>10/100 Fast Ethernet</Description>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PortTypes>
+                        <PortType>Ethernet</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="MacqJ2Pin1"/>
+                        <PinRef IDREF="MacqJ2Pin2"/>
+                        <PinRef IDREF="MacqJ2Pin4"/>
+                        <PinRef IDREF="MacqJ2Pin5"/>
+                      </PinRefs>
+                      <PhysicalNetworkPortRef IDREF="MacqEthPhy"/>
+                    </Port>
+                  </Ports>
+                </Module>
+                <Module ID="module-1A">
+                  <Name>Card A at Position 1</Name>
+                  <Description>2-channel Simultaneous Sampling Signal Conditioner</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>VendorB</Model>
+                  <SerialID>250020</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Children>
+                    <Child>
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                      <ChildRefs>
+                        <ChildRef IDREF="VoltageExcitationValue-pos1"/>
+                      </ChildRefs>
+                    </Child>
+                  </Children>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 12 pin, Signal I/O, Channels 1-2</Description>
+                      <Pins>
+                        <Pin ID="Pos1-J1-Pin1" Index="1">
+                          <Name>EX1</Name>
+                          <Description>Channel 1 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin2" Index="2">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 Differential Signal Input +</Description>
+                          <Designator>Pos1-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin3" Index="3">
+                          <Name>IOUT_1</Name>
+                          <Description>Channel 1 Current Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin4" Index="4">
+                          <Name>EX2</Name>
+                          <Description>Channel 2 Voltage Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin5" Index="5">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 Differential Signal Input +</Description>
+                          <Designator>Pos1-J1-Pin5</Designator>
+                        </Pin> 
+                        <Pin ID="Pos1-J1-Pin6" Index="6">
+                          <Name>IOUT_2</Name>
+                          <Description>Channel 2 Current Excitation Out</Description>
+                          <Designator>Pos1-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin7" Index="7">
+                          <Name>REX1</Name>
+                          <Description>Channel 1 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin8" Index="8">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 Differential Signal Input -</Description>
+                          <Designator>Pos1-J1-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin9" Index="9">
+                          <Name>IRTN_1</Name>
+                          <Description>Channel 1 Current Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin10" Index="10">
+                          <Name>REX2</Name>
+                          <Description>Channel 2 Voltage Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin11" Index="11">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 Differential Signal Input -</Description>
+                          <Designator>Pos1-J1-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="Pos1-J1-Pin12" Index="12">
+                          <Name>IRTN_2</Name>
+                          <Description>Channel 2 Current Excitation Return</Description>
+                          <Designator>Pos1-J1-Pin12</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>                    
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Module1A-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description>Channel 1 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos1-J1-Pin2"/>
+                        <PinRef IDREF="Pos1-J1-Pin8"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module1A-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description>Channel 2 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos1-J1-Pin5"/>
+                        <PinRef IDREF="Pos1-J1-Pin6"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1A-Ch1-EC" Index="21">
+                      <Name>Ch1-EC</Name>
+                      <Description>Channel 1 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos1-J1-Pin3"/>
+                        <PinRef IDREF="Pos1-J1-Pin9"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1A-Ch2-EC" Index="22">
+                      <Name>Ch2-EC</Name>
+                      <Description>Channel 2 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos1-J1-Pin6"/>
+                        <PinRef IDREF="Pos1-J1-Pin12"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                  <SubModules>
+                    <SubModule ID="VoltageExcitationValue-pos1">
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1000</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitationOnOff12</Name>
+                          <Description>Voltage Excitation Ports 1,2 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationOnOff12-pos1"/>
+                          </ChildRefs>
+                        </Child>                       
+                      </Children>
+                      <Ports>
+                        <Port ID="VoltageExcitationValuePort-pos1" Index="1">
+                          <Name>VoltageExcitationValuePort</Name>
+                          <Description>Constant Voltage Excitation value for all ports</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <Excitation>
+                            <Polarity>Unipolar</Polarity>
+                            <Values>
+                              <ConditionParameter>
+                                <ConditionOperation>==</ConditionOperation>
+                                <ConditionValue>5</ConditionValue>
+                                <BaseUnit>Volt</BaseUnit>
+                              </ConditionParameter>
+                            </Values>
+                          </Excitation>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationOnOff12-pos1">
+                      <Name>VoltageExcitationOnOff12</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 1,2 Voltage Excitation</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1010</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation12</Name>
+                          <Description>Voltage Excitation Ports 1,2 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationPorts12-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="VoltageExcitationOnOff12Port-pos1" Index="1">
+                          <Name>VoltageExcitationOnOff123Port</Name>
+                          <Description>Constant Voltage Excitation enable ports 1,2</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationPorts12-pos1">
+                      <Name>VoltageExcitationPorts12</Name>
+                      <Description>Container for Voltage Excitation ports 1,2</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1011</Position>
+                      <Ports>
+                        <Port ID="Module1A-Ch1-EV" Index="11">
+                          <Name>Ch1-EV</Name>
+                          <Description>Channel 1 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos1-J1-Pin1"/>
+                            <PinRef IDREF="Pos1-J1-Pin7"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="Module1A-Ch2-EV" Index="12">
+                          <Name>Ch2-EV</Name>
+                          <Description>Channel 2 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos1-J1-Pin4"/>
+                            <PinRef IDREF="Pos1-J1-Pin10"/>
+                          </PinRefs>
+                        </Port>                        
+                      </Ports>
+                    </SubModule>                    
+                  </SubModules>
+                </Module>
+                <Module ID="module-1B">
+                  <Name>Card B at Position 2</Name>
+                  <Description>2-channel Simultaneous Sampling Signal Conditioner</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>VendorB</Model>
+                  <SerialID>250020</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>2</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Children>
+                    <Child>
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                      <ChildRefs>
+                        <ChildRef IDREF="VoltageExcitationValue-pos2"/>
+                      </ChildRefs>
+                    </Child>
+                  </Children>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 12 pin, Signal I/O, Channels 1-2</Description>
+                      <Pins>
+                        <Pin ID="Pos2-J1-Pin1" Index="1">
+                          <Name>EX1</Name>
+                          <Description>Channel 1 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin2" Index="2">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 Differential Signal Input +</Description>
+                          <Designator>Pos2-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin3" Index="3">
+                          <Name>IOUT_1</Name>
+                          <Description>Channel 1 Current Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin4" Index="4">
+                          <Name>EX2</Name>
+                          <Description>Channel 2 Voltage Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin5" Index="5">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 Differential Signal Input +</Description>
+                          <Designator>Pos2-J1-Pin5</Designator>
+                        </Pin> 
+                        <Pin ID="Pos2-J1-Pin6" Index="6">
+                          <Name>IOUT_2</Name>
+                          <Description>Channel 2 Current Excitation Out</Description>
+                          <Designator>Pos2-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin7" Index="7">
+                          <Name>REX1</Name>
+                          <Description>Channel 1 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin8" Index="8">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 Differential Signal Input -</Description>
+                          <Designator>Pos2-J1-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin9" Index="9">
+                          <Name>IRTN_1</Name>
+                          <Description>Channel 1 Current Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin10" Index="10">
+                          <Name>REX2</Name>
+                          <Description>Channel 2 Voltage Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin11" Index="11">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 Differential Signal Input -</Description>
+                          <Designator>Pos2-J1-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="Pos2-J1-Pin12" Index="12">
+                          <Name>IRTN_2</Name>
+                          <Description>Channel 2 Current Excitation Return</Description>
+                          <Designator>Pos2-J1-Pin12</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>                    
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Module1B-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description> Channel 1 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos2-J1-Pin2"/>
+                        <PinRef IDREF="Pos2-J1-Pin8"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module1B-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description> Channel 2 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos2-J1-Pin5"/>
+                        <PinRef IDREF="Pos2-J1-Pin6"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1B-Ch1-EC" Index="21">
+                      <Name>Ch1-EC</Name>
+                      <Description> Channel 1 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos2-J1-Pin3"/>
+                        <PinRef IDREF="Pos2-J1-Pin9"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1B-Ch2-EC" Index="22">
+                      <Name>Ch2-EC</Name>
+                      <Description> Channel 2 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos2-J1-Pin6"/>
+                        <PinRef IDREF="Pos2-J1-Pin12"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                  <SubModules>
+                    <SubModule ID="VoltageExcitationValue-pos2">
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1000</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitationOnOff12</Name>
+                          <Description>Voltage Excitation Ports 1,2 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationOnOff12-pos2"/>
+                          </ChildRefs>
+                        </Child>                       
+                      </Children>
+                      <Ports>
+                        <Port ID="VoltageExcitationValuePort-pos2" Index="1">
+                          <Name>VoltageExcitationValuePort</Name>
+                          <Description> Constant Voltage Excitation value for all ports</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <Excitation>
+                            <Polarity>Unipolar</Polarity>
+                            <Values>
+                              <ConditionParameter>
+                                <ConditionOperation>==</ConditionOperation>
+                                <ConditionValue>5</ConditionValue>
+                                <BaseUnit>Volt</BaseUnit>
+                              </ConditionParameter>
+                            </Values>
+                          </Excitation>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationOnOff12-pos2">
+                      <Name>VoltageExcitationOnOff12</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 1,2 Voltage Excitation</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1010</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation12</Name>
+                          <Description>Voltage Excitation Ports 1,2 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationPorts12-pos1"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="VoltageExcitationOnOff12Port-pos2" Index="1">
+                          <Name>VoltageExcitationOnOff123Port</Name>
+                          <Description> Constant Voltage Excitation enable ports 1,2</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationPorts12-pos2">
+                      <Name>VoltageExcitationPorts12</Name>
+                      <Description>Container for Voltage Excitation ports 1,2</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1011</Position>
+                      <Ports>
+                        <Port ID="Module1B-Ch1-EV" Index="11">
+                          <Name>Ch1-EV</Name>
+                          <Description> Channel 1 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos2-J1-Pin1"/>
+                            <PinRef IDREF="Pos2-J1-Pin7"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="Module1B-Ch2-EV" Index="12">
+                          <Name>Ch2-EV</Name>
+                          <Description> Channel 2 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos2-J1-Pin4"/>
+                            <PinRef IDREF="Pos2-J1-Pin10"/>
+                          </PinRefs>
+                        </Port>                        
+                      </Ports>
+                    </SubModule>                    
+                  </SubModules>
+                </Module>
+                <Module ID="module-1C">
+                  <Name>Card C at Position 3</Name>
+                  <Description>2-channel Simultaneous Sampling Signal Conditioner</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>VendorB</Model>
+                  <SerialID>250020</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>2</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Children>
+                    <Child>
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                      <ChildRefs>
+                        <ChildRef IDREF="VoltageExcitationValue-pos3"/>
+                      </ChildRefs>
+                    </Child>
+                  </Children>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 12 pin, Signal I/O, Channels 1-2</Description>
+                      <Pins>
+                        <Pin ID="Pos3-J1-Pin1" Index="1">
+                          <Name>EX1</Name>
+                          <Description>Channel 1 Voltage Excitation Out</Description>
+                          <Designator>Pos3-J1-Pin1</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin2" Index="2">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 Differential Signal Input +</Description>
+                          <Designator>Pos3-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin3" Index="3">
+                          <Name>IOUT_1</Name>
+                          <Description>Channel 1 Current Excitation Out</Description>
+                          <Designator>Pos3-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin4" Index="4">
+                          <Name>EX2</Name>
+                          <Description>Channel 2 Voltage Excitation Out</Description>
+                          <Designator>Pos3-J1-Pin4</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin5" Index="5">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 Differential Signal Input +</Description>
+                          <Designator>Pos3-J1-Pin5</Designator>
+                        </Pin> 
+                        <Pin ID="Pos3-J1-Pin6" Index="6">
+                          <Name>IOUT_2</Name>
+                          <Description>Channel 2 Current Excitation Out</Description>
+                          <Designator>Pos3-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin7" Index="7">
+                          <Name>REX1</Name>
+                          <Description>Channel 1 Voltage Excitation Return</Description>
+                          <Designator>Pos3-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin8" Index="8">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 Differential Signal Input -</Description>
+                          <Designator>Pos3-J1-Pin8</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin9" Index="9">
+                          <Name>IRTN_1</Name>
+                          <Description>Channel 1 Current Excitation Return</Description>
+                          <Designator>Pos3-J1-Pin9</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin10" Index="10">
+                          <Name>REX2</Name>
+                          <Description>Channel 2 Voltage Excitation Return</Description>
+                          <Designator>Pos3-J1-Pin10</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin11" Index="11">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 Differential Signal Input -</Description>
+                          <Designator>Pos3-J1-Pin11</Designator>
+                        </Pin>
+                        <Pin ID="Pos3-J1-Pin12" Index="12">
+                          <Name>IRTN_2</Name>
+                          <Description>Channel 2 Current Excitation Return</Description>
+                          <Designator>Pos3-J1-Pin12</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>                    
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Module1C-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description> Channel 1 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos3-J1-Pin2"/>
+                        <PinRef IDREF="Pos3-J1-Pin8"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module1C-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description> Channel 2 Signal Input</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType>Analog</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos3-J1-Pin5"/>
+                        <PinRef IDREF="Pos3-J1-Pin6"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1C-Ch1-EC" Index="21">
+                      <Name>Ch1-EC</Name>
+                      <Description> Channel 1 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos3-J1-Pin3"/>
+                        <PinRef IDREF="Pos3-J1-Pin9"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="Module1C-Ch2-EC" Index="22">
+                      <Name>Ch2-EC</Name>
+                      <Description> Channel 2 Excitation Constant Current Output</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Excitation">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos3-J1-Pin6"/>
+                        <PinRef IDREF="Pos3-J1-Pin12"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                  <SubModules>
+                    <SubModule ID="VoltageExcitationValue-pos3">
+                      <Name>VoltageExcitationValue</Name>
+                      <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1000</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitationOnOff12</Name>
+                          <Description>Voltage Excitation Ports 1,2 enable</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationOnOff12-pos3"/>
+                          </ChildRefs>
+                        </Child>                       
+                      </Children>
+                      <Ports>
+                        <Port ID="VoltageExcitationValuePort-pos3" Index="1">
+                          <Name>VoltageExcitationValuePort</Name>
+                          <Description> Constant Voltage Excitation value for all ports</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <Excitation>
+                            <Polarity>Unipolar</Polarity>
+                            <Values>
+                              <ConditionParameter>
+                                <ConditionOperation>==</ConditionOperation>
+                                <ConditionValue>5</ConditionValue>
+                                <BaseUnit>Volt</BaseUnit>
+                              </ConditionParameter>
+                            </Values>
+                          </Excitation>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationOnOff12-pos3">
+                      <Name>VoltageExcitationOnOff12</Name>
+                      <Description>Set this SubModule Port Enabled to true to turn on Port 1,2 Voltage Excitation</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1010</Position>
+                      <Children>
+                        <Child>
+                          <Name>VoltageExcitation12</Name>
+                          <Description>Voltage Excitation Ports 1,2 container</Description>
+                          <ChildRefs>
+                            <ChildRef IDREF="VoltageExcitationPorts12-pos3"/>
+                          </ChildRefs>
+                        </Child>
+                      </Children>
+                      <Ports>
+                        <Port Enabled="false" ID="VoltageExcitationOnOff12Port-pos3" Index="1">
+                          <Name>VoltageExcitationOnOff12Port</Name>
+                          <Description> Constant Voltage Excitation enable ports 1,2</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                        </Port>
+                      </Ports>
+                    </SubModule>
+                    <SubModule ID="VoltageExcitationPorts12-pos3">
+                      <Name>VoltageExcitationPorts12</Name>
+                      <Description>Container for Voltage Excitation ports 1,2</Description>
+                      <Manufacturer>VendorB</Manufacturer>
+                      <Model/>
+                      <SerialID/>
+                      <InventoryID/>
+                      <Position>1011</Position>
+                      <Ports>
+                        <Port ID="Module1C-Ch1-EV" Index="11">
+                          <Name>Ch1-EV</Name>
+                          <Description> Channel 1 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos3-J1-Pin1"/>
+                            <PinRef IDREF="Pos3-J1-Pin7"/>
+                          </PinRefs>
+                        </Port>
+                        <Port ID="Module1C-Ch2-EV" Index="12">
+                          <Name>Ch2-EV</Name>
+                          <Description> Channel 2 Excitation Constant Voltage Output</Description>
+                          <PortDirection>Output</PortDirection>
+                          <PortTypes>
+                            <PortType Extension="Excitation">Extension</PortType>
+                          </PortTypes>
+                          <PinRefs>
+                            <PinRef IDREF="Pos3-J1-Pin4"/>
+                            <PinRef IDREF="Pos3-J1-Pin10"/>
+                          </PinRefs>
+                        </Port>                        
+                      </Ports>
+                    </SubModule>                    
+                  </SubModules>
+                </Module>                
+                <Module ID="module-2A">
+                  <Name>Position 4</Name>
+                  <Description>4-channel thermocouple conditioner</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>TBD</Model>
+                  <SerialID>251874</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>4</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 8 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="Pos4-J1-Pin1" Index="1">
+                          <Name>IN4+</Name>
+                          <Description>Channel 4 signal +</Description>
+                          <Designator>Pos4-J1-Pin1</Designator>
+                        </Pin>                        
+                        <Pin ID="Pos4-J1-Pin2" Index="2">
+                          <Name>IN3+</Name>
+                          <Description>Channel 3 signal +</Description>
+                          <Designator>Pos4-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="Pos4-J1-Pin3" Index="3">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 signal +</Description>
+                          <Designator>Pos4-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="Pos4-J1-Pin4" Index="4">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 signal +</Description>
+                          <Designator>Pos4-J1-Pin4</Designator>
+                        </Pin> 
+                        <Pin ID="Pos4-J1-Pin5" Index="5">
+                          <Name>IN4-</Name>
+                          <Description>Channel 4 signal -</Description>
+                          <Designator>Pos4-J1-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="Pos4-J1-Pin6" Index="6">
+                          <Name>IN3-</Name>
+                          <Description>Channel 3 signal -</Description>
+                          <Designator>Pos4-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="Pos4-J1-Pin7" Index="7">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 signal -</Description>
+                          <Designator>Pos4-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="Pos4-J1-Pin8" Index="8">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 signal -</Description>
+                          <Designator>Pos4-J1-Pin8</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Module2A-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description>Channel 1</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos4-J1-Pin4"/>
+                        <PinRef IDREF="Pos4-J1-Pin8"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2A-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description>Channel 2</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos4-J1-Pin3"/>
+                        <PinRef IDREF="Pos4-J1-Pin7"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2A-Ch3" Index="3">
+                      <Name>Ch3</Name>
+                      <Description>Channel 3</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos4-J1-Pin2"/>
+                        <PinRef IDREF="Pos4-J1-Pin6"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2A-Ch4" Index="4">
+                      <Name>Ch4</Name>
+                      <Description>Channel 4</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Thermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos4-J1-Pin1"/>
+                        <PinRef IDREF="Pos4-J1-Pin5"/>
+                      </PinRefs>
+                    </Port>
+                    
+                  </Ports>
+                </Module> 
+                <Module ID="module-2B">
+                  <Name>Position 5</Name>
+                  <Description>4-channel thermocouple conditioner</Description>
+                  <Manufacturer>VendorB</Manufacturer>
+                  <Model>TBD</Model>
+                  <SerialID>251874</SerialID>
+                  <InventoryID>id_0x00000016</InventoryID>
+                  <Position>5</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>J1</Name>
+                      <Description>J1: 8 pin D-subminiature</Description>
+                      <Pins>
+                        <Pin ID="Pos5-J1-Pin1" Index="1">
+                          <Name>IN4+</Name>
+                          <Description>Channel 4 signal +</Description>
+                          <Designator>Pos5-J1-Pin1</Designator>
+                        </Pin>                        
+                        <Pin ID="Pos5-J1-Pin2" Index="2">
+                          <Name>IN3+</Name>
+                          <Description>Channel 3 signal +</Description>
+                          <Designator>Pos5-J1-Pin2</Designator>
+                        </Pin>
+                        <Pin ID="Pos5-J1-Pin3" Index="3">
+                          <Name>IN2+</Name>
+                          <Description>Channel 2 signal +</Description>
+                          <Designator>Pos5-J1-Pin3</Designator>
+                        </Pin>
+                        <Pin ID="Pos5-J1-Pin4" Index="4">
+                          <Name>IN1+</Name>
+                          <Description>Channel 1 signal +</Description>
+                          <Designator>Pos5-J1-Pin4</Designator>
+                        </Pin> 
+                        <Pin ID="Pos5-J1-Pin5" Index="5">
+                          <Name>IN4-</Name>
+                          <Description>Channel 4 signal -</Description>
+                          <Designator>Pos5-J1-Pin5</Designator>
+                        </Pin>
+                        <Pin ID="Pos5-J1-Pin6" Index="6">
+                          <Name>IN3-</Name>
+                          <Description>Channel 3 signal -</Description>
+                          <Designator>Pos5-J1-Pin6</Designator>
+                        </Pin>
+                        <Pin ID="Pos5-J1-Pin7" Index="7">
+                          <Name>IN2-</Name>
+                          <Description>Channel 2 signal -</Description>
+                          <Designator>Pos5-J1-Pin7</Designator>
+                        </Pin>
+                        <Pin ID="Pos5-J1-Pin8" Index="8">
+                          <Name>IN1-</Name>
+                          <Description>Channel 1 signal -</Description>
+                          <Designator>Pos5-J1-Pin8</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Enabled="true" ID="Module2B-Ch1" Index="1">
+                      <Name>Ch1</Name>
+                      <Description>Channel 1</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos5-J1-Pin4"/>
+                        <PinRef IDREF="Pos5-J1-Pin8"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2B-Ch2" Index="2">
+                      <Name>Ch2</Name>
+                      <Description>Channel 2</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos5-J1-Pin3"/>
+                        <PinRef IDREF="Pos5-J1-Pin7"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2B-Ch3" Index="3">
+                      <Name>Ch3</Name>
+                      <Description>Channel 3</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="KThermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos5-J1-Pin2"/>
+                        <PinRef IDREF="Pos5-J1-Pin6"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Enabled="true" ID="Module2B-Ch4" Index="4">
+                      <Name>Ch4</Name>
+                      <Description>Channel 4</Description>
+                      <PortDirection>Input</PortDirection>
+                      <PortTypes>
+                        <PortType Extension="Thermocouple">Extension</PortType>
+                      </PortTypes>
+                      <PinRefs>
+                        <PinRef IDREF="Pos5-J1-Pin1"/>
+                        <PinRef IDREF="Pos5-J1-Pin5"/>
+                      </PinRefs>
+                    </Port>                    
+                  </Ports>
+                </Module> 
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+        </NetworkNodes>
+        <Devices>
+          <Device ID="id_0x00000001">
+            <Name>ACEL1 0</Name>
+            <Description>Accelerometer</Description>
+            <Manufacturer>PCB Piezotronics</Manufacturer>
+            <Model>356A15</Model>
+            <SerialID>1</SerialID>
+            <InventoryID>id_0x00000001</InventoryID>
+            <DeviceType>Accelerometer</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e01">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Sensitivity>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValue>10.2</ConditionValue>
+                      <BaseUnit>Unitless</BaseUnit>
+                    </ConditionParameter>
+                  </Sensitivity>
+                  <ExcitationSource>External</ExcitationSource>
+                  <Connectors>
+                    <Connector>
+                      <Name>Accel 1</Name>
+                      <Description>J2</Description>
+                      <Pins>
+                        <Pin ID="id_0x00000067" Index="1">
+                          <Name>1</Name>
+                          <Description>Rd</Description>
+                          <Designator>X Axis</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000000c" Index="2">
+                          <Name>2</Name>
+                          <Description>Ye</Description>
+                          <Designator>Z Axis</Designator>
+                        </Pin>
+                        <Pin ID="id_0x000000d6" Index="3">
+                          <Name>3</Name>
+                          <Description>Wh</Description>
+                          <Designator>Y Axis</Designator>
+                        </Pin>
+                        <Pin ID="id_0x00000099" Index="4">
+                          <Name>4</Name>
+                          <Description>Bk</Description>
+                          <Designator>Ground</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x00000038" Index="1">
+                      <Name>X Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x00000067"/>
+                        <PinRef IDREF="id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="id_0x0000000d" Index="2">
+                      <Name>Z Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000000c"/>
+                        <PinRef IDREF="id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                    <Port ID="id_0x0000007d" Index="3">
+                      <Name>Y Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x000000d6"/>
+                        <PinRef IDREF="id_0x00000099"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000002">
+            <Name>ACEL1 1</Name>
+            <Description>Accelerometer</Description>
+            <Manufacturer>PCB Piezotronics</Manufacturer>
+            <Model>356A15</Model>
+            <SerialID>1</SerialID>
+            <InventoryID>id_0x00000002</InventoryID>
+            <DeviceType>Accelerometer</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d3e02">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Sensitivity>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValue>10.2</ConditionValue>
+                      <BaseUnit>Unitless</BaseUnit>
+                    </ConditionParameter>
+                  </Sensitivity>
+                  <ExcitationSource>External</ExcitationSource>
+                  <Connectors>
+                    <Connector>
+                      <Name>Accel 1</Name>
+                      <Description>J2</Description>
+                      <Pins>
+                        <Pin Index="1" ID="id_0x0000013f">
+                          <Name>1</Name>
+                          <Description>Rd</Description>
+                          <Designator>X Axis</Designator>
+                        </Pin>
+                        <Pin Index="2" ID="id_0x0000013e">
+                          <Name>2</Name>
+                          <Description>Ye</Description>
+                          <Designator>Z Axis</Designator>
+                        </Pin>
+                        <Pin Index="3" ID="id_0x0000014f">
+                          <Name>3</Name>
+                          <Description>Wh</Description>
+                          <Designator>Y Axis</Designator>
+                        </Pin>
+                        <Pin Index="4" ID="id_0x00000142">
+                          <Name>4</Name>
+                          <Description>Bk</Description>
+                          <Designator>Ground</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port Index="1" ID="id_0x00000138">
+                      <Name>X Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000013f"/>
+                        <PinRef IDREF="id_0x00000142"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Index="2" ID="id_0x0000013a">
+                      <Name>Z Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000013e"/>
+                        <PinRef IDREF="id_0x00000142"/>
+                      </PinRefs>
+                    </Port>
+                    <Port Index="3" ID="id_0x00000010">
+                      <Name>Y Axis</Name>
+                      <Description>J2</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000014f"/>
+                        <PinRef IDREF="id_0x00000142"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000004">
+            <Name>THERM1 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>1</SerialID>
+            <InventoryID>id_0x00000004</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e4">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004d" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x00000055" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x00000034" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004d"/>
+                        <PinRef IDREF="id_0x00000055"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000005">
+            <Name>THERM2 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>2</SerialID>
+            <InventoryID>id_0x00000005</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e05">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000006e" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x00000015" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x00000066" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000006e"/>
+                        <PinRef IDREF="id_0x00000015"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000006">
+            <Name>THERM3 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x00000006</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e06">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x00000072" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a"/>
+                        <PinRef IDREF="id_0x0000004c"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000007">
+            <Name>THERM4 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x00000007</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e07">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a01" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c01" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x0000007201" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a01"/>
+                        <PinRef IDREF="id_0x0000004c01"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000008">
+            <Name>THERM5 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x00000008</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e08">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a02" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c02" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x0000007202" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a02"/>
+                        <PinRef IDREF="id_0x0000004c02"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000009">
+            <Name>THERM6 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x00000009</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e09">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a03" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c03" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x0000007203" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a03"/>
+                        <PinRef IDREF="id_0x0000004c03"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x000000010">
+            <Name>THERM7 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x000000010</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e10">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a04" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c04" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x0000007204" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a04"/>
+                        <PinRef IDREF="id_0x0000004c04"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>
+          <Device ID="id_0x00000011">
+            <Name>THERM8 0</Name>
+            <Description>Thermocouple</Description>
+            <Manufacturer>Omega</Manufacturer>
+            <Model>SA1-K-72</Model>
+            <SerialID>3</SerialID>
+            <InventoryID>id_0x00000011</InventoryID>
+            <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+            <DeviceStructure>
+              <DeviceModules>
+                <DeviceModule ID="d1e11">
+                  <Name>Generated Module</Name>
+                  <Description>Generated Module</Description>
+                  <Manufacturer>n/a</Manufacturer>
+                  <Model>n/a</Model>
+                  <SerialID>n/a</SerialID>
+                  <InventoryID>n/a</InventoryID>
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <Connectors>
+                    <Connector>
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <Pins>
+                        <Pin ID="id_0x0000004a05" Index="1">
+                          <Name>1</Name>
+                          <Description>Positive</Description>
+                          <Designator>Ye</Designator>
+                        </Pin>
+                        <Pin ID="id_0x0000004c05" Index="2">
+                          <Name>2</Name>
+                          <Description>Negative</Description>
+                          <Designator>Rd</Designator>
+                        </Pin>
+                      </Pins>
+                    </Connector>
+                  </Connectors>
+                  <Ports>
+                    <Port ID="id_0x0000007205" Index="1">
+                      <Name>Therm N</Name>
+                      <Description>J1</Description>
+                      <PortDirection>Output</PortDirection>
+                      <PinRefs>
+                        <PinRef IDREF="id_0x0000004a05"/>
+                        <PinRef IDREF="id_0x0000004c05"/>
+                      </PinRefs>
+                    </Port>
+                  </Ports>
+                </DeviceModule>
+              </DeviceModules>
+            </DeviceStructure>
+          </Device>          
+        </Devices>
+        <PortMappings>
+          <PortMapping ID="Module1A-Ch1-Map">
+            <Name>Module1A-Ch1-Map 0</Name>
+            <Description>Module1A-Ch1-Map</Description>
+            <PortRef IDREF="id_0x00000038"/>
+            <PortRef IDREF="Module1A-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-1"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module1A-Ch2-Map">
+            <Name>Module1A-Ch2-Map 0</Name>
+            <Description>Module1A-Ch2-Map</Description>
+            <PortRef IDREF="id_0x0000000d"/>
+            <PortRef IDREF="Module1A-Ch2"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-2"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module1B-Ch1-Map">
+            <Name>Module1B-Ch1-Map 0</Name>
+            <Description>Module1B-Ch1-Map</Description>
+            <PortRef IDREF="id_0x0000007d"/>
+            <PortRef IDREF="Module1B-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-3"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module1B-Ch2-Map">
+            <Name>Module1B-Ch2-Map 0</Name>
+            <Description>Module1B-Ch2-Map</Description>
+            <PortRef IDREF="id_0x00000138"/>
+            <PortRef IDREF="Module1B-Ch2"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-4"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module1C-Ch1-Map">
+            <Name>Module1C-Ch1-Map 0</Name>
+            <Description>Module1C-Ch1-Map</Description>
+            <PortRef IDREF="id_0x0000013a"/>
+            <PortRef IDREF="Module1C-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-5"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module1C-Ch2-Map">
+            <Name>Module1C-Ch2-Map 0</Name>
+            <Description>Module1C-Ch2-Map</Description>
+            <PortRef IDREF="id_0x00000010"/>
+            <PortRef IDREF="Module1C-Ch2"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-1-6"/>
+            </MeasurementRefs>
+          </PortMapping> 
+          <PortMapping ID="Module2A-Ch1-Map">
+            <Name>Module2A-Ch1-Map 0</Name>
+            <Description>Module2A-Ch1-Map</Description>
+            <PortRef IDREF="id_0x00000034"/>
+            <PortRef IDREF="Module2A-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-1"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2A-Ch2-Map">
+            <Name>Module2A-Ch2-Map 0</Name>
+            <Description>Module2A-Ch2-Map</Description>
+            <PortRef IDREF="id_0x00000066"/>
+            <PortRef IDREF="Module2A-Ch2"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-2"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2A-Ch3-Map">
+            <Name>Module2A-Ch3-Map 0</Name>
+            <Description>Module2A-Ch3-Map</Description>
+            <PortRef IDREF="id_0x00000072"/>
+            <PortRef IDREF="Module2A-Ch3"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-3"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2A-Ch4-Map">
+            <Name>Module2A-Ch4-Map 0</Name>
+            <Description>Module2A-Ch4-Map</Description>
+            <PortRef IDREF="id_0x0000007201"/>
+            <PortRef IDREF="Module2A-Ch4"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-4"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2B-Ch1-Map">
+            <Name>Module2B-Ch1-Map 0</Name>
+            <Description>Module2B-Ch1-Map</Description>
+            <PortRef IDREF="id_0x0000007202"/>
+            <PortRef IDREF="Module2B-Ch1"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-5"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2B-Ch2-Map">
+            <Name>Module2B-Ch2-Map 0</Name>
+            <Description>Module2B-Ch2-Map</Description>
+            <PortRef IDREF="id_0x0000007203"/>
+            <PortRef IDREF="Module2B-Ch2"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-6"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2B-Ch3-Map">
+            <Name>Module2B-Ch3-Map 0</Name>
+            <Description>Module2B-Ch3-Map</Description>
+            <PortRef IDREF="id_0x0000007204"/>
+            <PortRef IDREF="Module2B-Ch3"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-7"/>
+            </MeasurementRefs>
+          </PortMapping>
+          <PortMapping ID="Module2B-Ch4-Map">
+            <Name>Module2B-Ch4-Map 0</Name>
+            <Description>Module2B-Ch4-Map</Description>
+            <PortRef IDREF="id_0x0000007205"/>
+            <PortRef IDREF="Module2B-Ch4"/>
+            <MeasurementRefs>
+              <MeasurementRef IDREF="meas-2-8"/>
+            </MeasurementRefs>
+          </PortMapping>     
+        </PortMappings>
+      </Network>
+    </Networks>
+  </NetworkDomain>
+  <DSCPTable>
+    <DSCPTableEntry ID="dscp-0">
+      <Name>Best Effort</Name>
+      <Description>Best Effort</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>
+

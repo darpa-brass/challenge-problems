@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>0.0.1</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Standalone-Example</Name>
+      <Description>This is a standalone MDL Instance Document that provides some of the baseline elements that may be used to build more complex MDL Instance Documents</Description>
+      <TmNSCompleteness>true</TmNSCompleteness>
+      <TmNSCompletenessDescription>Complete</TmNSCompletenessDescription>
+      <NetworkReferences/>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="Bits16EU">
+      <Name>Two Bytes</Name>
+      <Description>16 binary digits (2 bytes)</Description>
+      <Symbol>16b</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>16</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="MilliSec">
+      <Name>Milliseconds</Name>
+      <Description>10^-3 seconds</Description>
+      <Symbol>mSec</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Second</SIUnits>
+      </UnitsNumerator>
+      <UnitsDenominator>
+        <NumericalConstant>1000</NumericalConstant>
+        <SIUnits>Unitless</SIUnits>
+      </UnitsDenominator>
+    </DerivedUnit>
+    <DerivedUnit ID="MicroSec">
+      <Name>Microseconds</Name>
+      <Description>10^-6 seconds</Description>
+      <Symbol>uSec</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Second</SIUnits>
+      </UnitsNumerator>
+      <UnitsDenominator>
+        <NumericalConstant>1000000</NumericalConstant>
+        <SIUnits>Unitless</SIUnits>
+      </UnitsDenominator>
+    </DerivedUnit>
+    <DerivedUnit ID="MbpsEU">
+      <Name>Mega-bits per seconds</Name>
+      <Description>rate - number of Mega-bits per second</Description>
+      <Symbol>Mbps</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>1000000</NumericalConstant>
+        <SIUnits>BitPerSecond</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="SecondsSI_Sq">
+      <Name>seconds squared</Name>
+      <Description>square seconds</Description>
+      <Symbol>s^2</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Second</SIUnits>
+      </UnitsNumerator>
+      <UnitsNumerator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Second</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="CelsiusEU">
+      <Name>Celsius</Name>
+      <Description> unit of temperature, derived from Kelvin (K + 273) </Description>
+      <Symbol>C</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Kelvin</SIUnits>
+      </UnitsNumerator>
+      <AddedConstant>273</AddedConstant>
+    </DerivedUnit>
+  </Units>
+  <DSCPTable>
+    <DSCPTableEntry ID="dscp0-b">
+      <Name>TBD name</Name>
+      <Description>Best Effort</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp1-b">
+      <Name>TBD name</Name>
+      <Description>Expedited Forwarding</Description>
+      <DSCPValue>0b101110</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp2-b">
+      <Name>TBD name</Name>
+      <Description>Assured Forwarding Class 1</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp3-b">
+      <Name>TBD name</Name>
+      <Description>Assured Forwarding Class 2</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp4-b">
+      <Name>TBD name</Name>
+      <Description>Assured Forwarding Class 3</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp5-b">
+      <Name>TBD name</Name>
+      <Description>Assured Forwarding Class 4</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>

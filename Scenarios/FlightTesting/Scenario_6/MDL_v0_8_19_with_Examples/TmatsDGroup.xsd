@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<xs:schema 
+xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" 
+targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" 
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+	<xs:complexType name="FragmentType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="TagNumber" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TD2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TD3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FragmentTransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TD4</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FragmentPosition" default="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TD5</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:maxInclusive value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementFragmentsType">
+		<xs:sequence>
+			<xs:element name="FragmentPosition" default="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WFP</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:positiveInteger">
+						<xs:maxInclusive value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FragmentTransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WFT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartWord" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>WP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WordInterval" type="xs:nonNegativeInteger" default="0" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndWord" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EWP (If absent, assume "end of frame", and is only valid if WordInterval is present, and greater than 0)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartFrame" type="xs:positiveInteger">
+				<xs:annotation>
+					<xs:documentation>FP</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FrameInterval" type="xs:nonNegativeInteger" default="0" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>FI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndFrame" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EFP (If absent, assume "end of major frame", and is only valid if FrameInterval is present, and greater than 0)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>WFM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementListType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Measurement" type="MeasurementType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="optional"/>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementLocationType">
+		<xs:sequence>
+			<xs:element name="MeasurementFragments" type="MeasurementFragmentsType" maxOccurs="8">
+				<xs:annotation>
+					<xs:documentation>One definition per "MeasurementLocation" if the measurement is not fragmented, else each definition is used to define "Fragment #1" thru "Fragment #8".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MeasurementType">
+		<xs:sequence>
+			<xs:element name="Parity" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MN1</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:union memberTypes="TmatsCommon:OddEvenNoneType TmatsCommon:DefaultType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ParityTransferOrder" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MN2</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:union memberTypes="TmatsCommon:ParityTransferOrderType TmatsCommon:DefaultType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MeasurementTransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MN3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LocationType" type="TmatsCommon:PCMMeasurementLocationTypeType" default="Word and Frame" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>LT</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Choice depends on value of LT command</xs:documentation>
+				</xs:annotation>
+				<xs:element name="WordAndFrame" type="WordAndFrameType" minOccurs="0"/>
+				<xs:element name="TaggedData" type="TaggedDataType" minOccurs="0"/>
+				<xs:element name="Relative" type="RelativeType" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="required"/>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="RelativeType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Parent" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Repeat REL\N Times</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence minOccurs="0">
+						<xs:element name="Measurement" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>REL1</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>REL2</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FragmentTransferOrder" type="TmatsCommon:TransferOrderType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>REL3</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FragmentPosition" default="1" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>REL4</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:positiveInteger">
+									<xs:minInclusive value="1"/>
+									<xs:maxInclusive value="8"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="TaggedDataType">
+		<xs:sequence>
+			<xs:element name="Fragment" type="FragmentType" maxOccurs="8">
+				<xs:annotation>
+					<xs:documentation>Repeats TD\N times. If not fragmented, only one definition is specified</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="WordAndFrameType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="IDCounterName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>IDCN (Required only if there is more than one ID Counter defined).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeasurementLocation" type="MeasurementLocationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MML\N (Repeat however many time are required to completely describe this measurement's locations in the frame)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="PCMMeasurementsType">
+		<xs:annotation>
+			<xs:documentation>TMATS D-Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="MeasurementList" type="MeasurementListType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MLN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Comments" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>COM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+	</xs:complexType>
+</xs:schema>

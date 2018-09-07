@@ -1,0 +1,601 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_15.xsd">
+  <DatabaseID>example id string</DatabaseID>
+  <Checksum>not present</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <Units>
+    <DerivedUnit ID="ByteEU">
+      <Name>Byte</Name>
+      <Description>8 binary digits (1 byte)</Description>
+      <Symbol>B</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>8.0</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Meas Domain</Name>
+      <Description>The measurement domain for this generic data stream example</Description>
+      <Measurements>
+        <Measurement ID="meas-0001">
+          <Name>BANDPASS</Name>
+          <Description>Example of a Measurement with Bandpass analog properties</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <AnalogAttributes>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>0</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>3.0</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.0007324</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>StopBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFlex>28000</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>60</ConditionValueFlex>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>29500</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFlex>50500</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFloat>-0.5</ConditionValueFloat>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFloat>0.5</ConditionValueFloat>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+                <FrequencyBand>
+                  <BandType>StopBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>51000</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>80</ConditionValueFlex>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>125000</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+
+
+      <Packages>
+        <PackageDefinition ID="pd-0001">
+          <Name>Package for mapping measurements to TmNS Data Message</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000010</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <PackageStructureRef IDREF="ps-0001"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="meas-0001"/>
+                  <SyllableMask>0x0FFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="ps-0001-pdf-0001"/>
+              <FillValue>0</FillValue>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+        <PackageStructure ID="ps-0001">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PackageDataField ID="ps-0001-pdf-0001">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <FieldLocation ID="ps-0001-pdf-0001-fl-0001">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>12</FlexValue> <!--offset is from the start of the message.  Standard header is 12 bytes-->
+                  <UnitsRef IDREF="ByteEU"/>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>2</FlexValue>
+                <UnitsRef IDREF="ByteEU"/>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>0</FieldRepetitions> <!--indefinite repetitions to size of package-->
+          </PackageDataField>
+        </PackageStructure>
+      </Packages>
+
+
+      <Messages>
+        <MessageDefinition ID="md-0001">
+          <Name>Example Message</Name>
+          <Description>TBD description</Description>
+          <MessageDefinitionID>0x80808080</MessageDefinitionID>
+          <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+          <DestinationAddress>230.0.0.10</DestinationAddress>
+          <MaximumMessageLength>
+            <FlexValue>512</FlexValue>
+            <UnitsRef IDREF="ByteEU"/>
+          </MaximumMessageLength>
+          <FixedPackageOrder>true</FixedPackageOrder>
+          <FixedNumberOfPackages>true</FixedNumberOfPackages>
+          <PackageInstance>
+            <PackageDefinitionRef IDREF="pd-0001"/>
+          </PackageInstance>
+        </MessageDefinition>
+      </Messages>
+
+
+
+      <DataStreams>
+        <DataStream ID="ds-0001">
+          <Name>Chapter 10 Example Data Stream</Name>
+          <Description>This example uses the GenericDataStreamMessage to show how to describe a data stream that is not explicitly supported in MDL.</Description>
+          <GenericDataStreamMessages>
+            <ReferenceDocumentation>http://www.irig106.org/docs/106-11/chapter10.pdf</ReferenceDocumentation>
+            <GenericDataStreamMessage ID="gdsm-0001">
+              <Name>Message 1</Name>
+              <Description>The first message in the chapter 10 example.  The format is based on the format in Figure 10-12 of the reference documentation.</Description>
+              <DataStructure ID="dstruct-0001">
+                <Name>data structure 1</Name>
+                <Description>data structure for first generic data stream message</Description>
+
+                <PackageDataField ID="pdf-0001">
+                  <Name>Packet Sync Pattern</Name>
+                  <Description>This shall contain the fixed value of 0xEB25 according to the standard</Description>
+                  <FieldLocation ID="fl-0001">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>2</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0002">
+                  <Name>Channel ID</Name>
+                  <Description>contains a value representing the Packet Channel ID</Description>
+                  <FieldLocation ID="fl-0002">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>2</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>2</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0003">
+                  <Name>Packet Length</Name>
+                  <Description>contains a value representing the length of the entire packet. The value shall be in bytes and is always a multiple of four (bit 1 and bit 0 shall always be zero). This Packet Length includes the Packet Header, Packet Secondary Header (if enabled), Channel Specific Data, Intra-Packet Headers, Data, Filler, and Data Checksum.</Description>
+                  <FieldLocation ID="fl-0003">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>4</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>4</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0004">
+                  <Name>Data Length</Name>
+                  <Description>contains a value representing the valid data length within the packet. This value shall be represented in bytes. Valid data length includes Channel Specific Data, Intra-Packet Data Headers, Intra-Packet Time Stamp(s), and Data but does not include Packet Trailer Filler and Data Checksum.</Description>
+                  <FieldLocation ID="fl-0004">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>8</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>4</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0005">
+                  <Name>Data Type Version</Name>
+                  <Description>contains a value at or below the release version of standard applied to the data types in table 10-7. The value shall be represented by the following bit patterns:
+                  0x00 = Reserved
+                  0x01 = Initial Release (RCC 106-04)
+                  0x02 = RCC 106-05
+                  0x03 = RCC 106-07
+                  0x04 = RCC 106-09
+                  0x05 = RCC 106-11
+                  0x06 thru 0xFF = Reserved</Description>
+                  <FieldLocation ID="fl-0005">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>12</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0006">
+                  <Name>Sequence Number</Name>
+                  <Description>contains a value representing the packet sequence number for each Channel ID. This is simply a counter that increments by n + 0x01 to 0xFF for every packet transferred from a particular channel and is not required to start at 0x00 for the first occurrence of a packet for the Channel ID.</Description>
+                  <FieldLocation ID="fl-0006">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>13</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0007">
+                  <Name>Packet Flags</Name>
+                  <Description>contains bits representing information on the content and format of the packet</Description>
+                  <FieldLocation ID="fl-0007">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>14</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0008">
+                  <Name>Data Type</Name>
+                  <Description>contains a value representing the type and format of the data. All values not used to define a data type are reserved for future data type growth.</Description>
+                  <FieldLocation ID="fl-0008">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>15</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0009">
+                  <Name>Relative Time Counter</Name>
+                  <Description>contains a value representing the 10 MHz Relative Time Counter (RTC). This is a free-running 10 MHz binary counter represented by 48 bits which are common to all data channels. The counter shall be derived from a 10 MHz internal crystal oscillator and shall remain freerunning during each recording.</Description>
+                  <FieldLocation ID="fl-0009">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>16</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>6</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0010">
+                  <Name>Header Checksum</Name>
+                  <Description>contains a value representing a 16-bit arithmetic sum of all 16-bit words in the header excluding the Header Checksum Word.</Description>
+                  <FieldLocation ID="fl-0010">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>22</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>2</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0011">
+                  <Name>Analog Packet Channel Specific Data</Name>
+                  <Description>The channel specific data is basically a header word containing information about the analog samples that follow.</Description>
+                  <FieldLocation ID="fl-0011">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>24</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>4</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0012">
+                  <Name>Analog Samples</Name>
+                  <Description></Description>
+                  <FieldLocation ID="fl-0012">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>28</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>2</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>32</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0013">
+                  <Name>Filler</Name>
+                  <Description>This is a filler word to make the packet size fall on 4-byte boundaries</Description>
+                  <FieldLocation ID="fl-0013">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>92</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>3</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+                <PackageDataField ID="pdf-0014">
+                  <Name>Data Checksum</Name>
+                  <Description>16-bit checksum of entire packet</Description>
+                  <FieldLocation ID="fl-0014">
+                    <FieldOffset> 
+                      <OffsetValue>
+                        <FlexValue>95</FlexValue><UnitsRef IDREF="ByteEU"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue><UnitsRef IDREF="ByteEU"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>LittleEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+
+              </DataStructure>
+
+
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>16</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="meas-0001"/>
+                      <SyllableMask>0x0FFF</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>16</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="pdf-0012"/>
+                  <FillValue>0</FillValue>
+                  <TimeOrder>IncreasingTemporal</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+
+            </GenericDataStreamMessage>
+          </GenericDataStreamMessages>
+        </DataStream>
+      </DataStreams>
+    </MeasurementDomain>
+  </MeasurementDomains>
+
+
+  <DSCPTable>
+    <DSCPTableEntry ID="DiffservBestEffort">
+      <Name>Best Effort Diffserv</Name>
+      <Description>Best Effort PHB</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservExpeditedForwarding">
+      <Name>Expedited Forwarding Diffserv</Name>
+      <Description>Expedited Forwarding PHB</Description>
+      <DSCPValue>0b101110</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding1">
+      <Name>Assured Forwarding 1 Diffserv</Name>
+      <Description>Assured Forwarding Class 1</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding2">
+      <Name>Assured Forwarding 2 Diffserv</Name>
+      <Description>Assured Forwarding Class 2</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding3">
+      <Name>Assured Forwarding 3 Diffserv</Name>
+      <Description>Assured Forwarding Class 3</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding4">
+      <Name>Assured Forwarding 4 Diffserv</Name>
+      <Description>Assured Forwarding Class 4</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+
+</MDLRoot>

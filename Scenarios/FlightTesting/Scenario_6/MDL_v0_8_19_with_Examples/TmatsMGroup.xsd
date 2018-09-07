@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<xs:schema 
+xmlns:TmatsC="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" 
+xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:TmatsM="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" 
+targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" 
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" schemaLocation="TmatsCGroup.xsd"/>
+	<xs:complexType name="BasebandSignalType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="SignalType" type="TmatsCommon:BasebandSignalTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BSG1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LowPassFilter" type="TmatsM:LowPassFilterType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BSF1 and BSF2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Based upon value of BSG1</xs:documentation>
+				</xs:annotation>
+				<xs:element name="DataLinkName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>BB\DLN</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="MeasurementName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>BB\MN</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="CompositeSignalStructureType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="SignalStructureType" type="TmatsCommon:SignalStructureTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BB1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModulationSense" type="TmatsCommon:PositiveNegative" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BB2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CompositeLPFBandwidth" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>BB3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="IRIGSubcarrierType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SI1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataType" type="TmatsCommon:LinkTypeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SI2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModulationSense" type="TmatsCommon:PositiveNegative" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SI3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LowPassFilter" type="TmatsM:LowPassFilterType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>SIF1 and SIF2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Based upon the SI2 Value</xs:documentation>
+				</xs:annotation>
+				<xs:element name="DataLinkName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>SI\DLN</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="MeasurementName" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>SI\MN</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="LowPassFilterType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="Bandwidth" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="TmatsCommon:FilterType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="SubcarriersType">
+		<xs:sequence minOccurs="0">
+			<xs:element name="IRIGSubcarrier" type="TmatsM:IRIGSubcarrierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>0 to SI\N elements</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Other" type="TmatsCommon:YesNoType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>SO</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion"/>
+	</xs:complexType>
+	<xs:complexType name="MultiplexModulationGroupType">
+		<xs:annotation>
+			<xs:documentation>TMATS M-Group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element name="CompositeSignalStructure" type="TmatsM:CompositeSignalStructureType" minOccurs="0"/>
+			<xs:element name="BasebandSignal" type="TmatsM:BasebandSignalType" minOccurs="0"/>
+			<xs:element name="Subcarriers" type="TmatsM:SubcarriersType" minOccurs="0"/>
+			<xs:element name="ReferenceChannel" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RC</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataConversionAttributes" type="TmatsC:DataConversionAttributesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>for FM links only</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Comments" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>COM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+        <Measurement ID="BandPassMeas">
+          <Name>BANDPASS</Name>
+          <Description>Example of a Measurement with Bandpass analog properties</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <AnalogAttributes>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>0</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>3.0</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.0007324</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>StopBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFlex>28000</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>60</ConditionValueFlex>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>29500</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFlex>50500</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFloat>-0.5</ConditionValueFloat>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                    <ConditionParameter>
+                      <ConditionOperation>&lt;=</ConditionOperation>
+                      <ConditionValueFloat>0.5</ConditionValueFloat>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+                <FrequencyBand>
+                  <BandType>StopBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>51000</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                  <Attenuation>
+                    <ConditionParameter>
+                      <ConditionOperation>&gt;=</ConditionOperation>
+                      <ConditionValueFlex>80</ConditionValueFlex>
+                      <SIUnits>dB</SIUnits>
+                    </ConditionParameter>
+                  </Attenuation>
+                </FrequencyBand>
+
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>125000</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+    </MeasurementDomain>
+  </MeasurementDomains>
+</MDLRoot>

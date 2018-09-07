@@ -1,0 +1,989 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <Units>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>9.80665</NumericalConstant>
+        <SIUnits>MeterPerSecondSquared</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="PercentVoltUnits">
+      <Name>Percent of full scale voltage</Name>
+      <Description>TBD description</Description>
+      <Symbol>%V</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>100</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsNumerator>
+      <UnitsDenominator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsDenominator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+        <Measurement ID="GearVibMeas">
+          <Name>GEARVIB</Name>
+          <Description>Gear Box Vibration</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>None</ProperName>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="GearVibCountsToGsConversion"/>
+            </UnitsConversions>
+            <Uncertainty>
+              <ConfidenceInterval>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.2</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </ConfidenceInterval>
+              <ConfidenceLevel>95</ConfidenceLevel>
+            </Uncertainty>
+            <AnalogAttributes>
+              <EUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFlex>-3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFlex>3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </EUSignalRange>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>-1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.025</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.05</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValueFlex>200</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                </FrequencyBand>
+                <PercentSignal>99</PercentSignal>
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <ActiveInputRange>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>98.3</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>1.17</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+              </ActiveInputRange>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+
+      <DataStreams>
+        <DataStream ID="FOO-BUS-1">
+          <Name>FOO Bus 1</Name>
+          <Description>This is a placeholder for the first FOO data bus.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+        <DataStream ID="FOO-BUS-2">
+          <Name>FOO Bus 2</Name>
+          <Description>This is a placeholder for the second FOO data bus.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+        <DataStream ID="BAR-BUS">
+          <Name>BAR Bus</Name>
+          <Description>This is a placeholder for a data bus called BAR.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+        <DataStream ID="BAZ-BUS">
+          <Name>BAZ Bus</Name>
+          <Description>This is a placeholder for a data bus called BAZ.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+        <DataStream ID="QUX-BUS">
+          <Name>QUX Bus</Name>
+          <Description>This is a placeholder for a data bus called QUX.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+        <DataStream ID="FRED-BUS">
+          <Name>FRED Bus</Name>
+          <Description>This is a placeholder for a data bus called FRED.</Description>
+          <GenericDataStreamMessages>
+          </GenericDataStreamMessages>
+        </DataStream>
+      </DataStreams>
+
+      <DataOperations>
+        <DataOperation ID="AccelerometerTransducerDataOp">
+          <Name>Accelerometer Transducer</Name>
+          <Description>This operation represents the accelerometer transducer transfer function.</Description>
+          <DataOperationType>EUtoIU</DataOperationType>
+          <Method ID="Method1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.4917</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+                <Term>
+                  <Coefficient>0.045</Coefficient>
+                  <Exponent>0</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <UnitsRef IDREF="GForceUnits"/>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Volt</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+        <DataOperation ID="GearVibCountsToGsConversion">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <DataOperation ID="IUBitWeighting" SubOperationOrderIndex="1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>CountstoIU</DataOperationType>
+            <Method ID="IUBitWeightingMethod">
+              <Name>IU Bit Weighting</Name>
+              <Description>This operation represents the conversion from Counts to Volts.</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>0.000732</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Counts</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <SIUnits>Volt</SIUnits>
+            </OutputUnits>
+          </DataOperation>
+          <DataOperation ID="InverseTransducer" SubOperationOrderIndex="2">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>IUtoEU</DataOperationType>
+            <Method ID="InverseTransducerMethod">
+              <Name>Inverse Transducer</Name>
+              <Description>This operation represents the inverse of the transducer to convert from volts to G's.  
+              The equation is  G's = (Vin - 0.045) / 0.4917</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>1.0</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                  <Term>
+                    <Coefficient>-0.045</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+                <PolynomialDenominator>
+                  <Term>
+                    <Coefficient>0.4917</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialDenominator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Volt</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <UnitsRef IDREF="GForceUnits"/>
+            </OutputUnits>
+          </DataOperation>
+        </DataOperation>
+      </DataOperations>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network</Name>
+      <Description>TBD description</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="Distributed">
+        <Name>Distributed</Name>
+        <Description>TBD description</Description>
+        <InventoryID>D1</InventoryID>
+        <HostName>TBD</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DistributedApp">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>D1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>VendCo</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU/>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="CPU">
+            <Name>CPU Module</Name>
+            <Description>CPU Controller</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DistributedApp"/>
+            </RunningApps>
+            <NetworkInterface ID="CPUIFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.21</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="CPUPhysNetPort1">
+                <Name>CPUPhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e8</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+                <ChildRef IDREF="ANAModule"/>
+              </Child>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+                <ChildRef IDREF="FooBusCon1"/>
+              </Child>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+                <ChildRef IDREF="FooBusCon2"/>
+              </Child>
+            </Children>
+            <Ports>
+              <Port ID="CPUNetworkPort" Index="2">
+                <Name>Dau1Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="CPUPhysNetPort1"/>
+              </Port>
+            </Ports>
+          </Module>
+
+
+          <Module ID="ANAModule">
+            <Name>ANA Module</Name>
+            <Description>Analog Module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192838</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="ANAPin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the first analog input pin on the card</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="ANAPin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the second analog input pin on the card</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="ANAPin1InputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="ANAPin1"/>
+              </Port>
+              <Port ID="ANAPin2InputPort" Index="2">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="ANAPin2"/>
+              </Port>
+            </Ports>
+          </Module>
+
+          <Module ID="FooBusCon1">
+            <Name>FOO Bus Controller 1</Name>
+            <Description>FOO Bus Controller Module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192839</InventoryID>
+            <Position>3</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+                <ChildRef IDREF="FOOBusModule1"/>
+              </Child>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+                <ChildRef IDREF="FOOBusModule2"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBus1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBus1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBus1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBus1Pin1"/>
+                <PinRef IDREF="FOOBus1Pin2"/>
+              </Port>
+            </Ports>
+          </Module>
+
+          <Module ID="FooBusCon2">
+            <Name>FOO Bus Controller 2</Name>
+            <Description>FOO Bus Controller Module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192840</InventoryID>
+            <Position>4</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="FOOBusModule3"/>
+              </Child>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="FOOBusModule4"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBus2Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBus2Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBus2Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBus2Pin1"/>
+                <PinRef IDREF="FOOBus2Pin2"/>
+              </Port>
+            </Ports>
+          </Module>
+
+        </InternalStructure>
+      </NetworkNode>
+
+      <Device ID="GearVibTransducer">
+        <Name>Gear Vibration Accelerometer Transducer</Name>
+        <Description>This operation represents the accelerometer transducer transfer function.</Description>
+        <Manufacturer>Endevco</Manufacturer>
+        <Model>752-500</Model>
+        <SerialIdentifier>000125</SerialIdentifier>
+        <InventoryID>03928-2934820-2934</InventoryID>
+        <DeviceType>Accelerometer</DeviceType>
+        <DeviceStructure>
+          <DeviceModule ID="GearVibTransducerMod">
+            <Name>Gear Vibration Accelerometer Transducer</Name>
+            <Description>This operation represents the accelerometer transducer transfer function.</Description>
+            <Manufacturer>Endevco</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2934</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <DataOperationRef IDREF="AccelerometerTransducerDataOp"/>
+            <Excitation>
+              <ConditionParameter>
+                <ConditionOperation>==</ConditionOperation>
+                <ConditionValueFloat>24</ConditionValueFloat>
+                <SIUnits>Volt</SIUnits>
+              </ConditionParameter>
+            </Excitation>
+            <Calibration>
+              <CalibrationDate>2010-10-24</CalibrationDate>
+              <CalibrationPair>
+                <InputValue>
+                  <FloatValue>-3</FloatValue>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </InputValue>
+                <OutputValue>
+                  <FloatValue>-1.43</FloatValue>
+                  <SIUnits>Volt</SIUnits>
+                </OutputValue>
+              </CalibrationPair>
+              <CalibrationPair>
+                <InputValue>
+                  <FloatValue>3</FloatValue>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </InputValue>
+                <OutputValue>
+                  <FloatValue>1.52</FloatValue>
+                  <SIUnits>Volt</SIUnits>
+                </OutputValue>
+              </CalibrationPair>
+            </Calibration>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="DevicePin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the (first) physical pin</Description>
+                <Designator>1</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="GearVibTransducerOutputPort" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Output</PortDirection>
+                <PinRef IDREF="DevicePin1ID"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+        </DeviceStructure>
+      </Device>
+
+
+      <Device ID="FOO-BAR-BusAdapter1">
+        <Name>FOO-BAR Bus Adapter 1</Name>
+        <Description>This FOO Bus adapter receives data from a BAR bus and puts it on the FOO bus.</Description>
+        <Manufacturer>VendCo</Manufacturer>
+        <Model>752-500</Model>
+        <SerialIdentifier>000125</SerialIdentifier>
+        <InventoryID>03928-2934820-2936</InventoryID>
+        <DeviceType extension="FOOBARAdapter">Extension</DeviceType>
+        <DeviceStructure>
+          <DeviceModule ID="FOOBusModule1">
+            <Name>FOO Bus Module</Name>
+            <Description>FOO Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2937</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="BARBusModule1"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBusModule1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBusModule1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBusModule1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBusModule1Pin1"/>
+                <PinRef IDREF="FOOBusModule1Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+          <DeviceModule ID="BARBusModule1">
+            <Name>BAR Bus Module</Name>
+            <Description>BAR Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2938</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the BAR bus</Description>
+              <Pin ID="BARBusModule1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the BAR bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="BARBusModule1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the BAR bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="BARBusModule1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="BARBusModule1Pin1"/>
+                <PinRef IDREF="BARBusModule1Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+        </DeviceStructure>
+      </Device>
+
+      <Device ID="FOO-BAZ-BusAdapter1">
+        <Name>FOO-BAZ Bus Adapter 1</Name>
+        <Description>This FOO Bus adapter receives data from a BAZ bus and puts it on the FOO bus.</Description>
+        <Manufacturer>VendCo</Manufacturer>
+        <Model>752-500</Model>
+        <SerialIdentifier>000125</SerialIdentifier>
+        <InventoryID>03928-2934820-2939</InventoryID>
+        <DeviceType extension="FOOBAZAdapter">Extension</DeviceType>
+        <DeviceStructure>
+          <DeviceModule ID="FOOBusModule2">
+            <Name>FOO Bus Module</Name>
+            <Description>FOO Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2940</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="BAZBusModule1"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBusModule2Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBusModule2Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBusModule2Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBusModule2Pin1"/>
+                <PinRef IDREF="FOOBusModule2Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+          <DeviceModule ID="BAZBusModule1">
+            <Name>BAZ Bus Module</Name>
+            <Description>BAZ Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2941</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the BAZ bus</Description>
+              <Pin ID="BAZBusModule1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the BAZ bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="BAZBusModule1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the BAZ bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="BAZBusModule1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="BAZBusModule1Pin1"/>
+                <PinRef IDREF="BAZBusModule1Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+        </DeviceStructure>
+      </Device>
+
+      <Device ID="FOO-QUX-BusAdapter1">
+        <Name>FOO-QUX Bus Adapter 1</Name>
+        <Description>This FOO Bus adapter receives data from a QUX bus and puts it on the FOO bus.</Description>
+        <Manufacturer>VendCo</Manufacturer>
+        <Model>752-500</Model>
+        <SerialIdentifier>000125</SerialIdentifier>
+        <InventoryID>03928-2934820-2942</InventoryID>
+        <DeviceType extension="FOOBAZAdapter">Extension</DeviceType>
+        <DeviceStructure>
+          <DeviceModule ID="FOOBusModule3">
+            <Name>FOO Bus Module</Name>
+            <Description>FOO Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2943</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="QUXBusModule1"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBusModule3Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBusModule3Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBusModule3Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBusModule3Pin1"/>
+                <PinRef IDREF="FOOBusModule3Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+          <DeviceModule ID="QUXBusModule1">
+            <Name>QUX Bus Module</Name>
+            <Description>QUX Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2944</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the QUX bus</Description>
+              <Pin ID="QUXBusModule1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the QUX bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="QUXBusModule1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the QUX bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="QUXBusModule1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="QUXBusModule1Pin1"/>
+                <PinRef IDREF="QUXBusModule1Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+        </DeviceStructure>
+      </Device>
+
+      <Device ID="FOO-FRED-BusAdapter1">
+        <Name>FOO-FRED Bus Adapter 1</Name>
+        <Description>This FOO Bus adapter receives data from a FRED bus and puts it on the FOO bus.</Description>
+        <Manufacturer>VendCo</Manufacturer>
+        <Model>752-500</Model>
+        <SerialIdentifier>000125</SerialIdentifier>
+        <InventoryID>03928-2934820-2945</InventoryID>
+        <DeviceType extension="FOOFREDAdapter">Extension</DeviceType>
+        <DeviceStructure>
+          <DeviceModule ID="FOOBusModule4">
+            <Name>FOO Bus Module</Name>
+            <Description>FOO Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2946</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>TBD</Name>
+                <Description>Description of child relationship</Description>
+              <ChildRef IDREF="FREDBusModule1"/>
+              </Child>
+            </Children>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FOO bus</Description>
+              <Pin ID="FOOBusModule4Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FOO bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FOOBusModule4Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FOO bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FOOBusModule4Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FOOBusModule4Pin1"/>
+                <PinRef IDREF="FOOBusModule4Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+          <DeviceModule ID="FREDBusModule1">
+            <Name>FRED Bus Module</Name>
+            <Description>FRED Bus interface module</Description>
+            <Manufacturer>VendCo</Manufacturer>
+            <Model>752-500</Model>
+            <SerialIdentifier>000125</SerialIdentifier>
+            <InventoryID>03928-2934820-2947</InventoryID>
+            <Position>2</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Connector>
+              <Name>Bus Connector</Name>
+              <Description>Connector for the FRED bus</Description>
+              <Pin ID="FREDBusModule1Pin1" Index="1">
+                <Name>TBD name</Name>
+                <Description>This is the TX pin on the FRED bus</Description>
+                <Designator>A</Designator>
+              </Pin>
+              <Pin ID="FREDBusModule1Pin2" Index="2">
+                <Name>TBD name</Name>
+                <Description>This is the RX pin on the FRED bus</Description>
+                <Designator>B</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="FREDBusModule1Port" Index="1">
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="FREDBusModule1Pin1"/>
+                <PinRef IDREF="FREDBusModule1Pin2"/>
+              </Port>
+            </Ports>
+          </DeviceModule>
+        </DeviceStructure>
+      </Device>
+
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="GearVibTransducerOutputPort"/>
+          <PortRef IDREF="ANAPin1InputPort"/>
+          <MeasurementRef IDREF="GearVibMeas"/>
+        </PortMapping>
+
+        <PortMapping ID="PM2">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="FOOBus1Port"/>
+          <PortRef IDREF="FOOBusModule1Port"/>
+          <DataStreamRef IDREF="FOO-BUS-1"/>
+        </PortMapping>
+
+        <PortMapping ID="PM3">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="FOOBus1Port"/>
+          <PortRef IDREF="FOOBusModule2Port"/>
+          <DataStreamRef IDREF="FOO-BUS-1"/>
+        </PortMapping>
+
+        <PortMapping ID="PM4">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="FOOBus2Port"/>
+          <PortRef IDREF="FOOBusModule3Port"/>
+          <DataStreamRef IDREF="FOO-BUS-2"/>
+        </PortMapping>
+
+        <PortMapping ID="PM5">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="FOOBus2Port"/>
+          <PortRef IDREF="FOOBusModule4Port"/>
+          <DataStreamRef IDREF="FOO-BUS-2"/>
+        </PortMapping>
+
+        <PortMapping ID="PM6">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="BARBusModule1Port"/>
+          <!-- Second PortRef left out to keep example small -->
+          <DataStreamRef IDREF="BAR-BUS"/>
+        </PortMapping>
+
+        <PortMapping ID="PM7">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="BAZBusModule1Port"/>
+          <!-- Second PortRef left out to keep example small -->
+          <DataStreamRef IDREF="BAZ-BUS"/>
+        </PortMapping>
+
+        <PortMapping ID="PM8">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="QUXBusModule1Port"/>
+          <!-- Second PortRef left out to keep example small -->
+          <DataStreamRef IDREF="QUX-BUS"/>
+        </PortMapping>
+
+        <PortMapping ID="PM9">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="FREDBusModule1Port"/>
+          <!-- Second PortRef left out to keep example small -->
+          <DataStreamRef IDREF="FRED-BUS"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+  </NetworkDomains>
+</MDLRoot>

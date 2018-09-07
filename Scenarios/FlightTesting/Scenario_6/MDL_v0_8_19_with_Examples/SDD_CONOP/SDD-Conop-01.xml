@@ -1,0 +1,2887 @@
+<?xml version="1.0"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+
+  <DirtyBit>false</DirtyBit>
+  <NetworkDomains>
+    <Network ID="GroundNetworkID">
+      <ReadOnly>true</ReadOnly>
+      <Owner>SDD Range Rules</Owner>
+      <Name>Ground Network</Name>
+      <Description>Ground Network</Description>
+      <NetworkType>GroundNetwork</NetworkType>
+
+      <Network ID="AntennaSite1Network">
+        <Name>Antenna Site1 Network</Name>
+        <Description>Antenna Site1 Network</Description>
+        <NetworkType>GroundNetwork</NetworkType>
+
+        <NetworkNode ID="Site1Antenna1Radio1">
+          <Name>Site1 Antenna1 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1Antenna1Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna1Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1Antenna1Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>24</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site1Antenna1Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site1Antenna1Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna1Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna1Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.1.2</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna1Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna1Radio1Port" Index="1">
+                  <Name>Site1Antenna1Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna1Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site1Antenna1SSTReceivers">
+          <Name>Site1Antenna1 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1-Antenna1-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna1SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1-Antenna1-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site1Antenna1SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site1Antenna1SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site1Antenna1SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1-Antenna1-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site1Antenna1SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site1Antenna1SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site1Antenna1SSTRxModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna1SSTRx1"/>
+                <ManageableAppRef IDREF="Site1Antenna1SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna1SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.1.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna1SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site1Antenna1SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.1.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna1SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna1SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna1SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site1Antenna1SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna1SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site1Antenna1ACU">
+          <Name>Site1Antenna1ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1-Antenna1-ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna1ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1-Antenna1-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site1Antenna1SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site1Antenna1ACUIFace"/>
+                <Notifications>
+                  <NotificationDestinations/>
+                </Notifications>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site1Antenna1ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna1ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna1ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.1.4</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna1ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna1ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna1ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site1Antenna2Radio1">
+          <Name>Site1 Antenna2 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1Antenna2Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna2Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1Antenna2Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>25</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site1Antenna2Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site1Antenna2Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna2Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna2Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.1.5</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna2Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna2Radio1Port" Index="1">
+                  <Name>Site1Antenna2Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna2Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site1Antenna2SSTReceivers">
+          <Name>Site1Antenna2 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1-Antenna2-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna2SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1-Antenna2-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site1Antenna2SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site1Antenna2SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site1Antenna2SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1-Antenna2-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site1Antenna2SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site1Antenna2SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Recorder1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna2SSTRx1"/>
+                <ManageableAppRef IDREF="Site1Antenna2SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna2SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.1.6</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna2SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site1Antenna2SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.1.6</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna2SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna2SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna2SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site1Antenna2SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna2SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site1Antenna2ACU">
+          <Name>Site1Antenna2ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site1Antenna2ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site1Antenna2ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site1Antenna2-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site1Antenna2SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site1Antenna2ACUIFace"/>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site1Antenna2ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site1Antenna2ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site1Antenna2ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.1.7</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.1.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site1Antenna2ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site1Antenna2ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site1Antenna2ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <Antenna>
+          <Name>Site1Antenna1</Name>
+          <Description>Site1 Antenna1</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site1Antenna1ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site1Antenna1SSTRx1"/>
+            <ManageableAppRef IDREF="Site1Antenna1SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site1Antenna1Radio1App"/>
+          </Radios>
+        </Antenna>
+        <Antenna>
+          <Name>Site1Antenna2</Name>
+          <Description>Site1 Antenna2</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site1Antenna2ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site1Antenna2SSTRx1"/>
+            <ManageableAppRef IDREF="Site1Antenna2SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site1Antenna2Radio1App"/>
+          </Radios>
+        </Antenna>
+      </Network>  <!--End of Antenna Site1 Network-->
+
+      <Network ID="AntennaSite2Network">
+        <Name>Antenna Site2 Network</Name>
+        <Description>Antenna Site2 Network</Description>
+        <NetworkType>GroundNetwork</NetworkType>
+
+        <NetworkNode ID="Site2Antenna1Radio1">
+          <Name>Site2 Antenna1 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2Antenna1Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna1Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2Antenna1Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>26</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site2Antenna1Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenna1Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna1Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna1Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.2.2</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna1Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna1Radio1Port" Index="1">
+                  <Name>Site2Antenna1Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna1Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site2Antenna1SSTReceivers">
+          <Name>Site2Antenna1 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2-Antenna1-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna1SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2-Antenna1-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site2Antenna1SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site2Antenna1SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site2Antenna1SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2-Antenna1-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site2Antenna1SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site2Antenna1SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenna1SSTRxModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna1SSTRx1"/>
+                <ManageableAppRef IDREF="Site2Antenna1SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna1SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.2.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna1SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site2Antenna1SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.2.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna1SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna1SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna1SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site2Antenna1SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna1SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site2Antenna1ACU">
+          <Name>Site2Antenna1ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2-Antenna1-ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna1ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2-Antenna1-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site2Antenna1SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site2Antenna1ACUIFace"/>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenna1ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna1ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna1ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.2.4</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna1ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna1ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna1ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site2Antenna2Radio1">
+          <Name>Site2 Antenna2 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2Antenna2Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna2Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2Antenna2Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>27</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site2Antenna2Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenn2Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna2Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna2Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.2.5</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna2Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna2Radio1Port" Index="1">
+                  <Name>Site2Antenna2Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna2Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site2Antenna2SSTReceivers">
+          <Name>Site2Antenna2 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2-Antenna2-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna2SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2-Antenna2-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site2Antenna2SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site2Antenna2SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site2Antenna2SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2-Antenna2-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site2Antenna2SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site2Antenna2SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenna2SSTRx2Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna2SSTRx1"/>
+                <ManageableAppRef IDREF="Site2Antenna2SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna2SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.2.6</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna2SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site2Antenna2SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.2.6</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna2SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna2SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna2SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site2Antenna2SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna2SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site2Antenna2ACU">
+          <Name>Site2Antenna2ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site2Antenna2ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site2Antenna2ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site2Antenna2-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site2Antenna2SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site2Antenna2ACUIFace"/>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site2Antenna2ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site2Antenna2ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site2Antenna2ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.2.7</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.2.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site2Antenna2ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site2Antenna2ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site2Antenna2ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <Antenna>
+          <Name>Site2Antenna1</Name>
+          <Description>Site2 Antenna1</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site2Antenna1ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site2Antenna1SSTRx1"/>
+            <ManageableAppRef IDREF="Site2Antenna1SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site2Antenna1Radio1App"/>
+          </Radios>
+        </Antenna>
+        <Antenna>
+          <Name>Site2Antenna2</Name>
+          <Description>Site2 Antenna2</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site2Antenna2ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site2Antenna2SSTRx1"/>
+            <ManageableAppRef IDREF="Site2Antenna2SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site2Antenna2Radio1App"/>
+          </Radios>
+        </Antenna>
+      </Network>  <!--End of Antenna Site2 Network-->
+
+      <Network ID="AntennaSite3Network">
+        <Name>Antenna Site3 Network</Name>
+        <Description>Antenna Site3 Network</Description>
+        <NetworkType>GroundNetwork</NetworkType>
+
+        <NetworkNode ID="Site3Antenna1Radio1">
+          <Name>Site3 Antenna1 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site3-Antenna1-Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site3Antenna1Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site3Antenna1Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>28</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site3Antenna1Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site3Antenna1Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site3Antenna1Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site3Antenna1Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.3.2</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.3.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site3Antenna1Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site3Antenna1Radio1Port" Index="1">
+                  <Name>Site3Antenna1Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site3Antenna1Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site3Antenna1SSTReceivers">
+          <Name>Site3Antenna1 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site3-Antenna1-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site3Antenna1SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site3-Antenna1-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site3Antenna1SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site3Antenna1SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site3Antenna1SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site3-Antenna1-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site3Antenna1SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site3Antenna1SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site3Antenna1SSTRxModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site3Antenna1SSTRx1"/>
+                <ManageableAppRef IDREF="Site3Antenna1SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site3Antenna1SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.3.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.3.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site3Antenna1SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site3Antenna1SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.3.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.3.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site3Antenna1SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site3Antenna1SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site3Antenna1SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site3Antenna1SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site3Antenna1SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site3Antenna1ACU">
+          <Name>Site3Antenna1ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site3-Antenna1-ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site3Antenna1ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site3-Antenna1-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site3Antenna1SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site3Antenna1ACUIFace"/>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site3Antenna1ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site3Antenna1ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site3Antenna1ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.3.4</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.3.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site3Antenna1ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site3Antenna1ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site3Antenna1ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <Antenna>
+          <Name>Site3Antenna1</Name>
+          <Description>Site3 Antenna1</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site3Antenna1ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site3Antenna1SSTRx1"/>
+            <ManageableAppRef IDREF="Site3Antenna1SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site3Antenna1Radio1App"/>
+          </Radios>
+        </Antenna>
+      </Network>                <!--End of Antenna Site3 Network-->
+
+      <Network ID="AntennaSite4Network">
+        <Name>Antenna Site4 Network</Name>
+        <Description>Antenna Site4 Network</Description>
+        <NetworkType>GroundNetwork</NetworkType>
+
+        <NetworkNode ID="Site4Antenna1Radio1">
+          <Name>Site4 Antenna1 Radio1</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site4-Antenna1-Radio1-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site4Antenna1Radio1App">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site4Antenna1Radio1-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSRadio>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <RadioType>Ground Radio</RadioType>
+                <RFAddress>29</RFAddress>
+                <FragmentationPersistencePeriodUSec>1000</FragmentationPersistencePeriodUSec>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <TxPowerLeveldBm>10</TxPowerLeveldBm>
+                <LowPowerModeEnable>false</LowPowerModeEnable>
+                <DynamicPowerControlEnable>false</DynamicPowerControlEnable>
+                <LinkAgent>
+                  <NetworkInterfaceRef IDREF="Site4Antenna1Radio1IFace"/>
+                  <ListeningPort>3456</ListeningPort>
+                </LinkAgent>
+              </TmNSRadio>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site4Antenna1Radio1Module">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site4Antenna1Radio1App"/>
+              </RunningApps>
+              <NetworkInterface ID="Site4Antenna1Radio1IFace">
+                <Name>RadioIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.4.2</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.4.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site4Antenna1Radio1PhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site4Antenna1Radio1Port" Index="1">
+                  <Name>Site4Antenna1Radio1Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site4Antenna1Radio1PhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site4Antenna1SSTReceivers">
+          <Name>Site4Antenna1 SST Receivers</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site4-Antenna1-SSTRx-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site4Antenna1SSTRx1">
+              <Name>Receiver1</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site4-Antenna1-SSTRx-00010</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site4Antenna1SSTRx1Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>30</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1800e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site4Antenna1SSTRx1Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>33</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1950e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+            <TmNSManageableApp ID="Site4Antenna1SSTRx2">
+              <Name>Receiver2</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site4-Antenna1-SSTRx2-00011</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSNetworkFabricDevice>
+                <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                <IGMPQuerier>Off</IGMPQuerier>
+                <IGMPQuerierInterval>0</IGMPQuerierInterval>
+              </TmNSNetworkFabricDevice>
+              <TmNSSSTRx>
+                <Channel ID="Site4Antenna1SSTRx2Chan1">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>31</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1850e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+                <Channel ID="Site4Antenna1SSTRx2Chan2">
+                  <Name>TBD name</Name>
+                  <ChannelNumber>32</ChannelNumber>
+                  <CenterFrequency>
+                    <FloatValue>1900e6</FloatValue>
+                    <SIUnits>Hertz</SIUnits>
+                  </CenterFrequency>
+                  <AutoGainMode>false</AutoGainMode>
+                  <ClockPolarityInverted>false</ClockPolarityInverted>
+                  <DataPolarityInverted>false</DataPolarityInverted>
+                  <SweepEnable>false</SweepEnable>
+                  <DiffDecoding>false</DiffDecoding>
+                  <Derandomize>false</Derandomize>
+                  <DataSourceSimulated>false</DataSourceSimulated>
+                  <FECEnable>true</FECEnable>
+                </Channel>
+              </TmNSSSTRx>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site4Antenna1SSTRxModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site4Antenna1SSTRx1"/>
+                <ManageableAppRef IDREF="Site4Antenna1SSTRx2"/>
+              </RunningApps>
+              <NetworkInterface ID="Site4Antenna1SSTRxIFace">
+                <Name>SSTRxIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.4.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.4.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site4Antenna1SSTRxPhyNetPort">
+                  <Name>SST Tx Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <NetworkInterface ID="Site4Antenna1SSTRxPrivateIFace">
+                <Name>SSTRxPrivateIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.4.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.4.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site4Antenna1SSTRxPrivatePhyNetPort">
+                  <Name>SST Tx Private Phy Net Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site4Antenna1SSTRxPort" Index="1">
+                  <Name>SSTRxPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site4Antenna1SSTRxPhyNetPort"/>
+                </Port>
+                <Port ID="Site4Antenna1SSTRxPrivatePort" Index="2">
+                  <Name>SSTRxPrivatePort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site4Antenna1SSTRxPrivatePhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="Site4Antenna1ACU">
+          <Name>Site4Antenna1ACU</Name>
+          <Description>TBD description</Description>
+          <InventoryID>Site4-Antenna1-ACU-00010</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="Site4Antenna1ACUApp">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>Site4-Antenna1-ACU</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>-TBD-</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSACU>
+                <TrackingReceiver>
+                  <ManageableAppRef IDREF="Site4Antenna1SSTRx2"/>
+                </TrackingReceiver>
+                <ServoEnergized>false</ServoEnergized>
+                <FeedEnabled>false</FeedEnabled>
+                <AutoTrackingEnabled>true</AutoTrackingEnabled>
+              </TmNSACU>
+              <SMInterface>
+                <SNMPVersion>3</SNMPVersion>
+                <SNMPPort>161</SNMPPort>
+                <NotificationPort>162</NotificationPort>
+                <DSCPTableEntryRef IDREF="DiffservLTC"/>
+                <NetworkInterfaceRef IDREF="Site4Antenna1ACUIFace"/>
+              </SMInterface>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="Site4Antenna1ACUModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="Site4Antenna1ACUApp"/>
+              </RunningApps>
+              <NetworkInterface ID="Site4Antenna1ACUIFace">
+                <Name>ACU Computer Interface</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>10.0.4.4</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>10.0.4.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="Site4Antenna1ACUPhyNetPort">
+                  <Name>ACU Computer PhyNetPort</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="Site4Antenna1ACUPort" Index="1">
+                  <Name>ACU Computer Port</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="Site4Antenna1ACUPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <Antenna>
+          <Name>Site4Antenna1</Name>
+          <Description>Site4 Antenna1</Description>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD Model Number</Model>
+          <SerialIdentifier>TBD Serial Number</SerialIdentifier>
+          <ACU>
+            <ManageableAppRef IDREF="Site4Antenna1ACUApp"/>
+          </ACU>
+          <SSTRxs>
+            <ManageableAppRef IDREF="Site4Antenna1SSTRx1"/>
+            <ManageableAppRef IDREF="Site4Antenna1SSTRx2"/>
+          </SSTRxs>
+          <Radios>
+            <ManageableAppRef IDREF="Site4Antenna1Radio1App"/>
+          </Radios>
+        </Antenna>
+      </Network>                <!--End of Antenna Site4 Network-->
+
+
+      <Network ID="RangeOperationsCenterNetwork">
+        <Name>ROC Network</Name>
+        <Description>Range Operations Center Network</Description>
+        <NetworkType>GroundNetwork</NetworkType>
+
+        <NetworkNode ID="RFNetworkManagerComputer">
+          <Name>RFNM Computer</Name>
+          <Description>TBD description</Description>
+          <InventoryID>RFNM-Computer-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="RFNM">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>RFNM-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSConsolidatedManager>
+                <ManagedApps>
+                  <ManageableAppRef IDREF="LinkManager"/>
+                  <ManageableAppRef IDREF="Site1Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site1Antenna2Radio1App"/>
+                  <ManageableAppRef IDREF="Site2Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site2Antenna2Radio1App"/>
+                  <ManageableAppRef IDREF="Site3Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site4Antenna1Radio1App"/>
+                </ManagedApps>
+              </TmNSConsolidatedManager>
+              <TmNSRFNetworkManager>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <RFNEProtocolServer>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ProtocolType>RFNM-LM</ProtocolType>
+                  <NetworkInterfaceRef IDREF="RFNMIFace"/>
+                  <ListeningPort>12345</ListeningPort>
+                </RFNEProtocolServer>
+              </TmNSRFNetworkManager>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="RFNMComputerModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="RFNM"/>
+              </RunningApps>
+              <NetworkInterface ID="RFNMIFace">
+                <Name>RFNMIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.5.2</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.5.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="RFNMPhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="RFNMPort" Index="1">
+                  <Name>RFNMPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="RFNMPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="RFNetworkOpsManagerComputer">
+          <Name>RFN0 Computer</Name>
+          <Description>TBD description</Description>
+          <InventoryID>RFNO-Computer-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="RFNO">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>RFNO-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSConsolidatedManager>
+                <ManagedApps>
+                  <ManageableAppRef IDREF="RFNM"/>
+                  <ManageableAppRef IDREF="LinkManager"/>
+                </ManagedApps>
+              </TmNSConsolidatedManager>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="RFNOComputerModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="RFNO"/>
+              </RunningApps>
+              <NetworkInterface ID="RFNOIFace">
+                <Name>RFNOIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.5.3</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.5.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="RFNOPhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="RFNOPort" Index="1">
+                  <Name>RFNOPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="RFNOPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="LinkManagerComputer">
+          <Name>Link Manager Computer</Name>
+          <Description>TBD description</Description>
+          <InventoryID>LM-Computer-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="LinkManager">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>LM-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSLinkManager>
+                <RANConfigRef IDREF="RANConfig1"/>
+                <LMBuiltInTest>
+                  <ContinuousEnable>true</ContinuousEnable>
+                  <EnterDoNoHarmStateOnBitFailure>true</EnterDoNoHarmStateOnBitFailure>
+                  <FatalErrorThreshold>1</FatalErrorThreshold>
+                  <CriticalErrorThreshold>10</CriticalErrorThreshold>
+                  <ErrorThreshold>100</ErrorThreshold>
+                  <WarningThreshold>500</WarningThreshold>
+                  <InformationalThreshold>1000</InformationalThreshold>
+                </LMBuiltInTest>
+                <LMExtraDebugLevel>
+                  <Debug1>false</Debug1>
+                  <Debug2>false</Debug2>
+                  <Debug3>false</Debug3>
+                  <Debug4>false</Debug4>
+                </LMExtraDebugLevel>
+                <IdleOnPTPTimingThresholdExceeded>false</IdleOnPTPTimingThresholdExceeded>
+                <TxRxSetupTimeMs>0</TxRxSetupTimeMs>
+                <AutoConfigureLinksBearers>false</AutoConfigureLinksBearers>
+                <ManagedApps>
+                  <ManageableAppRef IDREF="Site1Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site1Antenna2Radio1App"/>
+                  <ManageableAppRef IDREF="Site2Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site2Antenna2Radio1App"/>
+                  <ManageableAppRef IDREF="Site3Antenna1Radio1App"/>
+                  <ManageableAppRef IDREF="Site4Antenna1Radio1App"/>
+                </ManagedApps>
+                <RFNEProtocolServer>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ProtocolType>RFNM-LM</ProtocolType>
+                  <NetworkInterfaceRef IDREF="LMIFace"/>
+                  <ListeningPort>12345</ListeningPort>
+                </RFNEProtocolServer>
+              </TmNSLinkManager>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="LMComputerModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="LinkManager"/>
+              </RunningApps>
+              <NetworkInterface ID="LMIFace">
+                <Name>LMIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.5.4</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.5.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="LMPhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="LMPort" Index="1">
+                  <Name>LMPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="LMPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+
+        <NetworkNode ID="SSTManagerComputer">
+          <Name>SST Manager Computer</Name>
+          <Description>TBD description</Description>
+          <InventoryID>SST-Manager-Computer-InvID</InventoryID>
+          <HostName>TBD hostname</HostName>
+          <Manufacturer>TBD Vendor Co</Manufacturer>
+          <Model>TBD WhizzBang</Model>
+          <ModelVersion>1.0</ModelVersion>
+          <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+          <IEEE1588Version>2008e2e</IEEE1588Version>
+          <TmNSManageableApps>
+            <TmNSManageableApp ID="SSTManager">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <RoleID>SST-Manager-001</RoleID>
+              <LoggingLevels>
+                <Trace>true</Trace>
+                <Debug>false</Debug>
+                <Info>true</Info>
+                <Warning>false</Warning>
+                <Error>false</Error>
+                <Critical>false</Critical>
+              </LoggingLevels>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Product>TBD App</Product>
+              <ProductVersion>1.0</ProductVersion>
+              <ConfigurationVersion>0.0.1</ConfigurationVersion>
+              <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+              <DirtyBit>false</DirtyBit>
+              <LaunchCommand>unused</LaunchCommand>
+              <TmNSConsolidatedManager>
+                <ManagedApps>
+                  <ManageableAppRef IDREF="Site1Antenna1SSTRx1"/>
+                  <ManageableAppRef IDREF="Site1Antenna2SSTRx1"/>
+                  <ManageableAppRef IDREF="Site2Antenna1SSTRx1"/>
+                  <ManageableAppRef IDREF="Site2Antenna2SSTRx1"/>
+                  <ManageableAppRef IDREF="Site3Antenna1SSTRx1"/>
+                  <ManageableAppRef IDREF="Site4Antenna1SSTRx1"/>
+                </ManagedApps>
+              </TmNSConsolidatedManager>
+            </TmNSManageableApp>
+          </TmNSManageableApps>
+          <InternalStructure>
+            <Module ID="SSTManagerComputerModule">
+              <Name>TBD Module</Name>
+              <Description>TBD description</Description>
+              <Manufacturer>TBD Vendor Co</Manufacturer>
+              <Model>TBD </Model>
+              <SerialIdentifier>TBD</SerialIdentifier>
+              <InventoryID>TBD</InventoryID>
+              <Position>1</Position>
+              <PositionsOccupied>1</PositionsOccupied>
+              <RunningApps>
+                <ManageableAppRef IDREF="SSTManager"/>
+              </RunningApps>
+              <NetworkInterface ID="SSTMgrIFace">
+                <Name>SSTMgrIFace</Name>
+                <DHCPEnable>false</DHCPEnable>
+                <IPAddress>192.168.5.5</IPAddress>
+                <Netmask>255.255.255.0</Netmask>
+                <Gateway>192.168.5.1</Gateway>
+                <MACAddress>00:00:00:00:00:00</MACAddress>
+                <PhysicalNetworkPort ID="SSTMgrPhyNetPort">
+                  <Name>Network Port</Name>
+                  <Description>TBD description</Description>
+                  <Medium>Copper</Medium>
+                  <PortNumber>1</PortNumber>
+                  <PortDataRate>
+                    <FloatValue>1e9</FloatValue>
+                    <SIUnits>BitPerSecond</SIUnits>
+                  </PortDataRate>
+                </PhysicalNetworkPort>
+              </NetworkInterface>
+              <Ports>
+                <Port ID="SSTMgrPort" Index="1">
+                  <Name>SSTMgrPort</Name>
+                  <Description>TBD description</Description>
+                  <PortDirection>Bidirectional</PortDirection>
+                  <PhysicalNetworkPortRef IDREF="SSTMgrPhyNetPort"/>
+                </Port>
+              </Ports>
+            </Module>
+          </InternalStructure>
+        </NetworkNode>
+      </Network>                <!--End of Range Operations Center Network-->
+
+    </Network>
+  </NetworkDomains>
+
+  <RANConfigs>
+    <RANConfig ID="RANConfig1">
+      <Name>Example RAN</Name>
+      <Description>This is an example RAN configuration</Description>
+      <CenterFreqHz>1234</CenterFreqHz> <!--Obviously a fake value-->
+      <ModulationType>SOQPSK-TG</ModulationType>
+      <EpochSize>100</EpochSize>
+      <ContentionPeriodOpsEnable>true</ContentionPeriodOpsEnable>
+      <LDPCBlocksPerBurst>4</LDPCBlocksPerBurst>
+      <MaxGuardTimeSec>0.001234</MaxGuardTimeSec> <!--Just a fake value-->
+      <RadioControlLoopDSCPRef IDREF="DiffservLMMsg"/>
+      <RANCommandControlDSCPRef IDREF="DiffservRANMsg"/>
+      <RadioGroups>
+        <RadioGroup ID="RG-001">
+          <Name>Radio Group 1</Name>
+          <Description>TBD</Description>
+          <GroupRFAddress>1234</GroupRFAddress>
+        </RadioGroup>
+      </RadioGroups>
+    </RANConfig>
+  </RANConfigs>
+
+  <DSCPTable>
+    <ReadOnly>true</ReadOnly>
+    <Owner>SDD Range Rules</Owner>
+    <DSCPTableEntry ID="DiffservGeneral">
+      <Name>Diffserv General (Best Effort)</Name>
+      <Description>Diffserv General (Best Effort PHB)</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCNormalSMStatus">
+      <Name>Diffserv RC Normal and System Management Status(Assured Forwarding DSCP 8)</Name>
+      <Description>Diffserv RC Normal and System Management Status (Assured Forwarding DSCP 8)</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLTC">
+      <Name>Diffserv LTC (Assured Forwarding DSCP 16)</Name>
+      <Description>Diffserv LTC (Assured Forwarding DSCP 16)</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRCHigh">
+      <Name>Diffserv RC High (Assured Forwarding DSCP 24)</Name>
+      <Description>Diffserv RC High (Assured Forwarding DSCP 24)</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservSMVideo">
+      <Name>Diffserv System Management and Video (Assured Forwarding DSCP 32)</Name>
+      <Description>Diffserv System Management and Video (Assured Forwarding DSCP 32)</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservVoice">
+      <Name>Diffserv Voice (Expedited Forwarding DSCP 40)</Name>
+      <Description>Diffserv Voice (Expedited Forwarding PHB)</Description>
+      <DSCPValue>0b101000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservRANMsg">
+      <Name>Diffserv RAN Messaging (DSCP 48)</Name>
+      <Description>Diffserv RAN Messaging (DSCP 48)</Description>
+      <DSCPValue>0b110000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservLMMsg">
+      <Name>Diffserv Link Manager Messages (DSCP 56)</Name>
+      <Description>Diffserv Link Manager Messages (DSCP 56)</Description>
+      <DSCPValue>0b111000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+  <SupportedMCAs>
+    <ReadOnly>true</ReadOnly>
+    <Owner>SDD Range Rules</Owner>
+    <SupportedMCA>
+      <Description>1st Example Multicast Address for TmNS Message Delivery</Description>
+      <MulticastAddress>239.192.0.1</MulticastAddress>
+    </SupportedMCA>
+    <SupportedMCA>
+      <Description>2nd Example Multicast Address for TmNS Message Delivery</Description>
+      <MulticastAddress>239.192.0.2</MulticastAddress>
+    </SupportedMCA>
+    <SupportedMCA>
+      <Description>3rd Example Multicast Address for TmNS Message Delivery</Description>
+      <MulticastAddress>239.192.0.3</MulticastAddress>
+    </SupportedMCA>
+    <SupportedMCA>
+      <Description>4th Example Multicast Address for TmNS Message Delivery</Description>
+      <MulticastAddress>239.192.0.4</MulticastAddress>
+    </SupportedMCA>
+    <SupportedMCA>
+      <Description>5th Example Multicast Address for TmNS Message Delivery</Description>
+      <MulticastAddress>239.192.0.5</MulticastAddress>
+    </SupportedMCA>
+  </SupportedMCAs>
+</MDLRoot>

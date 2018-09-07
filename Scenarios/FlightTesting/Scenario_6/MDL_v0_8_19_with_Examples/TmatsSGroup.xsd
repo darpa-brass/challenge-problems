@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" xmlns:pref="http://www.rcc.org/tmats/common" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:complexType name="DelimitedType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="MessageDelimiter" type="TmatsCommon:MessageDelimiterType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MDEL-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MessageDelimiterLength" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MDLEN-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FieldDelimiter" type="TmatsCommon:MessageFieldDelimiterType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FDEL-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FieldType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Number" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FNUM-m</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Start" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FPOS-m</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Length" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FLEN-m</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FixedType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Length" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MLEN-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="LocationType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="FieldNumber" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MFN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" default="Full Word" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MBM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:MSBLSBFirstType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MTO</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FragmentPosition" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MFP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurementType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MN2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataType" type="TmatsCommon:MessageDataMeasurementDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MBFM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FloatingPointFormat" type="TmatsCommon:FloatingPointFormatType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MFPF</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Orientation" type="TmatsCommon:EndianType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MDO</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="LocationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeats NML\N times</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MessageType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="ID" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MID</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MNA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Field" type="FieldType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeats NFLDS\N times</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Measurement" type="MeasurementType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeats MN\N times</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="StreamType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SNA-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Type" type="TmatsCommon:MessageStreamTypeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MDT-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Layout" type="TmatsCommon:MessageStreamLayoutType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MDL-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ElementSize" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MES-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="IDLocation" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MIDL-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice>
+            <xs:annotation>
+               <xs:documentation>Depending on value of Layout element</xs:documentation>
+            </xs:annotation>
+            <xs:element name="Fixed" type="FixedType" minOccurs="0"/>
+            <xs:element name="Delimited" type="DelimitedType" minOccurs="0"/>
+         </xs:choice>
+         <xs:element name="DataOrientation" type="TmatsCommon:EndianType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>DO-i</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Message" type="MessageType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeats NMS\N-i times</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MessageDataAttributesType">
+      <xs:annotation>
+         <xs:documentation>TMATS S-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element name="TestItem" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TA</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Stream" type="StreamType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>Repeats NS\N times</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Comments" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>COM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

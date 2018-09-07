@@ -1,0 +1,1411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xmlns:mdl="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_19.xsd">
+  <DatabaseID>example id string</DatabaseID>
+  <Checksum>not present</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>ARINC 429 Example #1</Name>
+      <Description>description to be added</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>-TBD-</TmNSCompletenessDescription>
+      <NetworkReferences>
+        <NetworkRef IDREF="ExampleNetworkID"/>
+      </NetworkReferences>
+    </TestMission>
+  </TestMissions>
+  <Units>
+    <DerivedUnit ID="ByteEU">
+      <Name>Byte</Name>
+      <Description>8 binary digits (1 byte)</Description>
+      <Symbol>B</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>8.0</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+  </Units>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Example Measurement Domain</Name>
+      <Description>unused</Description>
+      <Measurements>
+        <Measurement ID="Meas_429Data_b1m1">
+          <Name>429DATA_B1M1</Name>
+          <Description>A Measurement associated with the Data field of the ARINC429 Message</Description>
+          <MeasurementID>0x00000004</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Data</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>19</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="Meas_429Label_b1m1">
+          <Name>429LABEL_B1M1</Name>
+          <Description>A Measurement associated with the Label field of an ARINC429 Message</Description>
+          <MeasurementID>0x00000008</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Label</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>8</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_429Data_b1m2">
+          <Name>429DATA_B1M2</Name>
+          <Description>A Measurement associated with the Data field of the ARINC429 Message</Description>
+          <MeasurementID>0x00000014</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Data</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>19</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="Meas_429Label_b1m2">
+          <Name>429LABEL_B1M2</Name>
+          <Description>A Measurement associated with the Label field of an ARINC429 Message</Description>
+          <MeasurementID>0x00000018</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Label</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>8</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_429Data_b2m1">
+          <Name>429DATA_B2M1</Name>
+          <Description>A Measurement associated with the Data field of the ARINC429 Message</Description>
+          <MeasurementID>0x00000024</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Data</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>19</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="Meas_429Label_b2m1">
+          <Name>429LABEL_B2M1</Name>
+          <Description>A Measurement associated with the Label field of an ARINC429 Message</Description>
+          <MeasurementID>0x00000028</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Label</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>8</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_429Data_b2m2">
+          <Name>429DATA_B2M2</Name>
+          <Description>A Measurement associated with the Data field of the ARINC429 Message</Description>
+          <MeasurementID>0x00000034</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Data</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>19</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="Meas_429Label_b2m2">
+          <Name>429LABEL_B2M2</Name>
+          <Description>A Measurement associated with the Label field of an ARINC429 Message</Description>
+          <MeasurementID>0x00000038</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName>ARINC429Label</ProperName>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>8</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <Packages>
+        <PackageDefinition ID="Package1">
+          <Name>Special Package using no package headers</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000010</PackageDefinitionID>
+          <StandardPackageHeader>false</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>16-bit Data</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Data_b1m1"/>
+                  <SyllableMask>0xFFFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field1_DATA"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ConstantValue>0x00</ConstantValue>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field2_PAD"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>Label word</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Label_b1m1"/>
+                  <SyllableMask>0x0FF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field3_LABEL"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+
+        <PackageDefinition ID="Package2">
+          <Name>Special Package using no package headers</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000011</PackageDefinitionID>
+          <StandardPackageHeader>false</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>16-bit Data</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Data_b1m2"/>
+                  <SyllableMask>0xFFFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field1_DATA"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ConstantValue>0x00</ConstantValue>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field2_PAD"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>Label word</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Label_b1m2"/>
+                  <SyllableMask>0x0FF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field3_LABEL"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+
+        <PackageDefinition ID="Package3">
+          <Name>Special Package using no package headers</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000012</PackageDefinitionID>
+          <StandardPackageHeader>false</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>16-bit Data</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Data_b2m1"/>
+                  <SyllableMask>0xFFFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field1_DATA"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ConstantValue>0x00</ConstantValue>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field2_PAD"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>Label word</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Label_b2m1"/>
+                  <SyllableMask>0x0FF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field3_LABEL"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+
+        <PackageDefinition ID="Package4">
+          <Name>Special Package using no package headers</Name>
+          <Description>TBD description</Description>
+          <PackageDefinitionID>0x00000013</PackageDefinitionID>
+          <StandardPackageHeader>false</StandardPackageHeader>
+          <PackageStructureRef IDREF="PackageStructure1"/>
+          <DataMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>16-bit Data</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Data_b2m2"/>
+                  <SyllableMask>0xFFFF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>16</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field1_DATA"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <ConstantValue>0x00</ConstantValue>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field2_PAD"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>Label word</Name>
+                <Description>TBD description</Description>
+                <DataWordWidth>
+                  <FlexValue>8</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </DataWordWidth>
+                <Syllable>
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <MeasurementRef IDREF="Meas_429Label_b2m2"/>
+                  <SyllableMask>0x0FF</SyllableMask>
+                  <SyllableWidth>
+                    <FlexValue>8</FlexValue>
+                    <SIUnits>Bit</SIUnits>
+                  </SyllableWidth>
+                  <SyllableStartBit>1</SyllableStartBit>
+                  <DataWordOffset>0</DataWordOffset>
+                </Syllable>
+              </DataWord>
+              <PackageDataFieldRef IDREF="PS1_Field3_LABEL"/>
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMap>
+        </PackageDefinition>
+
+        <PackageStructure ID="PackageStructure1">
+          <Name>No Header Package Stucture</Name>
+          <Description>This package structure has two fields separated by zero padding that total 32-bits in length.  The 32-bit pattern is repeated as long as the package size.</Description>
+          <PackageDataField ID="PS1_Field1_DATA">
+            <Name>Data Field</Name>
+            <Description>This is a 16 bit data field of the package.</Description>
+            <FieldLocation ID="PS1_Field1_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>0</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>16</FlexValue>
+                <SIUnits>Bit</SIUnits>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>0</FieldRepetitions>
+            <FieldOffsetIncrement>
+              <FlexValue>32</FlexValue>
+              <SIUnits>Bit</SIUnits>
+            </FieldOffsetIncrement>
+          </PackageDataField>
+          <PackageDataField ID="PS1_Field2_PAD">
+            <Name>PAD Field</Name>
+            <Description>This is a 8 bit PAD field of the package.</Description>
+            <FieldLocation ID="PS1_Field2_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>16</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>8</FlexValue>
+                <SIUnits>Bit</SIUnits>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>0</FieldRepetitions>
+            <FieldOffsetIncrement>
+              <FlexValue>32</FlexValue>
+              <SIUnits>Bit</SIUnits>
+            </FieldOffsetIncrement>
+          </PackageDataField>
+          <PackageDataField ID="PS1_Field3_LABEL">
+            <Name>LABEL Field</Name>
+            <Description>This is a 8 bit data field of the package.</Description>
+            <FieldLocation ID="PS1_Field3_Location">
+              <FieldOffset>
+                <OffsetValue>
+                  <FlexValue>24</FlexValue>
+                  <SIUnits>Bit</SIUnits>
+                </OffsetValue>
+              </FieldOffset>
+              <FieldWidth>
+                <FlexValue>8</FlexValue>
+                <SIUnits>Bit</SIUnits>
+              </FieldWidth>
+            </FieldLocation>
+            <FieldEncoding>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </FieldEncoding>
+            <FieldRepetitions>0</FieldRepetitions>
+            <FieldOffsetIncrement>
+              <FlexValue>32</FlexValue>
+              <SIUnits>Bit</SIUnits>
+            </FieldOffsetIncrement>
+          </PackageDataField>
+        </PackageStructure>
+      </Packages>
+      <Messages>
+        <MessageDefinition ID="MessageDefinition1">
+          <Name>Message1</Name>
+          <Description>TBD description</Description>
+          <MessageDefinitionID>0x80808080</MessageDefinitionID>
+          <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+          <DestinationAddress>230.0.0.10</DestinationAddress>
+          <MaximumMessageLength>
+            <FlexValue>512</FlexValue>
+            <UnitsRef IDREF="ByteEU"/>
+          </MaximumMessageLength>
+          <FixedPackageOrder>true</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstance Index="1">
+            <PackageDefinitionRef IDREF="Package1"/>
+          </PackageInstance>
+          <PackageInstance Index="2">
+            <PackageDefinitionRef IDREF="Package2"/>
+          </PackageInstance>
+        </MessageDefinition>
+        <MessageDefinition ID="MessageDefinition2">
+          <Name>Message2</Name>
+          <Description>TBD description</Description>
+          <MessageDefinitionID>0x81818181</MessageDefinitionID>
+          <DSCPTableEntryRef IDREF="DiffservBestEffort"/>
+          <DestinationAddress>230.0.0.10</DestinationAddress>
+          <MaximumMessageLength>
+            <FlexValue>512</FlexValue>
+            <UnitsRef IDREF="ByteEU"/>
+          </MaximumMessageLength>
+          <FixedPackageOrder>false</FixedPackageOrder> <!--NOTE: Since FixedPackageOrder is false, Packages 3 & 4 can occur in any random order up to the MaximumMessageLength-->
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstance Index="1">
+            <PackageDefinitionRef IDREF="Package3"/>
+          </PackageInstance>
+          <PackageInstance Index="2">
+            <PackageDefinitionRef IDREF="Package4"/>
+          </PackageInstance>
+        </MessageDefinition>
+      </Messages>
+      <DataStreams>
+        <DataStream ID="ARINC429_Bus_1">
+          <Name>A429_DS1</Name>
+          <Description>ARINC 429 Bus 1 description</Description>
+          <DataRate>
+            <ConditionParameter>
+              <ConditionOperation>==</ConditionOperation>
+              <ConditionValueFlex>125000</ConditionValueFlex>
+              <SIUnits>BitPerSecond</SIUnits>
+            </ConditionParameter>
+          </DataRate>
+          <ARINC429Messages>
+            <ARINC429Message ID="ARINC429_Bus_1_Mesg1">
+              <Name>A 429 message for this example</Name>
+              <Description>Message definition to demonstrate message selection and masks</Description>
+              <!-- Selection of the message is based on the fields that are present.  Missing fields are "don't care" -->
+              <ARINC429Label>128</ARINC429Label>
+              <DataStructure ID="ARINC429_Bus_1_Mesg1_Struct">
+                <Name>unused</Name>
+                <Description>unused</Description>
+                <PackageDataField ID="ARINC429_Bus_1_Mesg1_Struct_Field_Label">
+                  <Name>unused</Name>
+                  <Description>unused</Description>
+                  <FieldLocation ID="ARINC429_Bus_1_Mesg1_Struct_Field_Label_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="ARINC429_Bus_1_Mesg1_Struct_Field_Data">
+                  <Name>Data</Name>
+                  <Description>This is the Data field of the ARINC429 Message</Description>
+                  <FieldLocation ID="ARINC429_Bus_1_Mesg1_Struct_Field_Data_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>10</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Label_b1m1"/>
+                      <SyllableMask>0xff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>8</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_1_Mesg1_Struct_Field_Label"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Data_b1m1"/>
+                      <SyllableMask>0x7ffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>19</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_1_Mesg1_Struct_Field_Data"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </ARINC429Message>
+
+            <ARINC429Message ID="ARINC429_Bus_1_Mesg2">
+              <Name>A second 429 message for this example</Name>
+              <Description>Message definition to demonstrate message selection and masks</Description>
+              <!-- Selection of the message is based on the fields that are present.  Missing fields are "don't care" -->
+              <ARINC429Label>120</ARINC429Label>
+              <DataStructure ID="ARINC429_Bus_1_Mesg2_Struct">
+                <Name>unused</Name>
+                <Description>unused</Description>
+                <PackageDataField ID="ARINC429_Bus_1_Mesg2_Struct_Field_Label">
+                  <Name>unused</Name>
+                  <Description>unused</Description>
+                  <FieldLocation ID="ARINC429_Bus_1_Mesg2_Struct_Field_Label_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="ARINC429_Bus_1_Mesg2_Struct_Field_Data">
+                  <Name>Data</Name>
+                  <Description>This is the Data field of the ARINC429 Message</Description>
+                  <FieldLocation ID="ARINC429_Bus_1_Mesg2_Struct_Field_Data_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>10</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Label_b1m2"/>
+                      <SyllableMask>0xff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>8</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_1_Mesg2_Struct_Field_Label"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Data_b1m2"/>
+                      <SyllableMask>0x7ffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>19</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_1_Mesg2_Struct_Field_Data"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </ARINC429Message>
+          </ARINC429Messages>
+        </DataStream>
+
+
+        <DataStream ID="ARINC429_Bus_2">
+          <Name>A429_DS2</Name>
+          <Description>ARINC 429 Bus 2 description</Description>
+          <DataRate>
+            <ConditionParameter>
+              <ConditionOperation>==</ConditionOperation>
+              <ConditionValueFlex>125000</ConditionValueFlex>
+              <SIUnits>BitPerSecond</SIUnits>
+            </ConditionParameter>
+          </DataRate>
+          <ARINC429Messages>
+            <ARINC429Message ID="ARINC429_Bus_2_Mesg1">
+              <Name>A 429 message for this example</Name>
+              <Description>Message definition to demonstrate message selection and masks</Description>
+              <!-- Selection of the message is based on the fields that are present.  Missing fields are "don't care" -->
+              <ARINC429Label>128</ARINC429Label>
+              <DataStructure ID="ARINC429_Bus_2_Mesg1_Struct">
+                <Name>unused</Name>
+                <Description>unused</Description>
+                <PackageDataField ID="ARINC429_Bus_2_Mesg1_Struct_Field_Label">
+                  <Name>unused</Name>
+                  <Description>unused</Description>
+                  <FieldLocation ID="ARINC429_Bus_2_Mesg1_Struct_Field_Label_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="ARINC429_Bus_2_Mesg1_Struct_Field_Data">
+                  <Name>Data</Name>
+                  <Description>This is the Data field of the ARINC429 Message</Description>
+                  <FieldLocation ID="ARINC429_Bus_2_Mesg1_Struct_Field_Data_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>10</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Label_b2m1"/>
+                      <SyllableMask>0xff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>8</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_2_Mesg1_Struct_Field_Label"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Data_b2m1"/>
+                      <SyllableMask>0x7ffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>19</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_2_Mesg1_Struct_Field_Data"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </ARINC429Message>
+
+            <ARINC429Message ID="ARINC429_Bus_2_Mesg2">
+              <Name>A second 429 message for this example</Name>
+              <Description>Message definition to demonstrate message selection and masks</Description>
+              <!-- Selection of the message is based on the fields that are present.  Missing fields are "don't care" -->
+              <ARINC429Label>120</ARINC429Label>
+              <DataStructure ID="ARINC429_Bus_2_Mesg2_Struct">
+                <Name>unused</Name>
+                <Description>unused</Description>
+                <PackageDataField ID="ARINC429_Bus_2_Mesg2_Struct_Field_Label">
+                  <Name>unused</Name>
+                  <Description>unused</Description>
+                  <FieldLocation ID="ARINC429_Bus_2_Mesg2_Struct_Field_Label_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>0</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="ARINC429_Bus_2_Mesg2_Struct_Field_Data">
+                  <Name>Data</Name>
+                  <Description>This is the Data field of the ARINC429 Message</Description>
+                  <FieldLocation ID="ARINC429_Bus_2_Mesg2_Struct_Field_Data_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>10</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>0</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>8</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Label_b2m2"/>
+                      <SyllableMask>0xff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>8</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_2_Mesg2_Struct_Field_Label"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>unused</Name>
+                    <Description>unused</Description>
+                    <DataWordWidth>
+                      <FlexValue>19</FlexValue>
+                      <SIUnits>Bit</SIUnits>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>unused</Name>
+                      <Description>unused</Description>
+                      <MeasurementRef IDREF="Meas_429Data_b2m2"/>
+                      <SyllableMask>0x7ffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>19</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="ARINC429_Bus_2_Mesg2_Struct_Field_Data"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </ARINC429Message>
+          </ARINC429Messages>
+        </DataStream>
+      </DataStreams>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomains>
+    <Network ID="ExampleNetworkID">
+      <Name>Example Network</Name>
+      <Description>TBD description</Description>
+      <NetworkType>TmNS</NetworkType>
+      <NetworkNode ID="Dau1">
+        <Name>Dau1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Dau1</InventoryID> 
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>TBD-4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="DAU1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Dau1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSDAU/>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Module1">
+            <Name>TBD Module Name</Name>
+            <Description>TBD Module Description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD Model Number</Model>
+            <SerialIdentifier>12345-988775</SerialIdentifier>
+            <InventoryID>InvID-192837</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="DAU1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Dau1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.21</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.1</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Dau1PhysNetPort1">
+                <Name>Dau1PhysNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e8</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Connector>
+              <Name>Analog Connector</Name>
+              <Description>TBD description</Description>
+              <Pin ID="Pin1ID" Index="1">
+                <Name>TBD name</Name>
+                <Description>unused</Description>
+                <Designator>a</Designator>
+              </Pin>
+              <Pin ID="Pin2ID" Index="2">
+                <Name>TBD name</Name>
+                <Description>unused</Description>
+                <Designator>b</Designator>
+              </Pin>
+              <Pin ID="Pin3ID" Index="3">
+                <Name>TBD name</Name>
+                <Description>unused</Description>
+                <Designator>c</Designator>
+              </Pin>
+              <Pin ID="Pin4ID" Index="4">
+                <Name>TBD name</Name>
+                <Description>unused</Description>
+                <Designator>d</Designator>
+              </Pin>
+            </Connector>
+            <Ports>
+              <Port ID="Dau1InputPort1" Index="1">
+                <Name>TBD name</Name>
+                <Description>First bus input port</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="Pin1ID"/>
+                <PinRef IDREF="Pin2ID"/>
+              </Port>
+              <Port ID="Dau1InputPort2" Index="2">
+                <Name>TBD name</Name>
+                <Description>Second bus input port</Description>
+                <PortDirection>Input</PortDirection>
+                <PinRef IDREF="Pin3ID"/>
+                <PinRef IDREF="Pin4ID"/>
+              </Port>
+              <Port ID="Dau1NetworkPort" Index="3">
+                <Name>Dau1Port</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Dau1PhysNetPort1"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <NetworkNode ID="Switch1">
+        <Name>Switch 1</Name>
+        <Description>TBD description</Description>
+        <InventoryID>Switch1</InventoryID>
+        <HostName>TBD hostname</HostName>
+        <Manufacturer>TBD Vendor Co</Manufacturer>
+        <Model>TBD WhizzBang</Model>
+        <ModelVersion>1.0</ModelVersion>
+        <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSManageableApps>
+          <TmNSManageableApp ID="Switch1App">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <RoleID>Switch1</RoleID>
+            <LoggingLevels>
+              <Trace>true</Trace>
+              <Debug>false</Debug>
+              <Info>true</Info>
+              <Warning>false</Warning>
+              <Error>false</Error>
+              <Critical>false</Critical>
+            </LoggingLevels>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Product>TBD App</Product>
+            <ProductVersion>1.0</ProductVersion>
+            <ConfigurationVersion>-TBD-</ConfigurationVersion>
+            <TmNSStandardsVersion>TBD version</TmNSStandardsVersion>
+            <DirtyBit>false</DirtyBit>
+            <LaunchCommand>unused</LaunchCommand>
+            <TmNSNetworkFabricDevice>
+              <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+              <IGMPQuerier>Off</IGMPQuerier>
+              <IGMPQuerierInterval>0</IGMPQuerierInterval>
+            </TmNSNetworkFabricDevice>
+          </TmNSManageableApp>
+        </TmNSManageableApps>
+        <InternalStructure>
+          <Module ID="Switch1Module">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <Manufacturer>TBD Vendor Co</Manufacturer>
+            <Model>TBD WhizzBang</Model>
+            <SerialIdentifier>4567-8912-RA</SerialIdentifier>
+            <InventoryID>Switch1</InventoryID>
+            <Position>0</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningApps>
+              <ManageableAppRef IDREF="Switch1App"/>
+            </RunningApps>
+            <NetworkInterface ID="Switch1IFace">
+              <Name>Eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <IPAddress>192.168.0.254</IPAddress>
+              <Netmask>255.255.255.0</Netmask>
+              <Gateway>192.168.0.254</Gateway>
+              <MACAddress>00:00:00:00:00:00</MACAddress>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort1">
+                <Name>Sw1PhyNetPort1</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort2">
+                <Name>Sw1PhyNetPort2</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>2</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort3">
+                <Name>Sw1PhyNetPort3</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>3</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              <PhysicalNetworkPort ID="Sw1PhyNetPort4">
+                <Name>Sw1PhyNetPort4</Name>
+                <Description>TBD description</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>4</PortNumber>
+                <PortDataRate>
+                  <FloatValue>1e9</FloatValue>
+                  <SIUnits>BitPerSecond</SIUnits>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+            </NetworkInterface>
+            <Ports>
+              <Port ID="Switch1Port1" Index="1">
+                <Name>Switch1Port1</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort1"/>
+              </Port>
+              <Port ID="Switch1Port2" Index="2">
+                <Name>Switch1Port2</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort2"/>
+              </Port>
+              <Port ID="Switch1Port3" Index="3">
+                <Name>Switch1Port3</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort3"/>
+              </Port>
+              <Port ID="Switch1Port4" Index="4">
+                <Name>Switch1Port4</Name>
+                <Description>TBD description</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PhysicalNetworkPortRef IDREF="Sw1PhyNetPort4"/>
+              </Port>
+            </Ports>
+          </Module>
+        </InternalStructure>
+      </NetworkNode>
+      <PortMappings>
+        <PortMapping ID="PM1">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1NetworkPort"/>
+          <PortRef IDREF="Switch1Port1"/>
+        </PortMapping>
+        <PortMapping ID="PM2">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1InputPort1"/>
+          <DataStreamRef IDREF="ARINC429_Bus_1"/>
+        </PortMapping>
+        <PortMapping ID="PM3">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <PortRef IDREF="Dau1InputPort2"/>
+          <DataStreamRef IDREF="ARINC429_Bus_2"/>
+        </PortMapping>
+      </PortMappings>
+    </Network>
+  </NetworkDomains>
+  <DSCPTable>
+    <DSCPTableEntry ID="DiffservBestEffort">
+      <Name>Best Effort Diffserv</Name>
+      <Description>Best Effort PHB</Description>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservExpeditedForwarding">
+      <Name>Expedited Forwarding Diffserv</Name>
+      <Description>Expedited Forwarding PHB</Description>
+      <DSCPValue>0b101110</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding1">
+      <Name>Assured Forwarding 1 Diffserv</Name>
+      <Description>Assured Forwarding Class 1</Description>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding2">
+      <Name>Assured Forwarding 2 Diffserv</Name>
+      <Description>Assured Forwarding Class 2</Description>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding3">
+      <Name>Assured Forwarding 3 Diffserv</Name>
+      <Description>Assured Forwarding Class 3</Description>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="DiffservAssuredForwarding4">
+      <Name>Assured Forwarding 4 Diffserv</Name>
+      <Description>Assured Forwarding Class 4</Description>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>

@@ -1,0 +1,1874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  
+        UNCLASSIFIED//FOR OFFICIAL USE ONLY
+        DISTRIBUTION STATEMENT C
+    This document is property of the U.S. Government. Distribution authorized to U.S. Government 
+    Agencies and their contractors (date of determination as of February 15, 2018). Other 
+    requests for this document shall be referred to the VICTORY Standards Support Office (VSSO).
+-->
+<!--
+    Version = 1.7
+    Release Date = 20180215
+-->
+<xsd:schema xmlns:vmt="http://www.victory-standards.org/Schemas/VICTORYManagementTypes.xsd"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:vst="http://www.victory-standards.org/Schemas/VICTORYSharedTypes.xsd"
+    targetNamespace="http://www.victory-standards.org/Schemas/VICTORYManagementTypes.xsd"
+    elementFormDefault="qualified" version="1.7">
+    <xsd:import namespace="http://www.victory-standards.org/Schemas/VICTORYSharedTypes.xsd"
+        schemaLocation="VICTORYSharedTypes.xsd"/>
+    <!--SIMPLE TYPES-->
+    <xsd:simpleType name="dscp_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:byte">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="51"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="fieldOfViewBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="180"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ipAddress_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:union memberTypes="vmt:ipv4Address_t vmt:ipv6Address_t"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ipv4Address_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern
+                value="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+            />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ipv6Address_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern
+                value="((([0-9A-Fa-f]{1,4}:){7}(([0-9A-Fa-f]{1,4})|:))|(([0-9A-Fa-f]{1,4}:){6}(:|((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})|(:[0-9A-Fa-f]{1,4})))|(([0-9A-Fa-f]{1,4}:){5}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(([0-9A-Fa-f]{1,4}:){4}(:[0-9A-Fa-f]{1,4}){0,1}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(([0-9A-Fa-f]{1,4}:){3}(:[0-9A-Fa-f]{1,4}){0,2}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(([0-9A-Fa-f]{1,4}:){2}(:[0-9A-Fa-f]{1,4}){0,3}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(([0-9A-Fa-f]{1,4}:)(:[0-9A-Fa-f]{1,4}){0,4}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(:(:[0-9A-Fa-f]{1,4}){0,5}((:((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})?)|((:[0-9A-Fa-f]{1,4}){1,2})))|(((25[0-5]|2[0-4]\d|[01]?\d{1,2})(\.(25[0-5]|2[0-4]\d|[01]?\d{1,2})){3})))(%.+)?"
+            />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="maturity_t">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Preliminary"/>
+            <xsd:enumeration value="Experimental"/>
+            <xsd:enumeration value="Proposed Standard"/>
+            <xsd:enumeration value="Draft Standard"/>
+            <xsd:enumeration value="VICTORY Standard"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="radioGainBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="-27"/>
+            <xsd:maxInclusive value="27"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="timeSecNsec_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:pattern value="([0-9])+(\.([0-9]){1,9})?"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="transportLayerPort_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="65535"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--COMPLEX TYPES-->
+    <xsd:complexType name="generatorNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="voltageAvailable" type="xsd:boolean"/>
+            <xsd:element name="temperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="shaftSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="utilizationAvailable" type="xsd:boolean"/>
+            <xsd:element name="faultsAvailable" type="xsd:boolean"/>
+            <xsd:element name="outputEnabledAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ambientConditionsNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="barometricPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="cabInteriorTemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="ambientAirTemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAirIntakeTemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="roadSurfaceTemperatureAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="auxiliaryPowerUnitNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="powerAvailable" type="xsd:boolean"/>
+            <xsd:element name="voltageAvailable" type="xsd:boolean"/>
+            <xsd:element name="temperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="faultsAvailable" type="xsd:boolean"/>
+            <xsd:element name="outputEnabledAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="base_t" abstract="true">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="channel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="frequency" type="xsd:unsignedInt" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="directionOfTravel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="heading" type="vst:headingBounds_t" minOccurs="0"/>
+            <xsd:element name="speed" type="vst:unsignedDouble_t" minOccurs="0"/>
+            <xsd:element name="rateOfClimb" type="xsd:double" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="directionOfTravelNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="headingAvailable" type="xsd:boolean"/>
+            <xsd:element name="speedAvailable" type="xsd:boolean"/>
+            <xsd:element name="rateOfClimbAvailable" type="xsd:boolean"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="error_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ERRNO" type="xsd:string"/>
+            <xsd:element name="ERRTXT" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="fault_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="faultId" type="xsd:unsignedInt"/>
+            <xsd:element name="origin" type="xsd:string"/>
+            <xsd:element name="severity" type="xsd:string"/>
+            <xsd:element name="facility" type="xsd:string"/>
+            <xsd:element name="category" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="suggestedAction" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="state" type="xsd:string"/>
+            <xsd:element name="acknowledgeable" type="xsd:boolean"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element name="timestamp" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="frequencyBand_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="start" type="xsd:double"/>
+            <xsd:element name="stop" type="xsd:double"/>
+            <xsd:element name="channelWidth" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="geographicRegion_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="latitude" type="vst:latitudeBounds_t"/>
+            <xsd:element name="longitude" type="vst:longitudeBounds_t"/>
+            <xsd:element name="range" type="vst:unsignedDouble_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="lowVoltageThresholdsNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="currentTripThresholdAvailable" type="xsd:boolean"/>
+            <xsd:element name="currentOnlineThresholdAvailable" type="xsd:boolean"/>
+            <xsd:element name="voltageUpperThresholdAvailable" type="xsd:boolean"/>
+            <xsd:element name="voltageLowerThresholdAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="missionRecorderComment_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="commentUniqueName" type="xsd:string"/>
+            <xsd:element name="commentValue" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="missionRecorderDataStream_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="dataStreamUniqueName" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="pastDataEnabled" type="xsd:boolean"/>
+            <xsd:element name="state" type="xsd:string"/>
+            <xsd:element name="recordingTransportConfiguration" type="vmt:transportConfiguration_t"/>
+            <xsd:element name="playbackTransportConfigurations">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="playbackTransportConfiguration"
+                            type="vmt:transportConfiguration_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="comments">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="comment"
+                            type="vmt:missionRecorderComment_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="recordedFiles">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="recordedFile"
+                            type="vmt:missionRecorderFileInformation_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="missionRecorderFileInformation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fileName" type="xsd:string"/>
+            <xsd:element name="startTime" type="xsd:dateTime"/>
+            <xsd:element name="endTime" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="missionRecorderPermanentStorage_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="size">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:double">
+                        <xsd:minInclusive value="0"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="units" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dataLoggerStream_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element name="uri" type="xsd:anyURI"/>
+            <xsd:element name="streamType" type="vmt:dataLoggerStreamType_t"/>
+            <xsd:element name="timeFilter" type="vmt:dataLoggerTimeFilter_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dataLoggerTimeFilter_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="startTime" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dataLoggerStreamFilter_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="uri" type="xsd:anyURI" minOccurs="0"/>
+            <xsd:element name="streamType" type="vmt:dataLoggerStreamType_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dataLoggerStreamType_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="vdmStream" type="vmt:vdmStream_t"/>
+            <xsd:element name="healthStream" type="vmt:healthStream_t"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="vdmStream_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="vdmType" type="xsd:string"/>
+            <xsd:element name="interfaceId" type="xsd:unsignedInt"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:simpleType name="healthStream_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="syslog|\d?(\.\d+)+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="dataLoggerSetStreamError">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="timeFilter" type="vmt:dataLoggerTimeFilter_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="networkLayer_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="layerName" type="xsd:string"/>
+            <xsd:element name="networkLayer" type="vmt:networkLayer_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="orientation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="roll" type="vst:rollBounds_t" minOccurs="0"/>
+            <xsd:element name="pitch" type="vst:pitchBounds_t" minOccurs="0"/>
+            <xsd:element name="yaw" type="vst:yawBounds_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="orientationNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="rollAvailable" type="xsd:boolean"/>
+            <xsd:element name="pitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="yawAvailable" type="xsd:boolean"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="orientationRate_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="rollRate" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="pitchRate" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="yawRate" type="xsd:double" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformBatteryId_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="batteryId" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformBatteryNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="batteryId" type="xsd:string"/>
+            <xsd:element name="stateOfChargeAvailable" type="xsd:boolean"/>
+            <xsd:element name="stateOfHealthAvailable" type="xsd:boolean"/>
+            <xsd:element name="currentAvailable" type="xsd:boolean"/>
+            <xsd:element name="lowVoltageAvailable" type="xsd:boolean"/>
+            <xsd:element name="temperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="chargeEnabledAvailable" type="xsd:boolean"/>
+            <xsd:element name="interconnectedAvailable" type="xsd:boolean"/>
+            <xsd:element name="chargeCurrentAvailable" type="xsd:boolean"/>
+            <xsd:element name="chargeVoltageAvailable" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformPowerGenerationNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="generator" type="vmt:generatorNominalData_t"/>
+            <xsd:element minOccurs="0" name="auxiliaryPowerUnit"
+                type="vmt:auxiliaryPowerUnitNominalData_t"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformPowerNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="instantaneousPowerConsumedAvailable" type="xsd:boolean"/>
+            <xsd:element name="instantaneousPowerGeneratedAvailable" type="xsd:boolean"/>
+            <xsd:element name="systemVoltageAvailable" type="xsd:boolean"/>
+            <xsd:element name="totalInstantaneousEnginePowerAvailable" type="xsd:boolean"/>
+            <xsd:element name="availableEnginePowerAvailable" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="position_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="latitude" type="vst:latitudeBounds_t" minOccurs="0"/>
+            <xsd:element name="longitude" type="vst:longitudeBounds_t" minOccurs="0"/>
+            <xsd:element name="altitude" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="mgrs" type="vst:mgrs_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="positionNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="latitudeAvailable" type="xsd:boolean"/>
+            <xsd:element name="longitudeAvailable" type="xsd:boolean"/>
+            <xsd:element name="altitudeAvailable" type="xsd:boolean"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="powerSystemDevice">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" minOccurs="1" name="device"
+                            type="vmt:powerSystemDeviceNominalData_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="powerSystemDeviceThreshold">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="device"
+                            type="vmt:powerSystemDeviceThresholdNominalData_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="platformBattery">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="battery"
+                            type="vmt:platformBatteryNominalData_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="platformPowerGeneration"
+                type="vmt:platformPowerGenerationNominalData_t"/>
+            <xsd:element minOccurs="0" name="platformPower" type="vmt:platformPowerNominalData_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceId_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deviceId" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="vmt:powerSystemDeviceNominalDataBase_t">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="loadDevices">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element maxOccurs="unbounded" name="loadDevice"
+                                    type="vmt:powerSystemDeviceNominalDataBase_t"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceNominalDataBase_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deviceId" type="xsd:string"/>
+            <xsd:element name="currentAvailable" type="xsd:boolean"/>
+            <xsd:element name="lowVoltageAvailable" type="xsd:boolean"/>
+            <xsd:element name="temperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="tripStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="combatOverrideAvailable" type="xsd:boolean"/>
+            <xsd:element name="powerModeStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="powerConnectorDisconnectInterlockStatusAvailable" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceThresholdNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="vmt:powerSystemDeviceThresholdNominalDataBase_t">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="loadDevices">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element maxOccurs="unbounded" name="loadDevice"
+                                    type="vmt:powerSystemDeviceThresholdNominalDataBase_t"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="powerSystemDeviceThresholdNominalDataBase_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="deviceId" type="xsd:string"/>
+            <xsd:element name="lowVoltageThresholds" type="vmt:lowVoltageThresholdsNominalData_t"/>
+            <xsd:element name="temperatureThresholds" type="vmt:temperatureThresholdsNominalData_t"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="sensorPosition_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="x" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="y" type="xsd:double" minOccurs="0"/>
+            <xsd:element name="z" type="xsd:double" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="soapComponent_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="soapComponentType" type="xsd:string"/>
+            <xsd:element name="ports">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="port"
+                            type="vmt:soapComponentPort_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="soapComponentPort_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="standardVersion" type="xsd:string"/>
+            <xsd:element name="uri" type="xsd:anyURI"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="target_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="targetId" type="xsd:string"/>
+            <xsd:element name="relativePosition" type="vst:relativePosition_t"/>
+            <xsd:element name="absolutePosition" type="vst:absolutePosition_t" minOccurs="0"/>
+            <xsd:element name="priority">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int">
+                        <xsd:minInclusive value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="confidence" type="vst:percentBounds_t"/>
+            <xsd:element name="timestamp" type="xsd:dateTime"/>
+            <xsd:element name="selected" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="temperatureThresholdsNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="temperatureUpperThresholdAvailable" type="xsd:boolean"/>
+            <xsd:element name="temperatureLowerThresholdAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="timeRange_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="startTime" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="stopTime" type="xsd:dateTime" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="transportConfiguration_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="vmt:base_t">
+                <xsd:sequence>
+                    <xsd:element name="uri" type="xsd:anyURI"/>
+                    <xsd:element name="networkLayer" type="vmt:networkLayer_t" minOccurs="0"/>
+                </xsd:sequence>
+                <xsd:attribute name="index" type="xsd:int" use="optional"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="videoResolution_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="horizontalResolution" type="vst:greaterThanZeroDouble_t"
+                minOccurs="0"/>
+            <xsd:element name="verticalResolution" type="vst:greaterThanZeroDouble_t" minOccurs="0"
+            />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="intercomAssetGroup_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="intercomGroupId" type="xsd:string"/>
+            <xsd:element name="assets">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="asset" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="intercomCrewStation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="crewStationId" type="xsd:string"/>
+            <xsd:element name="volume" type="xsd:unsignedInt"/>
+            <xsd:element name="ptt" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="activeChannels">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="activeChannel" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="receiveOnlyChannels">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="receiveOnlyChannel"
+                            type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="intercomConnectedRadio_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="intercomRadioId" type="xsd:string"/>
+            <xsd:element name="radioType" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="activeDiagnosticTroubleCodesNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineProtectLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAmberWarningLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineRedStopLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="obdMalfunctionIndicatorLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="flashProtectLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="flashAmberWarningLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="flashRedStopLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="flashMalfunctionIndicatorLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="suspectParameterNumberAvailable" type="xsd:boolean"/>
+            <xsd:element name="failureModeIdentifierAvailable" type="xsd:boolean"/>
+            <xsd:element name="occurrenceCountAvailable" type="xsd:boolean"/>
+            <xsd:element name="spnConversionMethodAvailable" type="xsd:boolean"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="alternatorTemperatureNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineAlternatorBearing1TemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAlternatorBearing2TemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAlternatorWinding1TemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAlternatorWinding2TemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAlternatorWinding3TemperatureAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="ambientConditions" type="vst:automotiveAmbientConditions_t"/>
+            <xsd:element name="dashDisplay" type="vst:automotiveDashDisplay_t"/>
+            <xsd:element name="directLampControl1" type="vst:automotiveDirectLampControlData1_t"/>
+            <xsd:element name="directLampControl2" type="vst:automotiveDirectLampControlData2_t"/>
+            <xsd:element name="distance" type="vst:automotiveDistance_t"/>
+            <xsd:element name="electricalPower1" type="vst:automotiveElectricalPower1_t"/>
+            <xsd:element name="electricalPower2" type="vst:automotiveElectricalPower2_t"/>
+            <xsd:element name="electronicTransmissionController2"
+                type="vst:automotiveElectronicTransmissionController2_t"/>
+            <xsd:element name="engineFluidLevelAndPressure"
+                type="vst:automotiveEngineFluidLevelAndPressure1_t"/>
+            <xsd:element name="engineHoursAndRevolutions"
+                type="vst:automotiveEngineHoursAndRevolutions_t"/>
+            <xsd:element name="engineSpeedAndLoadFactor"
+                type="vst:automotiveEngineSpeedAndLoadFactor_t"/>
+            <xsd:element name="engineTemperature1" type="vst:automotiveEngineTemperature1_t"/>
+            <xsd:element name="engineTemperature2" type="vst:automotiveEngineTemperature2_t"/>
+            <xsd:element name="engineValve" type="vst:automotiveEngineValve_t"/>
+            <xsd:element name="fuelConsumption" type="vst:automotiveFuelConsumption_t"/>
+            <xsd:element name="fuelEconomy" type="vst:automotiveFuelEconomy_t"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="ambientConditions" type="vmt:ambientConditionsNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="dashDisplay" type="vmt:dashDisplayNominalData_t" minOccurs="0"/>
+            <xsd:element name="directLampControl1" type="vmt:directLampControl1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="directLampControl2" type="vmt:directLampControl2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="distance" type="vmt:distanceNominalData_t" minOccurs="0"/>
+            <xsd:element name="electricalPower1" type="vmt:electricalPower1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="electricalPower2" type="vmt:electricalPower2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="electronicTransmissionController2"
+                type="vmt:electronicTransmissionController2NominalData_t" minOccurs="0"/>
+            <xsd:element name="engineFluidLevelAndPressure"
+                type="vmt:engineFluidLevelAndPressureNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineHoursAndRevolutions"
+                type="vmt:engineHoursAndRevolutionsNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineSpeedAndLoadFactor"
+                type="vmt:engineSpeedAndLoadFactorNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineTemperature1" type="vmt:engineTemperature1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="engineTemperature2" type="vmt:engineTemperature2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="engineValve" type="vmt:engineValveNominalData_t" minOccurs="0"/>
+            <xsd:element name="fuelConsumption" type="vmt:fuelConsumptionNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="fuelEconomy" type="vmt:fuelEconomyNominalData_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="batteryTemperatureNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="battery1TemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="battery2TemperatureAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="cabMessage1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="requestedPercentFanSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="operatorSeatDirectionSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="seatBeltSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="vlsgDecrementSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="vlsgIncrementSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="vlsgEnableSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="dieselParticulateFilterRegenerationInhibitSwitchAvailable"
+                type="xsd:boolean"/>
+            <xsd:element name="dieselParticulateFilterRegenerationForceSwitchAvailable"
+                type="xsd:boolean"/>
+            <xsd:element name="automaticGearShiftingEnableSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAutomaticStartEnableSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="selectedMaximumVehicleSpeedLimitAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="combinationVehicleWeightNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="poweredVehicleWeightAvailable" type="xsd:boolean"/>
+            <xsd:element name="grossCombinationVehicleWeightAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="dashDisplayNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fuelLevel2Available" type="xsd:boolean"/>
+            <xsd:element name="washerFluidLevelAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineFuelFilterDifferentialPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelLevel1Available" type="xsd:boolean"/>
+            <xsd:element name="engineOilFilterDifferentialPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="cargoAmbientTemperatureAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="directLampControl1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineProtectLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAmberWarningLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineRedStopLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="obdMalfunctionIndicatorLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineBrakeActiveLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="compressionBrakeEnableSwitchIndicatorAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineOilPressureLowLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineCoolantTemperatureHighLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineCoolantLevelLowLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineIdleManagementActiveAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineAirFilterRestrictionLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineFuelFilterRestrictedLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineWaitToStartLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineControlModule1ReadyForUseLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineControlModule2ReadyForUseLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineControlModule3ReadyForUseLampAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="directLampControl2NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="vehicleBatteryVoltageLowLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="vehicleFuelLevelLowLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="vehicleAirPressureLowLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="hvacRecirculationLampAvailable" type="xsd:boolean"/>
+            <xsd:element name="vehicleBatteryChargingLampAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="distanceNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tripDistanceAvailable" type="xsd:boolean"/>
+            <xsd:element name="totalVehicleDistanceAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="electricalPower1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="netBatteryCurrentAvailable" type="xsd:boolean"/>
+            <xsd:element name="alternatorCurrentAvailable" type="xsd:boolean"/>
+            <xsd:element name="chargingSystemPotentialAvailable" type="xsd:boolean"/>
+            <xsd:element name="powerInput1Available" type="xsd:boolean"/>
+            <xsd:element name="keyswitchBatteryVoltageAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="electricalPower2NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="powerInput2Available" type="xsd:boolean"/>
+            <xsd:element name="ecuSupplyVoltage1Available" type="xsd:boolean"/>
+            <xsd:element name="ecuSupplyVoltage2Available" type="xsd:boolean"/>
+            <xsd:element name="ecuSupplyVoltage3Available" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="electronicEngineController1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineTorqueModeAvailable" type="xsd:boolean"/>
+            <xsd:element name="driversDemandEnginePercentTorqueAvailable" type="xsd:boolean"/>
+            <xsd:element name="actualEnginePercentTorqueAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineStarterModeAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineDemandPercentTorqueAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="electronicEngineController2NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="acceleratorPedal1LowIdleSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="acceleratorPedalKickdownSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="roadSpeedLimitStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="acceleratorPedal2LowIdleSwitchAvailable" type="xsd:boolean"/>
+            <xsd:element name="acceleratorPedalPosition1Available" type="xsd:boolean"/>
+            <xsd:element name="enginePercentLoadAtCurrentSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="remoteAcceleratorPedalPositionAvailable" type="xsd:boolean"/>
+            <xsd:element name="acceleratorPedalPosition2Available" type="xsd:boolean"/>
+            <xsd:element name="vehicleAccelerationRateLimitStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="momentaryEngineMaximumPowerEnableFeedbackAvailable"
+                type="xsd:boolean"/>
+            <xsd:element name="dpfThermalManagementActiveAvailable" type="xsd:boolean"/>
+            <xsd:element name="scrThermalManagementActiveAvailable" type="xsd:boolean"/>
+            <xsd:element name="actualMaximumAvailableEnginePercentTorqueAvailable"
+                type="xsd:boolean"/>
+            <xsd:element name="estimatedPumpingPercentTorqueAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="electronicTransmissionController2NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="selectedGearAvailable" type="xsd:boolean"/>
+            <xsd:element name="actualGearRatioAvailable" type="xsd:boolean"/>
+            <xsd:element name="currentGearAvailable" type="xsd:boolean"/>
+            <xsd:element name="requestedRangeAvailable" type="xsd:boolean"/>
+            <xsd:element name="currentRangeAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineFluidLevelAndPressureNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fuelDeliveryPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="extendedCrankcaseBlowbyPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="oilLevelAvailable" type="xsd:boolean"/>
+            <xsd:element name="oilPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="crankcasePressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="coolantPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="coolantLevelAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineHoursAndRevolutionsNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="totalHoursOfOperationAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineTotalRevolutionsAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineSpeedAndLoadFactorNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tripMaximumEngineSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="tripAverageEngineSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="tripDriveAverageLoadFactorAvailable" type="xsd:boolean"/>
+            <xsd:element name="totalDriveAverageLoadFactorAvailable" type="xsd:boolean"/>
+            <xsd:element name="totalEngineCruiseTimeAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineTemperature1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineIntercoolerTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineCoolantTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineFuelTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineOilTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineTurbochargerOilTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineIntercoolerThermostatOpeningAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineTemperature2NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineOilTemp2Available" type="xsd:boolean"/>
+            <xsd:element name="engineEcuTempAvailable" type="xsd:boolean"/>
+            <xsd:element name="exhaustGasRecirculationDifferentialPressureAvailable"
+                type="xsd:boolean"/>
+            <xsd:element name="exhaustGasRecirculationTempAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="engineValveNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="desiredThrottleValve1PositionAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve1PreFmiAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve1TempStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="desiredThrottleValve2PositionAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve2PreFmiAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve2TempStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve1PreFmiAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve1TempStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve2PreFmiAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve2TempStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve1OpStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve2OpStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve1OpStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="fuelValve2OpStatusAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="fanDrive1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="estimatedPercentFanSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="fanDriveStateAvailable" type="xsd:boolean"/>
+            <xsd:element name="fanSpeedAvailable" type="xsd:boolean"/>
+            <xsd:element name="hydraulicFanMotorPressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="fanDriveBypassCommandStatusAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="fuelConsumptionNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineTripFuelAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineTotalFuelUsedAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="fuelEconomyNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="fuelRateAvailable" type="xsd:boolean"/>
+            <xsd:element name="instantaneousFuelEconomyAvailable" type="xsd:boolean"/>
+            <xsd:element name="averageFuelEconomyAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve1PositionAvailable" type="xsd:boolean"/>
+            <xsd:element name="throttleValve2PositionAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="tireConditionNominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="tireLocationAvailable" type="xsd:boolean"/>
+            <xsd:element name="tirePressureAvailable" type="xsd:boolean"/>
+            <xsd:element name="tireTemperatureAvailable" type="xsd:boolean"/>
+            <xsd:element name="ctiWheelSensorStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="ctiTireStatusAvailable" type="xsd:boolean"/>
+            <xsd:element name="ctiWheelEndElectricalFaultAvailable" type="xsd:boolean"/>
+            <xsd:element name="tireAirLeakageRateAvailable" type="xsd:boolean"/>
+            <xsd:element name="tirePressureThresholdDetectionAvailable" type="xsd:boolean"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="torqueSpeedControl1NominalData_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="engineOverrideControlModeAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineRequestedSpeedControlConditionsAvailable" type="xsd:boolean"/>
+            <xsd:element name="overrideControlModePriorityAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineRequestedSpeedAndSpeedLimitAvailable" type="xsd:boolean"/>
+            <xsd:element name="engineRequestedTorqueAndTorqueLimitAvailable" type="xsd:boolean"/>
+            <xsd:element name="tsc1TransmissionRateAvailable" type="xsd:boolean"/>
+            <xsd:element name="tsc1ControlPurposeAvailable" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveData2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:choice>
+            <xsd:element name="activeDiagnosticTroubleCodes"
+                type="vst:automotiveActiveDiagnosticTroubleCodes_t"/>
+            <xsd:element name="alternatorTemperature" type="vst:automotiveAlternatorTemperature_t"/>
+            <xsd:element name="ambientConditions" type="vst:automotiveAmbientConditions_t"/>
+            <xsd:element name="batteryTemperature" type="vst:automotiveBatteryTemperature_t"/>
+            <xsd:element name="cabMesage1" type="vst:automotiveCabMessage1_t"/>
+            <xsd:element name="combinationVehicleWeight"
+                type="vst:automotiveCombinationVehicleWeight_t"/>
+            <xsd:element name="dashDisplay" type="vst:automotiveDashDisplay_t"/>
+            <xsd:element name="directLampControl1" type="vst:automotiveDirectLampControlData1_t"/>
+            <xsd:element name="directLampControl2" type="vst:automotiveDirectLampControlData2_t"/>
+            <xsd:element name="distance" type="vst:automotiveDistance_t"/>
+            <xsd:element name="electricalPower1" type="vst:automotiveElectricalPower1_t"/>
+            <xsd:element name="electricalPower2" type="vst:automotiveElectricalPower2_t"/>
+            <xsd:element name="electronicEngineController1"
+                type="vst:automotiveElectronicEngineController1_t"/>
+            <xsd:element name="electronicEngineController2"
+                type="vst:automotiveElectronicEngineController2_t"/>
+            <xsd:element name="electronicTransmissionController2"
+                type="vst:automotiveElectronicTransmissionController2_t"/>
+            <xsd:element name="engineFluidLevelAndPressure"
+                type="vst:automotiveEngineFluidLevelAndPressure1_t"/>
+            <xsd:element name="engineHoursAndRevolutions"
+                type="vst:automotiveEngineHoursAndRevolutions_t"/>
+            <xsd:element name="engineSpeedAndLoadFactor"
+                type="vst:automotiveEngineSpeedAndLoadFactor_t"/>
+            <xsd:element name="engineTemperature1" type="vst:automotiveEngineTemperature1_t"/>
+            <xsd:element name="engineTemperature2" type="vst:automotiveEngineTemperature2_t"/>
+            <xsd:element name="engineValve" type="vst:automotiveEngineValve_t"/>
+            <xsd:element name="fanDrive1" type="vst:automotiveFanDrive1_t"/>
+            <xsd:element name="fuelConsumption" type="vst:automotiveFuelConsumption_t"/>
+            <xsd:element name="fuelEconomy" type="vst:automotiveFuelEconomy_t"/>
+            <xsd:element name="tireCondition" type="vst:automotiveTireCondition_t"/>
+            <xsd:element name="torqueSpeedControl1" type="vst:automotiveTorqueSpeedControl1_t"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="automotiveNominalData2_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="activeDiagnosticTroubleCodes"
+                type="vmt:activeDiagnosticTroubleCodesNominalData_t" minOccurs="0"/>
+            <xsd:element name="alternatorTemperature" type="vmt:alternatorTemperatureNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="ambientConditions" type="vmt:ambientConditionsNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="batteryTemperature" type="vmt:batteryTemperatureNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="cabMessage1" type="vmt:cabMessage1NominalData_t" minOccurs="0"/>
+            <xsd:element name="combinationVehicleWeight"
+                type="vmt:combinationVehicleWeightNominalData_t" minOccurs="0"/>
+            <xsd:element name="dashDisplay" type="vmt:dashDisplayNominalData_t" minOccurs="0"/>
+            <xsd:element name="directLampControl1" type="vmt:directLampControl1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="directLampControl2" type="vmt:directLampControl2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="distance" type="vmt:distanceNominalData_t" minOccurs="0"/>
+            <xsd:element name="electricalPower1" type="vmt:electricalPower1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="electricalPower2" type="vmt:electricalPower2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="electronicEngineController1"
+                type="vmt:electronicEngineController1NominalData_t" minOccurs="0"/>
+            <xsd:element name="electronicEngineController2"
+                type="vmt:electronicEngineController2NominalData_t" minOccurs="0"/>
+            <xsd:element name="electronicTransmissionController2"
+                type="vmt:electronicTransmissionController2NominalData_t" minOccurs="0"/>
+            <xsd:element name="engineFluidLevelAndPressure"
+                type="vmt:engineFluidLevelAndPressureNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineHoursAndRevolutions"
+                type="vmt:engineHoursAndRevolutionsNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineSpeedAndLoadFactor"
+                type="vmt:engineSpeedAndLoadFactorNominalData_t" minOccurs="0"/>
+            <xsd:element name="engineTemperature1" type="vmt:engineTemperature1NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="engineTemperature2" type="vmt:engineTemperature2NominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="engineValve" type="vmt:engineValveNominalData_t" minOccurs="0"/>
+            <xsd:element name="fanDrive1" type="vmt:fanDrive1NominalData_t" minOccurs="0"/>
+            <xsd:element name="fuelConsumption" type="vmt:fuelConsumptionNominalData_t"
+                minOccurs="0"/>
+            <xsd:element name="fuelEconomy" type="vmt:fuelEconomyNominalData_t" minOccurs="0"/>
+            <xsd:element name="tireCondition" type="vmt:tireConditionNominalData_t" minOccurs="0"/>
+            <xsd:element name="torqueSpeedControl1" type="vmt:torqueSpeedControl1NominalData_t"
+                minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="componentErrors_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="componentUniqueName" type="xsd:string"/>
+            <xsd:element name="errors">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="error" type="vmt:error_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="subnet_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:union memberTypes="vmt:ipv4Address_t vmt:subnetPrefix_t"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="subnetPrefix_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="/([1-9][0-9]?|1[0-1][0-9]|1[2][0-8])$"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="health_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="/([\.\d]+|syslog)$"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="ipConfiguration_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="address" type="vmt:ipAddress_t"/>
+            <xsd:element name="subnet" type="vmt:subnet_t"/>
+            <xsd:element name="broadcast" type="vmt:ipv4Address_t" minOccurs="0"/>
+            <xsd:element name="gateway" type="vmt:ipAddress_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ethernetInterface_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="interfaceName" type="xsd:string"/>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element name="macAddress" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="ipConfigurations">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="ipConfiguration"
+                            type="vmt:ipConfiguration_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="spuService_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element name="state" type="xsd:string"/>
+            <xsd:element name="componentTypes">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="componentType"
+                            type="vmt:componentType_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="componentType_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="uniqueName" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="vehicleConfiguration_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="platform" type="vmt:platform_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platform_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="guid" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="tag" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="activeStatus" type="xsd:string"/>
+            <xsd:element name="serialNumber" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="hullAssetId" type="xsd:string"/>
+            <xsd:element name="platformSiteId" type="xsd:long"/>
+            <xsd:element name="sourceCrisSiteId" type="xsd:string"/>
+            <xsd:element name="platformModel" type="vmt:platformModel_t"/>
+            <xsd:element name="assets">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="asset" type="vmt:asset_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="unit" type="vmt:unit_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformModel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="type" type="xsd:string"/>
+            <xsd:element name="nsn" type="xsd:string"/>
+            <xsd:element name="description" type="xsd:string"/>
+            <xsd:element name="manufacturer" type="vmt:manufacturer_t"/>
+            <xsd:element name="platformFamily" type="vmt:platformFamily_t" minOccurs="0"/>
+            <xsd:element name="components">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="component" type="vmt:component_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="accessoryComponents" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="accessoryComponent"
+                            type="vmt:component_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="capabilitiesModel" type="vmt:capabilitiesModel_t"/>
+            <xsd:element name="measurementLocationModels">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="measurementLocationModel"
+                            type="vmt:measurementLocationModel_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="faultModels">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="faultModel" type="vmt:faultModel_t"
+                        />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="manufacturer_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="guid" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="division" type="xsd:string"/>
+            <xsd:element name="cageCode" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="phone" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="platformFamily_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="birthSiteId" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="component_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="shortName" type="xsd:string"/>
+            <xsd:element name="model" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="description" type="xsd:string"/>
+            <xsd:element name="category" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="type" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="sourceComponentId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="registryCodeGuid" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="manufacturerPart" type="vmt:manufacturerPart_t" minOccurs="0"/>
+            <xsd:element minOccurs="0" name="alternativeComponent" type="vmt:component_t"/>
+            <xsd:element name="components" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="component" type="vmt:component_t"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="manufacturerPart_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="guid" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="number" type="xsd:string"/>
+            <xsd:element name="nsn" type="xsd:string"/>
+            <xsd:element name="manufacturer" type="vmt:manufacturer_t" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="capabilitiesModel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="typeId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="description" type="xsd:string"/>
+            <xsd:element name="topLevelCapability" type="xsd:boolean"/>
+            <xsd:element name="sourceCapabilityId" type="xsd:long"/>
+            <xsd:element name="subCapabilityId" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="measurementLocationModel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="typeId" type="xsd:long"/>
+            <xsd:element name="unitId" type="xsd:long"/>
+            <xsd:element name="minRange" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="maxRange" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="dataSourceTypeId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="collectionDuration" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="durationMeasurementUnitId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="measurementInterval" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="intervalMeasurementUnitId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="registryCodeGuid" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="faultModel_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="platformModelId" type="xsd:long"/>
+            <xsd:element name="id" type="xsd:long"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="systemCode" type="xsd:string"/>
+            <xsd:element name="typeId" type="xsd:long"/>
+            <xsd:element name="description" type="xsd:string"/>
+            <xsd:element name="label" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="severityId" type="xsd:long"/>
+            <xsd:element name="effectId" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="asset_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="componentId" type="xsd:long"/>
+            <xsd:element name="guid" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="activeStatus" type="xsd:string"/>
+            <xsd:element name="serialNumber" type="xsd:string"/>
+            <xsd:element name="manufacturerPartGuid" type="xsd:string"/>
+            <xsd:element name="assetTypeId" type="xsd:long"/>
+            <xsd:element name="sourceAssetId" type="xsd:string"/>
+            <xsd:element name="registryCodeGuid" type="xsd:string"/>
+            <xsd:element name="isAlternative" type="xsd:boolean"/>
+            <xsd:element name="installBy" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="installDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="removeBy" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="removeDate" type="xsd:dateTime" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="unit_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="guid" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="unitIdentificationCode" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="description" type="xsd:string"/>
+            <xsd:element name="usAgency" type="xsd:long"/>
+            <xsd:element minOccurs="0" name="majorCommandId" type="xsd:long"/>
+            <xsd:element minOccurs="0" name="activeStatus" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="type" type="xsd:long"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="legacyRadioPreset_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="presetId" type="xsd:string"/>
+            <xsd:element name="status" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="shortName" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="waveform" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="txFrequency" type="xsd:unsignedInt"/>
+            <xsd:element minOccurs="0" name="rxFrequency" type="xsd:unsignedInt"/>
+            <xsd:element minOccurs="0" name="mode" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="securityMode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="updatePeriodBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:double">
+            <xsd:minExclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="rotation_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence maxOccurs="3">
+            <xsd:element name="rotationType" type="xsd:string"/>
+            <xsd:element name="direction" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="rate" type="vmt:rotationRate_t"/>
+            <xsd:choice>
+                <xsd:element minOccurs="0" name="distance" type="xsd:double"/>
+                <xsd:element minOccurs="0" name="time" type="xsd:integer"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="rotationRate_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="rateType" type="xsd:string"/>
+            <xsd:element name="rate" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="rotationNearestValue_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence maxOccurs="1">
+            <xsd:element name="rotationType" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="rate" type="vmt:rotationRate_t"/>
+            <xsd:element minOccurs="0" name="distance" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="time" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="colorTable_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:string"/>
+            <xsd:element name="colorTuples">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="colorTuple" type="vmt:colorTuple_t" maxOccurs="unbounded"
+                        />
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="colorTuple_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="r" type="vmt:rgbBounds_t"/>
+            <xsd:element name="g" type="vmt:rgbBounds_t"/>
+            <xsd:element name="b" type="vmt:rgbBounds_t"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="rgbBounds_t">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <maturity>Proposed Standard</maturity>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:int">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
+<!--    DISTRIBUTION STATEMENT C    -->
+<!--    UNCLASSIFIED//FOR OFFICIAL USE ONLY    -->

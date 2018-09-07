@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsG="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsG" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" xmlns:TmatsC="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" xmlns:TmatsD="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" xmlns:TmatsH="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" xmlns:TmatsM="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" xmlns:TmatsP="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" xmlns:TmatsR="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" xmlns:TmatsS="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" xmlns:TmatsT="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" xmlns:TmatsV="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" xmlns:ns1="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/Tmats" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/Tmats" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsC" schemaLocation="TmatsCGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" schemaLocation="TmatsDGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsG" schemaLocation="TmatsGGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsH" schemaLocation="TmatsHGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsM" schemaLocation="TmatsMGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" schemaLocation="TmatsPGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsR" schemaLocation="TmatsRGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsS" schemaLocation="TmatsSGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsT" schemaLocation="TmatsTGroup.xsd"/>
+	<xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsV" schemaLocation="TmatsVGroup.xsd"/>
+	<xs:element name="Tmats" type="TmatsG:Tmats">
+		<xs:annotation>
+			<xs:documentation>Tmats Root</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

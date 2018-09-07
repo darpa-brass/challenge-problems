@@ -1,0 +1,694 @@
+<?xml version="1.0"?>
+<xs:schema xmlns="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" xmlns:TmatsD="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" xmlns:TmatsCommon="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:TmatsB="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" targetNamespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsP" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsCommon" schemaLocation="TmatsCommonTypes.xsd"/>
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsD" schemaLocation="TmatsDGroup.xsd"/>
+   <xs:import namespace="http://www.wsmr.army.mil/RCCsite/Documents/106-13_Telemetry%20Standards/TmatsB" schemaLocation="TmatsBGroup.xsd"/>
+   <xs:complexType name="AlternateTagDataType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="NumberOfTags" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ALT\N</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitsInTag" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ALT1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitsInDataWord" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ALT2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FirstTagLocation" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ALT3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Sequence" type="TmatsCommon:NormalReversedType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ALT4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="AsyncEmbeddedFormatType">
+      <xs:sequence>
+         <xs:element name="DataLinkName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>AEF\DLN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Supercom" type="TmatsCommon:NonNegativeIntegerOrNo" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AEF1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LocationDefinition" type="TmatsCommon:PCMLocationDefinitionType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AEF2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="xs:positiveInteger" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>AEF3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Interval" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>AEF4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="WordLength" type="xs:positiveInteger" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>AEF5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Mask" type="TmatsCommon:BinaryType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>AEF6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Subcommutation" type="SubcommutationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>AEF7. If absent, no subcommuation is present. Subcommutation fields include AEF8, AEF9, AEF10</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="AsynchronousDataMergeFormatType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\DMN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MaskAndPattern" type="MaskAndPatternType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>From ADM\MP. If this element is absent (implying a TMATS value of "N"), Chapter 4 recommendations are used. Otherwise, patterns are defined here.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Supercom" type="TmatsCommon:NonNegativeIntegerOrNo" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LocationDefinition" type="TmatsCommon:PCMLocationDefinitionType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="xs:string" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>ADM3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Interval" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Length" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MSBLocation" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Subcommutation" type="SubcommutationType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>ADM8. If absent, no subcommutation is present. Subcommutation fields include: ADM9, ADM10, ADM11</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:simpleType name="BusParityOddNoneType">
+      <xs:union memberTypes="TmatsCommon:OddType TmatsCommon:NoneType"/>
+   </xs:simpleType>
+   <xs:complexType name="CRCType">
+      <xs:sequence>
+         <xs:element name="Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CRC</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="CRC-16-ANSI"/>
+                  <xs:enumeration value="CRC-16-CCITT"/>
+                  <xs:enumeration value="CRC-32-ANSI"/>
+                  <xs:enumeration value="None"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="CheckWordStartingBit" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CRCCB</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataStartBit" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CRCDB</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataNumberOfBits" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>CRCDN</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PBusAttributesType">
+      <xs:complexContent>
+         <xs:extension base="TmatsB:BusAttributesCommonType">
+            <xs:sequence>
+               <xs:element name="Bus" type="PBusType"/>
+               <xs:element name="BusParity" type="BusParityOddNoneType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PBusType">
+      <xs:complexContent>
+         <xs:extension base="TmatsB:BusCommonType">
+            <xs:sequence minOccurs="0">
+               <xs:element name="UserDefined" type="UserDefinedType" minOccurs="0"/>
+               <xs:element name="MeasurementName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+               <xs:element name="BusParity" type="BusParityOddNoneType" minOccurs="0"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormatChangeType">
+      <xs:sequence>
+         <xs:element name="FrameFormatIdentifier" type="FrameFormatIdentifierType" minOccurs="0"/>
+         <xs:choice minOccurs="0">
+            <xs:element name="MeasurementListChange" type="MeasurementListChangeType" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>MLC\N</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="FormatStructureChange" type="FormatStructureChangeType" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>FSC\N</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FormatStructureChangeType">
+      <xs:sequence>
+         <xs:element name="FFIPattern" type="TmatsCommon:BinaryType">
+            <xs:annotation>
+               <xs:documentation>FSC1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataLinkName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>FSC2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FormatType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="TypeFormat" type="TmatsCommon:PCMTypeFormatType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>TF</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CommonWordLength" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>F1</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:nonNegativeInteger">
+                  <xs:minInclusive value="4"/>
+                  <xs:maxInclusive value="64"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="WordTransferOrder" type="TmatsCommon:MSBLSBFirstType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>F2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>F3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>F4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CRC" type="CRCType" minOccurs="0"/>
+         <xs:element name="MinorFrame" type="MinorFrameType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="FrameFormatIdentifierType">
+      <xs:sequence>
+         <xs:element name="Location" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>FFI1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Mask" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>FFI2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="IDCounterType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>ISF1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SyncType" type="TmatsCommon:PCMSubframeSyncTypeType" default="ID Counter" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ISF2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Location" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CounterStartingBitLocation" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CounterLength" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:TransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="InitialValue" type="xs:integer" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="InitialMinorFrameNumber" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EndValue" type="xs:integer" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC8</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EndMinorFrameNumber" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC9</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CountDirection" type="TmatsCommon:IDCountDirectionType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>IDC10</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="InputDataType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="PCMCode" type="TmatsCommon:PCMCodeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitRate" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D2</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:double">
+                  <xs:minInclusive value="10"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="Encrypted" type="TmatsCommon:EncryptedType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Polarity" type="TmatsCommon:PolarityType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AutoPolarityCorrection" type="TmatsCommon:YesNoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataDirection" type="TmatsCommon:NormalReversedType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D6</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataRandomized" type="TmatsCommon:YesNoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D7</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RandomizerLength" type="TmatsCommon:RandomizerLengthType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>D8</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="InSyncType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Criteria" type="TmatsCommon:NonNegativeIntegerOrNotSpecified" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SYNC1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NumberOfFSPBits" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SYNC2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MaskAndPatternType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="OverheadMask" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\OHM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FreshDataPattern" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\FDP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataOverflowPattern" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\DOP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="StaleDataPattern" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\SDP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="UserDefinedPattern" type="TmatsCommon:BinaryType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>ADM\UDP</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MeasurementListChangeType">
+      <xs:sequence>
+         <xs:element name="FFIPattern" type="TmatsCommon:BinaryType">
+            <xs:annotation>
+               <xs:documentation>MLC1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MeasurementListName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>MLC2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="MinorFrameType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="NumberOfMinorFrames">
+            <xs:annotation>
+               <xs:documentation>MF\N</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:nonNegativeInteger">
+                  <xs:maxInclusive value="256"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="WordsPerMinorFrame" type="xs:nonNegativeInteger">
+            <xs:annotation>
+               <xs:documentation>MF1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitsPerMinorFrame" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MF2</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:nonNegativeInteger">
+                  <xs:maxInclusive value="16384"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:element>
+         <xs:element name="SyncType" type="TmatsCommon:PCMSyncTypeType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MF3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SyncPattern" type="TmatsCommon:BinaryWithDontCareType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>MF4, MF5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="OutOfSyncType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="NumberOfDisagrees" type="TmatsCommon:NonNegativeIntegerOrNotSpecified" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SYNC3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NumberOfFSPBits" type="xs:nonNegativeInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SYNC4</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FillBits" type="xs:nonNegativeInteger" default="0" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>SYNC5</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="RecordingDescriptionType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="TrackSequence" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>TS</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="SubcommutationType">
+      <xs:sequence>
+         <xs:element name="StartFrame" type="xs:positiveInteger" default="1" minOccurs="0"/>
+         <xs:element name="FrameInterval" type="xs:nonNegativeInteger" default="1" minOccurs="0"/>
+         <xs:element name="EndFrame" type="xs:positiveInteger" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>If absent, number of frames in PCM format is assumed.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="SubframeSynchronizationType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="IDCounter" type="IDCounterType" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="SyncCriteriaType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="InSync" type="InSyncType" minOccurs="0"/>
+         <xs:element name="OutOfSync" type="OutOfSyncType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="VariableWordLengthType">
+      <xs:sequence>
+         <xs:element name="Word" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>MFW1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Length" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>MFW2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="UserDefinedType">
+      <xs:sequence minOccurs="0">
+         <xs:element name="Word1" type="Word1Type" minOccurs="0"/>
+         <xs:element name="Word2" type="Word2Type" minOccurs="0"/>
+         <xs:element name="Word3" type="Word3Type" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="Word1Type">
+      <xs:sequence minOccurs="0">
+         <xs:element name="MeasurementName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>UMN1</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U1P</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U1PT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U1M</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U1T</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="Word2Type">
+      <xs:sequence minOccurs="0">
+         <xs:element name="MeasurementName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>UMN2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U2P</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U2PT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U2M</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U2T</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="Word3Type">
+      <xs:sequence minOccurs="0">
+         <xs:element name="MeasurementName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>UMN3</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Parity" type="TmatsCommon:OddEvenNoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U3P</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ParityTransferOrder" type="TmatsCommon:ParityTransferOrderType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U3PT</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BitMask" type="TmatsCommon:MeasurementBitMaskType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U3M</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransferOrder" type="TmatsCommon:TransferOrderType" default="Default" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>U3T</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion"/>
+   </xs:complexType>
+   <xs:complexType name="PCMFormatAttributesType">
+      <xs:annotation>
+         <xs:documentation>TMATS P-Group</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element name="InputData" type="InputDataType" minOccurs="0"/>
+         <xs:element name="Format" type="FormatType" minOccurs="0"/>
+         <xs:element name="SyncCriteria" type="SyncCriteriaType" minOccurs="0"/>
+         <xs:element name="VariableWordLength" type="VariableWordLengthType" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="SubframeSynchronization" type="SubframeSynchronizationType" minOccurs="0"/>
+         <xs:element name="AsyncEmbeddedFormat" type="AsyncEmbeddedFormatType" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="FormatChange" type="FormatChangeType" minOccurs="0"/>
+         <xs:element name="AlternateTagData" type="AlternateTagDataType" minOccurs="0"/>
+         <xs:element name="AsynchronousDataMergeFormat" type="AsynchronousDataMergeFormatType" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="Comments" type="xs:string" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>COM</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Based upon value of TypeFormat</xs:documentation>
+            </xs:annotation>
+            <xs:element name="PCMMeasurements" type="TmatsD:PCMMeasurementsType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>TMATS D Group</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="BusAttributes" type="PBusAttributesType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>TMATS B Group</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute ref="TmatsCommon:TmatsVersion" use="required"/>
+   </xs:complexType>
+</xs:schema>

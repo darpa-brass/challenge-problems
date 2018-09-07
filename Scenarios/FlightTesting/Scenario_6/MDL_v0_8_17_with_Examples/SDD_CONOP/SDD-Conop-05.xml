@@ -1,0 +1,980 @@
+<?xml version="1.0"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns="http://inetprogram.org/projects/MDL" 
+         xsi:schemaLocation="http://inetprogram.org/projects/MDL MDL_v0_8_17.xsd">
+  <DatabaseID>example ID string</DatabaseID>
+  <Checksum>TBD checksum</Checksum>
+  <ConfigurationVersion>-TBD-</ConfigurationVersion>
+
+  <DirtyBit>false</DirtyBit>
+  <Units>
+    <DerivedUnit ID="Word16">
+      <Name>Word16</Name>
+      <Description>TBD description</Description>
+      <Symbol>W16</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>16</NumericalConstant>
+        <SIUnits>Bit</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="GForceUnits">
+      <Name>G Force</Name>
+      <Description>TBD description</Description>
+      <Symbol>G</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>9.80665</NumericalConstant>
+        <SIUnits>MeterPerSecondSquared</SIUnits>
+      </UnitsNumerator>
+    </DerivedUnit>
+    <DerivedUnit ID="PercentVoltUnits">
+      <Name>Percent of full scale voltage</Name>
+      <Description>TBD description</Description>
+      <Symbol>%V</Symbol>
+      <UnitsNumerator>
+        <NumericalConstant>100</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsNumerator>
+      <UnitsDenominator>
+        <NumericalConstant>1</NumericalConstant>
+        <SIUnits>Volt</SIUnits>
+      </UnitsDenominator>
+    </DerivedUnit>
+  </Units>
+
+
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>SDD CONOP Measurement Domain</Name>
+      <Description>TBD description</Description>
+      <Measurements>
+
+        <Measurement ID="GearVibeMeas">
+          <Name>GEARVIBE</Name>
+          <Description>Gear Box Vibration</Description>
+          <MeasurementID>0x00000001</MeasurementID>
+          <MeasurementType>Analog</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>BestEffort</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="GearVibeCountsToGsConversion"/>
+            </UnitsConversions>
+            <Uncertainty>
+              <ConfidenceInterval>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.2</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </ConfidenceInterval>
+              <ConfidenceLevel>95</ConfidenceLevel>
+            </Uncertainty>
+            <AnalogAttributes>
+              <EUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFlex>-3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFlex>3</ConditionValueFlex>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </EUSignalRange>
+              <IUSignalRange>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>-1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>1.5</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+              </IUSignalRange>
+              <Resolution>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.025</ConditionValueFloat>
+                  <SIUnits>Volt</SIUnits>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;</ConditionOperation>
+                  <ConditionValueFloat>0.05</ConditionValueFloat>
+                  <UnitsRef IDREF="GForceUnits"/>
+                </ConditionParameter>
+              </Resolution>
+              <FrequencyContent>
+                <FrequencyBand>
+                  <BandType>PassBand</BandType>
+                  <EdgeFrequency>
+                    <ConditionParameter>
+                      <ConditionOperation>==</ConditionOperation>
+                      <ConditionValueFlex>200</ConditionValueFlex>
+                      <SIUnits>Hertz</SIUnits>
+                    </ConditionParameter>
+                  </EdgeFrequency>
+                </FrequencyBand>
+                <PercentSignal>99</PercentSignal>
+              </FrequencyContent>
+            </AnalogAttributes>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFloat>12</ConditionValueFloat>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>SignedBinary</DigitalEncoding>
+              <ActiveInputRange>
+                <ConditionParameter>
+                  <ConditionOperation>&lt;=</ConditionOperation>
+                  <ConditionValueFloat>98.3</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;=</ConditionOperation>
+                  <ConditionValueFloat>1.17</ConditionValueFloat>
+                  <UnitsRef IDREF="PercentVoltUnits"/>
+                </ConditionParameter>
+              </ActiveInputRange>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_AIRSPD">
+          <Name>AIRSPD</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000004</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="AIRSPD_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>16</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>50</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_HEADNG">
+          <Name>HEADNG</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000005</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="HEADNG_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>16</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>50</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_ALT">
+          <Name>ALT</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000006</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="ALT_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>19</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>50</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_ROLRATE">
+          <Name>ROLRATE</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000007</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="ROLRATE_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>16</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>20</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_PTCHRATE">
+          <Name>PTCHRATE</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000008</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="PTCHRATE_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>16</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>20</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+
+        <Measurement ID="Meas_LATPSN">
+          <Name>LATPSN</Name>
+          <Description>TBD description</Description>
+          <MeasurementID>0x00000009</MeasurementID>
+          <MeasurementType>DigitalBus</MeasurementType>
+          <MeasurementActive>true</MeasurementActive>
+          <DeliveryClass>FlightSafety</DeliveryClass>
+          <DataAttributes>
+            <SIUnits>Counts</SIUnits>
+            <UnitsConversions>
+              <DataOperationRef IDREF="LATPSN_EU_CONV"/>
+            </UnitsConversions>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>12</ConditionValueFlex>
+                  <SIUnits>Bit</SIUnits>
+                </ConditionParameter>
+              </DataLength>
+              <Endianness>BigEndian</Endianness>
+              <DigitalEncoding>Two'sComplement</DigitalEncoding>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValueFlex>10</ConditionValueFlex>
+                  <SIUnits>Hertz</SIUnits>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+
+
+      <DataStreams>
+        <DataStream ID="MS1553_Bus_AV1">
+          <Name>1553 Bus AV1</Name>
+          <Description>TBD description</Description>
+          <MILSTD1553Messages>
+            <MILSTD1553Message ID="MS1553_Bus_AV1_MSG1">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <MILSTD1553MessageType>RemoteTerminalToRemoteTerminal</MILSTD1553MessageType>
+              <MILSTD1553RemoteTerminal>1</MILSTD1553RemoteTerminal>
+              <MILSTD1553SubaddressOrMode>4</MILSTD1553SubaddressOrMode>
+              <MILSTD1553TransmitReceive>Transmit</MILSTD1553TransmitReceive>
+              <MILSTD1553WordCountOrModeCode>30</MILSTD1553WordCountOrModeCode>
+              <DataStructure ID="MS1553_Bus_AV1_MSG1_STRUCT">
+                <!-- NOTE: Structure includes additional PackageDataFields not included in this example -->
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PackageDataField ID="MS1553_Bus_AV1_MSG_Field2">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <FieldLocation ID="MS1553_Bus_AV1_MSG_Field2_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>2</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="MS1553_Bus_AV1_MSG_Field3">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <FieldLocation ID="MS1553_Bus_AV1_MSG_Field3_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>3</FlexValue> <!--Word 3-->
+                        <UnitsRef IDREF="Word16"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_AIRSPD"/>
+                      <SyllableMask>0xffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="MS1553_Bus_AV1_MSG_Field2"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_HEADNG"/>
+                      <SyllableMask>0xffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="MS1553_Bus_AV1_MSG_Field3"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </MILSTD1553Message>
+          </MILSTD1553Messages>
+        </DataStream>
+
+        <DataStream ID="MS1553_Bus_AV3">
+          <Name>1553 Bus AV3</Name>
+          <Description>TBD description</Description>
+          <MILSTD1553Messages>
+            <MILSTD1553Message ID="MS1553_Bus_AV3_MSG1">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <MILSTD1553MessageType>RemoteTerminalToRemoteTerminal</MILSTD1553MessageType>
+              <MILSTD1553RemoteTerminal>1</MILSTD1553RemoteTerminal>
+              <MILSTD1553SubaddressOrMode>4</MILSTD1553SubaddressOrMode>
+              <MILSTD1553TransmitReceive>Transmit</MILSTD1553TransmitReceive>
+              <MILSTD1553WordCountOrModeCode>30</MILSTD1553WordCountOrModeCode>
+              <DataStructure ID="MS1553_Bus_AV3_MSG1_STRUCT">
+                <!-- NOTE: Structure includes additional Fields not included in this example -->
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PackageDataFieldSet ID="MS1553_Bus_AV3_MSG_Field11_12Set">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <PackageDataField ID="MS1553_Bus_AV3_MSG_Field11">
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <FieldLocation ID="MS1553_Bus_AV3_MSG_Field11_Loc">
+                      <FieldOffset>
+                        <OffsetValue>
+                          <FlexValue>11</FlexValue>
+                          <UnitsRef IDREF="Word16"/>
+                        </OffsetValue>
+                      </FieldOffset>
+                      <FieldWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </FieldWidth>
+                    </FieldLocation>
+                    <FieldEncoding>
+                      <Endianness>BigEndian</Endianness>
+                      <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                    </FieldEncoding>
+                    <FieldRepetitions>1</FieldRepetitions>
+                  </PackageDataField>
+                  <PackageDataField ID="MS1553_Bus_AV3_MSG_Field12">
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <FieldLocation ID="MS1553_Bus_AV3_MSG_Field12_Loc">
+                      <FieldOffset>
+                        <OffsetValue>
+                          <FlexValue>12</FlexValue>
+                          <UnitsRef IDREF="Word16"/>
+                        </OffsetValue>
+                      </FieldOffset>
+                      <FieldWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </FieldWidth>
+                    </FieldLocation>
+                    <FieldEncoding>
+                      <Endianness>BigEndian</Endianness>
+                      <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                    </FieldEncoding>
+                    <FieldRepetitions>1</FieldRepetitions>
+                  </PackageDataField>
+                </PackageDataFieldSet>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>2</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_ALT"/>
+                      <SyllableMask>0x7FFFF</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>19</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>13</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldSetRef IDREF="MS1553_Bus_AV3_MSG_Field11_12Set"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </MILSTD1553Message>
+          </MILSTD1553Messages>
+        </DataStream>
+
+        <DataStream ID="MS1553_Bus_NAV">
+          <Name>1553 Bus NAV</Name>
+          <Description>TBD description</Description>
+          <MILSTD1553Messages>
+            <MILSTD1553Message ID="MS1553_Bus_NAV_MSG1">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <MILSTD1553MessageType>RemoteTerminalToRemoteTerminal</MILSTD1553MessageType>
+              <MILSTD1553RemoteTerminal>13</MILSTD1553RemoteTerminal>
+              <MILSTD1553SubaddressOrMode>7</MILSTD1553SubaddressOrMode>
+              <MILSTD1553TransmitReceive>Receive</MILSTD1553TransmitReceive>
+              <MILSTD1553WordCountOrModeCode>30</MILSTD1553WordCountOrModeCode>
+              <DataStructure ID="MS1553_Bus_NAV_MSG1_STRUCT">
+                <!-- NOTE: Structure includes additional Fields not included in this example -->
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PackageDataField ID="MS1553_Bus_NAV_MSG_Field8">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <FieldLocation ID="MS1553_Bus_NAV_MSG_Field8_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>8</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+                <PackageDataField ID="MS1553_Bus_NAV_MSG_Field9">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <FieldLocation ID="MS1553_Bus_NAV_MSG_Field9_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>9</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_ROLRATE"/>
+                      <SyllableMask>0xffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="MS1553_Bus_NAV_MSG_Field8"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_PTCHRATE"/>
+                      <SyllableMask>0xffff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>1</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="MS1553_Bus_NAV_MSG_Field9"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </MILSTD1553Message>
+          </MILSTD1553Messages>
+        </DataStream>
+
+        <DataStream ID="MS1553_Bus_GPS">
+          <Name>1553 Bus GPS</Name>
+          <Description>TBD description</Description>
+          <MILSTD1553Messages>
+            <MILSTD1553Message ID="MS1553_Bus_GPS_MSG1">
+              <Name>TBD name</Name>
+              <Description>TBD description</Description>
+              <MILSTD1553MessageType>RemoteTerminalToRemoteTerminal</MILSTD1553MessageType>
+              <MILSTD1553RemoteTerminal>25</MILSTD1553RemoteTerminal>
+              <MILSTD1553SubaddressOrMode>10</MILSTD1553SubaddressOrMode>
+              <MILSTD1553TransmitReceive>Receive</MILSTD1553TransmitReceive>
+              <MILSTD1553WordCountOrModeCode>30</MILSTD1553WordCountOrModeCode>
+              <DataStructure ID="MS1553_Bus_GPS_MSG1_STRUCT">
+                <!-- NOTE: Structure includes additional Fields not included in this example -->
+                <Name>TBD name</Name>
+                <Description>TBD description</Description>
+                <PackageDataField ID="MS1553_Bus_GPS_MSG_Field28">
+                  <Name>TBD name</Name>
+                  <Description>TBD description</Description>
+                  <FieldLocation ID="MS1553_Bus_GPS_MSG_Field28_Loc">
+                    <FieldOffset>
+                      <OffsetValue>
+                        <FlexValue>28</FlexValue>
+                        <UnitsRef IDREF="Word16"/>
+                      </OffsetValue>
+                    </FieldOffset>
+                    <FieldWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </FieldWidth>
+                  </FieldLocation>
+                  <FieldEncoding>
+                    <Endianness>BigEndian</Endianness>
+                    <DigitalEncoding>Two'sComplement</DigitalEncoding>
+                  </FieldEncoding>
+                  <FieldRepetitions>1</FieldRepetitions>
+                </PackageDataField>
+              </DataStructure>
+              <DataMap>
+                <DataWordToFieldMap>
+                  <DataWord>
+                    <Name>TBD name</Name>
+                    <Description>TBD description</Description>
+                    <DataWordWidth>
+                      <FlexValue>1</FlexValue>
+                      <UnitsRef IDREF="Word16"/>
+                    </DataWordWidth>
+                    <Syllable>
+                      <Name>TBD name</Name>
+                      <Description>TBD description</Description>
+                      <MeasurementRef IDREF="Meas_LATPSN"/>
+                      <SyllableMask>0x0fff</SyllableMask>
+                      <SyllableWidth>
+                        <FlexValue>12</FlexValue>
+                        <SIUnits>Bit</SIUnits>
+                      </SyllableWidth>
+                      <SyllableStartBit>1</SyllableStartBit>
+                      <DataWordOffset>0</DataWordOffset>
+                    </Syllable>
+                  </DataWord>
+                  <PackageDataFieldRef IDREF="MS1553_Bus_GPS_MSG_Field28"/>
+                  <TimeOrder>Unspecified</TimeOrder>
+                </DataWordToFieldMap>
+              </DataMap>
+            </MILSTD1553Message>
+          </MILSTD1553Messages>
+        </DataStream>
+      </DataStreams>
+
+      <DataOperations>
+        <DataOperation ID="AccelerometerTransducerDataOp">
+          <Name>Accelerometer Transducer</Name>
+          <Description>This operation represents the accelerometer transducer transfer function.</Description>
+          <DataOperationType>EUtoIU</DataOperationType>
+          <Method ID="Method1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.4917</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+                <Term>
+                  <Coefficient>0.045</Coefficient>
+                  <Exponent>0</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <UnitsRef IDREF="GForceUnits"/>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Volt</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="GearVibeCountsToGsConversion">
+          <Name>TBD name</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <DataOperation ID="IUBitWeighting" SubOperationOrderIndex="1">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>CountstoIU</DataOperationType>
+            <Method ID="IUBitWeightingMethod">
+              <Name>IU Bit Weighting</Name>
+              <Description>This operation represents the conversion from Counts to Volts.</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>0.000732</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Counts</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <SIUnits>Volt</SIUnits>
+            </OutputUnits>
+          </DataOperation>
+          <DataOperation ID="InverseTransducer" SubOperationOrderIndex="2">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <DataOperationType>IUtoEU</DataOperationType>
+            <Method ID="InverseTransducerMethod">
+              <Name>Inverse Transducer</Name>
+              <Description>This operation represents the inverse of the transducer to convert from volts to G's.  
+              The equation is  G's = (Vin - 0.045) / 0.4917</Description>
+              <MathematicalExpression>
+                <PolynomialNumerator>
+                  <Term>
+                    <Coefficient>1.0</Coefficient>
+                    <Exponent>1</Exponent>
+                  </Term>
+                  <Term>
+                    <Coefficient>-0.045</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialNumerator>
+                <PolynomialDenominator>
+                  <Term>
+                    <Coefficient>0.4917</Coefficient>
+                    <Exponent>0</Exponent>
+                  </Term>
+                </PolynomialDenominator>
+              </MathematicalExpression>
+            </Method>
+            <InputUnits>
+              <SIUnits>Volt</SIUnits>
+            </InputUnits>
+            <OutputUnits>
+              <UnitsRef IDREF="GForceUnits"/>
+            </OutputUnits>
+          </DataOperation>
+        </DataOperation>
+
+        <DataOperation ID="AIRSPD_EU_CONV">
+          <Name>Airspeed EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="AirspeedMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.5</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Knots</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="HEADNG_EU_CONV">
+          <Name>Heading EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="HeadingMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.25</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Degree</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="ALT_EU_CONV">
+          <Name>Altitude EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="AltitudeMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.005</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Feet</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="ROLRATE_EU_CONV">
+          <Name>Roll Rate EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="ROLRATEMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.25</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>DegreePerSecond</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="PTCHRATE_EU_CONV">
+          <Name>Pitch Rate EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="PTCHRATEMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.125</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>DegreePerSecond</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+
+        <DataOperation ID="LATPSN_EU_CONV">
+          <Name>Latitude Position EU Conversion</Name>
+          <Description>TBD description</Description>
+          <DataOperationType>CountstoEU</DataOperationType>
+          <Method ID="LATPSNMethod">
+            <Name>TBD name</Name>
+            <Description>TBD description</Description>
+            <MathematicalExpression>
+              <PolynomialNumerator>
+                <Term>
+                  <Coefficient>0.5</Coefficient>
+                  <Exponent>1</Exponent>
+                </Term>
+              </PolynomialNumerator>
+            </MathematicalExpression>
+          </Method>
+          <InputUnits>
+            <SIUnits>Counts</SIUnits>
+          </InputUnits>
+          <OutputUnits>
+            <SIUnits>Degree</SIUnits>
+          </OutputUnits>
+        </DataOperation>
+      </DataOperations>
+
+
+    </MeasurementDomain>
+  </MeasurementDomains>
+
+</MDLRoot>
