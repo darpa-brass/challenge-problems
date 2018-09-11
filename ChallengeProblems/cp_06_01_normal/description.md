@@ -16,13 +16,13 @@ It is tempting to statically determine which path is "correct";
 the collection of different paths form an ensemble of valid approaches.
 What constitutes the best path will certainly change over the natural life of a project.
 
-## Candidate Paths beginning with Message Production
+# Processing Initiated by MDL Message Production Events
 
-This challenge problem demonstrates each of the potential paths and provides mechanisms for their comparison.
+This challenge problem demonstrates each of the candidate processing paths and provides mechanisms for their comparison.
 
 ## Universal Condition
 
-The following conditions are true for all paths.
+The following conditions are true for all processing paths.
 
 ### Precondition : Wherein A Previously Existing MDL Configuration is Replaced
 
@@ -65,35 +65,3 @@ The correctness of the translation can be checked by composition of mappings.
 In this case a translation program is generated that allows the device to
 directly consume MDL messages of a set of MDL schema.
 
-
-## Broker Metadata
-
-In order for the broker to do its work metadata is needed.
-
-### Provenance
-
-Provenance indicates the genealogy of a data item.
-
-#### Creator
-
-The principal that created the message.
-
-#### Inputs
-
-The messages and data from which the message was derived.
-The notion of version is subsumed by the retention of the identities of the inputs.
-
-#### Schemas
-
-The inputs are presumed to conform to some schema and that schema's constraints.
-The message itself also has a schema to which it conforms.
-
-#### Mappings
-
-A declarative description describing the relationships between the schemas.
-It may be the case that there are imperative elements are present
-in the descriptions but these should be avoided and flagged when they occur.
-
-
-
- 
