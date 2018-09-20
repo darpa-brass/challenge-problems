@@ -181,7 +181,7 @@ Assumptions:
 
 - Where is QoS Policy defined in MDL?
   
-  ```<TestMission>\<QoSPolicy>\<ServiceLevelProfiles>```
+  `<TestMission>\<QoSPolicy>\<ServiceLevelProfiles>`
 
 - The Mission Service Level Profiles (MSLP) are defined for each link to handle Quality of Service (QoS) IP routing across the RF links that are defined for radio to radio wireless RF communication
 
