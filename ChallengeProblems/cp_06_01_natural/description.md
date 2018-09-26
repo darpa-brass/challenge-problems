@@ -1,7 +1,16 @@
 # BRASS Scenario 6 : Natural Adaptation to MDL Schema Evolution
 
-The production of an MDL schema message is an event which generates translators.
+The triggering event is a translator-generation-request.
+That xlator-request-event presumes the existence of several artifacts.
 
+![translator generation](./das_bus_generate_xlator.svg)
+
+The xlator-result-report describes successful/failure for each of the 
+artifacts requested or resources required.
+
+An MDL message will be automatically translated by the running translator.
+
+![translator generation](../cp_06_01_normal/das_bus_xlate_msg.svg)
 
 # Generation of MDL Message Translators
 
