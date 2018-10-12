@@ -8,10 +8,13 @@ This scenario is about replacing a broken hardware component by finding and
 configuring a different hardware component that retains as much of the original
 capabilities as possible.
 
-We can model the various components and their capabilities in the DSL. Each
-component will have a corresponding entry in the DFU dictionary. Capabilities
-will be modeled by a resource provision record that includes the type of the
-capability and relevant properties (e.g. sample rate, resolution).
+We can model the various components and their capabilities in our resource DSL.
+Each component will have a corresponding entry in the DFU (Discrete Functional Unit)
+dictionary. Capabilities will be modeled by a resource provision record that
+includes the type of the capability and relevant properties (e.g. sample rate,
+resolution). In prior phases, we used DFUs to model software components, but
+from a resource perspective, they can be used to model hardware components in
+a flight test plan.
 
 The application model will load a sequence of components and perform basic
 checks of the relevant capabilities. The components to be loaded will be
@@ -41,16 +44,16 @@ corresponding configuration extracted.
 
 ### Evaluation
 
-In this section, I briefly describe how this challenge problem will help to
+In this section, we briefly describe how this challenge problem will help to
 evaluate the value of our technology (the Resource DSL), and considerations for
 maximizing the value of this evaluation.
 
 The DSL helps to solve this challenge problem in two main ways:
 
  1. By providing a language for precisely describing:
-    
+
     (a) the requirements and capabilities of components,
-    
+
     (b) the integration of components into a system with its own requirements
         and capabilities, as well as dependencies between the components in
         the system, and
@@ -109,3 +112,40 @@ system. Once again, this requires talking to SwRI to understand exactly how
 these pin assignments can be inferred, and how to capture the relevant
 information (from the perspective of finding a suitable replacement part) in
 the DSL.
+
+### Evaluation Workflow
+
+The Immortals team will create a REST endpoint dedicated to this scenario. The endpoint
+can receive additional information related to the challenge problem, but it's
+expected that most if not all of the information needed will reside in the OrientDB
+instance. Hence, the endpoint acts as a trigger to provide the DAS some context
+as to which aspect of its ecosystem to focus on.
+
+At a minimum, the DAS requires the following information as input to the challenge problem:
+
+  1. The DAU inventory, along with all relevant attributes of each DAU unit, needs to
+  be known ahead of time since the resource DSL must represent this information internally
+  in a suitable form for the resource DSL to reason about.
+  2. The DAU unit that is targeted for replacement (this needs to be known at perturbation time).
+  3. Which other components of the flight test plan (sensors, recorders, etc.) can
+  be considered variable (i.e., replaceable) if doing so makes finding a suitable DAU
+  possible. This information should be made available ahead of time.
+
+The Immortals DAS will first use the resource DSL to determine a suitable DAU that
+is equivalent or better than the replaced DAU which also minimizes purchase cost
+and timeline cost to configure and provision the new DAU. The purchase and timeline costs
+must be provided as attributes on the DAU in the inventory ahead of time.
+
+Once the replacement DAU is determined, the DAS will transfer the port configuration
+from the original DAU to the replacement. At the time of this writing, the requirements
+for this task are not clear. Part of the challenge is that we don't have the rules
+for which constraints must be satisfied (i.e., the requirements for the flight test, the
+rules of thumb the instrument engineer is following, etc.). Also, it's not clear
+which aspects of the system are fixed and which are variable. For example, the MDL specification
+currently does not include flight test requirements. Should the Measurements XML element be taken
+as the proxy for these requirements and held fixed? This leaves the sensors, sensor configurations
+and the DAUs variable. We need some guidance/discussion here. We have also requested an end-to-end
+sample (with sample data, perturbation input and expected outcome) we can use to evaluate our system.
+
+The Immortals DAS will persist information about the replacement DAU and other components
+as well as modified configuration information back to the OrientDB database for evaluation.

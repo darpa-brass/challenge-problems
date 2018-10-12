@@ -1,19 +1,16 @@
-# IMMoRTALS Phase III Challenge Problem (CP) - Schema Evolution (DRAFT)
+# IMMoRTALS Phase III Challenge Problem (CP) - Schema Evolution
 
 - - - -
-## CP1: Adapting software systems to schema changes
-Authored by
-<span style="color:blue">Jacob Staples (*jstaples@securboration.com*)</span> and
-<span style="color:green">Fred Eisele (*fred.eisele@vanderbilt.edu*)</span>.
+## CP_06_CodeEvolution: Adapting Software Systems to Schema Changes
 
 ### Challenge problem objective
-CP1 will demonstrate the ability to preserve application intent when assumptions made by application developers about schema compliance are violated, even when those assumptions are baked-in to application code.
+This CP will demonstrate the ability to preserve application intent when assumptions made by application developers about schema compliance are violated, even when those assumptions are baked-in to application code.
 
 We will demonstrate that IMMoRTALS can adapt software systems to nontrivial schema changes without post-compilation human intervention.  The goal is to demonstrate breadth (the ability to handle different types of schema changes) and depth (the ability to handle increasingly complex schema changes of a single type) within this adaptation space.
 
 
 ### Motivation
-CP1 is motivated by SwRI's Phase 3 Scenario 6 (schema evolution).
+This CP is motivated by SwRI's Phase 3 Scenario 6 (schema evolution).
 
 A *schema* describes the structure, organization, and presentation of data.  Schemas may evolve unpredictably over time to accommodate changes in the data they describe and the emergence of new use cases for that data.  This dynamism can unintentionally obsolete software systems that are not manually updated accordingly.  Although knowledgeable human operators may be able to define transformations sufficient to preserve otherwise obsolete functionality, these are one-off fixes made at great expense.  Schema evolution therefore artificially limits the effective lifespan of software.  New techniques and technologies are needed to autonomically adapt software in a manner that preserves the intent of the application while accounting for the structural and semantic discrepancies that differentiate schema versions.
 
@@ -23,7 +20,7 @@ As another example, consider the [Financial products Markup Language (FpML)](htt
 
 
 ### Perturbation and evaluation
-SwRI will perform multiple *CP evaluation runs*, each of which explores the adaptation capabilities of IMMoRTALS for a configurable *exemplar software system*.  Each evaluation run will result in the production of a performer-generated *evalation score* that determines how well application intent is preserved after transformation.  Our goal in defining the CP is to provide enough degrees of freedom to make this exploratory evaluation an interesting and meaningful task.
+SwRI will perform multiple *CP evaluation runs*, each of which explores the adaptation capabilities of IMMoRTALS for a configurable *exemplar software system*.  Each evaluation run will result in the production of a performer-generated *evaluation score* that determines how well application intent is preserved after transformation.  Our goal in defining the CP is to provide enough degrees of freedom to make this exploratory evaluation an interesting and meaningful task.
 
 #### Exemplar software system
 The exemplar software system is a client/server architecture in which a client (called messageSenderApp) transmits message to a server (called messageListenerApp) which then performs some action and returns a response message.  MessageSenderApp represents the software component to be adapted and messageListenerApp represents the component providing evolutionary pressure.  
@@ -48,22 +45,24 @@ Our system will:
   4) identify mismatches between the expected and actual schema version along the schema-dependent edges from (3)
   5) identify code units (DFUs) capable of addressing the schema mismatch from (4) (XSLT transformer libraries such as Saxon)
   6) identify that a selected XML translation DFU requires an Extensible Stylesheet Language Template (XSLT) input that translates document instances from vExpected of the schema into vNeeded of the schema
-  7) request an appropriate XSLT be synthesized from a tool that operates over the expected and actual schema versions (see CP2 TODO)
+  7) request an appropriate XSLT be synthesized from a tool that operates over the expected and actual schema versions (see cp_06_01_lifecycle).
   8) inject properly configured XSLT transformer DFU(s) into the application such that all problematic dataflow edges from (4) are handled
   9) after modification, test the application for consistency and correctness (using automated unit/validation/integration tests)
 
 
 #### Challenge problem inputs/outputs
 
+The high-level workflow for perturbation, adaptation and evaluation is as follows:
 
-##### We provide
-  * We will provide an evaluation API by which SwRI can convey configuration, trigger evaluation runs, and retrieve run results
-  * We will select three versions of MDL (TBD), named `v1`, `v2`, and `v3`.
-  * We will provide all code for our simple messageSenderApp/messageListenerApp architecture.  We will provide a single initial client module compliant with schema `v1` and three server modules compliant with `v1`, `v2`, and `v3`.  
+  1) SwRI will invoke a dedicated REST endpoint in the Immortals DAS with a JSON input that represents a schema evolution event. The input will provide the new target version of the MDL for the message receiver application.
+  2) The DAS system will query metadata for the system under test (SUT), which in this case is comprised of the message sender and receiver applications. The metadata will include dependency information between the message sender and receiver application, which will include a specified version of MDL. This metadata is created by analysis (and potentially some developer-provided annotations) at DAS startup time.
+  3) The DAS will detect a violation of a cross-application dependency between the sender and receiver and trigger the XML schema adaptation module.
+  4) The message sender application is adapted to comply with the receiver updated schema version using an XSLT-based strategy. The XSLT string is provided by the results of cp_06_01_lifecycle (a separate service that provides directional XSLT strings using a higher-level AQL abstraction).
+  5) Once the sender application is updated, the DAS compiles the application and runs through a series of tests to validate the results.
+  6) A final score/verdict is returned to the SwRI evaluation harness.
 
-##### SwRI will provide
-  * `receiver_schema_version`: the version of schema used by the messageListenerApp module, which operates in a manner that assumes all documents transmitted to and received from client(s) are conformant with this version.  One of {`v1`, `v2`, `v3`}.
-  * `evaluation stimuli`: SwRI will invoke the evaluation API to trigger analysis and adaptation.
+
+We will select three versions of MDL (TBD), named `v1`, `v2`, and `v3` as well as provide all code for our simple messageSenderApp/messageListenerApp architecture.  We will provide a single initial client module compliant with schema `v1` and three server modules compliant with `v1`, `v2`, and `v3`.  
 
 #### Interaction during evaluation
 Each CP evaluation run involves the following activities:
