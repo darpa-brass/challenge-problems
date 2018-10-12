@@ -82,6 +82,8 @@ publishing it as a message.
 
 ## A Request for an MDL Configuration Message Translator
 
+![translator practice](./schema_evolution_06.svg)
+
 Produce a translator that will subscribe to messages of a certain type and version.
 From that message will be produced a message of a target type and version.
 
