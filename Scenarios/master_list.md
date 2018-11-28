@@ -60,10 +60,10 @@ class: impact
 # Table of Contents
 
 - Flight Test
-    - [1](#f1) [2](#f2) [3](#f3) [4](#f4) [5](#f5) [6](#f6) [7](#f7) [8](#f8) [9](#f9)
+    - [1](#f1) [2](#f2) [3](#f3) [4](#f4) [5](#f5) [6](#f6) [7](#f7) [8](#f8)
     
 - VICTORY
-    - [1](#v1) [2](#v2) [3](#v3) [4](#v4) [5](#v5) [6](#v6) [7](#v7) [8](#v8) [9](#v9)
+    - [1](#v1) [2](#v2) [3](#v3) [4](#v4) [5](#v5) [6](#v6) [7](#v7) [8](#v8) [9](#v9) [10](#v10)
 
 
 ---
@@ -444,3 +444,24 @@ name: v9
 - Note: "Easy"
 - Related: [FT Scenario 9](#f9)
 
+---
+
+name: v10
+
+# VICTORY Scenario 10
+## Improving Sensor Fusion Through Numerical Adaptation
+
+- Background
+    - A use case in VICTORY is using the data provided by shared services (position, orientation, and direction of travel) to point a camera to an arbitrary position. This can be the location of a threat, or any other point of interest. Thus far, demonstrations using this sort of sensor fusion has been completed with moderate success. 
+    - Some of the challenges with accuracy may have to do with rounding errors of floating point values used by these shared services.
+
+---
+
+# VICTORY Scenario 9
+
+- Description
+    - This scenario involves using numerical adaptation to improve accuracy when using sensor fusion to move a camera to a specific point of interest.
+- Evaluation Criteria
+    - How did the accuracy of the camera movement after correcting rounding errors compare to the accuracy of the camera without the correction?
+- Note: "Easy"
+- Related: [FT Scenario 9](#f9)
