@@ -1656,7 +1656,7 @@
                       <Description>Channel 1</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos4-J1-Pin4"/>
@@ -1668,7 +1668,7 @@
                       <Description>Channel 2</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos4-J1-Pin3"/>
@@ -1680,7 +1680,7 @@
                       <Description>Channel 3</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos4-J1-Pin2"/>
@@ -1692,14 +1692,13 @@
                       <Description>Channel 4</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos4-J1-Pin1"/>
                         <PinRef IDREF="Pos4-J1-Pin5"/>
                       </PinRefs>
-                    </Port>
-                    
+                    </Port>                    
                   </Ports>
                 </Module> 
                 <Module ID="module-2B">
@@ -1765,7 +1764,7 @@
                       <Description>Channel 1</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos5-J1-Pin4"/>
@@ -1777,7 +1776,7 @@
                       <Description>Channel 2</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos5-J1-Pin3"/>
@@ -1789,7 +1788,7 @@
                       <Description>Channel 3</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos5-J1-Pin2"/>
@@ -1801,7 +1800,7 @@
                       <Description>Channel 4</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos5-J1-Pin1"/>

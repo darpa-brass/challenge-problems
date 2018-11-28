@@ -1682,7 +1682,10 @@
                       <Description>MTCD Channel 1</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin19"/>
@@ -1694,7 +1697,10 @@
                       <Description>MTCD Channel 2</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin18"/>
@@ -1706,7 +1712,10 @@
                       <Description>MTCD Channel 3</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="KThermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin17"/>
@@ -1718,7 +1727,10 @@
                       <Description>MTCD Channel 4</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin10"/>
@@ -1730,7 +1742,10 @@
                       <Description>MTCD Channel 5</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin9"/>
@@ -1742,7 +1757,10 @@
                       <Description>MTCD Channel 6</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin3"/>
@@ -1754,7 +1772,10 @@
                       <Description>MTCD Channel 7</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin2"/>
@@ -1766,7 +1787,10 @@
                       <Description>MTCD Channel 8</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Thermocouple="J">Thermocouple</PortType>
+                        <PortType Thermocouple="K">Thermocouple</PortType>
+                        <PortType Thermocouple="T">Thermocouple</PortType>
+                        <PortType Thermocouple="E">Thermocouple</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin1"/>
@@ -1778,7 +1802,7 @@
                       <Description>MTCD Channel 9: RJC</Description>
                       <PortDirection>Input</PortDirection>
                       <PortTypes>
-                        <PortType Extension="Thermocouple">Extension</PortType>
+                        <PortType Extension="RJC">Extension</PortType>
                       </PortTypes>
                       <PinRefs>
                         <PinRef IDREF="Pos2-J1-Pin5"/>
