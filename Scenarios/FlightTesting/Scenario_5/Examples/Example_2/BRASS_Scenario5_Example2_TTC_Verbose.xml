@@ -228,6 +228,7 @@
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <BBNSampleRate>1250000</BBNSampleRate>
                                                 <BBNDataLength>1</BBNDataLength>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PinRefs>
@@ -690,11 +691,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-15"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-3"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-16"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond1-j1-ch2" Index="2">
@@ -707,11 +711,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-18"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-9"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-22"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond1-j1-ch3" Index="3">
@@ -724,36 +731,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-14"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j1-ch1-ec" Index="101">
-                                            <Name>Ch1EC</Name>
-                                            <Description>Ch1 : Channel 1 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j1-3"/>
-                                                <PinRef IDREF="pin-sigcond1-j1-16"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j1-ch2-ec" Index="102">
-                                            <Name>Ch2EC</Name>
-                                            <Description>Ch2 : Channel 2 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j1-9"/>
-                                                <PinRef IDREF="pin-sigcond1-j1-22"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j1-ch3-ec" Index="103">
-                                            <Name>Ch3EC</Name>
-                                            <Description>Ch3 : Channel 3 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-12"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-25"/>
                                             </PinRefs>
@@ -768,11 +751,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-15"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-3"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-16"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond1-j2-ch2" Index="5">
@@ -785,11 +771,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-18"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-9"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-22"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond1-j2-ch3" Index="6">
@@ -802,36 +791,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-14"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j2-ch1-ec" Index="104">
-                                            <Name>Ch4EC</Name>
-                                            <Description>Ch1 : Channel 1 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j2-3"/>
-                                                <PinRef IDREF="pin-sigcond1-j2-16"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j2-ch2-ec" Index="105">
-                                            <Name>Ch5EC</Name>
-                                            <Description>Ch2 : Channel 2 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j2-9"/>
-                                                <PinRef IDREF="pin-sigcond1-j2-22"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond1-j2-ch3-ec" Index="106">
-                                            <Name>Ch6EC</Name>
-                                            <Description>Ch3 : Channel 3 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-12"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-25"/>
                                             </PinRefs>
@@ -1122,11 +1087,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-15"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-3"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-16"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond2-j1-ch2" Index="2">
@@ -1139,11 +1107,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-18"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-9"/>
+                                                <PinRef IDREF="pin-sigcond1-j1-22"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond2-j1-ch3" Index="3">
@@ -1156,36 +1127,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-14"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j1-ch1-ec" Index="101">
-                                            <Name>Ch1EC</Name>
-                                            <Description>Ch1 : Channel 1 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j1-3"/>
-                                                <PinRef IDREF="pin-sigcond1-j1-16"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j1-ch2-ec" Index="102">
-                                            <Name>Ch2EC</Name>
-                                            <Description>Ch2 : Channel 2 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j1-9"/>
-                                                <PinRef IDREF="pin-sigcond1-j1-22"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j1-ch3-ec" Index="103">
-                                            <Name>Ch3EC</Name>
-                                            <Description>Ch3 : Channel 3 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-12"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-25"/>
                                             </PinRefs>
@@ -1200,11 +1147,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-15"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-3"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-16"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond2-j2-ch2" Index="5">
@@ -1217,11 +1167,14 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-18"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-9"/>
+                                                <PinRef IDREF="pin-sigcond1-j2-22"/>
                                             </PinRefs>
                                         </Port>
                                         <Port ID="port-sigcond2-j2-ch3" Index="6">
@@ -1234,36 +1187,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <BBNSampleRate>250</BBNSampleRate>
                                                 <BBNDataLength>16</BBNDataLength>
+                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-14"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j2-ch1-ec" Index="104">
-                                            <Name>Ch4EC</Name>
-                                            <Description>Ch1 : Channel 1 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j2-3"/>
-                                                <PinRef IDREF="pin-sigcond1-j2-16"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j2-ch2-ec" Index="105">
-                                            <Name>Ch5EC</Name>
-                                            <Description>Ch2 : Channel 2 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
-                                                <PinRef IDREF="pin-sigcond1-j2-9"/>
-                                                <PinRef IDREF="pin-sigcond1-j2-22"/>
-                                            </PinRefs>
-                                        </Port>
-                                        <Port ID="port-sigcond2-j2-ch3-ec" Index="106">
-                                            <Name>Ch6EC</Name>
-                                            <Description>Ch3 : Channel 3 Excitation</Description>
-                                            <PortDirection>Input</PortDirection>
-                                            <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-12"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-25"/>
                                             </PinRefs>
@@ -1294,6 +1223,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1311,6 +1241,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1328,6 +1259,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1345,6 +1277,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1362,6 +1295,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1379,6 +1313,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1396,6 +1331,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1413,6 +1349,7 @@
                                                 <BBNDataLength>16</BBNDataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1439,6 +1376,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1453,6 +1391,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1467,6 +1406,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1481,6 +1421,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1495,6 +1436,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1509,6 +1451,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1523,6 +1466,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1537,6 +1481,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1563,6 +1508,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1577,6 +1523,7 @@
                                                 <BBNSampleRate>12500</BBNSampleRate>
                                                 <BBNSampleRate>50000</BBNSampleRate>
                                                 <BBNSampleRate>100000</BBNSampleRate>
+                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>

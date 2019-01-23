@@ -308,7 +308,7 @@
                                         </Port>
                                         <Port ID="port-sigcond2-j1-ch3" Index="3">
                                             <Name>Ch3</Name>
-                                            <Description>Ch3 : MSCD Channel 3 Signal Input</Description>
+                                            <Description>Ch3 : Channel 3 Signal Input</Description>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
                                         <Port ID="port-sigcond2-j2-ch1" Index="4">
