@@ -1802,7 +1802,7 @@
                                     <InventoryID>PCB Piezotronics</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
-                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <ExcitationSource>External</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Strain</Name>
@@ -1867,7 +1867,7 @@
                                     <InventoryID>PCB Piezotronics</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
-                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <ExcitationSource>External</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Strain</Name>
@@ -2128,6 +2128,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2180,6 +2181,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2232,6 +2234,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2284,6 +2287,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2336,6 +2340,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2388,6 +2393,7 @@
                                     <InventoryID>Omega-SA1-K-72-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2440,6 +2446,7 @@
                                     <InventoryID>Omega-OS36-01-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
@@ -2492,6 +2499,7 @@
                                     <InventoryID>Omega-OS36-10-K-Module</InventoryID>
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
                                     <Connectors>
                                         <Connector>
                                             <Name>Temperature</Name>
