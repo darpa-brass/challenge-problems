@@ -1,0 +1,1242 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+    <Name>Scenario 5 Example 2</Name>
+    <Description>TTC DAU with connected transducers.</Description>
+    <DatabaseID/>
+    <Checksum/>
+    <ConfigurationVersion>2018_01_22_00:00:00_TTCDAU</ConfigurationVersion>
+    <DirtyBit>false</DirtyBit>
+    <MeasurementDomains>
+        <MeasurementDomain>
+            <Name>Example2MeasurementDomain</Name>
+            <Description>Measurement domain for scenario 5 example 2.</Description>
+            <Measurements>
+                <Measurement ID="meas-signal-16-250">
+                    <Name>GenericSignal</Name>
+                    <Description>Generic signal.</Description>
+                    <MeasurementID>0x10000001</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-16-250">
+                    <Name>Temperature1</Name>
+                    <Description>Temperature</Description>
+                    <MeasurementID>0x10000010</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-12-1000">
+                    <Name>Temperature2</Name>
+                    <Description>Temperature</Description>
+                    <MeasurementID>0x10000011</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>1000</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+            </Measurements>
+            <DataStreams>
+                <DataStream ID="ds-data1">
+                    <Name>DataStream1</Name>
+                    <Description>Dummy stream.</Description>
+                    <ProperName>ARINC429</ProperName>
+                    <PCMDataLink ID="pcm-data1">
+                        <Name>PCM1</Name>
+                        <Description>Dummy PCM data link.</Description>
+                    </PCMDataLink>
+                </DataStream>
+            </DataStreams>
+        </MeasurementDomain>
+    </MeasurementDomains>
+    <NetworkDomain>
+        <Networks>
+            <Network ID="net-example">
+                <Name>ExampleNetwork</Name>
+                <Description>Example network for scenario 5 example 2.</Description>
+                <NetworkType>TestArticleNetwork</NetworkType>
+                <NetworkNodes>
+                    <NetworkNode ID="nn-dau">
+                        <Name>Example2DAU</Name>
+                        <Description>Scenario 5 example 2 DAU.</Description>
+                        <InventoryID>Example2DAU</InventoryID>
+                        <HostName>SwRI</HostName>
+                        <Manufacturer>TTC</Manufacturer>
+                        <Model>Scenario5Example2</Model>
+                        <ModelVersion>1</ModelVersion>
+                        <SerialID>123456789</SerialID>
+                        <IEEE1588Version>2008e2e</IEEE1588Version>
+                        <TmNSApps>
+                            <TmNSApp ID="tma-dau">
+                                <Name>Example2DAUApp</Name>
+                                <Description>Scenario 5 example 2 DAU application.</Description>
+                                <RoleID>Example2DAUApp</RoleID>
+                                <LoggingLevel>Trace</LoggingLevel>
+                                <Manufacturer>TTC</Manufacturer>
+                                <Product>DAUApp</Product>
+                                <ProductVersion>1</ProductVersion>
+                                <ConfigurationVersion>2018_01_22_00:00:00_Example2DAUApp</ConfigurationVersion>
+                                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                                <DirtyBit>false</DirtyBit>
+                                <TmNSDAU/>
+                                <TmNSLTCDataSource>
+                                    <LTCInterfaces>
+                                        <LTCInterface>
+                                            <TimeToLive>10</TimeToLive>
+                                        </LTCInterface>
+                                    </LTCInterfaces>
+                                </TmNSLTCDataSource>
+                            </TmNSApp>
+                        </TmNSApps>
+                        <InternalStructure>
+                            <Modules>
+                                <Module ID="mod-processor">
+                                    <Name>ProcessingModule</Name>
+                                    <Description>TTC MPPC-500-2 processing unit. Overhead.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MPPC-500-2</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MPPC-500-2</InventoryID>
+                                    <Position>101</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <RunningAppRefs>
+                                        <TmNSAppRef IDREF="tma-dau"/>
+                                    </RunningAppRefs>
+                                    <Ports>
+                                        <Port ID="port-processor-j1-ch1" Index="1">
+                                            <Name>J1 Console</Name>
+                                            <Description>Console Serial Port</Description>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-ieee">
+                                    <Name>TimeAndEthernetModule</Name>
+                                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MACQ-500-4</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MACQ-500-4</InventoryID>
+                                    <Position>102</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <NetworkInterfaces>
+                                        <NetworkInterface ID="ni-ieee-eth0">
+                                            <Name>eth0</Name>
+                                            <DHCPEnable>false</DHCPEnable>
+                                            <IPAddress>10.1.101.201</IPAddress>
+                                            <PhysicalNetworkPorts>
+                                                <PhysicalNetworkPort ID="pnp-ieee-ethernet">
+                                                    <Name>Ethernet</Name>
+                                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                                    <Medium>Copper</Medium>
+                                                    <PortNumber>1</PortNumber>
+                                                    <PortDataRate>
+                                                        <Value>1e8</Value>
+                                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                                    </PortDataRate>
+                                                </PhysicalNetworkPort>
+                                            </PhysicalNetworkPorts>
+                                        </NetworkInterface>
+                                    </NetworkInterfaces>
+                                    <Ports>
+                                        <Port ID="port-ieee-j1-ch1" Index="1">
+                                            <Name>Time</Name>
+                                            <Description>RS-422 Port 1</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-ieee-j2-ch1" Index="2">
+                                            <Name>Ethernet</Name>
+                                            <Description>10/100 Fast Ethernet</Description>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                            <PhysicalNetworkPortRef IDREF="pnp-ieee-ethernet"/>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-sigcond1">
+                                    <Name>SignalConditioner1</Name>
+                                    <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MSCD-606D-13</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MSCD-606D-13</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-sigcond1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch1" Index="4">
+                                            <Name>Ch4</Name>
+                                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch2" Index="5">
+                                            <Name>Ch5</Name>
+                                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch3" Index="6">
+                                            <Name>Ch6</Name>
+                                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-sigcond2">
+                                    <Name>SignalConditioner2</Name>
+                                    <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MSCD-606D-13</Model>
+                                    <SerialID>00002</SerialID>
+                                    <InventoryID>TTC-MSCD-606D-13</InventoryID>
+                                    <Position>2</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-sigcond2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch1" Index="4">
+                                            <Name>Ch4</Name>
+                                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch2" Index="5">
+                                            <Name>Ch5</Name>
+                                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch3" Index="6">
+                                            <Name>Ch6</Name>
+                                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-thermo">
+                                    <Name>ThermocoupleConditioner</Name>
+                                    <Description>TTC MTCD-208B-1 8-channel thermocouple conditioner.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MTCD-208B-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MTCD-208B-1</InventoryID>
+                                    <Position>3</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-thermo-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch4" Index="4">
+                                            <Name>Ch4</Name>
+                                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch5" Index="5">
+                                            <Name>Ch5</Name>
+                                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch6" Index="6">
+                                            <Name>Ch6</Name>
+                                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch7" Index="7">
+                                            <Name>Ch7</Name>
+                                            <Description>Ch7 : Channel 7 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-thermo-j1-ch8" Index="8">
+                                            <Name>Ch8</Name>
+                                            <Description>Ch8 : Channel 8 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-bus1">
+                                    <Name>BusMonitor1</Name>
+                                    <Description>TTC MBIM-429C-1 8-channel bus monitor.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MBIM-429C-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MBIM-429C-1</InventoryID>
+                                    <Position>4</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-bus1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch4" Index="4">
+                                            <Name>Ch4</Name>
+                                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch5" Index="5">
+                                            <Name>Ch5</Name>
+                                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch6" Index="6">
+                                            <Name>Ch6</Name>
+                                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch7" Index="7">
+                                            <Name>Ch7</Name>
+                                            <Description>Ch7 : Channel 7 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus1-j1-ch8" Index="8">
+                                            <Name>Ch8</Name>
+                                            <Description>Ch8 : Channel 8 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-bus2">
+                                    <Name>BusMonitor2</Name>
+                                    <Description>TTC MBIM-553A-1 dual redundant bus monitor.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MBIM-553A-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MBIM-553A-1</InventoryID>
+                                    <Position>5</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-bus2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-bus2-j2-ch1" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-power1">
+                                    <Name>PowerSupply1</Name>
+                                    <Description>TTC MPFM-461-1 mini power supply. Overhead.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MPFM-461-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MPFM-461-1</InventoryID>
+                                    <Position>201</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-power1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Power</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-power2">
+                                    <Name>PowerSupply2</Name>
+                                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>MPSM-2515-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-MPSM-2515-1</InventoryID>
+                                    <Position>202</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Dummy</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                            </Modules>
+                        </InternalStructure>
+                    </NetworkNode>
+                </NetworkNodes>
+                <Devices>
+                    <Device ID="dev-accel1">
+                        <Name>Accelerometer 1</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-accel2">
+                        <Name>Accelerometer 2</Name>
+                        <Description>PCB Piezotronics 356A02 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A02</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain1">
+                        <Name>Strain Guage 1</Name>
+                        <Description>PCB Piezotronics 260A02 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>260A02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 260A02</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>260A02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-strain1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain2">
+                        <Name>Strain Guage 2</Name>
+                        <Description>PCB Piezotronics 261A01 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>261A01</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 261A01</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>261A01</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-strain2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-pressure1">
+                        <Name>Pressure Sensor 1</Name>
+                        <Description>PCB Piezotronics 106B Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>106B</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 106B</InventoryID>
+                        <DeviceType>PressureTransducer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-pressure1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>106B</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-pressure1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Pressure)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-audio1">
+                        <Name>Microphone 1</Name>
+                        <Description>PCB Piezotronics 378B02 Microphone.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>378B02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 378B02</InventoryID>
+                        <DeviceType>Microphone</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-audio1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>378B02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-audio1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Audio)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-vibration1">
+                        <Name>Vibration Sensor 1</Name>
+                        <Description>PCB Piezotronics 685A09 Mechanical Vibration Sensor.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>685A09</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 685A09</InventoryID>
+                        <DeviceType Extension="Vibration">Extension</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-vibration1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>685A09</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-vibration1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Vibration)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-vibration1-j2-ch1" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j2 Ch2 (Remote Reset)</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo1">
+                        <Name>Thermocouple1</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo2">
+                        <Name>Thermocouple2</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00002</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00002</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo3">
+                        <Name>Thermocouple3</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00003</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo3-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00003</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo3-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo4">
+                        <Name>Thermocouple4</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00004</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo4-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00004</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo4-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo5">
+                        <Name>Thermocouple5</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00005</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo5-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00005</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo5-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo6">
+                        <Name>Thermocouple6</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00006</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo6-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00006</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo6-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo7">
+                        <Name>Thermocouple7</Name>
+                        <Description>Omega OS36-01 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>OS36-01</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-OS36-01</InventoryID>
+                        <DeviceType Thermocouple="J">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo7-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>OS36-01</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-OS36-01-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo7-j1-ch" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo8">
+                        <Name>Thermocouple8</Name>
+                        <Description>Omega OS36-10-K thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>OS36-10-K</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-OS36-10-K</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo8-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>OS36-10-K</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-OS36-10-K-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo8-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                </Devices>
+                <PortMappings>
+                    <PortMapping ID="pm-sigcond1-j1ch1-accel1-j1ch1">
+                        <Name>Acceleration1</Name>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-sigcond1-j1-ch1"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j1ch2-accel1-j1ch2">
+                        <Name>Acceleration2</Name>
+                        <Description>Signal Conditioner 1 j2 to Accelerometer 1 j2 (Acceleration Z)</Description>
+                        <PortRef IDREF="port-sigcond1-j1-ch2"/>
+                        <PortRef IDREF="port-accel1-j1-ch2"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j1ch3-accel1-j1ch3">
+                        <Name>Acceleration3</Name>
+                        <Description>Signal Conditioner 1 j3 to Accelerometer 1 j3 (Acceleration Y)</Description>
+                        <PortRef IDREF="port-sigcond1-j1-ch3"/>
+                        <PortRef IDREF="port-accel1-j1-ch3"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch1-accel2-j1ch1">
+                        <Name>Acceleration4</Name>
+                        <Description>Signal Conditioner 1 J4 to Accelerometer 2 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-sigcond1-j2-ch1"/>
+                        <PortRef IDREF="port-accel2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch2-accel2-j1ch2">
+                        <Name>Acceleration5</Name>
+                        <Description>Signal Conditioner 1 J5 to Accelerometer 2 j2 (Acceleration Z)</Description>
+                        <PortRef IDREF="port-sigcond1-j2-ch2"/>
+                        <PortRef IDREF="port-accel2-j1-ch2"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch3-accel2-j1ch3">
+                        <Name>Acceleration6</Name>
+                        <Description>Signal Conditioner 1 J6 to Accelerometer 2 j3 (Acceleration Y)</Description>
+                        <PortRef IDREF="port-sigcond1-j2-ch3"/>
+                        <PortRef IDREF="port-accel2-j1-ch3"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch1-strain1-j1ch1">
+                        <Name>Strain1</Name>
+                        <Description>Signal Conditioner 2 j1 Ch1 to Strain Guage 1 j1 (Strain)</Description>
+                        <PortRef IDREF="port-sigcond2-j1-ch1"/>
+                        <PortRef IDREF="port-strain1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch2-strain2-j1ch1">
+                        <Name>Strain2</Name>
+                        <Description>Signal Conditioner 2 j1 Ch2 to Strain Guage 2 j1 (Strain)</Description>
+                        <PortRef IDREF="port-sigcond2-j1-ch2"/>
+                        <PortRef IDREF="port-strain2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch3-pressure1-j1ch1">
+                        <Name>Pressure1</Name>
+                        <Description>Signal Conditioner 2 j1 Ch3 to Pressure Transducer 1 j1 (Pressure)</Description>
+                        <PortRef IDREF="port-sigcond2-j1-ch3"/>
+                        <PortRef IDREF="port-pressure1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch1-audio1-j1ch1">
+                        <Name>Audio1</Name>
+                        <Description>Signal Conditioner 2 j2 Ch1 to Microphone 1 j1 (Audio)</Description>
+                        <PortRef IDREF="port-sigcond2-j2-ch1"/>
+                        <PortRef IDREF="port-audio1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch2-vibration1-j1ch1">
+                        <Name>Vibration1</Name>
+                        <Description>Signal Conditioner 2 j2 Ch1 to Vibration 1 j1 (Vibration)</Description>
+                        <PortRef IDREF="port-sigcond2-j2-ch2"/>
+                        <PortRef IDREF="port-vibration1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch3-vibration1-j2ch1">
+                        <Name>Remote Reset1</Name>
+                        <Description>Signal Conditioner 2 j2 Ch3 to Vibration 1 j2 (Remote Reset)</Description>
+                        <PortRef IDREF="port-sigcond2-j2-ch3"/>
+                        <PortRef IDREF="port-vibration1-j2-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch1-thermo1-j1ch1">
+                        <Name>Temperature1</Name>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 1 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch2-thermo2-j1ch1">
+                        <Name>Temperature2</Name>
+                        <Description>Thermocouple j1 Ch2 to Thermocouple 2 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch3-thermo3-j1ch1">
+                        <Name>Temperature3</Name>
+                        <Description>Thermocouple j1 Ch3 to Thermocouple 3 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch4-thermo4-j1ch1">
+                        <Name>Temperature4</Name>
+                        <Description>Thermocouple j1 Ch4 to Thermocouple 4 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch5-thermo5-j1ch1">
+                        <Name>Temperature5</Name>
+                        <Description>Thermocouple j1 Ch5 to Thermocouple 5 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch6-thermo6-j1ch1">
+                        <Name>Temperature6</Name>
+                        <Description>Thermocouple j1 Ch6 to Thermocouple 6 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch7-thermo7-j1ch1">
+                        <Name>Temperature7</Name>
+                        <Description>Thermocouple j1 Ch7 to Thermocouple 7 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo-j1ch8-thermo8-j1ch1">
+                        <Name>Temperature8</Name>
+                        <Description>Thermocouple j1 Ch8 to Thermocouple 8 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch1-bus">
+                        <Name>Bus1</Name>
+                        <Description>Bus Monitor 1 j1 Ch1 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch1"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch2-bus">
+                        <Name>Bus2</Name>
+                        <Description>Bus Monitor 1 j1 Ch2 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch2"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch3-bus">
+                        <Name>Bus3</Name>
+                        <Description>Bus Monitor 1 j1 Ch3 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch3"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch4-bus">
+                        <Name>Bus4</Name>
+                        <Description>Bus Monitor 1 j1 Ch4 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch4"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch5-bus">
+                        <Name>Bus5</Name>
+                        <Description>Bus Monitor 1 j1 Ch5 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch5"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch6-bus">
+                        <Name>Bus6</Name>
+                        <Description>Bus Monitor 1 j1 Ch6 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch6"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch7-bus">
+                        <Name>Bus7</Name>
+                        <Description>Bus Monitor 1 j1 Ch7 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch7"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-bus1-j1ch8-bus">
+                        <Name>Bus8</Name>
+                        <Description>Bus Monitor 1 j1 Ch8 to Bus (PCM)</Description>
+                        <PortRef IDREF="port-bus1-j1-ch8"/>
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/>
+                        </DataStreamRefs>
+                    </PortMapping>
+                </PortMappings>
+            </Network>
+        </Networks>
+    </NetworkDomain>
+    <DSCPTable>
+        <DSCPTableEntry ID="dscp-0">
+            <Name>BestEffort</Name>
+            <DSCPValue>0b000000</DSCPValue>
+        </DSCPTableEntry>
+    </DSCPTable>
+</MDLRoot>
