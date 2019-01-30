@@ -1,0 +1,12 @@
+[
+    {"RadioName": "TA1", "DataInRate-bps": 2500000, "MissionValue": 5}, 
+    {"RadioName": "GR1", "DataInRate-bps": 500000, "MissionValue": 5},
+    {"RadioName": "TA2", "DataInRate-bps": 1800000, "MissionValue": 5}, 
+    {"RadioName": "GR2", "DataInRate-bps": 200000, "MissionValue": 5},
+    {"RadioName": "TA3", "DataInRate-bps": 1800000, "MissionValue": 5}, 
+    {"RadioName": "GR3", "DataInRate-bps": 250000, "MissionValue": 5},
+    {"RadioName": "TA4", "DataInRate-bps": 1500000, "MissionValue": 5}, 
+    {"RadioName": "GR4", "DataInRate-bps": 120000, "MissionValue": 5},
+    {"RadioName": "TA5", "DataInRate-bps": 1500000, "MissionValue": 5},
+    {"RadioName": "GR5", "DataInRate-bps": 100000, "MissionValue": 5}
+]
