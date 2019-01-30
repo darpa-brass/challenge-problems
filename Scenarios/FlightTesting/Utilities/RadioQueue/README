@@ -30,6 +30,15 @@ The epoch size can be set via the '-E <val>' option.  Because the queues are
     updated every epoch, setting this value will affect how quickly updates are
     seen.  The default epoch size is 100ms.  
 
+    
+KNOWN ISSUES:
+On Windows, you need to run a 'pip install windows-curses' for the Python 
+interpreter that will be running the script. Curses doesn't work by default 
+on that platform. Also note that <Ctrl-C> does not exist the program. Instead
+use <Ctrl-Break>.
+
+Errors will be thrown if the window does not meet the minimum size.
+
 
 INPUT FILES:
 The program updates its simulated radio queues by reading two JSON files each
