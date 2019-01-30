@@ -1,0 +1,12 @@
+[
+    {"RadioName": "TA1", "AllocatedBw-bps": 2450000}, 
+    {"RadioName": "GR1", "AllocatedBw-bps": 440000},
+    {"RadioName": "TA2", "AllocatedBw-bps": 1800000}, 
+    {"RadioName": "GR2", "AllocatedBw-bps": 210000},
+    {"RadioName": "TA3", "AllocatedBw-bps": 1750000}, 
+    {"RadioName": "GR3", "AllocatedBw-bps": 250000},
+    {"RadioName": "TA4", "AllocatedBw-bps": 1400000}, 
+    {"RadioName": "GR4", "AllocatedBw-bps": 110000},
+    {"RadioName": "TA5", "AllocatedBw-bps": 1400000},
+    {"RadioName": "GR5", "AllocatedBw-bps": 100000}
+]

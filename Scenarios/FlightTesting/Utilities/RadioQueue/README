@@ -1,0 +1,77 @@
+************************************************************
+********** README File For Radio Queue Vizualizer **********
+************************************************************
+
+Run with Python 3.
+
+    > python3 RadioQueue.py
+    
+    
+Command Line Arguments are available via the '-h' argument:
+    > python3 RadioQueue.py -h
+    usage: RadioQueue.py [-h] [-L] [-M MAX_QUEUE_SIZE] [-E EPOCH_SIZE_MS]
+                     [-d DEBUG] [-v]
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -L                 Limit Queue by the MAX_QUEUE_SIZE
+      -M MAX_QUEUE_SIZE  Set MAX queue size in Bytes [default: 4194240]
+      -E EPOCH_SIZE_MS   Set the Epoch size (milliseconds) [default: 100]
+      -d DEBUG           Set the Debug level
+      -v, --version      show program's version number and exit
+      
+      
+All arguments are optional.
+The queue size of all radios can be set via the '-M <val>' option.  The
+    default size is 4.194240 MB.
+The program does not limit the queue depths of a radio to the max queue size
+    unless the '-L' option to limit the queue size is used.
+The epoch size can be set via the '-E <val>' option.  Because the queues are 
+    updated every epoch, setting this value will affect how quickly updates are
+    seen.  The default epoch size is 100ms.  
+
+
+INPUT FILES:
+The program updates its simulated radio queues by reading two JSON files each
+epoch and updating each queue accordingly.  The two input files are assumed to
+be in the same directory as the calling terminal (just put them together with
+the python program and run the program from that directory).  The two files are
+detailed below:
+
+    data_input_rates.json - includes data rate coming into the radio that needs
+                            to be transmitted
+        [
+            {"RadioName": "NAME1", "DataInRate-bps": 200000, "MissionValue": 2}, 
+            {"RadioName": "NAME2", "DataInRate-bps": 100000, "MissionValue": 5}
+        ]
+    
+    bw_allocs.json - includes allocated bandwidth for transmitting data
+        [
+            {"RadioName": "NAME1", "AllocatedBw-bps": 150000}, 
+            {"RadioName": "NAME2", "AllocatedBw-bps": 120000}
+        ]
+
+The data_input_rates.json file can be manually tuned to adjust the current data
+rate requirements on a radio during the test.
+
+The bw_allocs.json file is expected to be written by Link Manager applications
+(e.g. those applications performing dynamic bandwidth allocation scheduling). 
+
+
+OUTPUT FILE:
+The program writes a JSON file that contains the current queue status for each
+of its radios.  This file is written to the local directory where the program 
+is run.  The file is detailed below:
+
+    radio_queues.json - includes the current queue depth in bytes of each radio
+        [
+            {"RadioName": "NAME1", "QLen": 6250}, 
+            {"RadioName": "NAME2", "QLen": 0}
+        ]
+        
+Link Manager applications shall read this JSON file in order to see the current
+queue depths of the radios it is scheduling.  Making schedule changes through
+the bw_allocs.json file can affect the queue depths reported in the 
+radio_queues.json file, depending on the delta between the allocated bandwidth
+for a radio (from the bw_allocs.json file) and the corresponding radio's data
+input rate (from the data_input_rates.json file).
