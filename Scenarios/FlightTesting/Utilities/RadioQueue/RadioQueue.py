@@ -15,8 +15,10 @@ import time
 import math
 import curses
 from curses import wrapper
+import signal
 
 
+next_timer     = 0
 epoch_ms       = 100                # epoch size in milliseconds
 epoch_sec      = epoch_ms / 1000    # epoch size converted to seconds
 epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
@@ -88,8 +90,11 @@ def run_epoch():
     global epoch_num
     global radio_list
     global stdscr
+    global next_timer
     
-    threading.Timer(epoch_sec, run_epoch).start()   # Set callback timer for next epoch update
+    #threading.Timer(epoch_sec, run_epoch).start()   # Set callback timer for next epoch update
+    next_timer = threading.Timer(epoch_sec, run_epoch)
+    next_timer.start()
     
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
     with open("data_input_rates.json") as f:        # TODO: make filename a command line argument
@@ -450,6 +455,25 @@ def main(stdscr):
 #------------------------------------------------------------------------------
 
 
+def restore_screen():
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
+
+
+#------------------------------------------------------------------------------
+
+
+def sig_handler(sig, frame):
+    global next_timer
+    next_timer.cancel()
+    restore_screen()
+    sys.exit()
+
+
+#------------------------------------------------------------------------------
+
+
 if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
@@ -472,5 +496,11 @@ if __name__ == "__main__":
     rwin   = curses.newwin(10,88,0,2)     # Initialize Radio Window for curses
     qwin   = curses.newwin(10,88,0,2)     # Initialize Queue Graphics Window for curses
     curses.curs_set(0)
+    
+    signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
 
     wrapper(main)
+    
+    while True:
+        signal.pause()      # Need this for graceful exiting
+    
