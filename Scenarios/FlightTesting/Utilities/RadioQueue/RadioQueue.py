@@ -7,6 +7,7 @@
 #------------------------------------------------------------------------------
 
 import sys
+import os
 import argparse
 import json
 from collections import deque
@@ -15,8 +16,10 @@ import time
 import math
 import curses
 from curses import wrapper
+import signal
 
 
+next_timer     = 0
 epoch_ms       = 100                # epoch size in milliseconds
 epoch_sec      = epoch_ms / 1000    # epoch size converted to seconds
 epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
@@ -88,8 +91,13 @@ def run_epoch():
     global epoch_num
     global radio_list
     global stdscr
+    global next_timer
+    global time_pad
     
-    threading.Timer(epoch_sec, run_epoch).start()   # Set callback timer for next epoch update
+    #threading.Timer(epoch_sec, run_epoch).start()   # Set callback timer for next epoch update
+    next_timer = threading.Timer(epoch_sec, run_epoch)
+    next_timer.start()
+    height,width = stdscr.getmaxyx()
     
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
     with open("data_input_rates.json") as f:        # TODO: make filename a command line argument
@@ -160,16 +168,39 @@ def run_epoch():
     
     # Print windows and graphics panels if not in Debug mode
     if debug == 0:
-        now = time.time()
-        header_str = "EPOCH #{0:<6d} | TIME: {1:17f}".format(epoch_num, now)
-        stdscr.addstr(4, 2, "Epoch size: {0:4d}ms".format(epoch_ms), curses.A_BOLD)
-        stdscr.addstr(5, 2, header_str, curses.A_BOLD | curses.A_UNDERLINE)
-        stdscr.addstr(6, 2, " ")
+        
+        stdscr.clear()
+        stdscr.noutrefresh()
+        
+        # Sanity check for window height requirements
+        if height < 10:
+            bangs = '!' * int((width-49)/2)
+            msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
+            msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
+            msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
+            stdscr.addstr(0,0,"{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(1,0,"{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.refresh()
+            return
     
+        if width < 50:
+            bangs = '!' * int((width-40)/2)
+            msg1 = bangs + '    NOT SURE WHAT YOU EXPECT TO SEE    ' + bangs
+            msg2 = bangs + '        ON SUCH A SKINNY SCREEN        ' + bangs
+            msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK SKYNET  ' + bangs
+            stdscr.addstr(0,0, "{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(1,0, "{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(2,0, "{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.refresh()
+            return
+            
         # Print to screen
+        print_banner()
         print_border(len(radio_list))
+        print_time()
         print_lm_stats(radio_list)
-        print_epoch_stats(radio_list)
+        print_radio_stats(radio_list)
         print_queues(radio_list)
     
         stdscr.refresh()
@@ -238,7 +269,9 @@ def print_stats(rlist):
 
 
 def print_lm_stats(rlist):
-    global lmwin
+    global lm_pad
+    
+    height, width = stdscr.getmaxyx()
     
     # Color Pair Assignments
     txt_CYAN_on_BLACK    = curses.color_pair(5)
@@ -260,26 +293,31 @@ def print_lm_stats(rlist):
     header = "+------------------------------------------------------------------------------------+"
     bw_str = "|   LM Total Bandwidth Allocated:  {0:7.3f} Mbps of {1:5.3f} Mbps  |  {2:6.2f}% utilized  |".format(
         (total_bw_allocated_Mbps), MAX_BW_MBPS, utilization)
-
     
-    lmwin.addstr(0, 0, header, txt_CYAN_on_BLACK | curses.A_BOLD)
-    if   utilization <   50: lmwin.addstr(1, 0, bw_str, txt_YELLOW_on_BLACK  | curses.A_BOLD | curses.A_STANDOUT | curses.A_BLINK )
-    elif utilization <   80: lmwin.addstr(1, 0, bw_str, txt_CYAN_on_BLACK    | curses.A_BOLD | curses.A_STANDOUT)
-    elif utilization <   95: lmwin.addstr(1, 0, bw_str, txt_GREEN_on_BLACK   | curses.A_BOLD | curses.A_STANDOUT)
-    elif utilization <= 100: lmwin.addstr(1, 0, bw_str, txt_MAGENTA_on_BLACK | curses.A_BOLD | curses.A_STANDOUT | curses.A_BLINK )
-    else:                    lmwin.addstr(1, 0, bw_str, txt_RED_on_BLACK     | curses.A_BOLD | curses.A_STANDOUT | curses.A_BLINK )
-    lmwin.addstr(2, 0, header, txt_CYAN_on_BLACK | curses.A_BOLD)
-        
-    lmwin.noutrefresh()     # Refresh the LM Window
+    lm_pad.addstr(0, 0, header, txt_CYAN_on_BLACK | curses.A_BOLD)
+    if   utilization <   50: lm_pad.addstr(1, 0, bw_str, txt_YELLOW_on_BLACK  | curses.A_BOLD | curses.A_STANDOUT | BLINK )
+    elif utilization <   80: lm_pad.addstr(1, 0, bw_str, txt_CYAN_on_BLACK    | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization <   95: lm_pad.addstr(1, 0, bw_str, txt_GREEN_on_BLACK   | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization <= 100: lm_pad.addstr(1, 0, bw_str, txt_MAGENTA_on_BLACK | curses.A_BOLD | curses.A_STANDOUT | BLINK )
+    else:                    lm_pad.addstr(1, 0, bw_str, txt_RED_on_BLACK     | curses.A_BOLD | curses.A_STANDOUT | BLINK )
+    lm_pad.addstr(2, 0, header, txt_CYAN_on_BLACK | curses.A_BOLD)
+    
+    start_line_pos = 7
+    last_line_pos  = 9
+    
+    if (height-1) >= last_line_pos:
+        lm_pad.noutrefresh(0,0, start_line_pos,2, last_line_pos,(width-1))
+    elif (height-1) >= start_line_pos:
+        lm_pad.noutrefresh(0,0, start_line_pos,2, (height-1),(width-1))
     
 
 #------------------------------------------------------------------------------
 
 
-def print_epoch_stats(rlist):
-    global rwin
+def print_radio_stats(rlist):
+    global radio_pad
     rwin_width = 86
-    rwin = curses.newwin(((len(rlist))+1), rwin_width, 11, 2)
+    radio_pad = curses.newpad((len(rlist)+1), rwin_width)
     
     # Color Pair Assignments
     txt_WHITE_on_RED   = curses.color_pair(1)
@@ -288,74 +326,90 @@ def print_epoch_stats(rlist):
     txt_BLACK_on_WHITE = curses.color_pair(4)
     txt_YELLOW_on_BLACK = curses.color_pair(7)
     
+    height,width = stdscr.getmaxyx()
     
     header = "{0:^10}|{1:^15}|{2:^17}|{3:^17}|{4:^19}".format('Radio', 'Allocated BW', 'Data Input Rate', 'Queue Depth', 'Queue Status')
-    rwin.addstr(0, 0, header, curses.A_BOLD | curses.A_UNDERLINE)
+    radio_pad.addstr(0, 0, header, curses.A_BOLD | curses.A_UNDERLINE)
     
     txt_mode = curses.A_DIM
     
     for idx, r in enumerate(radio_list, start=1):
         if r.online == False:
             q_status = " X   (OFFLINE)  "
-            txt_mode = (txt_YELLOW_on_BLACK | curses.A_BLINK)
+            txt_mode = (txt_YELLOW_on_BLACK | curses.A_BOLD | BLINK)
         elif r.q_delta_bps > 0: 
             q_status = " ^   (growing)  "
-            txt_mode = txt_WHITE_on_RED
+            txt_mode = (txt_WHITE_on_RED | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len > 0): 
             q_status = " v   (shrinking)"
-            txt_mode = txt_WHITE_on_GREEN
+            txt_mode = (txt_WHITE_on_GREEN | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len == 0): 
             q_status = " _   (empty)    "
-            txt_mode = txt_BLACK_on_WHITE
+            txt_mode = (txt_BLACK_on_WHITE | curses.A_BOLD)
         elif r.q_delta_bps == 0: 
             q_status = " -   (balanced) "
-            txt_mode = txt_WHITE_on_BLUE
+            txt_mode = (txt_WHITE_on_BLUE | curses.A_BOLD)
         else: 
             q_status = " meh"
         
-        rstr = "{0:^10}| {1:8.3f} kbps |  {2:8.3f} kbps  | {3:8.3f} KBytes |  {4} ".format(
+        radio_str = "{0:^10}| {1:8.3f} kbps |  {2:8.3f} kbps  | {3:8.3f} KBytes |  {4} ".format(
             r.name, 
             (r.dout_bps / 1000), 
             (r.din_bps / 1000),
             (r.q_len / 1000),
             q_status)
         
-        rwin.addstr(idx, 0, rstr, txt_mode)     # idx corresponds to row number for printing
+        radio_pad.addstr(idx, 0, radio_str, txt_mode)     # idx corresponds to row number for printing
         
-    rwin.noutrefresh()      # Refresh the Radio Window
+    start_line_pos = 11
+    last_line_pos  = len(rlist) + 11
+    
+    if (height-1) >= last_line_pos:
+        radio_pad.noutrefresh(0,0, start_line_pos,2, last_line_pos,(width-1))  # Refresh the Radio Pad
+    elif (height-1) >= start_line_pos:
+        radio_pad.noutrefresh(0,0, start_line_pos,2, (height-1),(width-1))  # Refresh the Radio Pad
 
 
 #------------------------------------------------------------------------------
 
 
 def print_queues(rlist):
-    global qwin
+    global q_pad
     qwin_width = 86
     
-    qwin = curses.newwin(((len(rlist)*3)+3), qwin_width, len(rlist) + 14, 2)
+    q_pad = curses.newpad(((len(rlist)*3)+3), qwin_width)
+    
+    height,width = stdscr.getmaxyx()
+    
     header = " {0:^11}|{1:^50}|{2:^22}".format('Radio', 'Queue', 'Queue Status')
     blank = " " * (qwin_width-1)
-    qwin.addstr(0, 0, header, curses.A_BOLD | curses.A_REVERSE)                 # Header Row / Top Border
-    qwin.addstr((len(rlist)*3)+1, 0, "{0}".format(blank), curses.A_REVERSE)     # Bottom Border
-    qwin.addstr((len(rlist)*3)+1, qwin_width-1, " ", curses.A_REVERSE)          # Bottom Right Border Character
+    q_pad.addstr(0, 0, header, curses.A_REVERSE | curses.A_BOLD)                                 # Header Row / Top Border
+    q_pad.addstr((len(rlist)*3)+1, 0, "{0}".format(blank), curses.A_REVERSE | curses.A_BOLD)     # Bottom Border
+    q_pad.addstr((len(rlist)*3)+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)          # Bottom Right Border Character
     
     for idx, r in enumerate(rlist, start=0):
-        qwin.addstr((3*idx)+1, 0, " ", curses.A_REVERSE)                # Left Border Character
-        qwin.addstr((3*idx)+2, 0, " ", curses.A_REVERSE)                # Left Border Character
-        qwin.addstr((3*idx)+3, 0, " ", curses.A_REVERSE)                # Left Border Character
-        qwin.addstr((3*idx)+1, qwin_width-1, " ", curses.A_REVERSE)     # Right Border Character
-        qwin.addstr((3*idx)+2, qwin_width-1, " ", curses.A_REVERSE)     # Right Border Character
-        qwin.addstr((3*idx)+3, qwin_width-1, " ", curses.A_REVERSE)     # Right Border Character
-        print_queue(r, int(idx))                                        # Update the Queue graphic for the iterated Radio
+        q_pad.addstr((3*idx)+1, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
+        q_pad.addstr((3*idx)+2, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
+        q_pad.addstr((3*idx)+3, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
+        q_pad.addstr((3*idx)+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
+        q_pad.addstr((3*idx)+2, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
+        q_pad.addstr((3*idx)+3, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
+        print_queue(r, int(idx))                                                         # Update the Queue graphic for the iterated Radio
              
-    qwin.noutrefresh()  # Refresh the Queue Graphics Window
+    start_line_pos = len(rlist) + 14
+    last_line_pos  = (len(rlist) * 4) + 17
+    
+    if (height-1) >= last_line_pos:
+        q_pad.noutrefresh(0,0, start_line_pos,2, last_line_pos,(width-1))
+    elif (height-1) >= start_line_pos:
+        q_pad.noutrefresh(0,0, start_line_pos,2, (height-1),(width-1))
 
 
 #------------------------------------------------------------------------------
 
 
 def print_queue(r, idx):
-    global qwin
+    global q_pad
     
     # Color Pair Assignments
     txt_CYAN_on_BLACK    = curses.color_pair(5)
@@ -373,41 +427,24 @@ def print_queue(r, idx):
     q_graphic = u'\u2588' * q_chars                                                 # u'\u2588' is the extended Ascii FULL BLOCK character
     if ((q_chars < 50) and (q_full_pct%2 == 1)): q_graphic = q_graphic + u'\u258c'
     
-    if   q_chars ==  0: q_state = "EMPTY"
-    elif q_chars == 50: q_state = "FULL"
-    else:               q_state = "Utilized"
+    if   q_full_pct ==   0: q_state = "EMPTY"
+    elif q_full_pct >= 100: q_state = "FULL"
+    else:                   q_state = "Utilized"
     
     if   q_chars < 10: txt_mode = txt_WHITE_on_BLACK
     elif q_chars < 20: txt_mode = txt_CYAN_on_BLACK
     elif q_chars < 30: txt_mode = txt_YELLOW_on_BLACK
     elif q_chars < 40: txt_mode = txt_MAGENTA_on_BLACK
     elif q_chars < 50: txt_mode = txt_RED_on_BLACK
-    else:              txt_mode = txt_RED_on_BLACK | curses.A_BLINK
+    else:              txt_mode = txt_RED_on_BLACK | BLINK
     
-    #q_str = "{0:9} |{1:50}|  {2:2d}% Queue {3}".format(r.name, q_graphic, q_full_pct, q_state)
     q_str = "|{0:50}|  {1:2d}% Queue {2}".format(q_graphic, q_full_pct, q_state)
-    qwin.addstr((3*idx)+1, 12, header, txt_mode | curses.A_BOLD)
-    qwin.addstr((3*idx)+2,  1, "{0:^11}".format(r.name), curses.A_BOLD)
-    qwin.addstr((3*idx)+2, 12, q_str,  txt_mode | curses.A_BOLD)
-    qwin.addstr((3*idx)+3, 12, header, txt_mode | curses.A_BOLD)
+    q_pad.addstr((3*idx)+1, 12, header, txt_mode | curses.A_BOLD)
+    q_pad.addstr((3*idx)+2,  1, "{0:^11}".format(r.name), curses.A_BOLD)
+    q_pad.addstr((3*idx)+2, 12, q_str,  txt_mode | curses.A_BOLD)
+    q_pad.addstr((3*idx)+3, 12, header, txt_mode | curses.A_BOLD)
  
     
-#------------------------------------------------------------------------------
-
-
-def print_border(num_radios):
-    global stdscr
-    
-    txt_WHITE_on_BLUE = curses.color_pair(2)
-    
-    # Print bar on left and right borders
-    for i in range (3, ((num_radios * 4)+17)):
-        stdscr.addstr(i, 0, " ", txt_WHITE_on_BLUE)
-        stdscr.addstr(i, 89, " ", txt_WHITE_on_BLUE)
-        
-    stdscr.addstr((num_radios * 4)+17, 0, "{0:90}".format(" "), txt_WHITE_on_BLUE)
-    stdscr.noutrefresh()
-
 #------------------------------------------------------------------------------
 
 
@@ -420,10 +457,96 @@ def init_epoch_vals(ms):
     epoch_sec       = epoch_ms / 1000   # epoch size converted to seconds
     epochs_per_sec  = 1000 / epoch_ms   # number of epochs per second
 
-#------------------------------------------------------------------------------
-       
 
-def main(stdscr):
+#------------------------------------------------------------------------------
+
+
+def restore_screen():
+    curses.nocbreak()
+    curses.echo()
+    curses.endwin()
+
+
+#------------------------------------------------------------------------------
+
+
+def sig_handler(sig, frame):
+    global next_timer
+    next_timer.cancel()
+    restore_screen()
+    sys.exit()
+
+
+#------------------------------------------------------------------------------
+
+
+def print_banner():
+    global stdscr
+    global banner_pad
+    
+    height, width = stdscr.getmaxyx()
+    
+    header = '*' * 90
+    banner_pad.addstr(0, 0, header, curses.color_pair(2) | curses.A_BOLD)
+    banner_pad.addstr(1, 0, "*****        Radio Queue Status Display for Link Manager Algorithm Evaluator         *****", curses.color_pair(2) | curses.A_BOLD)
+    banner_pad.addstr(2, 0, header, curses.color_pair(2) | curses.A_BOLD)
+    banner_pad.addstr(3,0, ' '*89)
+    banner_pad.noutrefresh(0,0, 0,0, 3,width-1)
+    
+    
+#------------------------------------------------------------------------------
+
+
+def print_time():
+    global stdscr
+    global time_pad
+    
+    height, width = stdscr.getmaxyx()
+    
+    now = time.time()
+    header_str = "EPOCH #{0:<6d} | TIME: {1:17f}".format(epoch_num, now)
+    time_pad.addstr(0, 0, "Epoch size: {0:4d}ms".format(epoch_ms), curses.A_BOLD)
+    time_pad.addstr(1, 0, header_str, curses.A_BOLD | curses.A_UNDERLINE)
+    time_pad.addstr(2, 0, " ")
+    
+    if (width-1) >= 90:
+        time_pad.noutrefresh(0,0, 4,2, 6,90)
+    else:
+        time_pad.noutrefresh(0,0, 4,2, 6,width-1)
+    
+
+#------------------------------------------------------------------------------
+
+
+def print_border(num_radios):
+    global stdscr
+    global border_pad
+    
+    txt_WHITE_on_BLUE = curses.color_pair(2)
+    
+    height, width = stdscr.getmaxyx()
+    
+    pad_lines  = (num_radios * 4) + 15
+    border_pad = curses.newpad(pad_lines, 91)
+    
+    # Print bar on left and right borders
+    for i in range (pad_lines-1):
+        border_pad.addstr(i, 0, " ", txt_WHITE_on_BLUE)
+        border_pad.addstr(i, 89, " ", txt_WHITE_on_BLUE)
+    
+    last_line_pos = pad_lines+3
+    
+    border_pad.addstr(pad_lines-1, 0, "{0:90}".format(" "), txt_WHITE_on_BLUE)
+    
+    if (height-1) >= last_line_pos:
+        border_pad.noutrefresh(0,0, 3,0, last_line_pos,(width-1))
+    else: border_pad.noutrefresh(0,0, 3,0, (height-1),(width-1))
+
+
+#------------------------------------------------------------------------------
+
+
+def main(stdscr):  
     # Color Pair Setup
     curses.init_pair(1, curses.COLOR_WHITE,   curses.COLOR_RED)     # Pair 1: Queue Growing
     curses.init_pair(2, curses.COLOR_WHITE,   curses.COLOR_BLUE)    # Pair 2: Queue Balanced
@@ -435,15 +558,10 @@ def main(stdscr):
     curses.init_pair(8, curses.COLOR_RED,     curses.COLOR_BLACK)
     curses.init_pair(9, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
     curses.init_pair(10, curses.COLOR_WHITE,  curses.COLOR_BLACK)
-    
+      
     if debug == 0:
         stdscr.clear()
-    
-        header = '*' * 90
-        stdscr.addstr(0, 0, header, curses.color_pair(2) | curses.A_BOLD)
-        stdscr.addstr(1, 0, "*****        Radio Queue Status Display for Link Manager Algorithm Evaluator         *****", curses.color_pair(2) | curses.A_BOLD)
-        stdscr.addstr(2, 0, header, curses.color_pair(2) | curses.A_BOLD)
-    
+        
     run_epoch()
 
 
@@ -457,7 +575,7 @@ if __name__ == "__main__":
     parser.add_argument('-M', action='store', default=-1, dest='max_queue_size', help='Set MAX queue size in Bytes [default: 4194240]', type=int)
     parser.add_argument('-E', action='store', default=100, dest='epoch_size_ms', help='Set the Epoch size (milliseconds) [default: 100]', type=int)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.0')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0.1')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
@@ -468,9 +586,24 @@ if __name__ == "__main__":
     debug = cli_args.debug
     
     stdscr = curses.initscr()             # Initial main screen for curses
-    lmwin  = curses.newwin(3,88,7,2)      # Initialize LM Window for curses
-    rwin   = curses.newwin(10,88,0,2)     # Initialize Radio Window for curses
-    qwin   = curses.newwin(10,88,0,2)     # Initialize Queue Graphics Window for curses
+    banner_pad = curses.newpad(4, 90)     # Initialize Banner Pad
+    time_pad   = curses.newpad(3, 87)     # Initialize Time Pad
+    lm_pad     = curses.newpad(3, 87)     # Initialize LM Pad
+    radio_pad  = curses.newpad(10, 88)    # Initialize Radio Pad
+    q_pad      = curses.newpad(10, 88)    # Initialize Queue Pad
+    border_pad = curses.newpad(17,90)     # Initialize Border Pad
     curses.curs_set(0)
+    
+    signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
+    
+    if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
+        BLINK = 0                               #   because it doesn't look very good.
+    else: BLINK = curses.A_BLINK
 
     wrapper(main)
+    
+    if os.name == 'posix':
+        while True:
+            signal.pause()      # Need this for graceful exiting
+
+    
