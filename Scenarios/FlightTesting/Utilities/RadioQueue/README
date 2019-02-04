@@ -33,8 +33,14 @@ The epoch size can be set via the '-E <val>' option.  Because the queues are
     
 KNOWN ISSUES:
 On Windows, you need to run a 'pip install windows-curses' for the Python 
-interpreter that will be running the script. Curses doesn't work by default 
-on that platform. Also note that <Ctrl-C> does not exist the program. Instead
+interpreter that will be running the script.  The curses library doesn't work 
+by default on Windows.
+
+When running on Windows, the application does not display well if the terminal
+is resized during execution.  The best approach is to make the window large
+enough when starting the application.
+
+When running on Windows, <Ctrl-C> does not exit the program.  Instead,
 use <Ctrl-Break>.
 
 Errors will be thrown if the window does not meet the minimum size.
