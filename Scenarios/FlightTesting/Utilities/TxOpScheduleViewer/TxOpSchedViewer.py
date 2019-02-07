@@ -27,19 +27,12 @@ ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
 # shortcut dictionary for passing common arguments
 n = {"namespaces": ns}
 
-
-
 next_timer     = 0
 epoch_ms       = 100                # epoch size in milliseconds
 epoch_sec      = epoch_ms / 1000    # epoch size converted to seconds
 epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
 epoch_num      = 0
 
-MAX_BW         = 10000000           # max bandwidth of RF channel in bits per second
-MAX_BW_MBPS    = MAX_BW / 1000000   # max bandwidth of RF channel in Megabits per second
-
-MAX_QUEUE_SIZE_BYTES = 4194240      # TmNS Radio queues not expected to be larger than 4.2 MB (per DSCP Queue?).
-enforce_max_q_size   = False        # Should the simulation enforce the MAX_QUEUE_SIZE_BYTES as a hard limit?
 debug                = 0            # Debug value: initially 0, e.g. no debug
 
 radio_list = []                     # List of Radio objects
@@ -372,36 +365,50 @@ def main(stdscr):
     
     #for i in links_list:
     #    print("{}: SRC Radio: {}  DST Group: {}\r".format(i.name, i.src, i.dst))
-    
-    # Sanity check for window height requirements
-    if height < 10:
-        bangs = '!' * int((width-49)/2)
-        msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
-        msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
-        msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
-        stdscr.addstr(0,0,"{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-        stdscr.addstr(1,0,"{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-        stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+ 
+    while True:
+        height, width = stdscr.getmaxyx()
+
+        stdscr.clear()
         stdscr.refresh()
-    else:
-        print_banner()
-        print_file_info(mdl_file, root_name, root_config_ver)
-        print_links_info(links_list)
+           
+        # Sanity check for window height requirements
+        if height < 10:
+            bangs = '!' * int((width-49)/2)
+            msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
+            msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
+            msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
+            stdscr.addstr(0,0,"{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(1,0,"{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.refresh()
+        elif width < 40:
+            bangs = '!' * int((width-34)/2)
+            msg1 = bangs + '  NOT SURE WHAT YOU EXPECT TO  ' + bangs
+            msg2 = bangs + '  SEE ON SUCH A SKINNY SCREEN  ' + bangs
+            msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK ' + bangs
+            msg4 = bangs + '            SKYNET             ' + bangs
+            stdscr.addstr(0,0, "{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(1,0, "{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(2,0, "{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(3,0, "{0:^{1}}".format(msg4, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.refresh()
+        else:
+            print_banner()
+            print_file_info(mdl_file, root_name, root_config_ver)
+            print_links_info(links_list)
          
-        if len(rans_list) > 0:
-            print_ran_stats(rans_list[0])        # TODO: only printing the first RAN Config found
+            if len(rans_list) > 0:
+                print_ran_stats(rans_list[0])        # TODO: only printing the first RAN Config found
     
-    #print("Number of RANS: {}\r".format(len(rans_list)))
-    #print("Number of Links: {}\r".format(len(links_list)))
-    #for l in links_list:
-    #    print("  {} has {} txops\r".format(l.name, len(l.tx_sched)))
+                stdscr.addstr((height-1),0, "*** PRESS ANY KEY TO CONTINUE ***", curses.color_pair(8) | curses.A_BOLD | BLINK)
+    
+                stdscr.refresh()
     
 
-    stdscr.addstr((height-1),0, "*** PRESS ANY KEY TO CONTINUE ***", curses.color_pair(8) | curses.A_BOLD | BLINK)
-    
-    stdscr.refresh()
-    
-    keypress = stdscr.getch()           # Wait for user to press a key before exiting
+        keypress = stdscr.getch()           # Wait for user to press a key before exiting
+        if keypress != curses.KEY_RESIZE:   break
+        
 
 #------------------------------------------------------------------------------
 
