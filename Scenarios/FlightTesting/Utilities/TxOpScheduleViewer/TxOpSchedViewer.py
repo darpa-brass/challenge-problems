@@ -27,16 +27,9 @@ ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
 # shortcut dictionary for passing common arguments
 n = {"namespaces": ns}
 
-next_timer     = 0
 epoch_ms       = 100                # epoch size in milliseconds
-epoch_sec      = epoch_ms / 1000    # epoch size converted to seconds
-epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
-epoch_num      = 0
 
-debug                = 0            # Debug value: initially 0, e.g. no debug
-
-radio_list = []                     # List of Radio objects
-
+debug          = 0                  # Debug value: initially 0, e.g. no debug
 
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
@@ -45,11 +38,17 @@ radio_list = []                     # List of Radio objects
 class RanConfig:
     """Class to contain RAN Configuration info"""
     
-    def __init__(self, name, freq=0, epoch_ms=0, guard=0):
+    def __init__(self, name, id_attr, freq=0, epoch_ms=0, guard_ms=0):
         self.name = name
+        self.id   = id_attr
         self.freq = freq
         self.epoch_ms = epoch_ms
-        self.guard    = guard
+        self.guard_ms = guard_ms
+        self.links = []
+        
+        
+    def add_link(self, link):
+        self.links.append(link)
         
 
 #------------------------------------------------------------------------------
@@ -86,21 +85,6 @@ class RadioLink:
 
 
 #------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
-
-
-def parse_mdl(mdl_f):
-    global debug
-    
-    parser = etree.XMLParser(remove_blank_text=True)
-    mdl = etree.parse(mdl_f, parser)
-    
-    if debug >= 3:
-        print("***** MDL FILE CONTENTS *****")
-        print(etree.tostring(mdl))
-        print("***** END MDL FILE *****")
-
-
 #------------------------------------------------------------------------------
 
 
@@ -156,7 +140,7 @@ def print_ran_stats(ran):
     ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(3, 0, "Guard Time:.................   {0} secs{1:61}".format(ran.guard, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(3, 0, "Guard Time:.................   {0} ms{1:65}".format(ran.guard_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     
     start_row_pos = 8
     last_row_pos  = 12
@@ -189,7 +173,7 @@ def print_links_info(links):
         if len(link.tx_sched) >0 : start_row += 4 + len(link.tx_sched)
         else:                      start_row += 4 + 1
     
-    start_row_num = 14
+    start_row_num = 19
     last_row_num = start_row_num + rows_needed
     
     if (height-1) >= last_row_num:
@@ -202,15 +186,6 @@ def print_links_info(links):
 
 def print_link_info(link, row, cp):
     global link_info_pad
-    
-    # Color Pair Assignments
-    txt_BLUE_on_BLACK    = curses.color_pair(1)
-    txt_GREEN_on_BLACK   = curses.color_pair(2)
-    txt_RED_on_BLACK     = curses.color_pair(3)
-    txt_CYAN_on_BLACK    = curses.color_pair(4)
-    txt_YELLOW_on_BLACK  = curses.color_pair(5)
-    txt_MAGENTA_on_BLACK = curses.color_pair(6)
-    txt_WHITE_on_BLACK   = curses.color_pair(7)
     
     link_info_pad.addstr(row,0, "Link: {}".format(link.name), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
@@ -236,15 +211,6 @@ def print_txops_info(txops, row, cp):
 
 def print_txop_info(txop, idx, row, cp):
     global link_info_pad
-    
-    # Color Pair Assignments
-    txt_BLUE_on_BLACK    = curses.color_pair(6)
-    txt_GREEN_on_BLACK   = curses.color_pair(2)
-    txt_RED_on_BLACK     = curses.color_pair(3)
-    txt_CYAN_on_BLACK    = curses.color_pair(4)
-    txt_YELLOW_on_BLACK  = curses.color_pair(5)
-    txt_MAGENTA_on_BLACK = curses.color_pair(1)
-    txt_WHITE_on_BLACK   = curses.color_pair(7)
     
     txop_str = "  TxOp {0}: {1:6d} - {2:6d} us (TTL: {3:3d}) @ {4} MHz  \r".format(
               idx+1, int(txop.start_usec), int(txop.stop_usec), int(txop.timeout), 
@@ -277,12 +243,8 @@ def print_txops_in_epoch(epoch_ms, links):
 
     height, width = stdscr.getmaxyx()
 
-    start_row_num = 14
-    for l in links:
-        if len(l.tx_sched) == 0: start_row_num += 4 + 1
-        else:                    start_row_num += 4 + len(l.tx_sched)
-
-    last_row_num = start_row_num + 10
+    start_row_num = 13
+    last_row_num  = 17
     bar = (int(epoch_ms))/100
     scale_str = "one bar = {} ms".format(bar)
     epoch_bar = "+----------------------------------------------------------------------------------------------------+"
@@ -391,7 +353,6 @@ def main(stdscr):
 
     
     # Parse MDL file, and create the RAN Config (assuming only a single RAN Config)
-    #parse_mdl(mdl_file)
     parser = etree.XMLParser(remove_blank_text=True)
     root = etree.parse(mdl_file, parser)
     
@@ -408,13 +369,14 @@ def main(stdscr):
     rans = root.xpath("//mdl:RANConfiguration", namespaces=ns)
     for ran in rans:
         rname  = ran.find("mdl:Name", namespaces=ns).text
+        rid    = ran.attrib['ID']
         rfreq  = ran.find("mdl:CenterFrequencyHz", namespaces=ns).text
         repoch = ran.find("mdl:EpochSize", namespaces=ns).text
-        rguard = ran.find("mdl:MaxGuardTimeSec", namespaces=ns).text
-        if debug >=2: print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {} sec".format(rname, rfreq, repoch, rguard))
-        new_ran = RanConfig(name=rname, freq=rfreq, epoch_ms=repoch, guard=rguard)
+        rguard = float(ran.find("mdl:MaxGuardTimeSec", namespaces=ns).text)*1000
+        if debug >=2: print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {}ms".format(rname, rfreq, repoch, rguard))
+        new_ran = RanConfig(name=rname, id_attr=rid, freq=rfreq, epoch_ms=repoch, guard_ms=rguard)
         rans_list.append(new_ran)
-    
+
     
     # Parse MDL for Radio Links and their associated Transmission Schedules
     radio_links = root.xpath("//mdl:RadioLink", namespaces=ns)
@@ -423,6 +385,7 @@ def main(stdscr):
         rlsrc_idref = radio_link.find("mdl:SourceRadioRef", namespaces=ns).attrib
         tmas = root.xpath("//mdl:TmNSApp[@ID='{}']".format(rlsrc_idref["IDREF"]), namespaces=ns)
         rlsrc = tmas[0].find("mdl:TmNSRadio/mdl:RFMACAddress", namespaces=ns).text
+        ran_idref = (tmas[0].find("mdl:TmNSRadio/mdl:RANConfigurationRef", namespaces=ns).attrib)['IDREF']
         rldst_idref = radio_link.find("mdl:DestinationRadioGroupRef", namespaces=ns).attrib
         rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref["IDREF"]), namespaces=ns)
         rldst = rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text
@@ -439,9 +402,13 @@ def main(stdscr):
                 txop_timeout = txop.find("mdl:TxOpTimeout", namespaces=ns).text
                 new_txop     = TxOp(txop_freq, txop_start, txop_stop, txop_timeout)
                 new_link.add_txop(new_txop)
-            
-        links_list.append(new_link)
+        
+        # Iterate through the list of RANs, and add the Link to the appropriate RAN
+        for r in rans_list:
+            if r.id == ran_idref:
+                r.add_link(new_link)
  
+    ran_idx = 1
     while True:
         height, width = stdscr.getmaxyx()
 
@@ -457,17 +424,21 @@ def main(stdscr):
             print_banner()
             print_file_info(mdl_file, root_name, root_config_ver)
             if len(rans_list) > 0:
-                print_ran_stats(rans_list[0])        # TODO: only printing the first RAN Config found
-            print_links_info(links_list)
-            print_txops_in_epoch(rans_list[0].epoch_ms, links_list)
+                print_ran_stats(rans_list[ran_idx-1])
+                if len(rans_list[ran_idx-1].links) > 0:
+                    print_links_info(rans_list[ran_idx-1].links)
+                print_txops_in_epoch(rans_list[ran_idx-1].epoch_ms, rans_list[ran_idx-1].links)
             
             stdscr.addstr((height-1),0, "*** PRESS ANY KEY TO CONTINUE ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
         stdscr.refresh()
     
-
-        keypress = stdscr.getch()           # Wait for user to press a key before exiting
-        if keypress != curses.KEY_RESIZE:   break
+        keypress = stdscr.getkey()          # Wait for user to press a key
+        if keypress.isdigit(): ran_idx = int(keypress)
+        elif keypress == 'q': break
         
+        if ran_idx == 0: ran_idx += 1
+        if ran_idx > len(rans_list): ran_idx = len(rans_list)
+
 
 #------------------------------------------------------------------------------
 
