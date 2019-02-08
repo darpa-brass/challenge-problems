@@ -226,8 +226,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
-                                                <BBNSampleRate>1250000</BBNSampleRate>
-                                                <BBNDataLength>1</BBNDataLength>
+                                                <SampleRate>1250000</SampleRate>
+                                                <DataLength>1</DataLength>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
@@ -689,8 +689,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -709,8 +709,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -729,8 +729,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -749,8 +749,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -769,8 +769,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -789,8 +789,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1085,8 +1085,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1105,8 +1105,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1125,8 +1125,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1145,8 +1145,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1165,8 +1165,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1185,8 +1185,8 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <DataLength>16</DataLength>
                                                 <BBNProvidesExcitation>true</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1217,10 +1217,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1235,10 +1235,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1253,10 +1253,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1271,10 +1271,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1289,10 +1289,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1307,10 +1307,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1325,10 +1325,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1343,10 +1343,10 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <BBNSampleRate>250</BBNSampleRate>
-                                                <BBNSampleRate>1000</BBNSampleRate>
-                                                <BBNDataLength>12</BBNDataLength>
-                                                <BBNDataLength>16</BBNDataLength>
+                                                <SampleRate>250</SampleRate>
+                                                <SampleRate>1000</SampleRate>
+                                                <DataLength>12</DataLength>
+                                                <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
@@ -1373,9 +1373,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1388,9 +1388,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1403,9 +1403,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1418,9 +1418,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1433,9 +1433,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1448,9 +1448,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1463,9 +1463,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1478,9 +1478,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1505,9 +1505,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1520,9 +1520,9 @@
                                                     <NameValue Name="BBN" Index="1"/>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <BBNSampleRate>12500</BBNSampleRate>
-                                                <BBNSampleRate>50000</BBNSampleRate>
-                                                <BBNSampleRate>100000</BBNSampleRate>
+                                                <SampleRate>12500</SampleRate>
+                                                <SampleRate>50000</SampleRate>
+                                                <SampleRate>100000</SampleRate>
                                                 <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
