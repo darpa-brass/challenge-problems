@@ -45,6 +45,7 @@ class RanConfig:
         self.epoch_ms = epoch_ms
         self.guard_ms = guard_ms
         self.links = []
+        self.efficiency_pct = 0
         
         
     def add_link(self, link):
@@ -63,6 +64,7 @@ class TxOp:
         self.start_usec = start_usec
         self.stop_usec = stop_usec
         self.timeout = timeout
+        self.duration_usec = int(stop_usec) - int(start_usec) + 1
 
 
 #------------------------------------------------------------------------------
@@ -81,7 +83,6 @@ class RadioLink:
     
     def add_txop(self, txop):
         self.tx_sched.append(txop)
-        
 
 
 #------------------------------------------------------------------------------
@@ -154,26 +155,28 @@ def print_ran_stats(ran):
 #------------------------------------------------------------------------------
 
 
-def print_links_info(links):
+def print_links_info(links, num_rans):
     global stdscr
     global link_info_pad
     
     height, width = stdscr.getmaxyx()
     
-    rows_needed = 0
+    rows_needed = 1
     for l in links:
         if len(l.tx_sched) == 0: rows_needed += 4 + 1
         else:                    rows_needed += 4 + len(l.tx_sched)
     
-    link_info_pad = curses.newpad(rows_needed, 90)
+    link_info_pad = curses.newpad(rows_needed, 102)
     
-    start_row = 0
+    link_info_pad.addstr(0, 0, "{0:^102}".format("RAN DETAILS"), curses.A_UNDERLINE)
+    
+    start_row = 1
     for idx, link in enumerate (links, start=0):
         print_link_info(link, start_row, idx)
         if len(link.tx_sched) >0 : start_row += 4 + len(link.tx_sched)
         else:                      start_row += 4 + 1
     
-    start_row_num = 19
+    start_row_num = 15 + (5 * num_rans)
     last_row_num = start_row_num + rows_needed
     
     if (height-1) >= last_row_num:
@@ -195,6 +198,7 @@ def print_link_info(link, row, cp):
         print_txops_info(link.tx_sched, row+3, cp)
     else:
         link_info_pad.addstr(row+3,2, "  NO TXOPS DEFINED IN MDL FOR THIS LINK  ", curses.color_pair((cp%7)+1) | curses.A_REVERSE | curses.A_BOLD)
+
 
 #------------------------------------------------------------------------------
 
@@ -227,7 +231,32 @@ def print_txop_info(txop, idx, row, cp):
 #------------------------------------------------------------------------------
 
 
-def print_txops_in_epoch(epoch_ms, links):
+def print_txops_in_all_rans(rans, sel):
+    global stdscr
+    global epoch_pad
+    global txop_display_pad
+    
+    height, width = stdscr.getmaxyx()
+    
+    rows_needed = (len(rans) * 5)
+    epoch_pad = curses.newpad(rows_needed, 102)
+    
+    start_row_num = 14
+    last_row_num  = start_row_num + rows_needed
+    
+    for idx, ran in enumerate(rans, start=0):
+        print_txops_in_epoch(ran, idx, sel)
+
+    if (height-1) >= last_row_num:
+        epoch_pad.noutrefresh(0,0, start_row_num,2, last_row_num,(width-1))
+    elif (height-1) >= start_row_num:
+        epoch_pad.noutrefresh(0,0, start_row_num,2, (height-1),(width-1))
+
+
+#------------------------------------------------------------------------------
+
+
+def print_txops_in_epoch(ran, ran_num, sel):
     global stdscr
     global epoch_pad
     global txop_display_pad
@@ -240,19 +269,32 @@ def print_txops_in_epoch(epoch_ms, links):
     txt_YELLOW_on_BLACK  = curses.color_pair(5)
     txt_MAGENTA_on_BLACK = curses.color_pair(6)
     txt_WHITE_on_BLACK   = curses.color_pair(7)
+    
+    epoch_ms = ran.epoch_ms
+    links = ran.links
 
     height, width = stdscr.getmaxyx()
 
-    start_row_num = 13
-    last_row_num  = 17
+    start_row_num = (ran_num * 5)
+    last_row_num  = start_row_num + 5
     bar = (int(epoch_ms))/100
     scale_str = "one bar = {} ms".format(bar)
     epoch_bar = "+----------------------------------------------------------------------------------------------------+"
     
-    epoch_pad.addstr(0, 0, "{0:>102}".format(scale_str))
-    epoch_pad.addstr(1, 0, epoch_bar)
-    epoch_pad.addstr(2, 0, '|{0:100}|'.format(" "))
-    epoch_pad.addstr(3, 0, epoch_bar)
+    if ran_num == sel:
+        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_REVERSE | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, curses.A_REVERSE)
+        #epoch_pad.addstr(2, 0, '|{0:100}|'.format(" "), curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+2, 0, '|', curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+2, 101, '|', curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, curses.A_REVERSE)
+    else:
+        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str))
+        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_BOLD)
+        epoch_pad.addstr(start_row_num+1, 0, epoch_bar)
+        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "))
+        epoch_pad.addstr(start_row_num+3, 0, epoch_bar)
     
     for idx, link in enumerate(links, start=0):
         for txop in link.tx_sched:
@@ -283,14 +325,8 @@ def print_txops_in_epoch(epoch_ms, links):
             else:
                 graphic = u'\u2588' * int(num_bars)
 
-            epoch_pad.addstr(2, int(start_pos)+1, graphic, curses.color_pair((idx%7)+1))
+            epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx%7)+1))
             
-
-    if (height-1) >= last_row_num:
-        epoch_pad.noutrefresh(0,0, start_row_num,2, last_row_num,(width-1))
-    elif (height-1) >= start_row_num:
-        epoch_pad.noutrefresh(0,0, start_row_num,2, (height-1),(width-1))
-        
 
 #------------------------------------------------------------------------------
 
@@ -407,7 +443,17 @@ def main(stdscr):
         for r in rans_list:
             if r.id == ran_idref:
                 r.add_link(new_link)
+        
+        # Calculate Schedule Efficiency per RAN
+        for r in rans_list:
+            total_time_usec = 0
+            for l in r.links:
+                for t in l.tx_sched:
+                    total_time_usec += t.duration_usec
+            
+            r.efficiency_pct = (total_time_usec) / (int(r.epoch_ms) * 1000) * 100
  
+    num_rans = len(rans_list)
     ran_idx = 1
     while True:
         height, width = stdscr.getmaxyx()
@@ -423,13 +469,14 @@ def main(stdscr):
         else:
             print_banner()
             print_file_info(mdl_file, root_name, root_config_ver)
-            if len(rans_list) > 0:
+            if num_rans > 0:
                 print_ran_stats(rans_list[ran_idx-1])
                 if len(rans_list[ran_idx-1].links) > 0:
-                    print_links_info(rans_list[ran_idx-1].links)
-                print_txops_in_epoch(rans_list[ran_idx-1].epoch_ms, rans_list[ran_idx-1].links)
+                    print_links_info(rans_list[ran_idx-1].links, num_rans)
+                #print_txops_in_epoch(rans_list[ran_idx-1].epoch_ms, rans_list[ran_idx-1].links)
+                print_txops_in_all_rans(rans_list, (ran_idx-1))
             
-            stdscr.addstr((height-1),0, "*** PRESS ANY KEY TO CONTINUE ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
+            stdscr.addstr((height-1),0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
         stdscr.refresh()
     
         keypress = stdscr.getkey()          # Wait for user to press a key
@@ -448,7 +495,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1.0')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.0')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
