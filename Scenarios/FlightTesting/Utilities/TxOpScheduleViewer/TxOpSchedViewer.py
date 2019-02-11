@@ -74,15 +74,31 @@ class TxOp:
 class RadioLink:
     """Class to contain Radio Link info"""
     
-    def __init__(self, name, src, dst):
+    def __init__(self, name, src, dst, lat=0):
         self.name = name
         self.src  = src
         self.dst  = dst
         self.tx_sched = []
+        self.max_latency_usec = lat    # Minimum Possible Latency achievable
         
     
     def add_txop(self, txop):
         self.tx_sched.append(txop)
+        
+    
+    def calc_max_latency(self, epoch_usec):
+        # initialize max_latency_usec with wrap-around TxOps
+        if len(self.tx_sched) > 0:
+            self.max_latency_usec = (int(epoch_usec) - (int(self.tx_sched[-1].stop_usec) + 1)) + int(self.tx_sched[0].start_usec)
+        else:
+            self.max_latency_usec = 0
+        
+        # iterate through the Link's TxOp Schedule, and compare latencies between TxOps with the previous max latency
+        #for idx, txop enumerate(tx_sched, start=0):
+        for i in range(len(self.tx_sched) - 1):
+            temp_latency = int(self.tx_sched[i+1].start_usec) - (int(self.tx_sched[i].stop_usec) + 1)
+            if temp_latency > self.max_latency_usec:
+                self.max_latency_usec = temp_latency
 
 
 #------------------------------------------------------------------------------
@@ -193,6 +209,11 @@ def print_link_info(link, row, cp):
     link_info_pad.addstr(row,0, "Link: {}".format(link.name), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+2,0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
+    
+    if link.max_latency_usec == 0:
+        link_info_pad.addstr(row+1,55, " Max Latency Req Achievable: N/A", curses.color_pair((cp%7)+1))
+    else:
+        link_info_pad.addstr(row+1,55, " Max Latency Req Achievable: {0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
@@ -338,9 +359,9 @@ def print_too_short(height, width):
     msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
     msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
     msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
-    stdscr.addstr(0,0,"{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-    stdscr.addstr(1,0,"{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-    stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+    stdscr.addstr(0,0,"{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(1,0,"{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
 
 
 #------------------------------------------------------------------------------
@@ -354,10 +375,10 @@ def print_too_skinny(height, width):
     msg2 = bangs + '  SEE ON SUCH A SKINNY SCREEN  ' + bangs
     msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK ' + bangs
     msg4 = bangs + '            SKYNET             ' + bangs
-    stdscr.addstr(0,0, "{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-    stdscr.addstr(1,0, "{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-    stdscr.addstr(2,0, "{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-    stdscr.addstr(3,0, "{0:^{1}}".format(msg4, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+    stdscr.addstr(0,0, "{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(1,0, "{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(2,0, "{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(3,0, "{0:^{1}}".format(msg4, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
     
 
 #------------------------------------------------------------------------------
@@ -444,15 +465,23 @@ def main(stdscr):
             if r.id == ran_idref:
                 r.add_link(new_link)
         
-        # Calculate Schedule Efficiency per RAN
-        for r in rans_list:
-            total_time_usec = 0
-            for l in r.links:
-                for t in l.tx_sched:
-                    total_time_usec += t.duration_usec
+    # Calculate Schedule Efficiency per RAN
+    for r in rans_list:
+        total_time_usec = 0
+        for l in r.links:
+            for t in l.tx_sched:
+                total_time_usec += t.duration_usec
+        
+        r.efficiency_pct = (total_time_usec) / (int(r.epoch_ms) * 1000) * 100
             
-            r.efficiency_pct = (total_time_usec) / (int(r.epoch_ms) * 1000) * 100
- 
+    # Calculate Minimum Latency Requirement Achievable
+    for r in rans_list:
+        epoch_usec = int(r.epoch_ms) * 1000
+        for l in r.links:
+            l.calc_max_latency(epoch_usec)
+
+
+    # Print to screen
     num_rans = len(rans_list)
     ran_idx = 1
     while True:
@@ -473,10 +502,10 @@ def main(stdscr):
                 print_ran_stats(rans_list[ran_idx-1])
                 if len(rans_list[ran_idx-1].links) > 0:
                     print_links_info(rans_list[ran_idx-1].links, num_rans)
-                #print_txops_in_epoch(rans_list[ran_idx-1].epoch_ms, rans_list[ran_idx-1].links)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
             
-            stdscr.addstr((height-1),0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
+            post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
+            post_banner_pad.noutrefresh(0, 0, (height-1),0, (height-1),(width-1))
         stdscr.refresh()
     
         keypress = stdscr.getkey()          # Wait for user to press a key
@@ -504,6 +533,7 @@ if __name__ == "__main__":
     
     stdscr           = curses.initscr()
     banner_pad       = curses.newpad(4, 106)    # Initialize Banner Pad
+    post_banner_pad  = curses.newpad(1, 106)    # Initialize Post Banner Pad
     file_info_pad    = curses.newpad(4, 102)    # Initialize File Info Pad
     ran_pad          = curses.newpad(5, 102)    # Initialize RAN Pad
     link_info_pad    = curses.newpad(8, 102)    # Initialize Link Info Pad
