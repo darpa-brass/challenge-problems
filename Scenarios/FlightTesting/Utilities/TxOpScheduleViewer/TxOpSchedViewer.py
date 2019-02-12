@@ -13,6 +13,7 @@ from lxml import etree
 import json
 import time
 import math
+import operator
 import curses
 from curses import wrapper
 import signal
@@ -46,11 +47,26 @@ class RanConfig:
         self.guard_ms = guard_ms
         self.links = []
         self.efficiency_pct = 0
+        self.gb_violated = False
         
         
     def add_link(self, link):
         self.links.append(link)
-        
+    
+    
+    def check_guardbands(self):
+        txop_list = []
+        for l in self.links:
+            for t in l.tx_sched:
+                #start_stop = (t.start_usec, t.stop_usec)
+                start_stop = {'start': int(t.start_usec), 'stop': int(t.stop_usec)}
+                txop_list.append(start_stop)
+        txop_list.sort(key=operator.itemgetter('start'))
+        for i in range(len(txop_list) - 1):
+            if int(txop_list[i+1]['start']) < (int(txop_list[i]['stop']) + 1 + (self.guard_ms * 1000)):
+                self.gb_violated = True
+                if debug >=2: print("GUARDBAND VIOLATION DETECTED!!! {} {}\r".format(txop_list[i], txop_list[i+1]))
+                
 
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
@@ -74,12 +90,14 @@ class TxOp:
 class RadioLink:
     """Class to contain Radio Link info"""
     
-    def __init__(self, name, src, dst, lat=0):
+    def __init__(self, name, id_attr, src, dst, lat=0, lat_req=1000000):
         self.name = name
+        self.id   = id_attr
         self.src  = src
         self.dst  = dst
         self.tx_sched = []
-        self.max_latency_usec = lat    # Minimum Possible Latency achievable
+        self.max_latency_usec = lat             # Maximum Possible Latency achievable
+        self.max_latency_req_usec = lat_req     # Maximum Latency Requirement from MDL 
         
     
     def add_txop(self, txop):
@@ -157,7 +175,7 @@ def print_ran_stats(ran):
     ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(3, 0, "Guard Time:.................   {0} ms{1:65}".format(ran.guard_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(3, 0, "Guard Time:.................   {0:0.3f} ms{1:63}".format(ran.guard_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     
     start_row_pos = 8
     last_row_pos  = 12
@@ -209,11 +227,21 @@ def print_link_info(link, row, cp):
     link_info_pad.addstr(row,0, "Link: {}".format(link.name), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+2,0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
+    link_info_pad.addstr(row+1,56, "Max Latency Requirement:    ", curses.color_pair((cp%7)+1))
+    link_info_pad.addstr(row+2,56, "Max Latency Achievable:     ", curses.color_pair((cp%7)+1))
+    
+    if link.max_latency_req_usec == 1000000.0:
+        link_info_pad.addstr(row+1,84, "N/A", curses.color_pair((cp%7)+1))
+    else:
+        link_info_pad.addstr(row+1,84, "{0:.3f} ms".format(int(link.max_latency_req_usec) / 1000), curses.color_pair((cp%7)+1))
     
     if link.max_latency_usec == 0:
-        link_info_pad.addstr(row+1,55, " Max Latency Req Achievable: N/A", curses.color_pair((cp%7)+1))
-    else:
-        link_info_pad.addstr(row+1,55, " Max Latency Req Achievable: {0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
+        if link.max_latency_req_usec < 1000000.0: link_info_pad.addstr(row+2,84, "N/A", curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
+        else: link_info_pad.addstr(row+2,84, "N/A", curses.color_pair((cp%7)+1))
+    elif link.max_latency_usec < link.max_latency_req_usec:
+        link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
+    else: 
+        link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
@@ -290,6 +318,8 @@ def print_txops_in_epoch(ran, ran_num, sel):
     txt_YELLOW_on_BLACK  = curses.color_pair(5)
     txt_MAGENTA_on_BLACK = curses.color_pair(6)
     txt_WHITE_on_BLACK   = curses.color_pair(7)
+    txt_GREEN_on_WHITE   = curses.color_pair(12)
+    txt_RED_on_WHITE     = curses.color_pair(13)
     
     epoch_ms = ran.epoch_ms
     links = ran.links
@@ -305,14 +335,21 @@ def print_txops_in_epoch(ran, ran_num, sel):
     if ran_num == sel:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), curses.A_REVERSE)
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_REVERSE | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_REVERSE | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 54, 'Guardbands:', curses.A_REVERSE | curses.A_BOLD)
+        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_WHITE | curses.A_BOLD)
+        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_WHITE | curses.A_BOLD | BLINK)
         epoch_pad.addstr(start_row_num+1, 0, epoch_bar, curses.A_REVERSE)
-        #epoch_pad.addstr(2, 0, '|{0:100}|'.format(" "), curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+2, 0, '|', curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+2, 101, '|', curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+3, 0, epoch_bar, curses.A_REVERSE)
     else:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str))
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), curses.A_BOLD)
+        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_BLACK | curses.A_BOLD)
+        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_BLACK | curses.A_BOLD | BLINK)
         epoch_pad.addstr(start_row_num+1, 0, epoch_bar)
         epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "))
         epoch_pad.addstr(start_row_num+3, 0, epoch_bar)
@@ -402,6 +439,8 @@ def main(stdscr):
     curses.init_pair(6, curses.COLOR_BLUE,    curses.COLOR_BLACK)
     curses.init_pair(7, curses.COLOR_WHITE,   curses.COLOR_BLACK)
     curses.init_pair(8, curses.COLOR_WHITE,   curses.COLOR_BLUE)
+    curses.init_pair(12, curses.COLOR_GREEN,  curses.COLOR_WHITE)
+    curses.init_pair(13, curses.COLOR_RED,    curses.COLOR_WHITE)
     
     height, width = stdscr.getmaxyx()
 
@@ -434,11 +473,11 @@ def main(stdscr):
         new_ran = RanConfig(name=rname, id_attr=rid, freq=rfreq, epoch_ms=repoch, guard_ms=rguard)
         rans_list.append(new_ran)
 
-    
-    # Parse MDL for Radio Links and their associated Transmission Schedules
+    # Parse MDL file for Radio Links and their associated Transmission Schedules
     radio_links = root.xpath("//mdl:RadioLink", namespaces=ns)
     for radio_link in radio_links:
         rlname = radio_link.find("mdl:Name", namespaces=ns).text
+        rlid = radio_link.attrib['ID']
         rlsrc_idref = radio_link.find("mdl:SourceRadioRef", namespaces=ns).attrib
         tmas = root.xpath("//mdl:TmNSApp[@ID='{}']".format(rlsrc_idref["IDREF"]), namespaces=ns)
         rlsrc = tmas[0].find("mdl:TmNSRadio/mdl:RFMACAddress", namespaces=ns).text
@@ -447,7 +486,7 @@ def main(stdscr):
         rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref["IDREF"]), namespaces=ns)
         rldst = rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text
         
-        new_link = RadioLink(rlname, rlsrc, rldst)
+        new_link = RadioLink(rlname, rlid, rlsrc, rldst)
         
         tx_sched = radio_link.find("mdl:TransmissionSchedule", namespaces=ns)
         if tx_sched != None:
@@ -464,7 +503,28 @@ def main(stdscr):
         for r in rans_list:
             if r.id == ran_idref:
                 r.add_link(new_link)
+    
+    # Parse MDL file for QoS Policy Info (specifically, the max latency requirement)
+    qos_policies = root.xpath("//mdl:QoSPolicies", namespaces=ns)
+    for qos_policy in qos_policies:
+        # Find the max latency requirement for the policy
+        latencies = qos_policy.findall(".//mdl:AveragePacketDelay", namespaces=ns)
+        value_usec = 1000000.0
+        for latency in latencies:
+            temp_value_usec = float(latency.find("mdl:Value", namespaces=ns).text)
+            units = latency.find("mdl:BaseUnit", namespaces=ns).text
+            if units == "Second":
+                temp_value_usec = temp_value_usec * 1000000
+            if temp_value_usec < value_usec: value_usec = temp_value_usec
         
+        rlrefs = qos_policy.findall(".//mdl:RadioLinkRef", namespaces=ns)
+        for rlref in rlrefs:
+            for r in rans_list:
+                for l in r.links:
+                    if l.id == rlref.attrib["IDREF"]:
+                        l.max_latency_req_usec = value_usec
+    
+    
     # Calculate Schedule Efficiency per RAN
     for r in rans_list:
         total_time_usec = 0
@@ -480,6 +540,9 @@ def main(stdscr):
         for l in r.links:
             l.calc_max_latency(epoch_usec)
 
+    # Check for any guardband violations
+    for r in rans_list:
+        r.check_guardbands()
 
     # Print to screen
     num_rans = len(rans_list)
