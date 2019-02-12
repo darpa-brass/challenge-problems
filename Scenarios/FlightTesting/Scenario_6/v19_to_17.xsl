@@ -21,7 +21,7 @@
         <mdl:ModelNumber>
             <xsl:apply-templates select="@*|node()"/>
         </mdl:ModelNumber>
-    </xsl:template>s
+    </xsl:template>
     <xsl:template match="mdl:Module/mdl:SerialIdentifier">
         <mdl:SerialNumber>
             <xsl:apply-templates select="@*|node()"/>
