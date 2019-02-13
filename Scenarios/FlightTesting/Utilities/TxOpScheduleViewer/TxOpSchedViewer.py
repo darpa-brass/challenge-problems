@@ -28,8 +28,9 @@ ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
 # shortcut dictionary for passing common arguments
 n = {"namespaces": ns}
 
-epoch_ms       = 100                # epoch size in milliseconds
+MAX_BW_MBPS    = 10.0               # Max data rate (Mbps)
 
+epoch_ms       = 100                # epoch size in milliseconds
 debug          = 0                  # Debug value: initially 0, e.g. no debug
 
 #------------------------------------------------------------------------------
@@ -72,6 +73,21 @@ class RanConfig:
 #------------------------------------------------------------------------------
 
 
+class QoSPolicy:
+    """Class to contain QoSPolicy info"""
+    
+    def __init__(self, name, id_attr, lmmc=0, ac=0, lmax=1000000):
+        self.name = name
+        self.id = id_attr
+        self.lmmc = lmmc
+        self.ac = ac
+        self.max_latency_usec = lmax
+
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+
+
 class TxOp:
     """Class to contain TxOp info"""
     
@@ -90,18 +106,20 @@ class TxOp:
 class RadioLink:
     """Class to contain Radio Link info"""
     
-    def __init__(self, name, id_attr, src, dst, lat=0, lat_req=1000000):
+    def __init__(self, name, id_attr, src, dst, qp=None, lat=0):
         self.name = name
         self.id   = id_attr
         self.src  = src
         self.dst  = dst
         self.tx_sched = []
+        self.qos_policy = qp
         self.max_latency_usec = lat             # Maximum Possible Latency achievable
-        self.max_latency_req_usec = lat_req     # Maximum Latency Requirement from MDL 
+        self.tx_dur_per_epoch_usec = 0
         
     
     def add_txop(self, txop):
         self.tx_sched.append(txop)
+        self.tx_dur_per_epoch_usec += txop.duration_usec
         
     
     def calc_max_latency(self, epoch_usec):
@@ -189,7 +207,7 @@ def print_ran_stats(ran):
 #------------------------------------------------------------------------------
 
 
-def print_links_info(links, num_rans):
+def print_links_info(links, num_rans, epoch_ms):
     global stdscr
     global link_info_pad
     
@@ -206,7 +224,7 @@ def print_links_info(links, num_rans):
     
     start_row = 1
     for idx, link in enumerate (links, start=0):
-        print_link_info(link, start_row, idx)
+        print_link_info(link, epoch_ms, start_row, idx)
         if len(link.tx_sched) >0 : start_row += 4 + len(link.tx_sched)
         else:                      start_row += 4 + 1
     
@@ -221,27 +239,48 @@ def print_links_info(links, num_rans):
 #------------------------------------------------------------------------------
 
 
-def print_link_info(link, row, cp):
+def print_link_info(link, epoch_ms, row, cp):
     global link_info_pad
     
     link_info_pad.addstr(row,0, "Link: {}".format(link.name), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+2,0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,56, "Max Latency Requirement:    ", curses.color_pair((cp%7)+1))
-    link_info_pad.addstr(row+2,56, "Max Latency Achievable:     ", curses.color_pair((cp%7)+1))
+    link_info_pad.addstr(row+2,56, "Max Latency Achievable:     ", curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+    link_info_pad.addstr(row+3,56, "Minimum Capacity Required:  ", curses.color_pair((cp%7)+1))
+    link_info_pad.addstr(row+4,56, "Allocated Bandwidth:        ", curses.color_pair((cp%7)+1))
     
-    if link.max_latency_req_usec == 1000000.0:
-        link_info_pad.addstr(row+1,84, "N/A", curses.color_pair((cp%7)+1))
+    if link.qos_policy == None:
+        link_info_pad.addstr(row+1,84, "No QoS Policy!", curses.color_pair((cp%7)+1) | curses.A_BOLD | curses.A_REVERSE | BLINK)
+        if link.max_latency_usec == 0: link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+        else:                          link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+            
     else:
-        link_info_pad.addstr(row+1,84, "{0:.3f} ms".format(int(link.max_latency_req_usec) / 1000), curses.color_pair((cp%7)+1))
+        if int(link.qos_policy.max_latency_usec) == 1000000.0:
+            link_info_pad.addstr(row+1,84, "N/A", curses.color_pair((cp%7)+1))
+        else:
+            link_info_pad.addstr(row+1,84, "{0:.3f} ms".format(int(link.qos_policy.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
     
-    if link.max_latency_usec == 0:
-        if link.max_latency_req_usec < 1000000.0: link_info_pad.addstr(row+2,84, "N/A", curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
-        else: link_info_pad.addstr(row+2,84, "N/A", curses.color_pair((cp%7)+1))
-    elif link.max_latency_usec < link.max_latency_req_usec:
-        link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
-    else: 
-        link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
+        if link.max_latency_usec == 0:
+            if link.qos_policy.max_latency_usec < 1000000.0: link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
+            else:                                            link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+        elif link.max_latency_usec < link.qos_policy.max_latency_usec:
+            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+        else: 
+            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
+
+    alloc_bw_mbps = ((int(link.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
+    
+    if link.qos_policy == None:
+        link_info_pad.addstr(row+3,84, "No QoS Policy!", curses.color_pair((cp%7)+1) | curses.A_BOLD | curses.A_REVERSE | BLINK)
+        link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1))
+    else:
+        qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
+        link_info_pad.addstr(row+3,84, "{0:0.3f} Mbps".format(qp_ac_mbps), curses.color_pair((cp%7)+1))
+        
+        if qp_ac_mbps <= alloc_bw_mbps: link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1))
+        else:                           link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
+    
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
@@ -425,6 +464,7 @@ def main(stdscr):
     global mdl_file
     rans_list  = []
     links_list = []
+    qos_policies_list = []
     
     # Color Pair Setup
     #curses.init_pair(1, curses.COLOR_WHITE,   curses.COLOR_RED)     # Pair 1: 
@@ -505,7 +545,7 @@ def main(stdscr):
                 r.add_link(new_link)
     
     # Parse MDL file for QoS Policy Info (specifically, the max latency requirement)
-    qos_policies = root.xpath("//mdl:QoSPolicies", namespaces=ns)
+    qos_policies = root.xpath("//mdl:QoSPolicy", namespaces=ns)
     for qos_policy in qos_policies:
         # Find the max latency requirement for the policy
         latencies = qos_policy.findall(".//mdl:AveragePacketDelay", namespaces=ns)
@@ -516,13 +556,25 @@ def main(stdscr):
             if units == "Second":
                 temp_value_usec = temp_value_usec * 1000000
             if temp_value_usec < value_usec: value_usec = temp_value_usec
+                        
+        qpname = qos_policy.find("mdl:Name", namespaces=ns).text
+        qpid = qos_policy.attrib['ID']
+        qplmmc = qos_policy.find("mdl:LinkManagementMinCapacity/mdl:Value", namespaces=ns).text
+        qpac = qos_policy.find("mdl:AssuredCapacity/mdl:Value", namespaces=ns).text
+        qplmax = value_usec
+        new_qp = QoSPolicy(qpname, qpid, qplmmc, qpac, qplmax)
+        qos_policies_list.append(new_qp)
         
         rlrefs = qos_policy.findall(".//mdl:RadioLinkRef", namespaces=ns)
         for rlref in rlrefs:
             for r in rans_list:
                 for l in r.links:
                     if l.id == rlref.attrib["IDREF"]:
-                        l.max_latency_req_usec = value_usec
+                        #l.max_latency_req_usec = value_usec
+                        l.qos_policy = qos_policies_list[-1]
+    
+    print(qos_policies_list)
+        
     
     
     # Calculate Schedule Efficiency per RAN
@@ -564,7 +616,7 @@ def main(stdscr):
             if num_rans > 0:
                 print_ran_stats(rans_list[ran_idx-1])
                 if len(rans_list[ran_idx-1].links) > 0:
-                    print_links_info(rans_list[ran_idx-1].links, num_rans)
+                    print_links_info(rans_list[ran_idx-1].links, num_rans, rans_list[ran_idx-1].epoch_ms)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
             
             post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
