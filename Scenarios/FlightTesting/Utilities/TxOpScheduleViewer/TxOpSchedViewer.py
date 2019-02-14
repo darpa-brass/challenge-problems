@@ -2,7 +2,7 @@
 #------------------------------------------------------------------------------
 #---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
 #---                                                                        ---
-#--- Last Updated: February 8, 2019                                         ---
+#--- Last Updated: February 14, 2019                                         ---
 #------------------------------------------------------------------------------
 #------------------------------------------------------------------------------
 
@@ -16,7 +16,12 @@ import math
 import operator
 import curses
 from curses import wrapper
-import signal
+#import io
+#import types
+#from IPython import get_ipython
+#from nbformat import read
+#from IPython.core.interactiveshell import InteractiveShell
+#import signal
 
 
 ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
@@ -638,12 +643,14 @@ if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
+    parser.add_argument('-s', action='store', default=None, dest='SCORE', help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.0')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
     mdl_file = cli_args.FILE
+    score_file = cli_args.SCORE
     debug = cli_args.debug
     
     stdscr           = curses.initscr()
