@@ -1,27 +1,24 @@
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
-#---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
-#---                                                                        ---
-#--- Last Updated: February 14, 2019                                         ---
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
+# ---                                                                        ---
+# --- Last Updated: February 14, 2019                                        ---
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 import sys
 import os
 import argparse
 from lxml import etree
-import json
-import time
 import math
 import operator
 import curses
 from curses import wrapper
-#import io
-#import types
-#from IPython import get_ipython
-#from nbformat import read
-#from IPython.core.interactiveshell import InteractiveShell
-#import signal
+import io
+import types
+from IPython import get_ipython
+from nbformat import read
+from IPython.core.interactiveshell import InteractiveShell
 
 
 ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
@@ -38,8 +35,8 @@ MAX_BW_MBPS    = 10.0               # Max data rate (Mbps)
 epoch_ms       = 100                # epoch size in milliseconds
 debug          = 0                  # Debug value: initially 0, e.g. no debug
 
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 class RanConfig:
@@ -74,8 +71,8 @@ class RanConfig:
                 if debug >=2: print("GUARDBAND VIOLATION DETECTED!!! {} {}\r".format(txop_list[i], txop_list[i+1]))
                 
 
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 class QoSPolicy:
@@ -89,8 +86,8 @@ class QoSPolicy:
         self.max_latency_usec = lmax
 
 
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 class TxOp:
@@ -104,8 +101,8 @@ class TxOp:
         self.duration_usec = int(stop_usec) - int(start_usec) + 1
 
 
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 class RadioLink:
@@ -130,7 +127,8 @@ class RadioLink:
     def calc_max_latency(self, epoch_usec):
         # initialize max_latency_usec with wrap-around TxOps
         if len(self.tx_sched) > 0:
-            self.max_latency_usec = (int(epoch_usec) - (int(self.tx_sched[-1].stop_usec) + 1)) + int(self.tx_sched[0].start_usec)
+            self.max_latency_usec = (int(epoch_usec) - (int(self.tx_sched[-1].stop_usec) + 1)) + \
+                                    int(self.tx_sched[0].start_usec)
         else:
             self.max_latency_usec = 0
         
@@ -142,8 +140,103 @@ class RadioLink:
                 self.max_latency_usec = temp_latency
 
 
-#------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
+class NotebookLoader(object):
+    """Module Loader for Jupyter Notebooks"""
+
+    def __init__(self, path=None):
+        self.shell = InteractiveShell.instance()
+        self.path = path
+
+    def load_module(self, fullname):
+        """import a notebook as a module"""
+        path = find_notebook(fullname, self.path)
+
+        print("importing Jupyter notebook from %s" % path)
+
+        # load the notebook object
+        with io.open(path, 'r', encoding='utf-8') as f:
+            nb = read(f, 4)
+
+        # create the module and add it to sys.modules
+        # if name in sys.modules:
+        #    return sys.modules[name]
+        mod = types.ModuleType(fullname)
+        mod.__file__ = path
+        mod.__loader__ = self
+        mod.__dict__['get_ipython'] = get_ipython
+        sys.modules[fullname] = mod
+
+        # extra work to ensure that magics that would affect the user_ns
+        # actually affect the notebook module's ns
+        save_user_ns = self.shell.user_ns
+        self.shell.user_ns = mod.__dict__
+
+        try:
+            for cell in nb.cells:
+                if cell.cell_type == 'code':
+                    # transform the input to executable Python
+                    code = self.shell.input_transformer_manager.transform_cell(cell.source)
+                    # run the code in themodule
+                    exec(code, mod.__dict__)
+        finally:
+            self.shell.user_ns = save_user_ns
+        return mod
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
+class NotebookFinder(object):
+    """Module finder that locates Jupyter Notebooks"""
+
+    def __init__(self):
+        self.loaders = {}
+
+    def find_module(self, fullname, path=None):
+        nb_path = find_notebook(fullname, path)
+        if not nb_path:
+            return
+
+        key = path
+        if path:
+            # lists aren't hashable
+            key = os.path.sep.join(path)
+
+        if key not in self.loaders:
+            self.loaders[key] = NotebookLoader(path)
+        return self.loaders[key]
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
+def find_notebook(fullname, path=None):
+    """find a notebook, given its fully qualified name and an optional path
+
+    This turns "foo.bar" into "foo/bar.ipynb"
+    and tries turning "Foo_Bar" into "Foo Bar" if Foo_Bar
+    does not exist.
+    """
+    name = fullname.rsplit('.', 1)[-1]
+    if not path:
+        path = ['']
+    for d in path:
+        nb_path = os.path.join(d, name + ".ipynb")
+        if os.path.isfile(nb_path):
+            return nb_path
+        # let import Notebook_Name find "Notebook Name.ipynb"
+        nb_path = nb_path.replace("_", " ")
+        if os.path.isfile(nb_path):
+            return nb_path
+
+
+# ------------------------------------------------------------------------------
 
 
 def print_banner():
@@ -155,14 +248,16 @@ def print_banner():
     height, width = stdscr.getmaxyx()
     
     header = '*' * 106
+    banner_txt = "**********              TxOp Schedule Viewer for Link Manager Algorithm Evaluator" \
+                 "               **********"
     banner_pad.addstr(0, 0, header, txt_WHITE_on_BLUE | curses.A_BOLD)
-    banner_pad.addstr(1, 0, "**********              TxOp Schedule Viewer for Link Manager Algorithm Evaluator               **********", txt_WHITE_on_BLUE | curses.A_BOLD)
+    banner_pad.addstr(1, 0, banner_txt, txt_WHITE_on_BLUE | curses.A_BOLD)
     banner_pad.addstr(2, 0, header, txt_WHITE_on_BLUE | curses.A_BOLD)
     banner_pad.addstr(3,0, ' '*105)
     banner_pad.noutrefresh(0,0, 0,0, 3,(width-1))
     
     
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_file_info(f, name, config):
@@ -184,7 +279,7 @@ def print_file_info(f, name, config):
         file_info_pad.noutrefresh(0,0, 4,2, (height-2),(width-1))
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_ran_stats(ran):
@@ -195,10 +290,14 @@ def print_ran_stats(ran):
     
     height, width = stdscr.getmaxyx()
     
-    ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(3, 0, "Guard Time:.................   {0:0.3f} ms{1:63}".format(ran.guard_ms, ' '), txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name),
+                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '),
+                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '),
+                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+    ran_pad.addstr(3, 0, "Guard Time:.................   {0:0.3f} ms{1:63}".format(ran.guard_ms, ' '),
+                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
     
     start_row_pos = 8
     last_row_pos  = 12
@@ -209,7 +308,7 @@ def print_ran_stats(ran):
         ran_pad.noutrefresh(0,0, start_row_pos,2, (height-1),(width-1))
         
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_links_info(links, num_rans, epoch_ms):
@@ -237,63 +336,84 @@ def print_links_info(links, num_rans, epoch_ms):
     last_row_num = start_row_num + rows_needed
     
     if (height-1) >= last_row_num:
-        link_info_pad.noutrefresh(0,0, start_row_num,2, last_row_num, (width-1))        # TODO: add check for height
+        link_info_pad.noutrefresh(0,0, start_row_num,2, last_row_num, (width-1))
     elif (height-1) >= start_row_num:
         link_info_pad.noutrefresh(0,0, start_row_num,2, (height-1), (width-1))
     
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_link_info(link, epoch_ms, row, cp):
     global link_info_pad
     
     link_info_pad.addstr(row,0, "Link: {}".format(link.name), curses.color_pair((cp%7)+1) | curses.A_BOLD)
-    link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
-    link_info_pad.addstr(row+2,0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)), curses.color_pair((cp%7)+1) | curses.A_BOLD)
+    link_info_pad.addstr(row+1,0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)),
+                         curses.color_pair((cp%7)+1) | curses.A_BOLD)
+    link_info_pad.addstr(row+2,0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)),
+                         curses.color_pair((cp%7)+1) | curses.A_BOLD)
     link_info_pad.addstr(row+1,56, "Max Latency Requirement:    ", curses.color_pair((cp%7)+1))
     link_info_pad.addstr(row+2,56, "Max Latency Achievable:     ", curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
     link_info_pad.addstr(row+3,56, "Minimum Capacity Required:  ", curses.color_pair((cp%7)+1))
     link_info_pad.addstr(row+4,56, "Allocated Bandwidth:        ", curses.color_pair((cp%7)+1))
     
     if link.qos_policy == None:
-        link_info_pad.addstr(row+1,84, "No QoS Policy!", curses.color_pair((cp%7)+1) | curses.A_BOLD | curses.A_REVERSE | BLINK)
-        if link.max_latency_usec == 0: link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
-        else:                          link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+        link_info_pad.addstr(row+1,84, "No QoS Policy!",
+                             curses.color_pair((cp%7)+1) | curses.A_BOLD | curses.A_REVERSE | BLINK)
+        if link.max_latency_usec == 0: link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'),
+                                                            curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+        else: link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
+                                                            curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
             
     else:
         if int(link.qos_policy.max_latency_usec) == 1000000.0:
             link_info_pad.addstr(row+1,84, "N/A", curses.color_pair((cp%7)+1))
         else:
-            link_info_pad.addstr(row+1,84, "{0:.3f} ms".format(int(link.qos_policy.max_latency_usec) / 1000), curses.color_pair((cp%7)+1))
+            link_info_pad.addstr(row+1,84, "{0:.3f} ms".format(int(link.qos_policy.max_latency_usec) / 1000),
+                                 curses.color_pair((cp%7)+1))
     
         if link.max_latency_usec == 0:
-            if link.qos_policy.max_latency_usec < 1000000.0: link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
-            else:                                            link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+            if link.qos_policy.max_latency_usec < 1000000.0:
+                link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'),
+                                     curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
+            else:
+                link_info_pad.addstr(row+2,84, "{0:^9}".format('N/A'),
+                                       curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
         elif link.max_latency_usec < link.qos_policy.max_latency_usec:
-            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
+            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
+                                 curses.color_pair((cp%7)+1) | curses.A_UNDERLINE)
         else: 
-            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
+            link_info_pad.addstr(row+2,84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
+                                 curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
 
     alloc_bw_mbps = ((int(link.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
     
     if link.qos_policy == None:
-        link_info_pad.addstr(row+3,84, "No QoS Policy!", curses.color_pair((cp%7)+1) | curses.A_BOLD | curses.A_REVERSE | BLINK)
+        link_info_pad.addstr(row+3,84, "No QoS Policy!", curses.color_pair((cp%7)+1) |
+                             curses.A_BOLD | curses.A_REVERSE | BLINK)
         link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1))
     else:
         qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
         link_info_pad.addstr(row+3,84, "{0:0.3f} Mbps".format(qp_ac_mbps), curses.color_pair((cp%7)+1))
         
-        if qp_ac_mbps <= alloc_bw_mbps: link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1))
-        else:                           link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps), curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
-    
+        if qp_ac_mbps <= alloc_bw_mbps: link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps),
+                                                             curses.color_pair((cp%7)+1))
+        else:                           link_info_pad.addstr(row+4,84, "{0:0.3f} Mbps".format(alloc_bw_mbps),
+                                                             curses.color_pair((cp%7)+1) | curses.A_REVERSE | BLINK)
+
+    l_score = score.fun_l(link.max_latency_usec / 1000)
+    link_info_pad.addstr(row+2, 96, "{0:0.1f}".format(l_score), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_BOLD)
+
+    tp_score = score.fun_tp(alloc_bw_mbps * 1000)
+    link_info_pad.addstr(row+4, 96, "{0:0.1f}".format(tp_score), curses.color_pair((cp%7)+1) | curses.A_UNDERLINE | curses.A_BOLD)
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
     else:
-        link_info_pad.addstr(row+3,2, "  NO TXOPS DEFINED IN MDL FOR THIS LINK  ", curses.color_pair((cp%7)+1) | curses.A_REVERSE | curses.A_BOLD)
+        link_info_pad.addstr(row+3,2, "  NO TXOPS DEFINED IN MDL FOR THIS LINK  ",
+                             curses.color_pair((cp%7)+1) | curses.A_REVERSE | curses.A_BOLD)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_txops_info(txops, row, cp):
@@ -303,7 +423,7 @@ def print_txops_info(txops, row, cp):
         print_txop_info(txop, idx, row+idx, cp)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_txop_info(txop, idx, row, cp):
@@ -321,7 +441,7 @@ def print_txop_info(txop, idx, row, cp):
               int(txop.freq)/1000000))
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_txops_in_all_rans(rans, sel):
@@ -346,7 +466,7 @@ def print_txops_in_all_rans(rans, sel):
         epoch_pad.noutrefresh(0,0, start_row_num,2, (height-1),(width-1))
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_txops_in_epoch(ran, ran_num, sel):
@@ -355,13 +475,13 @@ def print_txops_in_epoch(ran, ran_num, sel):
     global txop_display_pad
 
     # Color Pair Assignments
-    txt_BLUE_on_BLACK    = curses.color_pair(1)
+    # txt_BLUE_on_BLACK    = curses.color_pair(1)
     txt_GREEN_on_BLACK   = curses.color_pair(2)
     txt_RED_on_BLACK     = curses.color_pair(3)
-    txt_CYAN_on_BLACK    = curses.color_pair(4)
-    txt_YELLOW_on_BLACK  = curses.color_pair(5)
-    txt_MAGENTA_on_BLACK = curses.color_pair(6)
-    txt_WHITE_on_BLACK   = curses.color_pair(7)
+    # txt_CYAN_on_BLACK    = curses.color_pair(4)
+    # txt_YELLOW_on_BLACK  = curses.color_pair(5)
+    # txt_MAGENTA_on_BLACK = curses.color_pair(6)
+    # txt_WHITE_on_BLACK   = curses.color_pair(7)
     txt_GREEN_on_WHITE   = curses.color_pair(12)
     txt_RED_on_WHITE     = curses.color_pair(13)
     
@@ -378,22 +498,28 @@ def print_txops_in_epoch(ran, ran_num, sel):
     
     if ran_num == sel:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_REVERSE | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
+                         format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_REVERSE | curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_REVERSE | curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 54, 'Guardbands:', curses.A_REVERSE | curses.A_BOLD)
-        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_WHITE | curses.A_BOLD)
-        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_WHITE | curses.A_BOLD | BLINK)
+        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"),
+                                                      txt_GREEN_on_WHITE | curses.A_BOLD)
+        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"),
+                                                      txt_RED_on_WHITE | curses.A_BOLD | BLINK)
         epoch_pad.addstr(start_row_num+1, 0, epoch_bar, curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+2, 0, '|', curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+2, 101, '|', curses.A_REVERSE)
         epoch_pad.addstr(start_row_num+3, 0, epoch_bar, curses.A_REVERSE)
     else:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str))
-        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
+                         format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), curses.A_BOLD)
-        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_BLACK | curses.A_BOLD)
-        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_BLACK | curses.A_BOLD | BLINK)
+        if ran.gb_violated == False: epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"),
+                                                      txt_GREEN_on_BLACK | curses.A_BOLD)
+        else:                        epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"),
+                                                      txt_RED_on_BLACK | curses.A_BOLD | BLINK)
         epoch_pad.addstr(start_row_num+1, 0, epoch_bar)
         epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "))
         epoch_pad.addstr(start_row_num+3, 0, epoch_bar)
@@ -430,7 +556,7 @@ def print_txops_in_epoch(ran, ran_num, sel):
             epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx%7)+1))
             
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_too_short(height, width):
@@ -445,7 +571,7 @@ def print_too_short(height, width):
     stdscr.addstr(2,0,"{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def print_too_skinny(height, width):
@@ -456,26 +582,21 @@ def print_too_skinny(height, width):
     msg2 = bangs + '  SEE ON SUCH A SKINNY SCREEN  ' + bangs
     msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK ' + bangs
     msg4 = bangs + '            SKYNET             ' + bangs
-    stdscr.addstr(0,0, "{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(1,0, "{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(2,0, "{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(3,0, "{0:^{1}}".format(msg4, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(3, 0, "{0:^{1}}".format(msg4, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
     
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def main(stdscr):  
     global mdl_file
     rans_list  = []
-    links_list = []
     qos_policies_list = []
     
     # Color Pair Setup
-    #curses.init_pair(1, curses.COLOR_WHITE,   curses.COLOR_RED)     # Pair 1: 
-    #curses.init_pair(2, curses.COLOR_WHITE,   curses.COLOR_BLUE)    # Pair 2: 
-    #curses.init_pair(3, curses.COLOR_WHITE,   curses.COLOR_GREEN)   # Pair 3: 
-    #curses.init_pair(4, curses.COLOR_BLACK,   curses.COLOR_WHITE)   # Pair 4: 
     curses.init_pair(1, curses.COLOR_CYAN,    curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_GREEN,   curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_RED,     curses.COLOR_BLACK)
@@ -486,8 +607,6 @@ def main(stdscr):
     curses.init_pair(8, curses.COLOR_WHITE,   curses.COLOR_BLUE)
     curses.init_pair(12, curses.COLOR_GREEN,  curses.COLOR_WHITE)
     curses.init_pair(13, curses.COLOR_RED,    curses.COLOR_WHITE)
-    
-    height, width = stdscr.getmaxyx()
 
     stdscr.clear()
     stdscr.refresh()
@@ -513,8 +632,9 @@ def main(stdscr):
         rid    = ran.attrib['ID']
         rfreq  = ran.find("mdl:CenterFrequencyHz", namespaces=ns).text
         repoch = ran.find("mdl:EpochSize", namespaces=ns).text
-        rguard = float(ran.find("mdl:MaxGuardTimeSec", namespaces=ns).text)*1000
-        if debug >=2: print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {}ms".format(rname, rfreq, repoch, rguard))
+        rguard = int(float(ran.find("mdl:MaxGuardTimeSec", namespaces=ns).text)*1000)
+        if debug >= 2: print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {}ms".
+                             format(rname, rfreq, repoch, rguard))
         new_ran = RanConfig(name=rname, id_attr=rid, freq=rfreq, epoch_ms=repoch, guard_ms=rguard)
         rans_list.append(new_ran)
 
@@ -566,7 +686,7 @@ def main(stdscr):
         qpid = qos_policy.attrib['ID']
         qplmmc = qos_policy.find("mdl:LinkManagementMinCapacity/mdl:Value", namespaces=ns).text
         qpac = qos_policy.find("mdl:AssuredCapacity/mdl:Value", namespaces=ns).text
-        qplmax = value_usec
+        qplmax = int(value_usec)
         new_qp = QoSPolicy(qpname, qpid, qplmmc, qpac, qplmax)
         qos_policies_list.append(new_qp)
         
@@ -575,12 +695,8 @@ def main(stdscr):
             for r in rans_list:
                 for l in r.links:
                     if l.id == rlref.attrib["IDREF"]:
-                        #l.max_latency_req_usec = value_usec
                         l.qos_policy = qos_policies_list[-1]
-    
-    print(qos_policies_list)
-        
-    
+
     
     # Calculate Schedule Efficiency per RAN
     for r in rans_list:
@@ -624,7 +740,8 @@ def main(stdscr):
                     print_links_info(rans_list[ran_idx-1].links, num_rans, rans_list[ran_idx-1].epoch_ms)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
             
-            post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***", curses.color_pair(3) | curses.A_BOLD | BLINK)
+            post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***",
+                                   curses.color_pair(3) | curses.A_BOLD | BLINK)
             post_banner_pad.noutrefresh(0, 0, (height-1),0, (height-1),(width-1))
         stdscr.refresh()
     
@@ -636,14 +753,17 @@ def main(stdscr):
         if ran_idx > len(rans_list): ran_idx = len(rans_list)
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
+def no_gui():
+    pass
 
 if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
-    parser.add_argument('-s', action='store', default=None, dest='SCORE', help='JSON file to score MDL file performance', type=str)
+    parser.add_argument('-s', action='store', default=None, dest='SCORE',
+                        help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.0')
     cli_args = parser.parse_args()
@@ -652,7 +772,12 @@ if __name__ == "__main__":
     mdl_file = cli_args.FILE
     score_file = cli_args.SCORE
     debug = cli_args.debug
-    
+
+    sys.meta_path.append(NotebookFinder())      # Register the NotebookFinder with sys.meta_path
+    InteractiveShell.enable_gui = no_gui()
+    #import score.fun_tp
+    import score
+
     stdscr           = curses.initscr()
     banner_pad       = curses.newpad(4, 106)    # Initialize Banner Pad
     post_banner_pad  = curses.newpad(1, 106)    # Initialize Post Banner Pad
@@ -667,7 +792,3 @@ if __name__ == "__main__":
     else: BLINK = curses.A_BLINK
     
     wrapper(main)
-    #main()
-    
-    #while True:
-    #    signal.pause()
