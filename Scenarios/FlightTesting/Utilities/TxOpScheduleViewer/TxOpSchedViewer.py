@@ -236,19 +236,18 @@ def find_notebook(fullname, path=None):
 def print_banner():
     global stdscr
     global banner_pad
-    
-    txt_WHITE_on_BLUE = curses.color_pair(8)
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
     header = '*' * 106
     banner_txt = "**********              TxOp Schedule Viewer for Link Manager Algorithm Evaluator" \
                  "               **********"
-    banner_pad.addstr(0, 0, header, txt_WHITE_on_BLUE | curses.A_BOLD)
-    banner_pad.addstr(1, 0, banner_txt, txt_WHITE_on_BLUE | curses.A_BOLD)
-    banner_pad.addstr(2, 0, header, txt_WHITE_on_BLUE | curses.A_BOLD)
+    banner_pad.addstr(0, 0, header, text_d['BANNER'] | curses.A_BOLD)
+    banner_pad.addstr(1, 0, banner_txt, text_d['BANNER'] | curses.A_BOLD)
+    banner_pad.addstr(2, 0, header, text_d['BANNER'] | curses.A_BOLD)
     banner_pad.addstr(3, 0, ' '*105)
-    banner_pad.noutrefresh(0, 0, 0, 0, 3, (width-1))
+    banner_pad.noutrefresh(0, 0, 0, 0, 2, (width-1))
     
     
 # ------------------------------------------------------------------------------
@@ -257,9 +256,7 @@ def print_banner():
 def print_file_info(f, name, config, s_file):
     global stdscr
     global file_info_pad
-
-    txt_CYAN_on_BLACK = curses.color_pair(1)
-    txt_RED_on_BLACK = curses.color_pair(3)
+    global text_d
 
     height, width = stdscr.getmaxyx()
     
@@ -267,14 +264,14 @@ def print_file_info(f, name, config, s_file):
     msg2 = "Name: {}".format(name)
     msg3 = "Configuration Version: {}".format(config)
     msg4 = "Score Criteria: {}".format(s_file)
-    file_info_pad.addstr(0, 0, "{0:^102}".format(msg1), curses.A_BOLD)
-    file_info_pad.addstr(1, 0, "{0:^102}".format(msg2), curses.A_BOLD)
-    file_info_pad.addstr(2, 0, "{0:^102}".format(msg3), curses.A_BOLD)
+    file_info_pad.addstr(0, 0, "{0:^102}".format(msg1), text_d['BG'] | curses.A_BOLD)
+    file_info_pad.addstr(1, 0, "{0:^102}".format(msg2), text_d['BG'] | curses.A_BOLD)
+    file_info_pad.addstr(2, 0, "{0:^102}".format(msg3), text_d['BG'] | curses.A_BOLD)
     if s_file is None:
         file_info_pad.addstr(3, 0, "{0:>102}".format('Not for score'),
-                             txt_RED_on_BLACK | curses.A_BOLD | curses.A_UNDERLINE)
+                             text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_UNDERLINE)
     else:
-        file_info_pad.addstr(3, 0, "{0:>102}".format(msg4), txt_CYAN_on_BLACK | curses.A_BOLD | curses.A_UNDERLINE)
+        file_info_pad.addstr(3, 0, "{0:>102}".format(msg4), text_d['FOR_SCORE'] | curses.A_BOLD | curses.A_UNDERLINE)
     
     if (height-1) >= 9:
         file_info_pad.noutrefresh(0, 0, 4, 2, 7, (width-1))
@@ -288,22 +285,21 @@ def print_file_info(f, name, config, s_file):
 def print_ran_stats(ran):
     global stdscr
     global ran_pad
-    
-    txt_WHITE_on_BLACK = curses.color_pair(7)
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
     ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name),
-                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '),
-                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '),
-                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
     ran_pad.addstr(3, 0, "Guard Time:.................   {0:0.3f} ms{1:63}".format(ran.guard_ms, ' '),
-                   txt_WHITE_on_BLACK | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
     
     start_row_pos = 9
-    last_row_pos = 13
+    last_row_pos = 12
     
     if (height-1) >= last_row_pos:
         ran_pad.noutrefresh(0, 0, start_row_pos, 2, last_row_pos, (width-1))
@@ -317,6 +313,7 @@ def print_ran_stats(ran):
 def print_links_info(links, num_rans, epoch_ms):
     global stdscr
     global link_info_pad
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
@@ -328,9 +325,10 @@ def print_links_info(links, num_rans, epoch_ms):
             rows_needed += 4 + len(l.tx_sched)
     
     link_info_pad = curses.newpad(rows_needed, 102)
+    link_info_pad.bkgd(text_d['BG'])
     
-    link_info_pad.addstr(0, 0, "{0:^102}".format("RAN DETAILS"), curses.A_UNDERLINE)
-    link_info_pad.addstr(0, 96, "SCORE", curses.A_UNDERLINE)
+    link_info_pad.addstr(0, 0, "{0:^102}".format("RAN DETAILS"), text_d['BG'] | curses.A_UNDERLINE)
+    link_info_pad.addstr(0, 96, "SCORE", text_d['BG'] | curses.A_UNDERLINE)
     
     start_row = 1
     for idx, link in enumerate(links, start=0):
@@ -356,7 +354,7 @@ def print_link_info(link, epoch_ms, row, cp):
     global link_info_pad
     global mod_name
 
-    txt_color = curses.color_pair((cp % 7) + 1)
+    txt_color = curses.color_pair((cp % 10) + 1)
 
     link_info_pad.addstr(row, 0, "Link: {}".format(link.name), txt_color | curses.A_BOLD)
     link_info_pad.addstr(row+1, 0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)),
@@ -456,7 +454,7 @@ def print_txops_info(txops, row, cp):
 def print_txop_info(txop, idx, row, cp):
     global link_info_pad
 
-    txt_color = curses.color_pair((cp % 7) + 1)
+    txt_color = curses.color_pair((cp % 10) + 1)
     txop_str = "  TxOp {0}: {1:6d} - {2:6d} us (TTL: {3:3d}) @ {4} MHz  \r".format(
               idx+1, int(txop.start_usec), int(txop.stop_usec), int(txop.timeout), 
               int(txop.freq)/1000000)
@@ -476,12 +474,14 @@ def print_txops_in_all_rans(rans, sel):
     global stdscr
     global epoch_pad
     global txop_display_pad
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
     rows_needed = (len(rans) * 5)
     epoch_pad = curses.newpad(rows_needed, 102)
-    
+    epoch_pad.bkgd(text_d['BG'])
+
     start_row_num = 15
     last_row_num = start_row_num + rows_needed
     
@@ -501,17 +501,7 @@ def print_txops_in_epoch(ran, ran_num, sel):
     global stdscr
     global epoch_pad
     global txop_display_pad
-
-    # Color Pair Assignments
-    # txt_BLUE_on_BLACK = curses.color_pair(1)
-    txt_GREEN_on_BLACK = curses.color_pair(2)
-    txt_RED_on_BLACK = curses.color_pair(3)
-    # txt_CYAN_on_BLACK = curses.color_pair(4)
-    # txt_YELLOW_on_BLACK = curses.color_pair(5)
-    # txt_MAGENTA_on_BLACK = curses.color_pair(6)
-    # txt_WHITE_on_BLACK = curses.color_pair(7)
-    txt_GREEN_on_WHITE = curses.color_pair(12)
-    txt_RED_on_WHITE = curses.color_pair(13)
+    global text_d
     
     epoch_ms = ran.epoch_ms
     links = ran.links
@@ -522,34 +512,34 @@ def print_txops_in_epoch(ran, ran_num, sel):
     epoch_bar = "+----------------------------------------------------------------------------------------------------+"
     
     if ran_num == sel:
-        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'] | curses.A_REVERSE)
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
-                         format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_REVERSE | curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_REVERSE | curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 54, 'Guardbands:', curses.A_REVERSE | curses.A_BOLD)
+                         format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | curses.A_REVERSE |
+                         curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 54, 'Guardbands:', text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
 
         if ran.gb_violated is False:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_WHITE | curses.A_BOLD)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_WHITE'] | curses.A_BOLD)
         else:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_WHITE | curses.A_BOLD | BLINK)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_WHITE'] | curses.A_BOLD | BLINK)
 
-        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num+2, 0, '|', curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num+2, 101, '|', curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, text_d['BG'] | curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "), text_d['BG'] | curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, text_d['BG'] | curses.A_REVERSE)
     else:
-        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str))
+        epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'])
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
-                         format((ran_num+1), ran.name, ran.efficiency_pct), curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), curses.A_BOLD)
+                         format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_BOLD)
+        epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), text_d['BG'] | curses.A_BOLD)
         if ran.gb_violated is False:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), txt_GREEN_on_BLACK | curses.A_BOLD)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_BLACK'] | curses.A_BOLD)
         else:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), txt_RED_on_BLACK | curses.A_BOLD | BLINK)
-        epoch_pad.addstr(start_row_num+1, 0, epoch_bar)
-        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "))
-        epoch_pad.addstr(start_row_num+3, 0, epoch_bar)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, text_d['BG'])
+        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "), text_d['BG'])
+        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, text_d['BG'])
     
     for idx, link in enumerate(links, start=0):
         for txop in link.tx_sched:
@@ -586,7 +576,10 @@ def print_txops_in_epoch(ran, ran_num, sel):
             else:
                 graphic = u'\u2588' * int(num_bars)
 
-            epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx % 7) + 1))
+            if ran_num == sel:
+                epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx % 10) + 11))
+            else:
+                epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx % 10) + 1))
             
 
 # ------------------------------------------------------------------------------
@@ -594,14 +587,15 @@ def print_txops_in_epoch(ran, ran_num, sel):
 
 def print_too_short(width):
     global stdscr
+    global text_d
     
     bangs = '!' * int((width-49)/2)
     msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
     msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
     msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
-    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
 
 
 # ------------------------------------------------------------------------------
@@ -609,16 +603,17 @@ def print_too_short(width):
 
 def print_too_skinny(width):
     global stdscr
+    global text_d
     
     bangs = '!' * int((width-34)/2)
     msg1 = bangs + '  NOT SURE WHAT YOU EXPECT TO  ' + bangs
     msg2 = bangs + '  SEE ON SUCH A SKINNY SCREEN  ' + bangs
     msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK ' + bangs
     msg4 = bangs + '            SKYNET             ' + bangs
-    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
-    stdscr.addstr(3, 0, "{0:^{1}}".format(msg4, width), curses.color_pair(3) | curses.A_BOLD | BLINK)
+    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(3, 0, "{0:^{1}}".format(msg4, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
     
 
 # ------------------------------------------------------------------------------
@@ -627,21 +622,48 @@ def print_too_skinny(width):
 def main(stdscr):  
     global mdl_file
     global score_file
+    global text_d
     rans_list = []
     qos_policies_list = []
     
     # Color Pair Setup
-    curses.init_pair(1, curses.COLOR_CYAN,    curses.COLOR_BLACK)
-    curses.init_pair(2, curses.COLOR_GREEN,   curses.COLOR_BLACK)
-    curses.init_pair(3, curses.COLOR_RED,     curses.COLOR_BLACK)
-    curses.init_pair(4, curses.COLOR_YELLOW,  curses.COLOR_BLACK)
-    curses.init_pair(5, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
-    curses.init_pair(6, curses.COLOR_BLUE,    curses.COLOR_BLACK)
-    curses.init_pair(7, curses.COLOR_WHITE,   curses.COLOR_BLACK)
-    curses.init_pair(8, curses.COLOR_WHITE,   curses.COLOR_BLUE)
-    curses.init_pair(12, curses.COLOR_GREEN,  curses.COLOR_WHITE)
-    curses.init_pair(13, curses.COLOR_RED,    curses.COLOR_WHITE)
+    curses.init_pair(1, 114, 235)       # greenish 1
+    curses.init_pair(2, 152, 235)       # bluish 1
+    curses.init_pair(3, 182, 235)       # purplish 1
+    curses.init_pair(4, 210, 235)       # redish 1
+    curses.init_pair(5, 229, 235)       # yellowish 1
+    curses.init_pair(6, 42,  235)       # greenish 2
+    curses.init_pair(7, 37,  235)       # bluish 2
+    curses.init_pair(8, 135, 235)       # purplish 2
+    curses.init_pair(9, 175, 235)       # redish 2
+    curses.init_pair(10, 222, 235)      # yellowish 2
+    curses.init_pair(11, 114, 15)       # greenish 1 on white
+    curses.init_pair(12, 152, 15)       # bluish 1 on white
+    curses.init_pair(13, 182, 15)       # purplish 1 on white
+    curses.init_pair(14, 210, 15)       # redish 1 on white
+    curses.init_pair(15, 229, 15)       # yellowish 1 on white
+    curses.init_pair(16, 42, 15)        # greenish 2 on white
+    curses.init_pair(17, 37, 15)        # bluish 2 on white
+    curses.init_pair(18, 135, 15)       # purplish 2 on white
+    curses.init_pair(19, 175, 15)       # redish 2 on white
+    curses.init_pair(20, 222, 15)       # yellowish 2 on white
+    curses.init_pair(249, 27, 235)
+    curses.init_pair(250, 10, 235)
+    curses.init_pair(251, 10, 15)
+    curses.init_pair(252, 10, 235)
+    curses.init_pair(253, 9, 15)
+    curses.init_pair(254, 9, 235)
+    curses.init_pair(255, 15, 235)
 
+    text_d['BANNER'] = curses.color_pair(249)
+    text_d['FOR_SCORE'] = curses.color_pair(250)
+    text_d['PASS_WHITE'] = curses.color_pair(251)
+    text_d['PASS_BLACK'] = curses.color_pair(252)
+    text_d['ERROR_WHITE'] = curses.color_pair(253)
+    text_d['ERROR_BLACK'] = curses.color_pair(254)
+    text_d['BG'] = curses.color_pair(255)
+
+    stdscr.bkgd(text_d['BG'])
     stdscr.clear()
     stdscr.refresh()
 
@@ -772,9 +794,10 @@ def main(stdscr):
                 if len(rans_list[ran_idx-1].links) > 0:
                     print_links_info(rans_list[ran_idx-1].links, num_rans, rans_list[ran_idx-1].epoch_ms)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
-            
+
+            post_banner_pad.bkgd(text_d['BG'])
             post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***",
-                                   curses.color_pair(3) | curses.A_BOLD | BLINK)
+                                   text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
             post_banner_pad.noutrefresh(0, 0, (height-1), 0, (height-1), (width-1))
         stdscr.refresh()
     
@@ -789,8 +812,8 @@ def main(stdscr):
         if ran_idx > len(rans_list):
             ran_idx = len(rans_list)
 
-
 # ------------------------------------------------------------------------------
+
 
 def no_gui():
     return 0
@@ -803,7 +826,7 @@ if __name__ == "__main__":
     parser.add_argument('-s', action='store', default=None, dest='SCORE',
                         help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.2')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.3')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
@@ -811,6 +834,7 @@ if __name__ == "__main__":
     score_file = cli_args.SCORE
     mod_name = None
     debug = cli_args.debug
+    text_d = {}
 
     if score_file is not None:
         mod_name, ext = os.path.splitext(os.path.split(score_file)[-1])
@@ -836,7 +860,7 @@ if __name__ == "__main__":
     txop_display_pad = curses.newpad(1, 100)    # Initialize TxOp Display Pad
     
     if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
-        BLINK = 0                               #   because it doesn't look very good.
+        BLINK = 0                               # because it doesn't look very good.
     else:
         BLINK = curses.A_BLINK
     
