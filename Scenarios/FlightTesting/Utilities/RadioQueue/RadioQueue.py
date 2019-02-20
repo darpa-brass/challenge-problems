@@ -94,6 +94,7 @@ def run_epoch():
     global stdscr
     global next_timer
     global time_pad
+    global text_d
     
     # Set callback timer for next epoch update
     next_timer = threading.Timer(epoch_sec, run_epoch)
@@ -185,9 +186,9 @@ def run_epoch():
             msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
             msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
             msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
-            stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-            stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-            stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+            stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+            stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
             stdscr.refresh()
             return
     
@@ -196,9 +197,9 @@ def run_epoch():
             msg1 = bangs + '    NOT SURE WHAT YOU EXPECT TO SEE    ' + bangs
             msg2 = bangs + '        ON SUCH A SKINNY SCREEN        ' + bangs
             msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK SKYNET  ' + bangs
-            stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-            stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
-            stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), curses.color_pair(1) | curses.A_BOLD | BLINK)
+            stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+            stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+            stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
             stdscr.refresh()
             return
             
@@ -289,6 +290,7 @@ def print_stats(rlist):
 
 def print_lm_stats(rlist):
     global lm_pad
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
@@ -324,7 +326,7 @@ def print_lm_stats(rlist):
     elif utilization <= 100:
         lm_pad.addstr(1, 0, bw_str, txt_MAGENTA_on_BLACK | curses.A_BOLD | curses.A_STANDOUT | BLINK)
     else:
-        lm_pad.addstr(1, 0, bw_str, txt_RED_on_BLACK | curses.A_BOLD | curses.A_STANDOUT | BLINK)
+        lm_pad.addstr(1, 0, bw_str, text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_STANDOUT | BLINK)
     lm_pad.addstr(2, 0, header, txt_CYAN_on_BLACK | curses.A_BOLD)
     
     start_line_pos = 7
@@ -341,8 +343,11 @@ def print_lm_stats(rlist):
 
 def print_radio_stats(rlist):
     global radio_pad
+    global text_d
+
     rwin_width = 86
     radio_pad = curses.newpad((len(rlist)+1), rwin_width)
+    radio_pad.bkgd(text_d['BG'])
     
     # Color Pair Assignments
     txt_WHITE_on_RED = curses.color_pair(1)
@@ -366,19 +371,19 @@ def print_radio_stats(rlist):
     for idx, r in enumerate(radio_list, start=1):
         if r.online is False:
             q_status = " X   (OFFLINE)  "
-            txt_mode = (txt_YELLOW_on_BLACK | curses.A_BOLD | BLINK)
+            txt_mode = (text_d['OFFLINE'] | curses.A_BOLD | curses.A_REVERSE | BLINK)
         elif r.q_delta_bps > 0: 
             q_status = " ^   (growing)  "
-            txt_mode = (txt_WHITE_on_RED | curses.A_BOLD)
+            txt_mode = (text_d['Q_GROW'] | curses.A_REVERSE | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len > 0): 
             q_status = " v   (shrinking)"
-            txt_mode = (txt_WHITE_on_GREEN | curses.A_BOLD)
+            txt_mode = (text_d['Q_SHRINK'] | curses.A_REVERSE | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len == 0): 
             q_status = " _   (empty)    "
-            txt_mode = (txt_BLACK_on_WHITE | curses.A_BOLD)
+            txt_mode = (text_d['Q_EMPTY'] | curses.A_REVERSE | curses.A_BOLD)
         elif r.q_delta_bps == 0: 
             q_status = " -   (balanced) "
-            txt_mode = (txt_WHITE_on_BLUE | curses.A_BOLD)
+            txt_mode = (text_d['Q_STEADY'] | curses.A_REVERSE | curses.A_BOLD)
         else: 
             q_status = " meh"
         
@@ -393,11 +398,16 @@ def print_radio_stats(rlist):
         
     start_line_pos = 11
     last_line_pos = len(rlist) + 11
-    
+
+    if (width-1) > 82:
+        pad_width = 82
+    else:
+        pad_width = width-1
+
     if (height-1) >= last_line_pos:
-        radio_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, (width-1))  # Refresh the Radio Pad
+        radio_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, pad_width)  # Refresh the Radio Pad
     elif (height-1) >= start_line_pos:
-        radio_pad.noutrefresh(0, 0, start_line_pos, 2, (height-1), (width-1))  # Refresh the Radio Pad
+        radio_pad.noutrefresh(0, 0, start_line_pos, 2, (height-1), pad_width)  # Refresh the Radio Pad
 
 
 # ------------------------------------------------------------------------------
@@ -408,6 +418,7 @@ def print_queues(rlist):
     qwin_width = 86
     
     q_pad = curses.newpad(((len(rlist)*3)+3), qwin_width)
+    q_pad.bkgd(text_d['BANNER'])
     
     height, width = stdscr.getmaxyx()
     
@@ -440,14 +451,7 @@ def print_queues(rlist):
 
 def print_queue(r, idx):
     global q_pad
-    
-    # Color Pair Assignments
-    txt_CYAN_on_BLACK = curses.color_pair(5)
-    # txt_GREEN_on_BLACK = curses.color_pair(6)
-    txt_YELLOW_on_BLACK = curses.color_pair(7)
-    txt_RED_on_BLACK = curses.color_pair(8)
-    txt_MAGENTA_on_BLACK = curses.color_pair(9)
-    txt_WHITE_on_BLACK = curses.color_pair(10)
+    global text_d
     
     header = "+--------------------------------------------------+"
     
@@ -467,17 +471,17 @@ def print_queue(r, idx):
         q_state = "Utilized"
     
     if q_chars < 10:
-        txt_mode = txt_WHITE_on_BLACK
+        txt_mode = text_d['BAR_EMPTY']
     elif q_chars < 20:
-        txt_mode = txt_CYAN_on_BLACK
+        txt_mode = text_d['BAR_20']
     elif q_chars < 30:
-        txt_mode = txt_YELLOW_on_BLACK
+        txt_mode = text_d['BAR_40']
     elif q_chars < 40:
-        txt_mode = txt_MAGENTA_on_BLACK
+        txt_mode = text_d['BAR_60']
     elif q_chars < 50:
-        txt_mode = txt_RED_on_BLACK
+        txt_mode = text_d['BAR_80']
     else:
-        txt_mode = txt_RED_on_BLACK | BLINK
+        txt_mode = text_d['ERROR_BLACK'] | BLINK
     
     q_str = "|{0:50}|  {1:2d}% Queue {2}".format(q_graphic, q_full_pct, q_state)
     q_pad.addstr((3*idx)+1, 12, header, txt_mode | curses.A_BOLD)
@@ -514,6 +518,18 @@ def restore_screen():
 def sig_handler(sig, frame):
     global next_timer
     next_timer.cancel()
+
+    block = u'\u2588'
+    for i in range(4):
+        for j in range(8):
+            for k in range(8):
+                curses.init_pair((i*4)+(j*8)+k+1,(i*4)+(j*8)+k, 235)
+                stdscr.addstr((i*8)+(j) + 60, k+5, "{0}".format(block), curses.color_pair((i*4)+(j*8)+k+1))
+            stdscr.addstr((i*8)+j+60, 0, "{0}".format((i*64)+(j*8)))
+            stdscr.refresh()
+
+    keypress = stdscr.getkey()
+
     restore_screen()
     sys.exit()
 
@@ -524,14 +540,15 @@ def sig_handler(sig, frame):
 def print_banner():
     global stdscr
     global banner_pad
+    global text_d
     
     height, width = stdscr.getmaxyx()
     
     header = '*' * 90
-    banner_pad.addstr(0, 0, header, curses.color_pair(2) | curses.A_BOLD)
+    banner_pad.addstr(0, 0, header, text_d['BANNER'] | curses.A_BOLD)
     banner_pad.addstr(1, 0, "*****        Radio Queue Status Display for Link Manager Algorithm Evaluator"
-                            "         *****", curses.color_pair(2) | curses.A_BOLD)
-    banner_pad.addstr(2, 0, header, curses.color_pair(2) | curses.A_BOLD)
+                            "         *****", text_d['BANNER'] | curses.A_BOLD)
+    banner_pad.addstr(2, 0, header, text_d['BANNER'] | curses.A_BOLD)
     banner_pad.addstr(3, 0, ' '*89)
     banner_pad.noutrefresh(0, 0, 0, 0, 3, width-1)
     
@@ -563,22 +580,23 @@ def print_time():
 def print_border(num_radios):
     global stdscr
     global border_pad
-    
-    txt_WHITE_on_BLUE = curses.color_pair(2)
-    
+    global text_d
+
     height, width = stdscr.getmaxyx()
     
     pad_lines = (num_radios * 4) + 15
     border_pad = curses.newpad(pad_lines, 91)
-    
+    border_pad.bkgd(text_d['BG'])
+
     # Print bar on left and right borders
+    bar = u'\u2588'
     for i in range(pad_lines-1):
-        border_pad.addstr(i, 0, " ", txt_WHITE_on_BLUE)
-        border_pad.addstr(i, 89, " ", txt_WHITE_on_BLUE)
+        border_pad.addstr(i, 0, " ", text_d['BANNER'] | curses.A_REVERSE)
+        border_pad.addstr(i, 89, " ", text_d['BANNER'] | curses.A_REVERSE)
     
     last_line_pos = pad_lines+3
     
-    border_pad.addstr(pad_lines-1, 0, "{0:90}".format(" "), txt_WHITE_on_BLUE)
+    border_pad.addstr(pad_lines-1, 0, "{}".format(' ' * 90), text_d['BANNER'] | curses.A_REVERSE)
     
     if (height-1) >= last_line_pos:
         border_pad.noutrefresh(0, 0, 3, 0, last_line_pos, (width-1))
@@ -589,7 +607,8 @@ def print_border(num_radios):
 # ------------------------------------------------------------------------------
 
 
-def main(stdscr):  
+def main(stdscr):
+    global text_d
     # Color Pair Setup
     curses.init_pair(1, curses.COLOR_WHITE,   curses.COLOR_RED)     # Pair 1: Queue Growing
     curses.init_pair(2, curses.COLOR_WHITE,   curses.COLOR_BLUE)    # Pair 2: Queue Balanced
@@ -601,8 +620,83 @@ def main(stdscr):
     curses.init_pair(8, curses.COLOR_RED,     curses.COLOR_BLACK)
     curses.init_pair(9, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
     curses.init_pair(10, curses.COLOR_WHITE,  curses.COLOR_BLACK)
-      
+
+    # Color Pair Setup
+    #curses.init_pair(1, 114, 235)  # greenish 1
+    #curses.init_pair(2, 152, 235)  # bluish 1
+    #curses.init_pair(3, 182, 235)  # purplish 1
+    #curses.init_pair(4, 210, 235)  # redish 1
+    #curses.init_pair(5, 229, 235)  # yellowish 1
+    #curses.init_pair(6, 42, 235)  # greenish 2
+    #curses.init_pair(7, 37, 235)  # bluish 2
+    #curses.init_pair(8, 135, 235)  # purplish 2
+    #curses.init_pair(9, 175, 235)  # redish 2
+    #curses.init_pair(10, 222, 235)  # yellowish 2
+    curses.init_pair(11, 114, 15)  # greenish 1 on white
+    curses.init_pair(12, 152, 15)  # bluish 1 on white
+    curses.init_pair(13, 182, 15)  # purplish 1 on white
+    curses.init_pair(14, 210, 15)  # redish 1 on white
+    curses.init_pair(15, 229, 15)  # yellowish 1 on white
+    curses.init_pair(16, 42, 15)  # greenish 2 on white
+    curses.init_pair(17, 37, 15)  # bluish 2 on white
+    curses.init_pair(18, 135, 15)  # purplish 2 on white
+    curses.init_pair(19, 175, 15)  # redish 2 on white
+    curses.init_pair(20, 222, 15)  # yellowish 2 on white
+    curses.init_pair(50, 1, 235)  # LM Allocation Efficiency: == 0%
+    curses.init_pair(51, 1, 235)  # LM Allocation Efficiency: < 50%
+    curses.init_pair(52, 1, 235)  # LM Allocation Efficiency: < 80%
+    curses.init_pair(53, 1, 235)  # LM Allocation Efficiency: < 95%
+    curses.init_pair(54, 1, 235)  # LM Allocation Efficiency: == 100%
+    curses.init_pair(55, 1, 235)  # LM Allocation Efficiency: > 100%
+    curses.init_pair(100, 182, 235)  # purplish = Queue Status: Offline
+    curses.init_pair(101, 152, 235)  # bluish = Queue Status: Empty State
+    curses.init_pair(102, 229, 235)  # yellowish = Queue Status: Steady State
+    curses.init_pair(103, 114, 235)  # greenish = Queue Status: Shrinking State
+    curses.init_pair(104, 210, 235)  # redish = Queue Status: Growing State
+    curses.init_pair(200, 15, 235)   # white = Queue Depth: Empty - < 20%
+    curses.init_pair(201, 37, 235)   # bluish = Queue Depth: 20% - 40%
+    curses.init_pair(202, 222, 235)  # yellowish = Queue Depth: 40% - 60%
+    curses.init_pair(203, 135, 235)  # purplish = Queue Depth: 60% - 80%
+    curses.init_pair(204, 175, 235)  # redish = Queue Depth: 80% < 100%
+    curses.init_pair(249, 27, 235)
+    curses.init_pair(250, 10, 235)
+    curses.init_pair(251, 10, 15)
+    curses.init_pair(252, 10, 235)
+    curses.init_pair(253, 9, 15)
+    curses.init_pair(254, 9, 235)
+    curses.init_pair(255, 15, 235)
+
+    text_d['LM_0'] = curses.color_pair(50)
+    text_d['LM_50'] = curses.color_pair(51)
+    text_d['LM_80'] = curses.color_pair(52)
+    text_d['LM_95'] = curses.color_pair(53)
+    text_d['LM_100'] = curses.color_pair(54)
+    text_d['LM_101'] = curses.color_pair(55)
+    text_d['OFFLINE'] = curses.color_pair(100)
+    text_d['Q_EMPTY'] = curses.color_pair(101)
+    text_d['Q_STEADY'] = curses.color_pair(102)
+    text_d['Q_SHRINK'] = curses.color_pair(103)
+    text_d['Q_GROW'] = curses.color_pair(104)
+    text_d['BAR_EMPTY'] = curses.color_pair(200)
+    text_d['BAR_20'] = curses.color_pair(201)
+    text_d['BAR_40'] = curses.color_pair(202)
+    text_d['BAR_60'] = curses.color_pair(203)
+    text_d['BAR_80'] = curses.color_pair(204)
+    text_d['BANNER'] = curses.color_pair(249)
+    text_d['FOR_SCORE'] = curses.color_pair(250)
+    text_d['PASS_WHITE'] = curses.color_pair(251)
+    text_d['PASS_BLACK'] = curses.color_pair(252)
+    text_d['ERROR_WHITE'] = curses.color_pair(253)
+    text_d['ERROR_BLACK'] = curses.color_pair(254)
+    text_d['BG'] = curses.color_pair(255)
+
     if debug == 0:
+        stdscr.bkgd(text_d['BG'])
+        banner_pad.bkgd(text_d['BG'])
+        time_pad.bkgd(text_d['BG'])
+        lm_pad.bkgd(text_d['BG'])
+        q_pad.bkgd(text_d['BG'])
+        border_pad.bkgd(text_d['BG'])
         stdscr.clear()
         
     run_epoch()
@@ -631,6 +725,7 @@ if __name__ == "__main__":
     if cli_args.max_queue_size >= 0:
         MAX_QUEUE_SIZE_BYTES = cli_args.max_queue_size    # Set MAX Queue Size in Byte if CLI argument provided
     debug = cli_args.debug
+    text_d = {}
     
     stdscr = curses.initscr()               # Initial main screen for curses
     banner_pad = curses.newpad(4, 90)       # Initialize Banner Pad
