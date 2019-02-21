@@ -56,8 +56,8 @@ detailed below:
     data_input_rates.json - includes data rate coming into the radio that needs
                             to be transmitted
         [
-            {"RadioName": "NAME1", "DataInRate-bps": 200000, "MissionValue": 2}, 
-            {"RadioName": "NAME2", "DataInRate-bps": 100000, "MissionValue": 5}
+            {"RadioName": "NAME1", "DataInRate-bps": 200000, "ValuePerKbTx": 2.0},
+            {"RadioName": "NAME2", "DataInRate-bps": 100000, "ValuePerKbTx": 5.0}
         ]
     
     bw_allocs.json - includes allocated bandwidth for transmitting data
@@ -80,8 +80,8 @@ is run.  The file is detailed below:
 
     radio_queues.json - includes the current queue depth in bytes of each radio
         [
-            {"RadioName": "NAME1", "QLen": 6250}, 
-            {"RadioName": "NAME2", "QLen": 0}
+            {"RadioName": "NAME1", "QLen": 6250, "CurrentEpochValue": 300.0},
+            {"RadioName": "NAME2", "QLen": 0, "CurrentEpochValue": 500.0}
         ]
         
 Link Manager applications shall read this JSON file in order to see the current
