@@ -218,6 +218,19 @@
                                         </LTCInterface>
                                     </LTCInterfaces>
                                 </TmNSLTCDataSource>
+                                <SMInterface>
+                                    <SNMPSetup>
+                                        <SNMPVersions>
+                                            <SNMPVersion>v3</SNMPVersion>
+                                        </SNMPVersions>
+                                        <SNMPPort>1234</SNMPPort>
+                                        <NotificationPort>1234</NotificationPort>
+                                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                                        <NetworkInterfaceRefs>
+                                            <NetworkInterfaceRef IDREF="ni-ieee-eth0"/>
+                                        </NetworkInterfaceRefs>
+                                    </SNMPSetup>
+                                </SMInterface>
                             </TmNSApp>
                         </TmNSApps>
                         <InternalStructure>

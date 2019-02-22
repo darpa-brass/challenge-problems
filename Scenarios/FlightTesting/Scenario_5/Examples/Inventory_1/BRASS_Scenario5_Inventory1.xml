@@ -1,0 +1,1894 @@
+<DAUInventory>
+    <NetworkNode ID="nn-dau">
+        <Name>Example2DAU</Name>
+        <Description>Scenario 5 example 2 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
+        </GenericParameter>
+        <InventoryID>Example2DAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>TTC</Manufacturer>
+        <Model>Scenario5Example2</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="tma-dau">
+                <Name>Example2DAUApp</Name>
+                <Description>Scenario 5 example 2 DAU application.</Description>
+                <RoleID>Example2DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>TTC</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2018_01_18_00:00:00_Example2DAUApp</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="ni-ieee-eth0"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="mod-processor">
+                    <Name>ProcessingModule</Name>
+                    <Description>TTC MPPC-500-2 processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MPPC-500-2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MPPC-500-2</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="tma-dau"/>
+                    </RunningAppRefs>
+                    <Connectors>
+                        <Connector>
+                            <Name>J1</Name>
+                            <Description>J1 : 9-pin D-subminiature.</Description>
+                            <Pins>
+                                <Pin ID="pin-processor-j1-2" Index="2">
+                                    <Name>RS232 RCV</Name>
+                                    <Description>RS-232: receive signal from the host</Description>
+                                    <Designator>SerialRx</Designator>
+                                </Pin>
+                                <Pin ID="pin-processor-j1-3" Index="3">
+                                    <Name>RS232 XMT</Name>
+                                    <Description>RS-232: transmit signal to the host</Description>
+                                    <Designator>SerialTx</Designator>
+                                </Pin>
+                                <Pin ID="pin-processor-j1-9" Index="9">
+                                    <Name>1PPS OUT</Name>
+                                    <Description>One pulse per second output</Description>
+                                    <Designator>1PPS</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                    </Connectors>
+                    <Ports>
+                        <Port ID="port-processor-j1-ch1" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <SampleRate>1250000</SampleRate>
+                                <DataLength>1</DataLength>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-processor-j1-2"/>
+                                <PinRef IDREF="pin-processor-j1-3"/>
+                                <PinRef IDREF="pin-processor-j1-9"/>
+                            </PinRefs>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-ieee">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MACQ-500-4</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MACQ-500-4</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="ni-ieee-eth0">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.101.201</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="pnp-ieee-ethernet">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Connectors>
+                        <Connector>
+                            <Name>J1</Name>
+                            <Description>J1 GPIO RS422 : 15 pin D-subminiature</Description>
+                            <Pins>
+                                <Pin ID="pin-ieee-j1-1" Index="1">
+                                    <Name>GND</Name>
+                                    <Description>Digital ground</Description>
+                                    <Designator>GND</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-2" Index="2">
+                                    <Name>Port2+</Name>
+                                    <Description>RS-422 Output port 2 +</Description>
+                                    <Designator>Port2_plus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-3" Index="3">
+                                    <Name>Port2-</Name>
+                                    <Description>RS-422 Output port 2 -</Description>
+                                    <Designator>Port2_minus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-4" Index="4">
+                                    <Name>Port4+</Name>
+                                    <Description>RS-422 Output port 4 +</Description>
+                                    <Designator>Port4_plus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-5" Index="5">
+                                    <Name>Port4-</Name>
+                                    <Description>RS-422 Output port 4 -</Description>
+                                    <Designator>Port4_minus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-7" Index="7">
+                                    <Name>GPO1_A</Name>
+                                    <Description>General-purpose opto-isolated switch 1</Description>
+                                    <Designator>GPO1_A</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-8" Index="8">
+                                    <Name>GPO1_B</Name>
+                                    <Description>General-purpose opto-isolated switch 1</Description>
+                                    <Designator>GPO1_B</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-9" Index="9">
+                                    <Name>Port1+</Name>
+                                    <Description>RS-422 Output port 1 +</Description>
+                                    <Designator>Port1_plus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-10" Index="10">
+                                    <Name>Port1-</Name>
+                                    <Description>RS-422 Output port 1 -</Description>
+                                    <Designator>Port1_minus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-11" Index="11">
+                                    <Name>Port3+</Name>
+                                    <Description>RS-422 Output port 3 +</Description>
+                                    <Designator>Port3_plus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-12" Index="12">
+                                    <Name>Port3-</Name>
+                                    <Description>RS-422 Output port 3 -</Description>
+                                    <Designator>Port3_minus</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-14" Index="14">
+                                    <Name>GPO2_A</Name>
+                                    <Description>General-purpose opto-isolated switch 2</Description>
+                                    <Designator>GPO2_A</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j1-15" Index="15">
+                                    <Name>GPO2_B</Name>
+                                    <Description>General-purpose opto-isolated switch 2</Description>
+                                    <Designator>GPO2_B</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                        <Connector>
+                            <Name>J2</Name>
+                            <Description>J2 Ethernet : 9 pin D-subminiature</Description>
+                            <Pins>
+                                <Pin ID="pin-ieee-j2-1" Index="1">
+                                    <Name>TXDN</Name>
+                                    <Description>Transmit signal (negative polarity)</Description>
+                                    <Designator>TXDN</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j2-2" Index="2">
+                                    <Name>TXDP</Name>
+                                    <Description>Transmit signal (positive polarity)</Description>
+                                    <Designator>TXDP</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j2-4" Index="4">
+                                    <Name>RXDN</Name>
+                                    <Description>Receive signal (negative polarity)</Description>
+                                    <Designator>RXDN</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j2-5" Index="5">
+                                    <Name>RXDP</Name>
+                                    <Description>Receive signal (positive polarity)</Description>
+                                    <Designator>RXDP</Designator>
+                                </Pin>
+                                <Pin ID="pin-ieee-j2-6" Index="6">
+                                    <Name>CHASSIS GND</Name>
+                                    <Description>Chassis ground</Description>
+                                    <Designator>GND</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                    </Connectors>
+                    <Ports>
+                        <Port ID="port-ieee-j1-ch1" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-ieee-j1-1"/>
+                                <PinRef IDREF="pin-ieee-j1-2"/>
+                                <PinRef IDREF="pin-ieee-j1-3"/>
+                                <PinRef IDREF="pin-ieee-j1-4"/>
+                                <PinRef IDREF="pin-ieee-j1-5"/>
+                                <PinRef IDREF="pin-ieee-j1-7"/>
+                                <PinRef IDREF="pin-ieee-j1-8"/>
+                                <PinRef IDREF="pin-ieee-j1-9"/>
+                                <PinRef IDREF="pin-ieee-j1-10"/>
+                                <PinRef IDREF="pin-ieee-j1-11"/>
+                                <PinRef IDREF="pin-ieee-j1-12"/>
+                                <PinRef IDREF="pin-ieee-j1-14"/>
+                                <PinRef IDREF="pin-ieee-j1-15"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-ieee-j2-ch1" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-ieee-j2-1"/>
+                                <PinRef IDREF="pin-ieee-j2-2"/>
+                                <PinRef IDREF="pin-ieee-j2-4"/>
+                                <PinRef IDREF="pin-ieee-j2-5"/>
+                                <PinRef IDREF="pin-ieee-j2-6"/>
+                            </PinRefs>
+                            <PhysicalNetworkPortRef IDREF="pnp-ieee-ethernet"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-sigcond1">
+                    <Name>SignalConditioner1</Name>
+                    <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MSCD-606D-13</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MSCD-606D-13</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Connectors>
+                        <Connector>
+                            <Name>J1</Name>
+                            <Description>J1: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                            <Pins>
+                                <Pin ID="pin-sigcond1-j1-1" Index="1">
+                                    <Name>EX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Out</Description>
+                                    <Designator>EX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-2" Index="2">
+                                    <Name>IN1+</Name>
+                                    <Description>Channel 1 Differential Signal Input +</Description>
+                                    <Designator>IN1+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-3" Index="3">
+                                    <Name>IOUT_1</Name>
+                                    <Description>Channel 1 Current Excitation Out</Description>
+                                    <Designator>IOUT1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-4" Index="4">
+                                    <Name>EX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Out</Description>
+                                    <Designator>EX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-5" Index="5">
+                                    <Name>IN2+</Name>
+                                    <Description>Channel 2 Differential Signal Input +</Description>
+                                    <Designator>IN2+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-6" Index="6">
+                                    <Name>RSVD 0</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-7" Index="7">
+                                    <Name>RSVD 1</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-8" Index="8">
+                                    <Name>AGND 0</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-9" Index="9">
+                                    <Name>IOUT_2</Name>
+                                    <Description>Channel 2 Current Excitation Out</Description>
+                                    <Designator>IOUT2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-10" Index="10">
+                                    <Name>EX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Out</Description>
+                                    <Designator>EX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-11" Index="11">
+                                    <Name>IN3+</Name>
+                                    <Description>Channel 3 Differential Signal Input +</Description>
+                                    <Designator>Pos2-J1-Pin11</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-12" Index="12">
+                                    <Name>IOUT_3</Name>
+                                    <Description>Channel 3 Current Excitation Out</Description>
+                                    <Designator>IOUT3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-13" Index="13">
+                                    <Name>CGND</Name>
+                                    <Description>Chassis Ground</Description>
+                                    <Designator>CGND</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-14" Index="14">
+                                    <Name>REX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Return</Description>
+                                    <Designator>REX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-15" Index="15">
+                                    <Name>IN1-</Name>
+                                    <Description>Channel 1 Differential Signal Input -</Description>
+                                    <Designator>IN1-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-16" Index="16">
+                                    <Name>IRTN_1</Name>
+                                    <Description>Channel 1 Current Excitation Return</Description>
+                                    <Designator>IRTN1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-17" Index="17">
+                                    <Name>REX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Return</Description>
+                                    <Designator>REX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-18" Index="18">
+                                    <Name>IN2-</Name>
+                                    <Description>Channel 2 Differential Signal Input -</Description>
+                                    <Designator>IN2-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-19" Index="19">
+                                    <Name>RSVD 2</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-20" Index="20">
+                                    <Name>RSVD 3</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-21" Index="21">
+                                    <Name>AGND 1</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-22" Index="22">
+                                    <Name>IRTN_2</Name>
+                                    <Description>Channel 2 Current Excitation Return</Description>
+                                    <Designator>IRTN2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-23" Index="23">
+                                    <Name>REX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Return</Description>
+                                    <Designator>REX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-24" Index="24">
+                                    <Name>IN3-</Name>
+                                    <Description>Channel 3 Differential Signal Input -</Description>
+                                    <Designator>IN3-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j1-25" Index="25">
+                                    <Name>IRTN_3</Name>
+                                    <Description>Channel 3 Current Excitation Return</Description>
+                                    <Designator>IRTN3</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                        <Connector>
+                            <Name>J2</Name>
+                            <Description>J2: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                            <Pins>
+                                <Pin ID="pin-sigcond1-j2-1" Index="1">
+                                    <Name>EX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Out</Description>
+                                    <Designator>EX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-2" Index="2">
+                                    <Name>IN1+</Name>
+                                    <Description>Channel 1 Differential Signal Input +</Description>
+                                    <Designator>IN1+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-3" Index="3">
+                                    <Name>IOUT_1</Name>
+                                    <Description>Channel 1 Current Excitation Out</Description>
+                                    <Designator>IOUT1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-4" Index="4">
+                                    <Name>EX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Out</Description>
+                                    <Designator>EX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-5" Index="5">
+                                    <Name>IN2+</Name>
+                                    <Description>Channel 2 Differential Signal Input +</Description>
+                                    <Designator>IN2+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-6" Index="6">
+                                    <Name>RSVD 0</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-7" Index="7">
+                                    <Name>RSVD 1</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-8" Index="8">
+                                    <Name>AGND 0</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-9" Index="9">
+                                    <Name>IOUT_2</Name>
+                                    <Description>Channel 2 Current Excitation Out</Description>
+                                    <Designator>IOUT2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-10" Index="10">
+                                    <Name>EX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Out</Description>
+                                    <Designator>EX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-11" Index="11">
+                                    <Name>IN3+</Name>
+                                    <Description>Channel 3 Differential Signal Input +</Description>
+                                    <Designator>Pos2-J1-Pin11</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-12" Index="12">
+                                    <Name>IOUT_3</Name>
+                                    <Description>Channel 3 Current Excitation Out</Description>
+                                    <Designator>IOUT3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-13" Index="13">
+                                    <Name>CGND</Name>
+                                    <Description>Chassis Ground</Description>
+                                    <Designator>CGND</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-14" Index="14">
+                                    <Name>REX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Return</Description>
+                                    <Designator>REX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-15" Index="15">
+                                    <Name>IN1-</Name>
+                                    <Description>Channel 1 Differential Signal Input -</Description>
+                                    <Designator>IN1-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-16" Index="16">
+                                    <Name>IRTN_1</Name>
+                                    <Description>Channel 1 Current Excitation Return</Description>
+                                    <Designator>IRTN1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-17" Index="17">
+                                    <Name>REX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Return</Description>
+                                    <Designator>REX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-18" Index="18">
+                                    <Name>IN2-</Name>
+                                    <Description>Channel 2 Differential Signal Input -</Description>
+                                    <Designator>IN2-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-19" Index="19">
+                                    <Name>RSVD 2</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-20" Index="20">
+                                    <Name>RSVD 3</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-21" Index="21">
+                                    <Name>AGND 1</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-22" Index="22">
+                                    <Name>IRTN_2</Name>
+                                    <Description>Channel 2 Current Excitation Return</Description>
+                                    <Designator>IRTN2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-23" Index="23">
+                                    <Name>REX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Return</Description>
+                                    <Designator>REX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-24" Index="24">
+                                    <Name>IN3-</Name>
+                                    <Description>Channel 3 Differential Signal Input -</Description>
+                                    <Designator>IN3-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond1-j2-25" Index="25">
+                                    <Name>IRTN_3</Name>
+                                    <Description>Channel 3 Current Excitation Return</Description>
+                                    <Designator>IRTN3</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                    </Connectors>
+                    <Ports>
+                        <Port ID="port-sigcond1-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-2"/>
+                                <PinRef IDREF="pin-sigcond1-j1-15"/>
+                                <PinRef IDREF="pin-sigcond1-j1-3"/>
+                                <PinRef IDREF="pin-sigcond1-j1-16"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond1-j1-ch2" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-5"/>
+                                <PinRef IDREF="pin-sigcond1-j1-18"/>
+                                <PinRef IDREF="pin-sigcond1-j1-9"/>
+                                <PinRef IDREF="pin-sigcond1-j1-22"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond1-j1-ch3" Index="3">
+                            <Name>Ch3</Name>
+                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-11"/>
+                                <PinRef IDREF="pin-sigcond1-j1-14"/>
+                                <PinRef IDREF="pin-sigcond1-j1-12"/>
+                                <PinRef IDREF="pin-sigcond1-j1-25"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond1-j2-ch1" Index="4">
+                            <Name>Ch4</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-2"/>
+                                <PinRef IDREF="pin-sigcond1-j2-15"/>
+                                <PinRef IDREF="pin-sigcond1-j2-3"/>
+                                <PinRef IDREF="pin-sigcond1-j2-16"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond1-j2-ch2" Index="5">
+                            <Name>Ch5</Name>
+                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-5"/>
+                                <PinRef IDREF="pin-sigcond1-j2-18"/>
+                                <PinRef IDREF="pin-sigcond1-j2-9"/>
+                                <PinRef IDREF="pin-sigcond1-j2-22"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond1-j2-ch3" Index="6">
+                            <Name>Ch6</Name>
+                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-11"/>
+                                <PinRef IDREF="pin-sigcond1-j2-14"/>
+                                <PinRef IDREF="pin-sigcond1-j2-12"/>
+                                <PinRef IDREF="pin-sigcond1-j2-25"/>
+                            </PinRefs>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-sigcond2">
+                    <Name>SignalConditioner2</Name>
+                    <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MSCD-606D-13</Model>
+                    <SerialID>00002</SerialID>
+                    <InventoryID>TTC-MSCD-606D-13</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Connectors>
+                        <Connector>
+                            <Name>J1</Name>
+                            <Description>J1: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                            <Pins>
+                                <Pin ID="pin-sigcond2-j1-1" Index="1">
+                                    <Name>EX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Out</Description>
+                                    <Designator>EX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-2" Index="2">
+                                    <Name>IN1+</Name>
+                                    <Description>Channel 1 Differential Signal Input +</Description>
+                                    <Designator>IN1+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-3" Index="3">
+                                    <Name>IOUT_1</Name>
+                                    <Description>Channel 1 Current Excitation Out</Description>
+                                    <Designator>IOUT1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-4" Index="4">
+                                    <Name>EX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Out</Description>
+                                    <Designator>EX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-5" Index="5">
+                                    <Name>IN2+</Name>
+                                    <Description>Channel 2 Differential Signal Input +</Description>
+                                    <Designator>IN2+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-6" Index="6">
+                                    <Name>RSVD 0</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-7" Index="7">
+                                    <Name>RSVD 1</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-8" Index="8">
+                                    <Name>AGND 0</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-9" Index="9">
+                                    <Name>IOUT_2</Name>
+                                    <Description>Channel 2 Current Excitation Out</Description>
+                                    <Designator>IOUT2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-10" Index="10">
+                                    <Name>EX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Out</Description>
+                                    <Designator>EX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-11" Index="11">
+                                    <Name>IN3+</Name>
+                                    <Description>Channel 3 Differential Signal Input +</Description>
+                                    <Designator>Pos2-J1-Pin11</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-12" Index="12">
+                                    <Name>IOUT_3</Name>
+                                    <Description>Channel 3 Current Excitation Out</Description>
+                                    <Designator>IOUT3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-13" Index="13">
+                                    <Name>CGND</Name>
+                                    <Description>Chassis Ground</Description>
+                                    <Designator>CGND</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-14" Index="14">
+                                    <Name>REX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Return</Description>
+                                    <Designator>REX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-15" Index="15">
+                                    <Name>IN1-</Name>
+                                    <Description>Channel 1 Differential Signal Input -</Description>
+                                    <Designator>IN1-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-16" Index="16">
+                                    <Name>IRTN_1</Name>
+                                    <Description>Channel 1 Current Excitation Return</Description>
+                                    <Designator>IRTN1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-17" Index="17">
+                                    <Name>REX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Return</Description>
+                                    <Designator>REX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-18" Index="18">
+                                    <Name>IN2-</Name>
+                                    <Description>Channel 2 Differential Signal Input -</Description>
+                                    <Designator>IN2-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-19" Index="19">
+                                    <Name>RSVD 2</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-20" Index="20">
+                                    <Name>RSVD 3</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-21" Index="21">
+                                    <Name>AGND 1</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-22" Index="22">
+                                    <Name>IRTN_2</Name>
+                                    <Description>Channel 2 Current Excitation Return</Description>
+                                    <Designator>IRTN2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-23" Index="23">
+                                    <Name>REX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Return</Description>
+                                    <Designator>REX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-24" Index="24">
+                                    <Name>IN3-</Name>
+                                    <Description>Channel 3 Differential Signal Input -</Description>
+                                    <Designator>IN3-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j1-25" Index="25">
+                                    <Name>IRTN_3</Name>
+                                    <Description>Channel 3 Current Excitation Return</Description>
+                                    <Designator>IRTN3</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                        <Connector>
+                            <Name>J2</Name>
+                            <Description>J2: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+                            <Pins>
+                                <Pin ID="pin-sigcond2-j2-1" Index="1">
+                                    <Name>EX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Out</Description>
+                                    <Designator>EX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-2" Index="2">
+                                    <Name>IN1+</Name>
+                                    <Description>Channel 1 Differential Signal Input +</Description>
+                                    <Designator>IN1+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-3" Index="3">
+                                    <Name>IOUT_1</Name>
+                                    <Description>Channel 1 Current Excitation Out</Description>
+                                    <Designator>IOUT1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-4" Index="4">
+                                    <Name>EX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Out</Description>
+                                    <Designator>EX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-5" Index="5">
+                                    <Name>IN2+</Name>
+                                    <Description>Channel 2 Differential Signal Input +</Description>
+                                    <Designator>IN2+</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-6" Index="6">
+                                    <Name>RSVD 0</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-7" Index="7">
+                                    <Name>RSVD 1</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-8" Index="8">
+                                    <Name>AGND 0</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND0</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-9" Index="9">
+                                    <Name>IOUT_2</Name>
+                                    <Description>Channel 2 Current Excitation Out</Description>
+                                    <Designator>IOUT2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-10" Index="10">
+                                    <Name>EX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Out</Description>
+                                    <Designator>EX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-11" Index="11">
+                                    <Name>IN3+</Name>
+                                    <Description>Channel 3 Differential Signal Input +</Description>
+                                    <Designator>Pos2-J1-Pin11</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-12" Index="12">
+                                    <Name>IOUT_3</Name>
+                                    <Description>Channel 3 Current Excitation Out</Description>
+                                    <Designator>IOUT3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-13" Index="13">
+                                    <Name>CGND</Name>
+                                    <Description>Chassis Ground</Description>
+                                    <Designator>CGND</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-14" Index="14">
+                                    <Name>REX1</Name>
+                                    <Description>Channel 1 Voltage Excitation Return</Description>
+                                    <Designator>REX1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-15" Index="15">
+                                    <Name>IN1-</Name>
+                                    <Description>Channel 1 Differential Signal Input -</Description>
+                                    <Designator>IN1-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-16" Index="16">
+                                    <Name>IRTN_1</Name>
+                                    <Description>Channel 1 Current Excitation Return</Description>
+                                    <Designator>IRTN1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-17" Index="17">
+                                    <Name>REX2</Name>
+                                    <Description>Channel 2 Voltage Excitation Return</Description>
+                                    <Designator>REX2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-18" Index="18">
+                                    <Name>IN2-</Name>
+                                    <Description>Channel 2 Differential Signal Input -</Description>
+                                    <Designator>IN2-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-19" Index="19">
+                                    <Name>RSVD 2</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-20" Index="20">
+                                    <Name>RSVD 3</Name>
+                                    <Description>Reserved</Description>
+                                    <Designator>RSVD3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-21" Index="21">
+                                    <Name>AGND 1</Name>
+                                    <Description>Analog Ground</Description>
+                                    <Designator>AGND1</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-22" Index="22">
+                                    <Name>IRTN_2</Name>
+                                    <Description>Channel 2 Current Excitation Return</Description>
+                                    <Designator>IRTN2</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-23" Index="23">
+                                    <Name>REX3</Name>
+                                    <Description>Channel 3 Voltage Excitation Return</Description>
+                                    <Designator>REX3</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-24" Index="24">
+                                    <Name>IN3-</Name>
+                                    <Description>Channel 3 Differential Signal Input -</Description>
+                                    <Designator>IN3-</Designator>
+                                </Pin>
+                                <Pin ID="pin-sigcond2-j2-25" Index="25">
+                                    <Name>IRTN_3</Name>
+                                    <Description>Channel 3 Current Excitation Return</Description>
+                                    <Designator>IRTN3</Designator>
+                                </Pin>
+                            </Pins>
+                        </Connector>
+                    </Connectors>
+                    <Ports>
+                        <Port ID="port-sigcond2-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-2"/>
+                                <PinRef IDREF="pin-sigcond1-j1-15"/>
+                                <PinRef IDREF="pin-sigcond1-j1-3"/>
+                                <PinRef IDREF="pin-sigcond1-j1-16"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond2-j1-ch2" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-5"/>
+                                <PinRef IDREF="pin-sigcond1-j1-18"/>
+                                <PinRef IDREF="pin-sigcond1-j1-9"/>
+                                <PinRef IDREF="pin-sigcond1-j1-22"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond2-j1-ch3" Index="3">
+                            <Name>Ch3</Name>
+                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j1-11"/>
+                                <PinRef IDREF="pin-sigcond1-j1-14"/>
+                                <PinRef IDREF="pin-sigcond1-j1-12"/>
+                                <PinRef IDREF="pin-sigcond1-j1-25"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond2-j2-ch1" Index="4">
+                            <Name>Ch4</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-2"/>
+                                <PinRef IDREF="pin-sigcond1-j2-15"/>
+                                <PinRef IDREF="pin-sigcond1-j2-3"/>
+                                <PinRef IDREF="pin-sigcond1-j2-16"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond2-j2-ch2" Index="5">
+                            <Name>Ch5</Name>
+                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-5"/>
+                                <PinRef IDREF="pin-sigcond1-j2-18"/>
+                                <PinRef IDREF="pin-sigcond1-j2-9"/>
+                                <PinRef IDREF="pin-sigcond1-j2-22"/>
+                            </PinRefs>
+                        </Port>
+                        <Port ID="port-sigcond2-j2-ch3" Index="6">
+                            <Name>Ch6</Name>
+                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PinRefs>
+                                <PinRef IDREF="pin-sigcond1-j2-11"/>
+                                <PinRef IDREF="pin-sigcond1-j2-14"/>
+                                <PinRef IDREF="pin-sigcond1-j2-12"/>
+                                <PinRef IDREF="pin-sigcond1-j2-25"/>
+                            </PinRefs>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-thermo">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>TTC MTCD-208B-1 8-channel thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MTCD-208B-1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MTCD-208B-1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-thermo-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch2" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch3" Index="3">
+                            <Name>Ch3</Name>
+                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch4" Index="4">
+                            <Name>Ch4</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch5" Index="5">
+                            <Name>Ch5</Name>
+                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch6" Index="6">
+                            <Name>Ch6</Name>
+                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch7" Index="7">
+                            <Name>Ch7</Name>
+                            <Description>Ch7 : Channel 7 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-thermo-j1-ch8" Index="8">
+                            <Name>Ch8</Name>
+                            <Description>Ch8 : Channel 8 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <SampleRate>250</SampleRate>
+                                <SampleRate>1000</SampleRate>
+                                <DataLength>12</DataLength>
+                                <DataLength>16</DataLength>
+                                <BBNDataRate>4000</BBNDataRate>
+                                <BBNDataRate>12000</BBNDataRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-bus1">
+                    <Name>BusMonitor1</Name>
+                    <Description>TTC MBIM-429C-1 8-channel bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MBIM-429C-1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MBIM-429C-1</InventoryID>
+                    <Position>4</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-bus1-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch2" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch3" Index="3">
+                            <Name>Ch3</Name>
+                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch4" Index="4">
+                            <Name>Ch4</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch5" Index="5">
+                            <Name>Ch5</Name>
+                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch6" Index="6">
+                            <Name>Ch6</Name>
+                            <Description>Ch6 : Channel 6 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch7" Index="7">
+                            <Name>Ch7</Name>
+                            <Description>Ch7 : Channel 7 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus1-j1-ch8" Index="8">
+                            <Name>Ch8</Name>
+                            <Description>Ch8 : Channel 8 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-bus2">
+                    <Name>BusMonitor2</Name>
+                    <Description>TTC MBIM-553A-1 dual redundant bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MBIM-553A-1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MBIM-553A-1</InventoryID>
+                    <Position>5</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-bus2-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-bus2-j2-ch1" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>12500</SampleRate>
+                                <SampleRate>50000</SampleRate>
+                                <SampleRate>100000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-power1">
+                    <Name>PowerSupply1</Name>
+                    <Description>TTC MPFM-461-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MPFM-461-1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MPFM-461-1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-power1-j1-ch1" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Power</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-power2">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>TTC</Manufacturer>
+                    <Model>MPSM-2515-1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>TTC-MPSM-2515-1</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="nn-dau-ex3">
+        <Name>Example3DAU</Name>
+        <Description>Scenario 5 example 3 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
+        </GenericParameter>
+        <InventoryID>Example3DAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>Acra</Manufacturer>
+        <Model>KAM/CHS/09U</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>999999999</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="tma-dau-ex3">
+                <Name>Example3DAUApp</Name>
+                <Description>Scenario 5 example 3 DAU application.</Description>
+                <RoleID>Example3DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>Acra</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2018_01_18_00:00:00_Example3DAUApp</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="ni-bcu-eth0-ex3"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="mod-power1-ex3">
+                    <Name>PowerSupply1</Name>
+                    <Description>Acra KAM/CHS/09U integrated power supply 1. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAM/CHS/09U</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>Acra-KAM/CHS/09U-PS1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-power1-j1-ch1-ex3" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Power</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-bcu-ex3">
+                    <Name>EthernetModule</Name>
+                    <Description>Acra KAD/BCU/105 controller and ethernet.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAD/BCU/105</Model>
+                    <SerialID>AB1234</SerialID>
+                    <InventoryID>Acra-KAD/BCU/105</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="tma-dau-ex3"/>
+                    </RunningAppRefs>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="ni-bcu-eth0-ex3">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.101.203</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="pnp-bcu-ethernet-ex3">
+                                    <Name>Ethernet</Name>
+                                    <Description>BCU J1 100BaseTx Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="port-ieee-j1-ch1-ex3" Index="1">
+                            <Name>Ethernet</Name>
+                            <Description>100BaseTx Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PhysicalNetworkPortRef IDREF="pnp-bcu-ethernet-ex3"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-adc-ex3">
+                    <Name>ADC</Name>
+                    <Description>Acra KAD/ADC/109/S1 8-channel ADC module.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAD/ADC/109/S1</Model>
+                    <SerialID>AB1234</SerialID>
+                    <InventoryID>Acra-KAD/ADC/109/S1</InventoryID>
+                    <Position>2</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-adc-j1-ch1-ex3" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j1-ch2-ex3" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j1-ch3-ex3" Index="3">
+                            <Name>Ch3</Name>
+                            <Description>Ch3 : Channel 3 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j1-ch4-ex3" Index="4">
+                            <Name>Ch4</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j2-ch1-ex3" Index="5">
+                            <Name>Ch5</Name>
+                            <Description>Ch4 : Channel 4 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j2-ch2-ex3" Index="6">
+                            <Name>Ch6</Name>
+                            <Description>Ch5 : Channel 5 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j2-ch3-ex3" Index="7">
+                            <Name>Ch7</Name>
+                            <Description>Ch7 : Channel 7 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-adc-j2-ch4-ex3" Index="8">
+                            <Name>Ch8</Name>
+                            <Description>Ch8 : Channel 8 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <SampleRate>96000</SampleRate>
+                                <SampleRate>192000</SampleRate>
+                                <DataLength>16</DataLength>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-tcg-ex3">
+                    <Name>Time</Name>
+                    <Description>Acra KAM/TCG/102 GPS.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAM/TCG/102</Model>
+                    <SerialID>AB1234</SerialID>
+                    <InventoryID>Acra-KAM/TCG/102</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-tcg-j1-ch1-ex3" Index="1">
+                            <Name>RF</Name>
+                            <Description>RF in.</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-tcg-j2-ch1-ex3" Index="2">
+                            <Name>GPS</Name>
+                            <Description>GPS Port.</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <SampleRate>4800</SampleRate>
+                                <SampleRate>9600</SampleRate>
+                                <SampleRate>19200</SampleRate>
+                                <SampleRate>38400</SampleRate>
+                                <SampleRate>57600</SampleRate>
+                                <SampleRate>115200</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-msb-ex3">
+                    <Name>BusMonitor</Name>
+                    <Description>Acra KAD/MSB/103 dual redundant bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAD/MSB/103</Model>
+                    <SerialID>FA2342</SerialID>
+                    <InventoryID>Acra-KAD/MSB/103</InventoryID>
+                    <Position>4</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="port-msb-j1-ch1-ex2" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>2000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                        <Port ID="port-msb-j2-ch1-ex2" Index="2">
+                            <Name>Ch2</Name>
+                            <Description>Ch2 : Channel 2 Signal Input</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <SampleRate>2000</SampleRate>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="mod-power2-ex3">
+                    <Name>PowerSupply2</Name>
+                    <Description>Acra KAM/CHS/09U integrated power supply 2. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>Acra</Manufacturer>
+                    <Model>KAM/CHS/09U</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>Acra-KAM/CHS/09U-PS2</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Ch1 : Channel 1 Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+</DAUInventory>
