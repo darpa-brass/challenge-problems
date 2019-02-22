@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---    Radio Queue Status Display for Link Manager Algorithm Evaluator     ---
 # ---                                                                        ---
-# --- Last Updated: February 20, 2019                                         ---
+# --- Last Updated: February 22, 2019                                         ---
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -34,7 +34,8 @@ enforce_max_q_size = False         # Should the simulation enforce the MAX_QUEUE
 debug = 0                           # Debug value: initially 0, e.g. no debug
 
 radio_list = []                     # List of Radio objects
-
+system_vals_array = []              # Array for holding last 'N' system values for sliding average
+AVG_WINDOW_SIZE = 100
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -48,6 +49,7 @@ class Radio:
         self.din_bps = 0            # bits per second
         self.dout_bps = 0           # bits per second
         self.inburst_factor = 0.0   # deviation from input value
+        self.burst_din_bps = 0.0    #
         self.value_per_kb_tx = 0.0  #
         self.current_epoch_value = 0.0 # value of transmitted kbits from last epoch
         self.q_delta_bps = 0        # bits per second
@@ -58,8 +60,8 @@ class Radio:
     def update_q(self):
         if self.online is False:
             return
-        burst_din = self.din_bps * (1+(random.uniform((-1*self.inburst_factor), self.inburst_factor)))
-        self.q_delta_bps = burst_din - self.dout_bps
+        self.burst_din_bps = self.din_bps * (1+(random.uniform((-1*self.inburst_factor), self.inburst_factor)))
+        self.q_delta_bps = self.burst_din_bps - self.dout_bps
 
         # if q_delta_bps is positive (+), then queue grows
         if self.q_delta_bps > 0:
@@ -93,6 +95,7 @@ class Radio:
         self.din_bps = 0
         self.dout_bps = 0
         self.inburst_factor = 0.0
+        self.burst_din_bps = 0.0
         self.q_delta_bps = 0
         self.val_per_kb_tx = 0.0
         self.current_epoch_value = 0.0
@@ -111,13 +114,27 @@ def run_epoch():
     global next_timer
     global time_pad
     global text_d
+    global realtime_mode
+    global q_viz_mode
     
     # Set callback timer for next epoch update
     next_timer = threading.Timer(epoch_sec, run_epoch)
     next_timer.start()
 
     height, width = stdscr.getmaxyx()
-    
+
+    stdscr.nodelay(True)
+
+    # Set Command Line Mode
+    keypress = stdscr.getch()
+    if keypress != -1:
+        if keypress == ord('r'):    # If selected, use 'Realtime Mode'
+            realtime_mode = True
+        elif keypress == ord('s'):  # If selected, use 'Slow Refresh mode'
+            realtime_mode = False
+        elif keypress == ord('q'):  # If selected, toggle Queue Visualization
+            q_viz_mode = not(q_viz_mode)
+
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
     with open("data_input_rates.json") as f:        # TODO: make filename a command line argument
         ldict_radios = json.load(f)
@@ -225,11 +242,12 @@ def run_epoch():
             
         # Print to screen
         print_banner()
-        print_border(len(radio_list))
+        #print_border(len(radio_list))
         print_time()
         print_lm_stats(radio_list)
         print_radio_stats(radio_list)
-        print_queues(radio_list)
+        if q_viz_mode is True:
+            print_queues(radio_list)
         print_system_values(radio_list)
     
         stdscr.refresh()
@@ -316,45 +334,60 @@ def print_lm_stats(rlist):
     
     height, width = stdscr.getmaxyx()
     
-    # Color Pair Assignments
-    txt_CYAN_on_BLACK = curses.color_pair(5)
-    txt_GREEN_on_BLACK = curses.color_pair(6)
-    txt_YELLOW_on_BLACK = curses.color_pair(7)
-    txt_RED_on_BLACK = curses.color_pair(8)
-    txt_MAGENTA_on_BLACK = curses.color_pair(9)
-    # txt_WHITE_on_BLACK = curses.color_pair(10)
-    
     total_bw_allocated = 0
+    total_bw_utilized = 0
     
     for r in rlist:
         total_bw_allocated += r.dout_bps
+        if r.current_epoch_value == 0:
+            total_bw_utilized += 0
+        else:
+            total_bw_utilized += ((r.current_epoch_value / r.value_per_kb_tx) * r.epochs_per_sec) / 1000    # in Mbps
     
     total_bw_allocated_Mbps = total_bw_allocated / 1000000
-    utilization = (total_bw_allocated_Mbps / MAX_BW_MBPS) * 100
-    
+    utilization_of_max = (total_bw_allocated_Mbps / MAX_BW_MBPS) * 100
+    effective_efficiency = (total_bw_utilized / MAX_BW_MBPS) * 100
+
     header = "+------------------------------------------------------------------------------------+"
-    bw_str = "|   LM Total Bandwidth Allocated:  {0:7.3f} Mbps of {1:5.3f} Mbps  |  {2:6.2f}% utilized  |".format(
+    bw_str1 = "|  LM Total Bandwidth Allocated:  {0:7.3f} Mbps of {1:5.3f} Mbps  |  {2:6.2f}% utilized   |".format(
         total_bw_allocated_Mbps,
         MAX_BW_MBPS,
-        utilization)
+        utilization_of_max)
+    bw_str2 = "|  Radios' Bandwidth Utilized:    {0:7.3f} Mbps of the {1:5.3f} Mbps Allocated ({2:5.2f}%)  |".format(
+        total_bw_utilized,
+        total_bw_allocated_Mbps,
+        float((total_bw_utilized / total_bw_allocated_Mbps) * 100))
+    bw_str3 = "|  Effective LM Allocation Efficiency:   {0:6.2f}% {1} |".format(effective_efficiency, ' '*35)
     
     lm_pad.addstr(0, 0, header, text_d['BANNER'] | curses.A_BOLD)
-    if utilization == 0:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_0'] | curses.A_BOLD | curses.A_STANDOUT | BLINK)
-    elif utilization < 50:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_50'] | curses.A_BOLD | curses.A_STANDOUT | BLINK)
-    elif utilization < 80:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_80'] | curses.A_BOLD | curses.A_STANDOUT)
-    elif utilization < 95:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_95'] | curses.A_BOLD | curses.A_STANDOUT)
-    elif utilization <= 100:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_100'] | curses.A_BOLD | curses.A_STANDOUT | BLINK)
+    if utilization_of_max == 0:
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_0'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_0'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_0'] | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization_of_max < 50:
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_50'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_50'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_50'] | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization_of_max < 80:
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_80'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_80'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_80'] | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization_of_max < 95:
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_95'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_95'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_95'] | curses.A_BOLD | curses.A_STANDOUT)
+    elif utilization_of_max <= 100:
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_100'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_100'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_100'] | curses.A_BOLD | curses.A_STANDOUT)
     else:
-        lm_pad.addstr(1, 0, bw_str, text_d['LM_101'] | curses.A_BOLD | curses.A_STANDOUT | BLINK)
-    lm_pad.addstr(2, 0, header, text_d['BANNER'] | curses.A_BOLD)
+        lm_pad.addstr(1, 0, bw_str1, text_d['LM_101'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(2, 0, bw_str2, text_d['LM_101'] | curses.A_BOLD | curses.A_STANDOUT)
+        lm_pad.addstr(3, 0, bw_str3, text_d['LM_101'] | curses.A_BOLD | curses.A_STANDOUT)
+    lm_pad.addstr(4, 0, header, text_d['BANNER'] | curses.A_BOLD)
     
     start_line_pos = 7
-    last_line_pos = 9
+    last_line_pos = 11
     
     if (height-1) >= last_line_pos:
         lm_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, (width-1))
@@ -368,44 +401,67 @@ def print_lm_stats(rlist):
 def print_radio_stats(rlist):
     global radio_pad
     global text_d
+    global border_d
 
-    rwin_width = 108
-    radio_pad = curses.newpad((len(rlist)+1), rwin_width)
+    rwin_width = 87
+    radio_pad = curses.newpad((len(rlist)+2), rwin_width)
     radio_pad.bkgd(text_d['BG'])
-    
+
     height, width = stdscr.getmaxyx()
-    
-    header = "{0:^10}|{1:^18}|{2:^18}|{3:^18}|{4:^20}|{5:^17}".format(
+
+    # radio_pad.border(border_d['LS'], border_d['RS'], border_d['TS'], border_d['BS'],
+    #                 border_d['TL'], border_d['TR'], border_d['BL'], border_d['BR'])
+    horizon = border_d['TS'] * (rwin_width - 3)
+    radio_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
+    radio_pad.addstr(len(rlist) + 1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
+
+    header = "{0:^10}|{1:^16}|{2:^16}|{3:^18}|{4:^7}|{5:^9}".format(
         'Radio',
         'Allocated BW',
-        'Avg Data-In Rate',
-        'Queue Depth',
-        'Queue Status',
-        'Current Value')
-    radio_pad.addstr(0, 0, header, curses.A_BOLD | curses.A_UNDERLINE)
+        'Avg Data Input',
+        ' Queue Depth',
+        'Trend',
+        'Value')
+    #radio_pad.addstr(0, 0, header, curses.A_BOLD | curses.A_UNDERLINE)
+    radio_pad.addstr(0, 2, " Radio ")
+    radio_pad.addstr(0, 13, " Allocated BW ")
+    radio_pad.addstr(0, 30, " Avg Data Input ")
+    radio_pad.addstr(0, 50, " Queue Depth ")
+    radio_pad.addstr(0, 67, " Trend ")
+    radio_pad.addstr(0, 76, " Value ")
     
     txt_mode = curses.A_DIM
     
     for idx, r in enumerate(radio_list, start=1):
         if r.online is False:
-            q_status = " X   (OFFLINE)  "
-            txt_mode = (text_d['OFFLINE'] | curses.A_BOLD | curses.A_REVERSE | BLINK)
+            #q_status = " X   (OFFLINE)  "
+            q_status = 'OFF'
+            #txt_mode = (text_d['OFFLINE'] | curses.A_REVERSE | curses.A_BOLD | BLINK)
+            txt_mode = (curses.color_pair(((idx-1) % 2) + 1) | curses.A_BOLD)
         elif r.q_delta_bps > 0: 
-            q_status = " ^   (growing)  "
-            txt_mode = (text_d['Q_GROW'] | curses.A_REVERSE | curses.A_BOLD)
+            #q_status = " ^   (growing)  "
+            q_status = ' ^ '
+            #txt_mode = (text_d['Q_GROW'] | curses.A_REVERSE | curses.A_BOLD)
+            txt_mode = (curses.color_pair(((idx-1) % 2) + 1) | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len > 0): 
-            q_status = " v   (shrinking)"
-            txt_mode = (text_d['Q_SHRINK'] | curses.A_REVERSE | curses.A_BOLD)
+            #q_status = " v   (shrinking)"
+            q_status = ' v '
+            #txt_mode = (text_d['Q_SHRINK'] | curses.A_REVERSE | curses.A_BOLD)
+            txt_mode = (curses.color_pair(((idx-1) % 2) + 1) | curses.A_BOLD)
         elif (r.q_delta_bps < 0) and (r.q_len == 0): 
-            q_status = " _   (empty)    "
-            txt_mode = (text_d['Q_EMPTY'] | curses.A_REVERSE | curses.A_BOLD)
+            #q_status = " _   (empty)    "
+            q_status = ' _ '
+            #txt_mode = (text_d['Q_EMPTY'] | curses.A_REVERSE | curses.A_BOLD)
+            txt_mode = (curses.color_pair(((idx-1) % 2) + 1) | curses.A_BOLD)
         elif r.q_delta_bps == 0: 
-            q_status = " -   (balanced) "
-            txt_mode = (text_d['Q_STEADY'] | curses.A_REVERSE | curses.A_BOLD)
+            #q_status = " -   (balanced) "
+            q_status = ' - '
+            #txt_mode = (text_d['Q_STEADY'] | curses.A_REVERSE | curses.A_BOLD)
+            txt_mode = (curses.color_pair(((idx-1) % 2) + 1) | curses.A_BOLD)
         else: 
             q_status = " meh"
         
-        radio_str = "{0:^10}| {1:10.3f} kbps  | {2:10.3f} kbps  | {3:8.3f} KBytes  |  {4}  | {5:10.3f}      ".format(
+        radio_str = "{0:^10}| {1:8.0f} kbps  | {2:10.0f} kbps  | {3:8.1f} KBytes  |  {4}  | {5:6.1f}  ".format(
             r.name, 
             (r.dout_bps / 1000), 
             (r.din_bps / 1000),
@@ -413,13 +469,21 @@ def print_radio_stats(rlist):
             q_status,
             r.current_epoch_value)
         
-        radio_pad.addstr(idx, 0, radio_str, txt_mode)     # idx corresponds to row number for printing
-        
-    start_line_pos = 11
-    last_line_pos = len(rlist) + 11
+        radio_pad.addstr(idx, 1, radio_str, txt_mode)     # idx corresponds to row number for printing
+        radio_pad.addstr(idx, 0, border_d['LS'], text_d['BORDER'])
+        radio_pad.addstr(idx, rwin_width-2, border_d['RS'], text_d['BORDER'])
 
-    if (width-1) > 107:
-        pad_width = 107
+        no_check = u'\u2610'
+        yes_check = u'\u2611'
+        biohazard = u'\u2623'
+        if r.current_epoch_value < (((r.dout_bps / r.epochs_per_sec) / 1000) * r.value_per_kb_tx):
+            radio_pad.addstr(idx, 81, biohazard, text_d['WARNING_BLACK'])
+        
+    start_line_pos = 13
+    last_line_pos = len(rlist) + 14
+
+    if (width-1) > rwin_width:
+        pad_width = rwin_width
     else:
         pad_width = width-1
 
@@ -436,7 +500,7 @@ def print_queues(rlist):
     global q_pad
     qwin_width = 86
     
-    q_pad = curses.newpad(((len(rlist)*3)+3), qwin_width)
+    q_pad = curses.newpad(((len(rlist))+3), qwin_width)
     q_pad.bkgd(text_d['BG'])
     
     height, width = stdscr.getmaxyx()
@@ -444,20 +508,16 @@ def print_queues(rlist):
     header = " {0:^11}|{1:^50}|{2:^22}".format('Radio', 'Queue', 'Queue Status')
     blank = " " * (qwin_width-1)
     q_pad.addstr(0, 0, header, curses.A_REVERSE | curses.A_BOLD)                              # Header Row / Top Border
-    q_pad.addstr((len(rlist)*3)+1, 0, "{0}".format(blank), curses.A_REVERSE | curses.A_BOLD)  # Bottom Border
-    q_pad.addstr((len(rlist)*3)+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)  # Bottom Right Border Character
+    q_pad.addstr((len(rlist))+1, 0, "{0}".format(blank), curses.A_REVERSE | curses.A_BOLD)    # Bottom Border
+    q_pad.addstr((len(rlist))+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)    # Bottom Right Border Character
     
     for idx, r in enumerate(rlist, start=0):
-        q_pad.addstr((3*idx)+1, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
-        q_pad.addstr((3*idx)+2, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
-        q_pad.addstr((3*idx)+3, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
-        q_pad.addstr((3*idx)+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
-        q_pad.addstr((3*idx)+2, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
-        q_pad.addstr((3*idx)+3, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
+        q_pad.addstr((idx)+1, 0, " ", curses.A_REVERSE | curses.A_BOLD)                # Left Border Character
+        q_pad.addstr((idx)+1, qwin_width-1, " ", curses.A_REVERSE | curses.A_BOLD)     # Right Border Character
         print_queue(r, int(idx))                                # Update the Queue graphic for the iterated Radio
              
-    start_line_pos = len(rlist) + 14
-    last_line_pos = (len(rlist) * 4) + 17
+    start_line_pos = len(rlist) + 16
+    last_line_pos = (len(rlist) * 2) + 19
     
     if (height-1) >= last_line_pos:
         q_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, (width-1))
@@ -489,24 +549,28 @@ def print_queue(r, idx):
     else:
         q_state = "Utilized"
     
-    if q_chars < 10:
-        txt_mode = text_d['BAR_EMPTY']
-    elif q_chars < 20:
-        txt_mode = text_d['BAR_20']
-    elif q_chars < 30:
-        txt_mode = text_d['BAR_40']
-    elif q_chars < 40:
-        txt_mode = text_d['BAR_60']
-    elif q_chars < 50:
-        txt_mode = text_d['BAR_80']
-    else:
-        txt_mode = text_d['ERROR_BLACK'] | BLINK
+    #if q_chars < 10:
+    #    txt_mode = text_d['BAR_EMPTY']
+    #elif q_chars < 20:
+    #    txt_mode = text_d['BAR_20']
+    #elif q_chars < 30:
+    #    txt_mode = text_d['BAR_40']
+    #elif q_chars < 40:
+    #    txt_mode = text_d['BAR_60']
+    #elif q_chars < 50:
+    #    txt_mode = text_d['BAR_80']
+    #else:
+    #    txt_mode = text_d['ERROR_BLACK'] | BLINK
+    txt_mode = curses.color_pair((idx % 2) + 1)
     
-    q_str = "|{0:50}|  {1:2d}% Queue {2}".format(q_graphic, q_full_pct, q_state)
-    q_pad.addstr((3*idx)+1, 12, header, txt_mode | curses.A_BOLD)
-    q_pad.addstr((3*idx)+2,  1, "{0:^11}".format(r.name), curses.A_BOLD)
-    q_pad.addstr((3*idx)+2, 12, q_str,  txt_mode | curses.A_BOLD)
-    q_pad.addstr((3*idx)+3, 12, header, txt_mode | curses.A_BOLD)
+    #q_str = "|{0:50}|  {1:2d}% Queue {2}".format(q_graphic, q_full_pct, q_state)
+    q_str = "|{0:50}|".format(q_graphic)
+    q_pct = "{0:3d}%".format(q_full_pct)
+    #q_pad.addstr((3*idx)+1, 12, header, txt_mode | curses.A_BOLD)
+    q_pad.addstr((idx)+1,  1, "{0:^11}".format(r.name), txt_mode | curses.A_BOLD)
+    q_pad.addstr((idx)+1, 12, q_str,  txt_mode | curses.A_BOLD)
+    q_pad.addstr((idx)+1, 58, q_pct, txt_mode | curses.A_BOLD)
+    #q_pad.addstr((3*idx)+3, 12, header, txt_mode | curses.A_BOLD)
  
     
 # ------------------------------------------------------------------------------
@@ -514,6 +578,8 @@ def print_queue(r, idx):
 
 def print_system_values(rlist):
     global system_value_pad
+    global avg_system_val
+    global AVG_WINDOW_SIZE
 
     system_value_pad.bkgd(text_d['BG'])
     height, width = stdscr.getmaxyx()
@@ -522,8 +588,12 @@ def print_system_values(rlist):
     for r in rlist:
         sum_current_epoch_values += r.current_epoch_value
 
+    avg_sys_val = calculate_avg_system_value(sum_current_epoch_values)
+
     system_value_pad.addstr(0, 0, "Current System Value:", curses.A_UNDERLINE)
     system_value_pad.addstr(1, 0, "    {0:^10.3f}".format(sum_current_epoch_values))
+    system_value_pad.addstr(3, 0, "Average System Value:", curses.A_UNDERLINE)
+    system_value_pad.addstr(4, 0, "    {0:^10.3f}".format(avg_sys_val))
 
     start_line_pos = 3
     start_width_pos = 91
@@ -534,6 +604,23 @@ def print_system_values(rlist):
         system_value_pad.noutrefresh(0, 0, start_line_pos, start_width_pos, last_line_pos, last_width_pos)
     elif (width-1) >= start_width_pos:
         system_value_pad.noutrefresh(0, 0, start_line_pos, start_width_pos, last_line_pos, (width-1))
+
+
+# ------------------------------------------------------------------------------
+
+
+def calculate_avg_system_value(current_value):
+    global system_vals_array
+    global AVG_WINDOW_SIZE
+    global epoch_num
+
+    if len(system_vals_array) < AVG_WINDOW_SIZE:
+        system_vals_array.append(float(current_value))
+    else:
+        pos = epoch_num % AVG_WINDOW_SIZE
+        system_vals_array[pos] = float(current_value)
+
+    return float(sum(system_vals_array)) / (max(len(system_vals_array), 1))
 
 
 # ------------------------------------------------------------------------------
@@ -618,8 +705,12 @@ def print_border(num_radios):
     global text_d
 
     height, width = stdscr.getmaxyx()
-    
-    pad_lines = (num_radios * 4) + 15
+
+    if q_viz_mode:
+        pad_lines = (num_radios * 2) + 17       # border contains Queue Visualization
+    else:
+        pad_lines = (num_radios) + 13           # border does not contain Queue Visualization
+
     border_pad = curses.newpad(pad_lines, 91)
     border_pad.bkgd(text_d['BG'])
 
@@ -645,6 +736,16 @@ def print_border(num_radios):
 def main(stdscr):
     global text_d
     # Color Pair Setup
+    curses.init_pair(2, 114, 235)  # greenish 1
+    curses.init_pair(3, 152, 235)  # bluish 1
+    curses.init_pair(1, 182, 235)  # purplish 1
+    curses.init_pair(4, 210, 235)  # redish 1
+    curses.init_pair(5, 229, 235)  # yellowish 1
+    curses.init_pair(6, 42, 235)  # greenish 2
+    curses.init_pair(7, 37, 235)  # bluish 2
+    curses.init_pair(8, 135, 235)  # purplish 2
+    curses.init_pair(9, 175, 235)  # redish 2
+    curses.init_pair(10, 222, 235)  # yellowish 2
     curses.init_pair(11, 114, 15)  # greenish 1 on white
     curses.init_pair(12, 152, 15)  # bluish 1 on white
     curses.init_pair(13, 182, 15)  # purplish 1 on white
@@ -655,6 +756,7 @@ def main(stdscr):
     curses.init_pair(18, 135, 15)  # purplish 2 on white
     curses.init_pair(19, 175, 15)  # redish 2 on white
     curses.init_pair(20, 222, 15)  # yellowish 2 on white
+
     curses.init_pair(50, 15, 235)  # LM Allocation Efficiency: == 0%
     curses.init_pair(51, 229, 235)  # LM Allocation Efficiency: < 50%
     curses.init_pair(52, 37, 235)  # LM Allocation Efficiency: < 80%
@@ -671,6 +773,8 @@ def main(stdscr):
     curses.init_pair(202, 222, 235)  # yellowish = Queue Depth: 40% - 60%
     curses.init_pair(203, 135, 235)  # purplish = Queue Depth: 60% - 80%
     curses.init_pair(204, 175, 235)  # redish = Queue Depth: 80% < 100%
+    curses.init_pair(247, 63, 235)   # border
+    curses.init_pair(248, 11, 235)
     curses.init_pair(249, 27, 235)
     curses.init_pair(250, 10, 235)
     curses.init_pair(251, 10, 15)
@@ -695,6 +799,8 @@ def main(stdscr):
     text_d['BAR_40'] = curses.color_pair(202)
     text_d['BAR_60'] = curses.color_pair(203)
     text_d['BAR_80'] = curses.color_pair(204)
+    text_d['BORDER'] = curses.color_pair(247)
+    text_d['WARNING_BLACK'] = curses.color_pair(248)
     text_d['BANNER'] = curses.color_pair(249)
     text_d['FOR_SCORE'] = curses.color_pair(250)
     text_d['PASS_WHITE'] = curses.color_pair(251)
@@ -702,6 +808,15 @@ def main(stdscr):
     text_d['ERROR_WHITE'] = curses.color_pair(253)
     text_d['ERROR_BLACK'] = curses.color_pair(254)
     text_d['BG'] = curses.color_pair(255)
+
+    border_d['LS'] = u'\u2502'
+    border_d['RS'] = u'\u2502'
+    border_d['TS'] = u'\u2500'
+    border_d['BS'] = u'\u2500'
+    border_d['TL'] = u'\u250c'
+    border_d['TR'] = u'\u2510'
+    border_d['BL'] = u'\u2514'
+    border_d['BR'] = u'\u2518'
 
     if debug == 0:
         stdscr.bkgd(text_d['BG'])
@@ -727,8 +842,10 @@ if __name__ == "__main__":
                         help='Set MAX queue size in Bytes [default: 4194240]', type=int)
     parser.add_argument('-E', action='store', default=100, dest='epoch_size_ms',
                         help='Set the Epoch size (milliseconds) [default: 100]', type=int)
+    #parser.add_argument('-s', action='store_true', default=False, dest='is_summary_mode',
+    #                    help='Run in "Summary Mode"')
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.1.2')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.2.1')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
@@ -737,13 +854,17 @@ if __name__ == "__main__":
     enforce_max_q_size = cli_args.enforce_max_q_size
     if cli_args.max_queue_size >= 0:
         MAX_QUEUE_SIZE_BYTES = cli_args.max_queue_size    # Set MAX Queue Size in Byte if CLI argument provided
+    #is_summary_mode = cli_args.is_summary_mode
+    realtime_mode = False
+    q_viz_mode = True
     debug = cli_args.debug
     text_d = {}
+    border_d = {}
     
     stdscr = curses.initscr()               # Initial main screen for curses
     banner_pad = curses.newpad(4, 90)       # Initialize Banner Pad
     time_pad = curses.newpad(3, 87)         # Initialize Time Pad
-    lm_pad = curses.newpad(3, 87)           # Initialize LM Pad
+    lm_pad = curses.newpad(5, 87)           # Initialize LM Pad
     system_value_pad = curses.newpad(6, 24) # Initialize System Value Pad
     radio_pad = curses.newpad(10, 88)       # Initialize Radio Pad
     q_pad = curses.newpad(10, 88)           # Initialize Queue Pad
