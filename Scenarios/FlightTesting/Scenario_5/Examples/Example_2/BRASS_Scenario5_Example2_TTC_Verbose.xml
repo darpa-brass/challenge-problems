@@ -16,6 +16,17 @@
                 <Measurement ID="meas-signal-16-250">
                     <Name>GenericSignal</Name>
                     <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNMinSampleRate>250</BBNMinSampleRate>
+                        <BBNMaxSampleRate>250</BBNMaxSampleRate>
+                        <BBNMinDataLength>16</BBNMinDataLength>
+                        <BBNMaxDataLength>16</BBNMaxDataLength>
+                        <BBNMinDataRate>4000</BBNMinDataRate>
+                        <BBNMaxDataRate>4000</BBNMaxDataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000001</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -54,6 +65,17 @@
                 <Measurement ID="meas-temp-16-250">
                     <Name>Temperature1</Name>
                     <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNMinSampleRate>250</BBNMinSampleRate>
+                        <BBNMaxSampleRate>250</BBNMaxSampleRate>
+                        <BBNMinDataLength>16</BBNMinDataLength>
+                        <BBNMaxDataLength>16</BBNMaxDataLength>
+                        <BBNMinDataRate>4000</BBNMinDataRate>
+                        <BBNMaxDataRate>4000</BBNMaxDataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000010</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -92,6 +114,17 @@
                 <Measurement ID="meas-temp-12-1000">
                     <Name>Temperature2</Name>
                     <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNMinSampleRate>1000</BBNMinSampleRate>
+                        <BBNMaxSampleRate>1000</BBNMaxSampleRate>
+                        <BBNMinDataLength>12</BBNMinDataLength>
+                        <BBNMaxDataLength>12</BBNMaxDataLength>
+                        <BBNMinDataRate>12000</BBNMinDataRate>
+                        <BBNMaxDataRate>12000</BBNMaxDataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000011</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -151,6 +184,13 @@
                     <NetworkNode ID="nn-dau">
                         <Name>Example2DAU</Name>
                         <Description>Scenario 5 example 2 DAU.</Description>
+                        <GenericParameter>
+                            <NameValues>
+                                <NameValue Name="User" Index="1">BBN</NameValue>
+                            </NameValues>
+                            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+                            <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
+                        </GenericParameter>
                         <InventoryID>Example2DAU</InventoryID>
                         <HostName>SwRI</HostName>
                         <Manufacturer>TTC</Manufacturer>
@@ -185,6 +225,12 @@
                                 <Module ID="mod-processor">
                                     <Name>ProcessingModule</Name>
                                     <Description>TTC MPPC-500-2 processing unit. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MPPC-500-2</Model>
                                     <SerialID>00001</SerialID>
@@ -223,12 +269,11 @@
                                             <Description>Console Serial Port</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <SampleRate>1250000</SampleRate>
                                                 <DataLength>1</DataLength>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PinRefs>
@@ -242,6 +287,13 @@
                                 <Module ID="mod-ieee">
                                     <Name>TimeAndEthernetModule</Name>
                                     <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MACQ-500-4</Model>
                                     <SerialID>00001</SerialID>
@@ -375,6 +427,12 @@
                                         <Port ID="port-ieee-j1-ch1" Index="1">
                                             <Name>Time</Name>
                                             <Description>RS-422 Port 1</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-ieee-j1-1"/>
@@ -395,6 +453,12 @@
                                         <Port ID="port-ieee-j2-ch1" Index="2">
                                             <Name>Ethernet</Name>
                                             <Description>10/100 Fast Ethernet</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-ieee-j2-1"/>
@@ -410,6 +474,12 @@
                                 <Module ID="mod-sigcond1">
                                     <Name>SignalConditioner1</Name>
                                     <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MSCD-606D-13</Model>
                                     <SerialID>00001</SerialID>
@@ -686,12 +756,12 @@
                                             <Description>Ch1 : Channel 1 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -706,12 +776,12 @@
                                             <Description>Ch2 : Channel 2 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -726,12 +796,12 @@
                                             <Description>Ch3 : Channel 3 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -746,12 +816,12 @@
                                             <Description>Ch4 : Channel 4 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -766,12 +836,12 @@
                                             <Description>Ch5 : Channel 5 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -786,12 +856,12 @@
                                             <Description>Ch6 : Channel 6 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -806,6 +876,12 @@
                                 <Module ID="mod-sigcond2">
                                     <Name>SignalConditioner2</Name>
                                     <Description>TTC MSCD-606D-13 6-channel signal conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MSCD-606D-13</Model>
                                     <SerialID>00002</SerialID>
@@ -1082,12 +1158,12 @@
                                             <Description>Ch1 : Channel 1 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1102,12 +1178,12 @@
                                             <Description>Ch2 : Channel 2 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1122,12 +1198,12 @@
                                             <Description>Ch3 : Channel 3 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1142,12 +1218,12 @@
                                             <Description>Ch4 : Channel 4 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1162,12 +1238,12 @@
                                             <Description>Ch5 : Channel 5 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1182,12 +1258,12 @@
                                             <Description>Ch6 : Channel 6 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
-                                                <BBNProvidesExcitation>true</BBNProvidesExcitation>
+                                                <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PinRefs>
@@ -1202,6 +1278,12 @@
                                 <Module ID="mod-thermo">
                                     <Name>ThermocoupleConditioner</Name>
                                     <Description>TTC MTCD-208B-1 8-channel thermocouple conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MTCD-208B-1</Model>
                                     <SerialID>00001</SerialID>
@@ -1214,7 +1296,7 @@
                                             <Description>Ch1 : Channel 1 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1223,7 +1305,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1232,7 +1313,7 @@
                                             <Description>Ch2 : Channel 2 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1241,7 +1322,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1250,7 +1330,7 @@
                                             <Description>Ch3 : Channel 3 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1259,7 +1339,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1268,7 +1347,7 @@
                                             <Description>Ch4 : Channel 4 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1277,7 +1356,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1286,7 +1364,7 @@
                                             <Description>Ch5 : Channel 5 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1295,7 +1373,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1304,7 +1381,7 @@
                                             <Description>Ch6 : Channel 6 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1313,7 +1390,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1322,7 +1398,7 @@
                                             <Description>Ch7 : Channel 7 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1331,7 +1407,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1340,7 +1415,7 @@
                                             <Description>Ch8 : Channel 8 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
@@ -1349,7 +1424,6 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1358,6 +1432,12 @@
                                 <Module ID="mod-bus1">
                                     <Name>BusMonitor1</Name>
                                     <Description>TTC MBIM-429C-1 8-channel bus monitor.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MBIM-429C-1</Model>
                                     <SerialID>00001</SerialID>
@@ -1370,13 +1450,12 @@
                                             <Description>Ch1 : Channel 1 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1385,13 +1464,12 @@
                                             <Description>Ch2 : Channel 2 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1400,13 +1478,12 @@
                                             <Description>Ch3 : Channel 3 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1415,13 +1492,12 @@
                                             <Description>Ch4 : Channel 4 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1430,13 +1506,12 @@
                                             <Description>Ch5 : Channel 5 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1445,13 +1520,12 @@
                                             <Description>Ch6 : Channel 6 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1460,13 +1534,12 @@
                                             <Description>Ch7 : Channel 7 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1475,13 +1548,12 @@
                                             <Description>Ch8 : Channel 8 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1490,6 +1562,12 @@
                                 <Module ID="mod-bus2">
                                     <Name>BusMonitor2</Name>
                                     <Description>TTC MBIM-553A-1 dual redundant bus monitor.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MBIM-553A-1</Model>
                                     <SerialID>00001</SerialID>
@@ -1502,13 +1580,12 @@
                                             <Description>Ch1 : Channel 1 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1517,13 +1594,12 @@
                                             <Description>Ch2 : Channel 2 Signal Input</Description>
                                             <GenericParameter>
                                                 <NameValues>
-                                                    <NameValue Name="BBN" Index="1"/>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
                                                 <SampleRate>12500</SampleRate>
                                                 <SampleRate>50000</SampleRate>
                                                 <SampleRate>100000</SampleRate>
-                                                <BBNProvidesExcitation>false</BBNProvidesExcitation>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -1532,6 +1608,12 @@
                                 <Module ID="mod-power1">
                                     <Name>PowerSupply1</Name>
                                     <Description>TTC MPFM-461-1 mini power supply. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MPFM-461-1</Model>
                                     <SerialID>00001</SerialID>
@@ -1542,6 +1624,12 @@
                                         <Port ID="port-power1-j1-ch1" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>Ch1 : Channel 1 Power</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
                                     </Ports>
@@ -1549,6 +1637,12 @@
                                 <Module ID="mod-power2">
                                     <Name>PowerSupply2</Name>
                                     <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MPSM-2515-1</Model>
                                     <SerialID>00001</SerialID>
@@ -1559,6 +1653,12 @@
                                         <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>Ch1 : Channel 1 Dummy</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
                                     </Ports>
