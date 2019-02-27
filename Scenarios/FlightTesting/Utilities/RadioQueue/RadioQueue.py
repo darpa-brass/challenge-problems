@@ -256,7 +256,7 @@ def run_epoch():
             if q_viz_mode is True:
                 print_queues(radio_list)
             if history_plot_mode is True:
-                print_history(lm_eff_eff_vals_q)
+                print_history(lm_eff_eff_vals_q, len(radio_list), q_viz_mode)
             print_time()
             print_toolbar()
     
@@ -367,7 +367,7 @@ def print_lm_stats(rlist):
     lm_pad.addstr(0, 30, "{0}".format(" LM Efficiency Statistics "))
     for i in range(pad_height-2):
         lm_pad.addstr(i+1, 0, "{0}".format(border_d['LS']), text_d['BORDER'])
-        lm_pad.addstr(i+1, 85, "{0}".format(border_d['LS']), text_d['BORDER'])
+        lm_pad.addstr(i+1, 85, "{0}".format(border_d['RS']), text_d['BORDER'])
     lm_pad.addstr(pad_height-1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
 
     bw_str1 = "  LM Total Bandwidth Allocated:  {0:7.3f} Mbps of {1:5.3f} Mbps  |                     ".format(
@@ -616,10 +616,157 @@ def print_queue(r, idx):
     
 # ------------------------------------------------------------------------------
 
-def print_history(q):
+def print_history(q, num_radios, q_viz_enabled):
+    global stdscr
     global history_pad
 
+    height, width = stdscr.getmaxyx()
+    pad_height, pad_width = history_pad.getmaxyx()
 
+    title = " LM Effective Efficiency (last 100 epochs) "
+    horizon = border_d['TS'] * (pad_width-2)
+    history_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
+    history_pad.addstr(0, 23, title)
+    for i in range(pad_height-2):
+        history_pad.addstr(i+1, 0, "{0}".format(border_d['LS']), text_d['BORDER'])
+        history_pad.addstr(i+1, 85, "{0}".format(border_d['RS']), text_d['BORDER'])
+    history_pad.addstr(pad_height-2, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
+
+    crosshair = u'\u253C'
+    x_axis = border_d['BS'] * 55
+    y_axis = border_d['LS']
+    for i in range(pad_height-5):
+        history_pad.addstr(i+1, 6, y_axis)
+    history_pad.addstr(pad_height-4, 6, "{0}{1}".format(crosshair, x_axis))
+    history_pad.addstr(1, 2, "100")
+    history_pad.addstr(14, 2, " 50")
+    history_pad.addstr(26, 2, "  0")
+
+    for i in range(25):
+        for idx in range(0, len(q), 2):
+            if ((len(q) % 2) == 1) and (idx == (len(q)-1)):
+                block = get_graph_char(q[idx], 0, i)
+            else:
+                block = get_graph_char(q[idx], q[idx+1], i)
+            history_pad.addstr((25-(int(i))), 7+(int(idx/2)), block, text_d['BAR_60'])
+
+    if q_viz_enabled:
+        start_line_pos = (int(num_radios) * 2) + 20
+    else:
+        start_line_pos = int(num_radios) + 17
+
+    if start_line_pos < (height-1):
+        history_pad.noutrefresh(0, 0, start_line_pos, 2, height-1, width-1)
+
+
+# ------------------------------------------------------------------------------
+
+
+def get_graph_char(a, b, thd):
+    global graph_d
+    # a is a number between 0-100
+    # b is a number between 0-100
+    # thd is the full_block threshold (4 dots per block)
+
+    a_full = int(a / 4)
+    a_part = int(a % 4)
+    b_full = int(b / 4)
+    b_part = int(b % 4)
+
+    #if (a_full / thd) >= 1:
+    if a_full > thd:
+        # a is 4
+        #if (b_full / thd) >= 1:
+        if b_full > thd:
+            # b is 4
+            return graph_d['4_4']
+        elif b_full == thd:
+            if b_part == 0:
+                return graph_d['4_0']
+            elif b_part == 1:
+                return graph_d['4_1']
+            elif b_part == 2:
+                return graph_d['4_2']
+            elif b_part == 3:
+                return graph_d['4_3']
+        else:
+            return graph_d['4_0']
+    elif a_full == thd:
+        if a_part == 0:
+            if b_full > thd:
+                # b is 4
+                return graph_d['0_4']
+            elif b_full == thd:
+                if b_part == 0:
+                    return graph_d['0_0']
+                elif b_part == 1:
+                    return graph_d['0_1']
+                elif b_part == 2:
+                    return graph_d['0_2']
+                elif b_part == 3:
+                    return graph_d['0_3']
+            else:
+                return graph_d['0_0']
+        elif a_part == 1:
+            if b_full > thd:
+                # b is 4
+                return graph_d['1_4']
+            elif b_full == thd:
+                if b_part == 0:
+                    return graph_d['1_0']
+                elif b_part == 1:
+                    return graph_d['1_1']
+                elif b_part == 2:
+                    return graph_d['1_2']
+                elif b_part == 3:
+                    return graph_d['1_3']
+            else:
+                return graph_d['1_0']
+        elif a_part == 2:
+            if b_full > thd:
+                # b is 4
+                return graph_d['2_4']
+            elif b_full == thd:
+                if b_part == 0:
+                    return graph_d['2_0']
+                elif b_part == 1:
+                    return graph_d['2_1']
+                elif b_part == 2:
+                    return graph_d['2_2']
+                elif b_part == 3:
+                    return graph_d['2_3']
+            else:
+                return graph_d['2_0']
+        elif a_part == 3:
+            if b_full > thd:
+                # b is 4
+                return graph_d['3_4']
+            elif b_full == thd:
+                if b_part == 0:
+                    return graph_d['3_0']
+                elif b_part == 1:
+                    return graph_d['3_1']
+                elif b_part == 2:
+                    return graph_d['3_2']
+                elif b_part == 3:
+                    return graph_d['3_3']
+            else:
+                return graph_d['3_0']
+    else:
+        # a is 0
+        if b_full > thd:
+            # b is 4
+            return graph_d['0_4']
+        elif b_full == thd:
+            if b_part == 0:
+                return graph_d['0_0']
+            elif b_part == 1:
+                return graph_d['0_1']
+            elif b_part == 2:
+                return graph_d['0_2']
+            elif b_part == 3:
+                return graph_d['0_3']
+        return graph_d['0_0']
 
 
 # ------------------------------------------------------------------------------
@@ -762,19 +909,20 @@ def print_toolbar():
     global text_d
 
     height, width = stdscr.getmaxyx()
-    toolbar_pad = curses.newpad(3, width-1)
-    toolbar_pad.bkgd(text_d['BG'])
+    tp_height, tp_width = toolbar_pad.getmaxyx()
 
     q_msg = "q to toggle Queue Vizualization"
     realtime_msg = "(r)ealtime or (s)low refresh rate"
+    history_msg = "(h)istory"
     quit_msg = "CTRL-C to quit"
 
-    toolbar_pad.addstr(0, 0, "{0}".format(border_d['TS']*(width)))
-    toolbar_pad.addstr(1, 0, " {0} | {1} | {2} ".format(q_msg, realtime_msg, quit_msg), text_d['BORDER'])
+    toolbar_pad.addstr(0, 0, "{0}".format(border_d['TS']*(tp_width-1)))
+    toolbar_pad.addstr(1, 0, " {0} | {1} | {2} | {3}".format(q_msg, realtime_msg, history_msg, quit_msg), text_d['BORDER'])
     toolbar_pad.addstr(1, 1, "q", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
     toolbar_pad.addstr(1, 36, "r", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
     toolbar_pad.addstr(1, 50, "s", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
-    toolbar_pad.addstr(1, 71, "CTRL-C", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
+    toolbar_pad.addstr(1, 72, "h", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
+    toolbar_pad.addstr(1, 83, "CTRL-C", text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
     toolbar_pad.noutrefresh(0, 0, height-3, 0, height-2, width-1)
 
 
@@ -943,6 +1091,32 @@ def main(stdscr):
     border_d['BL'] = u'\u2514'
     border_d['BR'] = u'\u2518'
 
+    graph_d['0_0'] = u'\u2800'
+    graph_d['1_0'] = u'\u2840'
+    graph_d['2_0'] = u'\u2844'
+    graph_d['3_0'] = u'\u2846'
+    graph_d['4_0'] = u'\u2847'
+    graph_d['0_1'] = u'\u2880'
+    graph_d['1_1'] = u'\u28C0'
+    graph_d['2_1'] = u'\u28C4'
+    graph_d['3_1'] = u'\u28C6'
+    graph_d['4_1'] = u'\u28C7'
+    graph_d['0_2'] = u'\u28A0'
+    graph_d['1_2'] = u'\u28E0'
+    graph_d['2_2'] = u'\u28E4'
+    graph_d['3_2'] = u'\u28E6'
+    graph_d['4_2'] = u'\u28E7'
+    graph_d['0_3'] = u'\u28B0'
+    graph_d['1_3'] = u'\u28F0'
+    graph_d['2_3'] = u'\u28F4'
+    graph_d['3_3'] = u'\u28F6'
+    graph_d['4_3'] = u'\u28F7'
+    graph_d['0_4'] = u'\u28B8'
+    graph_d['1_4'] = u'\u28F8'
+    graph_d['2_4'] = u'\u28FC'
+    graph_d['3_4'] = u'\u28FE'
+    graph_d['4_4'] = u'\u28FF'
+
     if debug == 0:
         stdscr.bkgd(text_d['BG'])
         banner_pad.bkgd(text_d['BG'])
@@ -952,6 +1126,7 @@ def main(stdscr):
         q_pad.bkgd(text_d['BG'])
         border_pad.bkgd(text_d['BG'])
         history_pad.bkgd(text_d['BG'])
+        toolbar_pad.bkgd(text_d['BG'])
         stdscr.clear()
         
     run_epoch()
@@ -988,6 +1163,7 @@ if __name__ == "__main__":
     debug = cli_args.debug
     text_d = {}
     border_d = {}
+    graph_d = {}
     
     stdscr = curses.initscr()                # Initial main screen for curses
     banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
@@ -996,9 +1172,9 @@ if __name__ == "__main__":
     lm_pad = curses.newpad(5, 87)            # Initialize LM Pad
     radio_pad = curses.newpad(10, 88)        # Initialize Radio Pad
     q_pad = curses.newpad(10, 88)            # Initialize Queue Pad
-    history_pad = curses.newpad(12, 90)      # Initialize History Pad
+    history_pad = curses.newpad(30, 86)      # Initialize History Pad
     border_pad = curses.newpad(17, 90)       # Initialize Border Pad
-    toolbar_pad = curses.newpad(1, 90)       # Initialize Toolbar Pad
+    toolbar_pad = curses.newpad(2, 100)       # Initialize Toolbar Pad
     curses.curs_set(0)
     
     signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
