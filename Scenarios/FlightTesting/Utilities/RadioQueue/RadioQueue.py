@@ -298,7 +298,10 @@ def write_qlens_to_json(radios):
         radio_d['RadioName'] = r.name
         radio_d['QLen'] = int(math.ceil(r.q_len / 8))
         radio_d['CurrentEpochValue'] = r.current_epoch_value
-        radio_d['IsOnline'] = r.online
+        if r.online is True:
+            radio_d['IsOnline'] = 1
+        else:
+            radio_d['IsOnline'] = 0
         queues.append(radio_d)
     
     with open("radio_queues.json", "w") as f:
