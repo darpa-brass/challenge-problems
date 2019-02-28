@@ -39,6 +39,8 @@ radio_list = []                     # List of Radio objects
 system_vals_array = []              # Array for holding last 'N' system values for sliding average
 AVG_WINDOW_SIZE = 100
 
+msg_list = []
+
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -109,11 +111,25 @@ class Radio:
 # ------------------------------------------------------------------------------
 
 
+class Message:
+    """Class to contain status messages (infos/warnings/errors)."""
+
+    def __init__(self, name='Unknown', level='UNKNOWN', msg=" "):
+        self.name = name
+        self.level = level
+        self.msg = msg
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
 def run_epoch():
     global epoch_num
     global epochs_per_sec
     global epoch_ms
     global radio_list
+    global msg_list
     global stdscr
     global next_timer
     global time_pad
@@ -274,8 +290,9 @@ def run_epoch():
             if q_viz_mode is True:
                 print_queues(radio_list)
             if history_plot_mode is True:
-                print_history(lm_eff_eff_vals_q, len(radio_list), q_viz_mode)
-            print_info(radio_list)  # TODO: make this a list of Message Objects!!!
+                print_history(lm_eff_eff_vals_q, len(radio_list), avg_effective_efficiency, q_viz_mode)
+            refresh_msg_list(utilization_of_max, effective_efficiency, radio_list)
+            print_messages(msg_list)
             print_time()
             print_toolbar()
 
@@ -378,11 +395,11 @@ def print_lm_stats(total_bw_allocated_Mbps, utilization_of_max, total_bw_utilize
         lm_pad.addstr(i+1, 85, "{0}".format(border_d['RS']), text_d['BORDER'])
     lm_pad.addstr(pad_height-1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
 
-    bw_str1 = "  LM Total Bandwidth Allocated:  {0:7.3f} Mbps of {1:5.3f} Mbps  |                     ".format(
+    bw_str1 = "  LM Total Bandwidth Allocated:  {0:6.2f} Mbps of {1:5.2f} Mbps  |                     ".format(
         total_bw_allocated_Mbps,
         MAX_BW_MBPS,
         utilization_of_max)
-    bw_str2 = "  Radios' Bandwidth Utilized:    {0:7.3f} Mbps of the {1:5.3f} Mbps Allocated           ".format(
+    bw_str2 = "  Radios' Bandwidth Utilized:    {0:6.2f} Mbps of the {1:5.2f} Mbps Allocated           ".format(
         total_bw_utilized,
         total_bw_allocated_Mbps)
     bw_str3 = "  Effective LM Allocation Efficiency:   {0:6.2f}% {1} ".format(effective_efficiency,' '*35)
@@ -487,9 +504,6 @@ def print_radio_stats(rlist):
         radio_pad = curses.newpad((len(rlist)+2), rwin_width)
         radio_pad.bkgd(text_d['BG'])
 
-
-    # radio_pad.border(border_d['LS'], border_d['RS'], border_d['TS'], border_d['BS'],
-    #                 border_d['TL'], border_d['TR'], border_d['BL'], border_d['BR'])
     horizon = border_d['TS'] * (rwin_width - 3)
     radio_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
     radio_pad.addstr(len(rlist) + 1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
@@ -501,7 +515,6 @@ def print_radio_stats(rlist):
         ' Queue Depth',
         'Trend',
         'Value')
-    #radio_pad.addstr(0, 0, header, curses.A_BOLD | curses.A_UNDERLINE)
     radio_pad.addstr(0, 2, " Radio ")
     radio_pad.addstr(0, 13, " Allocated BW ")
     radio_pad.addstr(0, 30, " Avg Data Input ")
@@ -557,6 +570,8 @@ def print_radio_stats(rlist):
         biohazard = u'\u2623'
         if r.current_epoch_value < (((r.dout_bps / r.epochs_per_sec) / 1000) * r.value_per_kb_tx):
             radio_pad.addstr(idx, 84, biohazard, text_d['WARNING_BLACK'])
+        else:
+            radio_pad.addstr(idx, 84, ' ')
         
     start_line_pos = 14
     last_line_pos = len(rlist) + 15
@@ -620,7 +635,7 @@ def print_queue(r, idx):
     q_full_pct = int((r.q_len * 100) / MAX_QUEUE_SIZE_BYTES)    # Percent full of the queue
     q_chars = int(q_full_pct / 2)
     if q_chars > 50:
-        q_chars = 50                               # 50 is the number of chars for the queue graphic
+        q_chars = 50                                            # 50 is the number of chars for the queue graphic
     q_graphic = u'\u2588' * q_chars                             # u'\u2588' is the extended Ascii FULL BLOCK character
     if (q_chars < 50) and (q_full_pct % 2 == 1):
         q_graphic = q_graphic + u'\u258c'
@@ -658,12 +673,14 @@ def print_queue(r, idx):
     
 # ------------------------------------------------------------------------------
 
-def print_history(q, num_radios, q_viz_enabled):
+def print_history(q, num_radios, avg_eff_eff, q_viz_enabled):
     global stdscr
     global history_pad
 
     height, width = stdscr.getmaxyx()
     pad_height, pad_width = history_pad.getmaxyx()
+
+    history_pad.clear()
 
     title = " LM Effective Efficiency (last 100 epochs) "
     horizon = border_d['TS'] * (pad_width-2)
@@ -686,12 +703,36 @@ def print_history(q, num_radios, q_viz_enabled):
 
     for i in range(25):
      for idx in range(0, len(q), 2):
+            red_block = False
             if ((len(q) % 2) == 1) and (idx == (len(q)-1)):
                 block = get_graph_char(0, q[0], i)
+                if q[0] > 100.0:
+                    red_block = True
             else:
                 neg_index = idx*(-1)
                 block = get_graph_char(q[neg_index-2], q[neg_index-1], i)
-            history_pad.addstr((25-(int(i))), 7+(50-(int(idx/2))), block, text_d['BAR_60'])
+                if (q[neg_index-2] > 100.0) | (q[neg_index-1] > 100.0):
+                    red_block = True
+            if red_block is False:
+                history_pad.addstr((25-(int(i))), 6+(50-(int(idx/2))), block, text_d['BAR_60'])
+            else:
+                history_pad.addstr((25 - (int(i))), 6 + (50 - (int(idx / 2))), block, text_d['TREND_DOWN'])
+
+    # Print Text Values and Trend
+    history_pad.addstr(5, 61, "Current Value: {0:5.2f}".format(q[-1]))
+    history_pad.addstr(6, 61, "Average Value: {0:5.2f}".format(avg_eff_eff))
+
+    if int(q[-1]) > int(avg_eff_eff):
+        trend = u'\u2191' + ' UP'
+        txt_mode = text_d['TREND_UP']
+    elif (q[-1]) < int(avg_eff_eff):
+        trend = u'\u2193' + ' DOWN'
+        txt_mode = text_d['TREND_DOWN']
+    else:
+        trend = u'\u2248' + ' STEADY'
+        txt_mode = text_d['TREND_STEADY']
+    history_pad.addstr(8, 61, "Trending: {0}".format(trend), txt_mode | curses.A_BOLD)
+
 
     if q_viz_enabled:
         start_line_pos = (int(num_radios) * 2) + 20
@@ -885,31 +926,73 @@ def calculate_avg_lm_effective_efficiency(current_value):
 # ------------------------------------------------------------------------------
 
 
-def print_info(msgs):
-    global info_pad
+def refresh_msg_list(utilization_of_max, effective_efficiency, radios):
+    global msg_list
+
+    msg_list.clear()
+
+    if utilization_of_max > 100.0:
+        new_msg = Message('LM', 'ERROR', "Allocated bandwidth is greater than channel bandwidth.")
+        msg_list.append(new_msg)
+
+    if effective_efficiency > 100.0:
+        new_msg = Message('LM', 'ERROR', "Effective Efficiency reported > 100%.  Check bandwidth allocated.")
+        msg_list.append(new_msg)
+
+    for r in radios:
+        if r.q_len / MAX_QUEUE_SIZE_BYTES >= 1.0:
+            new_msg = Message(r.name, 'WARNING', "Queue is Full.")
+            msg_list.append(new_msg)
+        if r.current_epoch_value < (((r.dout_bps / r.epochs_per_sec) / 1000) * r.value_per_kb_tx):
+            new_msg = Message(r.name, 'WARNING', "Allocated bandwidth is greater than this link's available output.")
+            msg_list.append(new_msg)
+        if r.online is False:
+            if r.dout_bps > 0:
+                new_msg = Message(r.name, 'ERROR', "LM is allocating bandwidth, but Radio is OFFLINE.")
+            else:
+                new_msg = Message(r.name, 'INFO', "Radio is OFFLINE.")
+            msg_list.append(new_msg)
+
+
+# ------------------------------------------------------------------------------
+
+
+def print_messages(msgs):
+    global message_pad
+    global text_d
 
     height, width = stdscr.getmaxyx()
-    pad_height, pad_width = info_pad.getmaxyx()
+    pad_height, pad_width = message_pad.getmaxyx()
 
     if pad_height != (len(msgs) + 3):
-        info_pad = curses.newpad(((len(msgs))+3), pad_width)
-        info_pad.bkgd(text_d['BG'])
+        message_pad = curses.newpad(((len(msgs))+3), pad_width)
+        message_pad.bkgd(text_d['BG'])
+
+    message_pad.clear()
 
     horizon = border_d['TS'] * (pad_width-2)
-    info_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
-    info_pad.addstr(0, 30, " INFO / WARNINGS / ERRORS ")
-    info_pad.addstr(len(msgs) + 1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
+    message_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
+    message_pad.addstr(0, 30, " INFO / WARNINGS / ERRORS ")
+    message_pad.addstr(len(msgs) + 1, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
 
     for idx, m in enumerate(msgs):
-        # TODO: loop through the list of messages, and print them out
-        info_pad.addstr((idx) + 1, 0, border_d['LS'], text_d['BORDER'])  # Left Border Character
-        info_pad.addstr((idx) + 1, pad_width - 1, border_d['RS'], text_d['BORDER'])  # Right Border Character
-        #print_queue(r, int(idx))  # Update the Queue graphic for the iterated Radio
+        if m.level == 'ERROR':
+            txt_mode = text_d['MSG_ERROR']
+        elif m.level == 'WARNING':
+            txt_mode = text_d['MSG_WARNING']
+        elif m.level == 'INFO':
+            txt_mode = text_d['MSG_INFO']
+        else:
+            txt_mode = text_d['MSG_UNKNOWN']
 
-    start_line_pos = height - (9 + len(msgs))
+        message_pad.addstr((idx) + 1, 0, border_d['LS'], text_d['BORDER'])  # Left Border Character
+        message_pad.addstr((idx) + 1, 2, "{0:<6}| {1:<7} | {2}".format(m.name, m.level, m.msg), txt_mode)
+        message_pad.addstr((idx) + 1, pad_width - 1, border_d['RS'], text_d['BORDER'])  # Right Border Character
+
+    start_line_pos = height - (8 + len(msgs))
     last_line_pos = start_line_pos + pad_height
 
-    info_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, (width-1))
+    message_pad.noutrefresh(0, 0, start_line_pos, 2, last_line_pos, (width-1))
 
 
 # ------------------------------------------------------------------------------
@@ -1075,6 +1158,13 @@ def main(stdscr):
     curses.init_pair(202, 222, 235)  # yellowish = Queue Depth: 40% - 60%
     curses.init_pair(203, 135, 235)  # purplish = Queue Depth: 60% - 80%
     curses.init_pair(204, 175, 235)  # redish = Queue Depth: 80% < 100%
+    curses.init_pair(221, 114, 235)  # trend up - greenish
+    curses.init_pair(222, 32, 235)   # trend steady - bluish
+    curses.init_pair(223, 210, 235)  # trend down - redish
+    curses.init_pair(231, 9, 235)  # MSG ERROR - redish
+    curses.init_pair(232, 11, 235)  # MSG WARNING - yellowish
+    curses.init_pair(233, 8, 235)  # MSG INFO - whitish
+    curses.init_pair(234, 32, 235)  # MSG UNKNOWN - bluish
     curses.init_pair(247, 63, 235)   # border
     curses.init_pair(248, 11, 235)
     curses.init_pair(249, 27, 235)
@@ -1112,6 +1202,13 @@ def main(stdscr):
     text_d['BAR_40'] = curses.color_pair(202)
     text_d['BAR_60'] = curses.color_pair(203)
     text_d['BAR_80'] = curses.color_pair(204)
+    text_d['TREND_UP'] = curses.color_pair(221)
+    text_d['TREND_STEADY'] = curses.color_pair(222)
+    text_d['TREND_DOWN'] = curses.color_pair(223)
+    text_d['MSG_ERROR'] = curses.color_pair(231)
+    text_d['MSG_WARNING'] = curses.color_pair(232)
+    text_d['MSG_INFO'] = curses.color_pair(233)
+    text_d['MSG_UNKNOWN'] = curses.color_pair(234)
     text_d['BORDER'] = curses.color_pair(247)
     text_d['WARNING_BLACK'] = curses.color_pair(248)
     text_d['BANNER'] = curses.color_pair(249)
@@ -1165,7 +1262,7 @@ def main(stdscr):
         lm_pad.bkgd(text_d['BG'])
         q_pad.bkgd(text_d['BG'])
         history_pad.bkgd(text_d['BG'])
-        info_pad.bkgd(text_d['BG'])
+        message_pad.bkgd(text_d['BG'])
         toolbar_pad.bkgd(text_d['BG'])
         stdscr.clear()
         
@@ -1214,8 +1311,8 @@ if __name__ == "__main__":
     radio_pad = curses.newpad(10, 88)        # Initialize Radio Pad
     q_pad = curses.newpad(10, 88)            # Initialize Queue Pad
     history_pad = curses.newpad(30, 86)      # Initialize History Pad
-    info_pad = curses.newpad(5, 86)         # Initialize Border Pad
-    toolbar_pad = curses.newpad(2, 100)       # Initialize Toolbar Pad
+    message_pad = curses.newpad(5, 86)       # Initialize Message Pad
+    toolbar_pad = curses.newpad(2, 100)      # Initialize Toolbar Pad
     curses.curs_set(0)
     
     signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
