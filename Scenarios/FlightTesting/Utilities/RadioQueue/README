@@ -9,14 +9,18 @@ Run with Python 3.
     
 Command Line Arguments are available via the '-h' argument:
     > python3 RadioQueue.py -h
-    usage: RadioQueue.py [-h] [-L] [-M MAX_QUEUE_SIZE] [-E EPOCH_SIZE_MS]
-                     [-d DEBUG] [-v]
+    usage: RadioQueue.py [-h] [-I] [-M MAX_QUEUE_SIZE] [-E EPOCH_SIZE_MS] [-r]
+                         [-d DEBUG] [-v]
 
     optional arguments:
       -h, --help         show this help message and exit
-      -L                 Limit Queue by the MAX_QUEUE_SIZE
+      -I                 Infinite Queue Size (not limited by the MAX_QUEUE_SIZE).
+                         WARNING: This can utilize a lot of system resources. Use
+                         at your own risk!
       -M MAX_QUEUE_SIZE  Set MAX queue size in Bytes [default: 4194240]
       -E EPOCH_SIZE_MS   Set the Epoch size (milliseconds) [default: 100]
+      -r                 Realtime mode (screen updates 1x per epoch. Default: Slow
+                         Refresh rate (1x per sec)
       -d DEBUG           Set the Debug level
       -v, --version      show program's version number and exit
       
@@ -24,11 +28,15 @@ Command Line Arguments are available via the '-h' argument:
 All arguments are optional.
 The queue size of all radios can be set via the '-M <val>' option.  The
     default size is 4.194240 MB.
-The program does not limit the queue depths of a radio to the max queue size
-    unless the '-L' option to limit the queue size is used.
+The program will limit the queue depths of a radio to the MAX_QUEUE_SIZE unless
+    the '-I' option is used for "infinite" queue size.
 The epoch size can be set via the '-E <val>' option.  Because the queues are 
     updated every epoch, setting this value will affect how quickly updates are
-    seen.  The default epoch size is 100ms.  
+    seen.  The default epoch size is 100ms.
+The '-r' option will start the application with a refresh rate to 1x per second.
+    The refresh rate can be toggled during runtime via the 'r' (realtime) or
+    's' (slow refresh) keys.  Some computers cannot handle the realtime refresh
+    rate, so the default mode is to use the 1x per second rate.
 
     
 KNOWN ISSUES:
@@ -39,9 +47,6 @@ by default on Windows.
 When running on Windows, the application does not display well if the terminal
 is resized during execution.  The best approach is to make the window large
 enough when starting the application.
-
-When running on Windows, <Ctrl-C> does not exit the program.  Instead,
-use <Ctrl-Break>.
 
 Errors will be thrown if the window does not meet the minimum size.
 
@@ -56,8 +61,8 @@ detailed below:
     data_input_rates.json - includes data rate coming into the radio that needs
                             to be transmitted
         [
-            {"RadioName": "NAME1", "DataInRate-bps": 200000, "ValuePerKbTx": 2.0},
-            {"RadioName": "NAME2", "DataInRate-bps": 100000, "ValuePerKbTx": 5.0}
+            {"RadioName": "NAME1", "DataInRate-bps": 200000, "Burstiness": 0.0, "ValuePerKbTx": 2.0},
+            {"RadioName": "NAME2", "DataInRate-bps": 100000, "Burstiness": 1.0, "ValuePerKbTx": 5.0}
         ]
     
     bw_allocs.json - includes allocated bandwidth for transmitting data
@@ -80,8 +85,8 @@ is run.  The file is detailed below:
 
     radio_queues.json - includes the current queue depth in bytes of each radio
         [
-            {"RadioName": "NAME1", "QLen": 6250, "CurrentEpochValue": 300.0},
-            {"RadioName": "NAME2", "QLen": 0, "CurrentEpochValue": 500.0}
+            {"RadioName": "NAME1", "QLen": 6250, "CurrentEpochValue": 300.0, "IsOnline": 1},
+            {"RadioName": "NAME2", "QLen": 0, "CurrentEpochValue": 500.0, "IsOnline": 1}
         ]
         
 Link Manager applications shall read this JSON file in order to see the current
@@ -89,4 +94,5 @@ queue depths of the radios it is scheduling.  Making schedule changes through
 the bw_allocs.json file can affect the queue depths reported in the 
 radio_queues.json file, depending on the delta between the allocated bandwidth
 for a radio (from the bw_allocs.json file) and the corresponding radio's data
-input rate (from the data_input_rates.json file).
+input rate (from the data_input_rates.json file).  The "IsOnline" key has a value
+of '1' for "true/online" and '2' for "false/offline".
