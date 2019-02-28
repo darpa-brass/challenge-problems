@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---    Radio Queue Status Display for Link Manager Algorithm Evaluator     ---
 # ---                                                                        ---
-# --- Last Updated: February 22, 2019                                         ---
+# --- Last Updated: February 28, 2019                                        ---
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -1300,7 +1300,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', action='store_true', default=False, dest='realtime_mode',
                         help='Realtime mode (screen updates 1x per epoch.  Default: Slow Refresh rate (1x per sec)')
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.3.1')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.3.2')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
