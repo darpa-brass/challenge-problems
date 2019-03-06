@@ -1,0 +1,887 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+    <Name>Scenario 5 Example 4</Name>
+    <Description>TTC DAU with connected transducers.</Description>
+    <DatabaseID/>
+    <Checksum/>
+    <ConfigurationVersion>2018_03_06_00:00:00_TTCDAU</ConfigurationVersion>
+    <DirtyBit>false</DirtyBit>
+    <NetworkDomain>
+        <Networks>
+            <Network ID="net-example">
+                <Name>ExampleNetwork</Name>
+                <Description>Example network for scenario 5 example 4.</Description>
+                <NetworkType>TestArticleNetwork</NetworkType>
+                <NetworkNodes>
+                    <NetworkNode ID="nn-dau-ex4">
+                        <Name>Example4DAU</Name>
+                        <Description>Scenario 5 example 4 DAU.</Description>
+                        <GenericParameter>
+                            <NameValues>
+                                <NameValue Name="User" Index="1">BBN</NameValue>
+                            </NameValues>
+                            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+                            <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
+                        </GenericParameter>
+                        <InventoryID>Example4DAU</InventoryID>
+                        <HostName>SwRI</HostName>
+                        <Manufacturer>TTC</Manufacturer>
+                        <Model>CDAU-2008</Model>
+                        <ModelVersion>1</ModelVersion>
+                        <SerialID>123456789</SerialID>
+                        <IEEE1588Version>2008e2e</IEEE1588Version>
+                        <TmNSApps>
+                            <TmNSApp ID="tma-dau-ex4">
+                                <Name>Example4DAUApp</Name>
+                                <Description>Scenario 5 example 4 DAU application.</Description>
+                                <RoleID>Example4DAUApp</RoleID>
+                                <LoggingLevel>Trace</LoggingLevel>
+                                <Manufacturer>TTC</Manufacturer>
+                                <Product>DAUApp</Product>
+                                <ProductVersion>1</ProductVersion>
+                                <ConfigurationVersion>2018_03_06_00:00:00_Example4DAUApp</ConfigurationVersion>
+                                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                                <DirtyBit>false</DirtyBit>
+                                <TmNSDAU/>
+                                <TmNSLTCDataSource>
+                                    <LTCInterfaces>
+                                        <LTCInterface>
+                                            <TimeToLive>10</TimeToLive>
+                                        </LTCInterface>
+                                    </LTCInterfaces>
+                                </TmNSLTCDataSource>
+                                <SMInterface>
+                                    <SNMPSetup>
+                                        <SNMPVersions>
+                                            <SNMPVersion>v3</SNMPVersion>
+                                        </SNMPVersions>
+                                        <SNMPPort>1234</SNMPPort>
+                                        <NotificationPort>1234</NotificationPort>
+                                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                                        <NetworkInterfaceRefs>
+                                            <NetworkInterfaceRef IDREF="ni-eup-eth0-ex4"/>
+                                        </NetworkInterfaceRefs>
+                                    </SNMPSetup>
+                                </SMInterface>
+                            </TmNSApp>
+                        </TmNSApps>
+                        <InternalStructure>
+                            <Modules>
+                                <Module ID="mod-eup-ex4">
+                                    <Name>ProcessingAndEthernetModule</Name>
+                                    <Description>TTC EUP-105-1 processing and ethernet unit.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>EUP-105-1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-EUP-105-1</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>2</PositionsOccupied>
+                                    <RunningAppRefs>
+                                        <TmNSAppRef IDREF="tma-dau-ex4"/>
+                                    </RunningAppRefs>
+                                    <NetworkInterfaces>
+                                        <NetworkInterface ID="ni-eup-eth0-ex4">
+                                            <Name>eth0</Name>
+                                            <DHCPEnable>false</DHCPEnable>
+                                            <IPAddress>10.1.101.204</IPAddress>
+                                            <PhysicalNetworkPorts>
+                                                <PhysicalNetworkPort ID="pnp-eup-ethernet-ex4">
+                                                    <Name>Ethernet</Name>
+                                                    <Description>Ethernet</Description>
+                                                    <Medium>Copper</Medium>
+                                                    <PortNumber>1</PortNumber>
+                                                    <PortDataRate>
+                                                        <Value>1e8</Value>
+                                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                                    </PortDataRate>
+                                                </PhysicalNetworkPort>
+                                            </PhysicalNetworkPorts>
+                                        </NetworkInterface>
+                                    </NetworkInterfaces>
+                                    <Ports>
+                                        <Port ID="port-eup-j1-ch1-ex4" Index="1">
+                                            <Name>PCM</Name>
+                                            <Description>PCM</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>PCM</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j2-ch1-ex4" Index="2">
+                                            <Name>Ethernet</Name>
+                                            <Description>Ethernet</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                            <PhysicalNetworkPortRef IDREF="pnp-eup-ethernet-ex4"/>
+                                        </Port>
+                                        <Port ID="port-eup-j3-ch1-ex4" Index="3">
+                                            <Name>VGA</Name>
+                                            <Description>VGA</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>VGA</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch1-ex4" Index="4">
+                                            <Name>GeneralInput1</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch2-ex4" Index="5">
+                                            <Name>GeneralInput2</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch3-ex4" Index="6">
+                                            <Name>GeneralInput3</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch4-ex4" Index="7">
+                                            <Name>GeneralInput4</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch5-ex4" Index="8">
+                                            <Name>GeneralInput5</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch6-ex4" Index="9">
+                                            <Name>GeneralInput6</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch7-ex4" Index="10">
+                                            <Name>GeneralInput7</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j4-ch8-ex4" Index="11">
+                                            <Name>GeneralInput8</Name>
+                                            <Description>General Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch1-ex4" Index="12">
+                                            <Name>GeneralOutput1</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch2-ex4" Index="13">
+                                            <Name>GeneralOutput2</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch3-ex4" Index="14">
+                                            <Name>GeneralOutput3</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch4-ex4" Index="15">
+                                            <Name>GeneralOutput4</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch5-ex4" Index="16">
+                                            <Name>GeneralOutput5</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch6-ex4" Index="17">
+                                            <Name>GeneralOutput6</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch7-ex4" Index="18">
+                                            <Name>GeneralOutput7</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-eup-j5-ch8-ex4" Index="19">
+                                            <Name>GeneralOutput8</Name>
+                                            <Description>General Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-gps-ex4">
+                                    <Name>TimeModule</Name>
+                                    <Description>TTC GPS-101 time.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>GPS-101</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-GPS-101</InventoryID>
+                                    <Position>3</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-gps-j1-ch1-ex3" Index="1">
+                                            <Name>RF</Name>
+                                            <Description>RF in (antenna).</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-gps-j2-ch1-ex3" Index="2">
+                                            <Name>GPS</Name>
+                                            <Description>GPS Port.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-amd-ex4">
+                                    <Name>SignalConditioner1</Name>
+                                    <Description>TTC AMD-116P 12-channel signal conditioner with excitation.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>AMD-116P</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-AMD-116P</InventoryID>
+                                    <Position>4</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-amd-j1-ch1-ex4" Index="1">
+                                            <Name>J1Ch1</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j1-ch2-ex4" Index="2">
+                                            <Name>J1Ch2</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j1-ch3-ex4" Index="3">
+                                            <Name>J1Ch3</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j1-ch4-ex4" Index="4">
+                                            <Name>J1Ch4</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j1-ch5-ex4" Index="5">
+                                            <Name>J1Ch5</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j1-ch6-ex4" Index="6">
+                                            <Name>J1Ch6</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch1-ex4" Index="7">
+                                            <Name>J2Ch1</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch2-ex4" Index="8">
+                                            <Name>J2Ch2</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch3-ex4" Index="9">
+                                            <Name>J2Ch3</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch4-ex4" Index="10">
+                                            <Name>J2Ch4</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch5-ex4" Index="11">
+                                            <Name>J2Ch5</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-amd-j2-ch6-ex4" Index="12">
+                                            <Name>J2Ch6</Name>
+                                            <Description>SigCond input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>12</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-blt-ex4">
+                                    <Name>BluetoothModule</Name>
+                                    <Description>TTC BLT-101T bluetooth.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Bluetooth</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>BLT-101T</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-BLT-101T</InventoryID>
+                                    <Position>5</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-blt-j1-ch1-ex4" Index="1">
+                                            <Name>Bluetooth</Name>
+                                            <Description>Bluetooth in (antenna).</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Bluetooth</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-blt-j2-ch1-ex4" Index="2">
+                                            <Name>PCM</Name>
+                                            <Description>PCM out.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>PCM</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-scd-ex4">
+                                    <Name>SignalConditioner2</Name>
+                                    <Description>TTC SCD-108D-2 8-channel signal conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>SCD-108D-2</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-SCD-108D-2</InventoryID>
+                                    <Position>6</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-scd-j1-ch1-ex4" Index="1">
+                                            <Name>J1Ch1</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j1-ch2-ex4" Index="2">
+                                            <Name>J1Ch2</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j1-ch3-ex4" Index="3">
+                                            <Name>J1Ch3</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j1-ch4-ex4" Index="4">
+                                            <Name>J1Ch4</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j2-ch1-ex4" Index="5">
+                                            <Name>J2Ch1</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j2-ch2-ex4" Index="6">
+                                            <Name>J2Ch2</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j2-ch3-ex4" Index="7">
+                                            <Name>J2Ch3</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-scd-j2-ch4-ex4" Index="8">
+                                            <Name>J2Ch4</Name>
+                                            <Description>Signal conditioning input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <DataLength>16</DataLength>
+                                                <DataRate>20000</DataRate>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-tcm-ex4">
+                                    <Name>ThermocoupleConditioner</Name>
+                                    <Description>TTC TCM-108 8-channel thermocouple conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>TCM-108</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-TCM-108</InventoryID>
+                                    <Position>7</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-tcm-j1-ch1-ex4" Index="1">
+                                            <Name>J1Ch1</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j1-ch2-ex4" Index="2">
+                                            <Name>J1Ch2</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j1-ch3-ex4" Index="3">
+                                            <Name>J1Ch3</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j1-ch4-ex4" Index="4">
+                                            <Name>J1Ch4</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j2-ch1-ex4" Index="5">
+                                            <Name>J2Ch1</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j2-ch2-ex4" Index="6">
+                                            <Name>J2Ch2</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j2-ch3-ex4" Index="7">
+                                            <Name>J2Ch3</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-tcm-j2-ch4-ex4" Index="8">
+                                            <Name>J2Ch4</Name>
+                                            <Description>Thermocouple input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-cvs-ex4">
+                                    <Name>VoiceConditioner</Name>
+                                    <Description>TTC CVS-102 2-channel voice conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>VoiceConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>CVS-102</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-CVS-102</InventoryID>
+                                    <Position>8</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-cvs-j1-ch1-ex4" Index="1">
+                                            <Name>J1Ch1</Name>
+                                            <Description>Voice input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Voice</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                        <Port ID="port-cvs-j2-ch1-ex4" Index="2">
+                                            <Name>J2Ch1</Name>
+                                            <Description>Voice input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Voice</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-power-ex4">
+                                    <Name>PowerSupply</Name>
+                                    <Description>TTC CDAU-2008 built-in power supply. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>TTC</Manufacturer>
+                                    <Model>CDAU-2008</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>TTC-CDAU-2008-PS</InventoryID>
+                                    <Position>201</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-power-j1-ch1" Index="1">
+                                            <Name>J1Ch1</Name>
+                                            <Description>Power input.</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                            </Modules>
+                        </InternalStructure>
+                    </NetworkNode>
+                </NetworkNodes>
+            </Network>
+        </Networks>
+    </NetworkDomain>
+    <DSCPTable>
+        <DSCPTableEntry ID="dscp-0">
+            <Name>BestEffort</Name>
+            <DSCPValue>0b000000</DSCPValue>
+        </DSCPTableEntry>
+    </DSCPTable>
+</MDLRoot>
