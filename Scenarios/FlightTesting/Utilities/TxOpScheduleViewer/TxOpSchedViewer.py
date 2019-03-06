@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
 # ---                                                                        ---
-# --- Last Updated: February 18, 2019                                        ---
+# --- Last Updated: March 5, 2019                                            ---
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -13,6 +13,7 @@ import types
 from importlib import import_module
 import argparse
 from lxml import etree
+import json
 import math
 import operator
 import curses
@@ -114,6 +115,9 @@ class RadioLink:
         self.qos_policy = qp
         self.max_latency_usec = lat             # Maximum Possible Latency achievable
         self.tx_dur_per_epoch_usec = 0
+        self.alloc_bw_mbps = 0
+        self.latency_point_value = 0
+        self.throughput_point_value = 0
 
     def add_txop(self, txop):
         self.tx_sched.append(txop)
@@ -132,6 +136,31 @@ class RadioLink:
             temp_latency = int(self.tx_sched[i+1].start_usec) - (int(self.tx_sched[i].stop_usec) + 1)
             if temp_latency > self.max_latency_usec:
                 self.max_latency_usec = temp_latency
+
+    def calc_alloc_bw_mbps(self, epoch_ms):
+        self.alloc_bw_mbps = ((int(self.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
+
+    def calc_latency_value(self, max_points_thd_ms, min_points_thd_ms):
+        print("max_latency_usec < max_points_thd: is {0} < {1}".format(self.max_latency_usec, max_points_thd_ms))
+        if self.max_latency_usec < int(max_points_thd_ms*1000):
+            self.latency_point_value = 100
+        elif self.max_latency_usec < int(min_points_thd_ms*1000):
+            ans = 100 - (self.max_latency_usec - int(max_points_thd_ms*1000)) ** 2
+            if (ans > 0):
+                self.latency_point_value = ans
+            else:
+                self.latency_point_value = 0
+        else:
+            self.latency_point_value = 0
+
+    def calc_throughput_value(self, min_points_thd, max_points_thd, coef):
+        alloc_bw_kbps = self.alloc_bw_mbps * 1000
+        if alloc_bw_kbps < min_points_thd:
+            self.throughput_point_value = 0.0
+        elif alloc_bw_kbps < max_points_thd:
+            self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
+        else:
+            self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
 
 
 # ------------------------------------------------------------------------------
@@ -237,17 +266,19 @@ def print_banner():
     global stdscr
     global banner_pad
     global text_d
-    
+    global border_d
+
     height, width = stdscr.getmaxyx()
-    
-    header = '*' * 106
-    banner_txt = "**********              TxOp Schedule Viewer for Link Manager Algorithm Evaluator" \
-                 "               **********"
-    banner_pad.addstr(0, 0, header, text_d['BANNER'] | curses.A_BOLD)
-    banner_pad.addstr(1, 0, banner_txt, text_d['BANNER'] | curses.A_BOLD)
-    banner_pad.addstr(2, 0, header, text_d['BANNER'] | curses.A_BOLD)
-    banner_pad.addstr(3, 0, ' '*105)
-    banner_pad.noutrefresh(0, 0, 0, 0, 2, (width-1))
+    pad_height, pad_width = banner_pad.getmaxyx()
+
+    horizon = border_d['TS'] * (pad_width - 2)
+    banner_pad.addstr(0, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']), text_d['BORDER'])
+    banner_pad.addstr(1, 0, "{0}{1}{2}".format(border_d['LS'],
+                                               "                        TxOp Schedule Viewer for Link Manager "
+                                               "Algorithm Evaluator                       ",
+                                               border_d['RS']), text_d['BORDER'])
+    banner_pad.addstr(2, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']), text_d['BORDER'])
+    banner_pad.noutrefresh(0, 0, 0, 0, 3, width - 1)
     
     
 # ------------------------------------------------------------------------------
@@ -396,40 +427,44 @@ def print_link_info(link, epoch_ms, row, cp):
             link_info_pad.addstr(row+2, 84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
                                  txt_color | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
 
-    alloc_bw_mbps = ((int(link.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
+    #alloc_bw_mbps = ((int(link.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
+    #link.calc_alloc_bw_mbps(epoch_ms)
     
     if link.qos_policy is None:
         link_info_pad.addstr(row+3, 84, "No QoS Policy!", txt_color |
                              curses.A_BOLD | curses.A_REVERSE | BLINK)
-        link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(alloc_bw_mbps), txt_color)
+        link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
     else:
         qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
         link_info_pad.addstr(row+3, 84, "{0:0.3f} Mbps".format(qp_ac_mbps), txt_color)
         
-        if qp_ac_mbps <= alloc_bw_mbps:
-            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(alloc_bw_mbps), txt_color)
+        if qp_ac_mbps <= link.alloc_bw_mbps:
+            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
         else:
-            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(alloc_bw_mbps), txt_color | curses.A_REVERSE | BLINK)
+            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color | curses.A_REVERSE | BLINK)
 
-    if mod_name in sys.modules:
-        if 'fun_l' in dir(sys.modules[mod_name]):
-            l_score = sys.modules[mod_name].fun_l(link.max_latency_usec / 1000)
-        else:
-            if debug >= 1:
-                print("Function 'fun_l' not found in the SCORE_FILE\n")
-            l_score = 0.0
-        if 'fun_tp' in dir(sys.modules[mod_name]):
-            tp_score = sys.modules[mod_name].fun_tp(alloc_bw_mbps * 1000)
-        else:
-            if debug >= 1:
-                print("Function 'fun_tp' not found in the SCORE_FILE\n")
-            tp_score = 0.0
-    else:
-        l_score = 0.0
-        tp_score = 0.0
+    # TODO: REPLACE MODULE FUNCTION CALLS BELOW WITH NEW FUNCTION CALLS
+    #if mod_name in sys.modules:
+    #    if 'fun_l' in dir(sys.modules[mod_name]):
+    #        l_score = sys.modules[mod_name].fun_l(link.max_latency_usec / 1000)
+    #    else:
+    #        if debug >= 1:
+    #            print("Function 'fun_l' not found in the SCORE_FILE\n")
+    #        l_score = 0.0
+    #    if 'fun_tp' in dir(sys.modules[mod_name]):
+    #        tp_score = sys.modules[mod_name].fun_tp(link.alloc_bw_mbps * 1000)
+    #    else:
+    #        if debug >= 1:
+    #            print("Function 'fun_tp' not found in the SCORE_FILE\n")
+    #        tp_score = 0.0
+    #else:
+    #    l_score = 0.0
+    #    tp_score = 0.0
 
-    link_info_pad.addstr(row+2, 96, "{0:0.1f}".format(l_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
-    link_info_pad.addstr(row+4, 96, "{0:0.1f}".format(tp_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    #link_info_pad.addstr(row+2, 96, "{0:0.1f}".format(l_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    #link_info_pad.addstr(row+4, 96, "{0:0.1f}".format(tp_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    link_info_pad.addstr(row + 2, 96, "{0:0.1f}".format(link.latency_point_value), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    link_info_pad.addstr(row + 4, 96, "{0:0.1f}".format(link.throughput_point_value), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
@@ -458,8 +493,8 @@ def print_txop_info(txop, idx, row, cp):
     txop_str = "  TxOp {0}: {1:6d} - {2:6d} us (TTL: {3:3d}) @ {4} MHz  \r".format(
               idx+1, int(txop.start_usec), int(txop.stop_usec), int(txop.timeout), 
               int(txop.freq)/1000000)
-    
-    link_info_pad.addstr(row, 0, txop_str, txt_color | curses.A_REVERSE)
+
+    link_info_pad.addstr(row, 0, txop_str, txt_color)
     
     if debug >= 2:
         print("  TxOp {0}: {1:6d} - {2:6d} us (TTL: {3:3d}) @ {4} MHz\r".format(
@@ -509,7 +544,7 @@ def print_txops_in_epoch(ran, ran_num, sel):
     start_row_num = (ran_num * 5)
     bar = (int(epoch_ms))/100
     scale_str = "one bar = {} ms".format(bar)
-    epoch_bar = "+----------------------------------------------------------------------------------------------------+"
+    horizon = border_d['TS'] * 100
     
     if ran_num == sel:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'] | curses.A_REVERSE)
@@ -524,22 +559,30 @@ def print_txops_in_epoch(ran, ran_num, sel):
         else:
             epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_WHITE'] | curses.A_BOLD | BLINK)
 
-        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, text_d['BG'] | curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "), text_d['BG'] | curses.A_REVERSE)
-        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, text_d['BG'] | curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num + 1, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']),
+                         text_d['BG'] | curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num + 2, 0, '{0}{1:100}{2}'.format(border_d['LS'], " ", border_d['RS']),
+                         text_d['BG'] | curses.A_REVERSE)
+        epoch_pad.addstr(start_row_num + 3, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']),
+                         text_d['BG'] | curses.A_REVERSE)
     else:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'])
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
                          format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_BOLD)
         epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), text_d['BG'] | curses.A_BOLD)
+
         if ran.gb_violated is False:
             epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_BLACK'] | curses.A_BOLD)
         else:
             epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-        epoch_pad.addstr(start_row_num+1, 0, epoch_bar, text_d['BG'])
-        epoch_pad.addstr(start_row_num+2, 0, '|{0:100}|'.format(" "), text_d['BG'])
-        epoch_pad.addstr(start_row_num+3, 0, epoch_bar, text_d['BG'])
+
+        epoch_pad.addstr(start_row_num + 1, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']),
+                         text_d['BG'])
+        epoch_pad.addstr(start_row_num + 2, 0, '{0}{1:100}{2}'.format(border_d['LS'], " ", border_d['RS']),
+                         text_d['BG'])
+        epoch_pad.addstr(start_row_num + 3, 0, "{0}{1}{2}".format(border_d['BL'], horizon, border_d['BR']),
+                         text_d['BG'])
     
     for idx, link in enumerate(links, start=0):
         for txop in link.tx_sched:
@@ -580,7 +623,28 @@ def print_txops_in_epoch(ran, ran_num, sel):
                 epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx % 10) + 11))
             else:
                 epoch_pad.addstr(start_row_num+2, int(start_pos)+1, graphic, curses.color_pair((idx % 10) + 1))
-            
+
+
+# ------------------------------------------------------------------------------
+
+
+def print_toolbar():
+    global stdscr
+    global toolbar_pad
+    global text_d
+
+    height, width = stdscr.getmaxyx()
+    tp_height, tp_width = toolbar_pad.getmaxyx()
+
+    select_msg = "ENTER RAN # FOR DETAILS"
+    quit_msg = "PRESS 'q' TO QUIT"
+
+    toolbar_pad.addstr(0, 0, "{0}".format(border_d['TS'] * (tp_width - 1)))
+    toolbar_pad.addstr(1, 0, " {0} | {1} ".format(select_msg, quit_msg), text_d['BORDER'])
+    toolbar_pad.addstr(1, 34, 'q', text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
+
+    toolbar_pad.noutrefresh(0, 0, (height - 3), 0, (height - 1), (width - 1))
+
 
 # ------------------------------------------------------------------------------
 
@@ -647,6 +711,8 @@ def main(stdscr):
     curses.init_pair(18, 135, 15)       # purplish 2 on white
     curses.init_pair(19, 175, 15)       # redish 2 on white
     curses.init_pair(20, 222, 15)       # yellowish 2 on white
+    curses.init_pair(247, 63, 235)      # border
+    curses.init_pair(248, 11, 235)
     curses.init_pair(249, 27, 235)
     curses.init_pair(250, 10, 235)
     curses.init_pair(251, 10, 15)
@@ -655,6 +721,8 @@ def main(stdscr):
     curses.init_pair(254, 9, 235)
     curses.init_pair(255, 15, 235)
 
+    text_d['BORDER'] = curses.color_pair(247)
+    text_d['WARNING_BLACK'] = curses.color_pair(248)
     text_d['BANNER'] = curses.color_pair(249)
     text_d['FOR_SCORE'] = curses.color_pair(250)
     text_d['PASS_WHITE'] = curses.color_pair(251)
@@ -663,7 +731,23 @@ def main(stdscr):
     text_d['ERROR_BLACK'] = curses.color_pair(254)
     text_d['BG'] = curses.color_pair(255)
 
+    border_d['LS'] = u'\u2502'
+    border_d['RS'] = u'\u2502'
+    border_d['TS'] = u'\u2500'
+    border_d['BS'] = u'\u2500'
+    border_d['TL'] = u'\u250c'
+    border_d['TR'] = u'\u2510'
+    border_d['BL'] = u'\u2514'
+    border_d['BR'] = u'\u2518'
+
     stdscr.bkgd(text_d['BG'])
+    banner_pad.bkgd(text_d['BG'])
+    toolbar_pad.bkgd(text_d['BG'])
+    file_info_pad.bkgd(text_d['BG'])
+    ran_pad.bkgd(text_d['BG'])
+    link_info_pad.bkgd(text_d['BG'])
+    epoch_pad.bkgd(text_d['BG'])
+    txop_display_pad.bkgd(text_d['BG'])
     stdscr.clear()
     stdscr.refresh()
 
@@ -768,10 +852,46 @@ def main(stdscr):
         for l in r.links:
             l.calc_max_latency(epoch_usec)
 
+    # Calculate and set the Allocated Bandwidth per link
+    for r in rans_list:
+        for l in r.links:
+            l.calc_alloc_bw_mbps(r.epoch_ms)
+
     # Check for any guardband violations
     for r in rans_list:
         r.check_guardbands()
 
+    # Load JSON scoring file
+    if score_file is not None:
+        with open(score_file) as f:
+            ld_link_scores = json.load(f)
+
+    for d in ld_link_scores:
+        for ran in rans_list:
+            for l in ran.links:
+                if "Link" in d:
+                    print("found src, dst: {}.{}".format(d['Link']['LinkSrc'], d['Link']['LinkDst']))
+                    if ((int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst']))):
+                        print("found link: {0} --> {1}\r".format(l.src, l.dst))
+                        if "Latency" in d:
+                            lat_max_thd = d['Latency']['max_thd']
+                            lat_min_thd = d['Latency']['min_thd']
+                            print("max: {0}, min: {1}\r".format(lat_max_thd, lat_min_thd))
+                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd))
+                            print(l.latency_point_value)
+                        if "Bandwidth" in d:
+                            bw_min_thd = d['Bandwidth']['min_thd']
+                            bw_max_thd = d['Bandwidth']['max_thd']
+                            bw_coef = d['Bandwidth']['coef']
+                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef)
+                            print(l.throughput_point_value)
+                    else:
+                        print("no match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
+                else:
+                    print("no match for key 'Link' in score file\r")
+    print("done with for ld_link_scores\r")
+
+    stdscr.getkey()
     # Print to screen
     num_rans = len(rans_list)
     ran_idx = 1
@@ -794,11 +914,7 @@ def main(stdscr):
                 if len(rans_list[ran_idx-1].links) > 0:
                     print_links_info(rans_list[ran_idx-1].links, num_rans, rans_list[ran_idx-1].epoch_ms)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
-
-            post_banner_pad.bkgd(text_d['BG'])
-            post_banner_pad.addstr(0, 0, "***  ENTER RAN # FOR DETAILS   |   PRESS 'q' TO QUIT  ***",
-                                   text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-            post_banner_pad.noutrefresh(0, 0, (height-1), 0, (height-1), (width-1))
+            print_toolbar()
         stdscr.refresh()
     
         keypress = stdscr.getkey()          # Wait for user to press a key
@@ -826,7 +942,7 @@ if __name__ == "__main__":
     parser.add_argument('-s', action='store', default=None, dest='SCORE',
                         help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.2.3')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.4.1')
     cli_args = parser.parse_args()
 
     # CLI argument assignments
@@ -835,24 +951,25 @@ if __name__ == "__main__":
     mod_name = None
     debug = cli_args.debug
     text_d = {}
+    border_d = {}
 
-    if score_file is not None:
-        mod_name, ext = os.path.splitext(os.path.split(score_file)[-1])
-        if ext == '.ipynb':
-            sys.meta_path.append(NotebookFinder())      # Register the NotebookFinder with sys.meta_path
-            InteractiveShell.enable_gui = no_gui()
-            try:
-                import_module(mod_name)
-            except:
-                score_file = None
-        else:
-            if debug >= 1:
-                print("{} is not a valid SCORE_FILE.  Please specify an *.ipynb file.".format(score_file))
-            score_file = None
+    #if score_file is not None:
+    #    mod_name, ext = os.path.splitext(os.path.split(score_file)[-1])
+    #    if ext == '.ipynb':
+    #        sys.meta_path.append(NotebookFinder())      # Register the NotebookFinder with sys.meta_path
+    #        InteractiveShell.enable_gui = no_gui()
+    #        try:
+    #            import_module(mod_name)
+    #        except:
+    #            score_file = None
+    #    else:
+    #        if debug >= 1:
+    #            print("{} is not a valid SCORE_FILE.  Please specify an *.ipynb file.".format(score_file))
+    #        score_file = None
 
     stdscr = curses.initscr()
     banner_pad = curses.newpad(4, 106)          # Initialize Banner Pad
-    post_banner_pad = curses.newpad(1, 106)     # Initialize Post Banner Pad
+    toolbar_pad = curses.newpad(3, 106)         # Initialize Toolbar Pad
     file_info_pad = curses.newpad(6, 102)       # Initialize File Info Pad
     ran_pad = curses.newpad(5, 102)             # Initialize RAN Pad
     link_info_pad = curses.newpad(8, 102)       # Initialize Link Info Pad
