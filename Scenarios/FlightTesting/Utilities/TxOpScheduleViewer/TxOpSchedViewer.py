@@ -2,15 +2,12 @@
 # ------------------------------------------------------------------------------
 # ---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
 # ---                                                                        ---
-# --- Last Updated: March 5, 2019                                            ---
+# --- Last Updated: March 6, 2019                                            ---
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
 import sys
 import os
-import io
-import types
-from importlib import import_module
 import argparse
 from lxml import etree
 import json
@@ -18,9 +15,6 @@ import math
 import operator
 import curses
 from curses import wrapper
-from IPython import get_ipython
-from nbformat import read
-from IPython.core.interactiveshell import InteractiveShell
 
 
 ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
@@ -141,12 +135,11 @@ class RadioLink:
         self.alloc_bw_mbps = ((int(self.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
 
     def calc_latency_value(self, max_points_thd_ms, min_points_thd_ms):
-        print("max_latency_usec < max_points_thd: is {0} < {1}".format(self.max_latency_usec, max_points_thd_ms))
         if self.max_latency_usec < int(max_points_thd_ms*1000):
             self.latency_point_value = 100
         elif self.max_latency_usec < int(min_points_thd_ms*1000):
             ans = 100 - (self.max_latency_usec - int(max_points_thd_ms*1000)) ** 2
-            if (ans > 0):
+            if ans > 0:
                 self.latency_point_value = ans
             else:
                 self.latency_point_value = 0
@@ -164,101 +157,6 @@ class RadioLink:
 
 
 # ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-
-
-class NotebookLoader(object):
-    """Module Loader for Jupyter Notebooks"""
-
-    def __init__(self, path=None):
-        self.shell = InteractiveShell.instance()
-        self.path = path
-
-    def load_module(self, fullname):
-        """import a notebook as a module"""
-        path = find_notebook(fullname, self.path)
-
-        print("importing Jupyter notebook from %s" % path)
-
-        # load the notebook object
-        with io.open(path, 'r', encoding='utf-8') as f:
-            nb = read(f, 4)
-
-        # create the module and add it to sys.modules
-        # if name in sys.modules:
-        #    return sys.modules[name]
-        mod = types.ModuleType(fullname)
-        mod.__file__ = path
-        mod.__loader__ = self
-        mod.__dict__['get_ipython'] = get_ipython
-        sys.modules[fullname] = mod
-
-        # extra work to ensure that magics that would affect the user_ns
-        # actually affect the notebook module's ns
-        save_user_ns = self.shell.user_ns
-        self.shell.user_ns = mod.__dict__
-
-        try:
-            for cell in nb.cells:
-                if cell.cell_type == 'code':
-                    # transform the input to executable Python
-                    code = self.shell.input_transformer_manager.transform_cell(cell.source)
-                    # run the code in the module
-                    exec(code, mod.__dict__)
-        finally:
-            self.shell.user_ns = save_user_ns
-        return mod
-
-
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-
-
-class NotebookFinder(object):
-    """Module finder that locates Jupyter Notebooks"""
-
-    def __init__(self):
-        self.loaders = {}
-
-    def find_module(self, fullname, path=None):
-        nb_path = find_notebook(fullname, path)
-        if not nb_path:
-            return
-
-        key = path
-        if path:
-            # lists aren't hashable
-            key = os.path.sep.join(path)
-
-        if key not in self.loaders:
-            self.loaders[key] = NotebookLoader(path)
-        return self.loaders[key]
-
-
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-
-
-def find_notebook(fullname, path=None):
-    """find a notebook, given its fully qualified name and an optional path
-
-    This turns "foo.bar" into "foo/bar.ipynb"
-    and tries turning "Foo_Bar" into "Foo Bar" if Foo_Bar
-    does not exist.
-    """
-    name = fullname.rsplit('.', 1)[-1]
-    if not path:
-        path = ['']
-    for d in path:
-        nb_path = os.path.join(d, name + ".ipynb")
-        if os.path.isfile(nb_path):
-            return nb_path
-        # let import Notebook_Name find "Notebook Name.ipynb"
-        nb_path = nb_path.replace("_", " ")
-        if os.path.isfile(nb_path):
-            return nb_path
-
-
 # ------------------------------------------------------------------------------
 
 
@@ -301,8 +199,11 @@ def print_file_info(f, name, config, s_file):
     if s_file is None:
         file_info_pad.addstr(3, 0, "{0:>102}".format('Not for score'),
                              text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_UNDERLINE)
-    else:
+    elif os.path.isfile(s_file):
         file_info_pad.addstr(3, 0, "{0:>102}".format(msg4), text_d['FOR_SCORE'] | curses.A_BOLD | curses.A_UNDERLINE)
+    else:
+        file_info_pad.addstr(3, 0, "{0:>102}".format('Score File Not Found: {0}'.format(s_file)),
+                             text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_UNDERLINE)
     
     if (height-1) >= 9:
         file_info_pad.noutrefresh(0, 0, 4, 2, 7, (width-1))
@@ -320,13 +221,13 @@ def print_ran_stats(ran):
     
     height, width = stdscr.getmaxyx()
     
-    ran_pad.addstr(0, 0, "RAN Configuration Name:.....   {0:71}".format(ran.name),
+    ran_pad.addstr(0, 0, " RAN Configuration Name:.....   {0:70}".format(ran.name),
                    text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(1, 0, "Center Frequency:...........   {0} MHz{1:61}".format(int(ran.freq)/1000000, ' '),
+    ran_pad.addstr(1, 0, " Center Frequency:...........   {0} MHz{1:60}".format(int(ran.freq)/1000000, ' '),
                    text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(2, 0, "Epoch Size:.................   {0} ms{1:65}".format(ran.epoch_ms, ' '),
+    ran_pad.addstr(2, 0, " Epoch Size:.................   {0} ms{1:64}".format(ran.epoch_ms, ' '),
                    text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
-    ran_pad.addstr(3, 0, "Guard Time:.................   {0:0.3f} ms{1:63}".format(ran.guard_ms, ' '),
+    ran_pad.addstr(3, 0, " Guard Time:.................   {0:0.3f} ms{1:62}".format(ran.guard_ms, ' '),
                    text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
     
     start_row_pos = 9
@@ -341,7 +242,7 @@ def print_ran_stats(ran):
 # ------------------------------------------------------------------------------
 
 
-def print_links_info(links, num_rans, epoch_ms):
+def print_links_info(links, num_rans):
     global stdscr
     global link_info_pad
     global text_d
@@ -363,7 +264,7 @@ def print_links_info(links, num_rans, epoch_ms):
     
     start_row = 1
     for idx, link in enumerate(links, start=0):
-        print_link_info(link, epoch_ms, start_row, idx)
+        print_link_info(link, start_row, idx)
         if len(link.tx_sched) > 0:
             start_row += 4 + len(link.tx_sched)
         else:
@@ -381,7 +282,7 @@ def print_links_info(links, num_rans, epoch_ms):
 # ------------------------------------------------------------------------------
 
 
-def print_link_info(link, epoch_ms, row, cp):
+def print_link_info(link, row, cp):
     global link_info_pad
     global mod_name
 
@@ -399,7 +300,7 @@ def print_link_info(link, epoch_ms, row, cp):
 
     if link.qos_policy is None:
         link_info_pad.addstr(row+1, 84, "No QoS Policy!",
-                             txt_color | curses.A_BOLD | curses.A_REVERSE | BLINK)
+                             txt_color | curses.A_BOLD | curses.A_REVERSE)
         if link.max_latency_usec == 0:
             link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'), txt_color | curses.A_UNDERLINE)
         else:
@@ -416,7 +317,7 @@ def print_link_info(link, epoch_ms, row, cp):
         if link.max_latency_usec == 0:
             if link.qos_policy.max_latency_usec < 1000000.0:
                 link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'),
-                                     txt_color | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
+                                     txt_color | curses.A_UNDERLINE | curses.A_REVERSE)
             else:
                 link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'),
                                      txt_color | curses.A_UNDERLINE)
@@ -425,14 +326,11 @@ def print_link_info(link, epoch_ms, row, cp):
                                  txt_color | curses.A_UNDERLINE)
         else: 
             link_info_pad.addstr(row+2, 84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
-                                 txt_color | curses.A_UNDERLINE | curses.A_REVERSE | BLINK)
-
-    #alloc_bw_mbps = ((int(link.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
-    #link.calc_alloc_bw_mbps(epoch_ms)
+                                 txt_color | curses.A_UNDERLINE | curses.A_REVERSE)
     
     if link.qos_policy is None:
         link_info_pad.addstr(row+3, 84, "No QoS Policy!", txt_color |
-                             curses.A_BOLD | curses.A_REVERSE | BLINK)
+                             curses.A_BOLD | curses.A_REVERSE)
         link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
     else:
         qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
@@ -441,30 +339,12 @@ def print_link_info(link, epoch_ms, row, cp):
         if qp_ac_mbps <= link.alloc_bw_mbps:
             link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
         else:
-            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color | curses.A_REVERSE | BLINK)
+            link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color | curses.A_REVERSE)
 
-    # TODO: REPLACE MODULE FUNCTION CALLS BELOW WITH NEW FUNCTION CALLS
-    #if mod_name in sys.modules:
-    #    if 'fun_l' in dir(sys.modules[mod_name]):
-    #        l_score = sys.modules[mod_name].fun_l(link.max_latency_usec / 1000)
-    #    else:
-    #        if debug >= 1:
-    #            print("Function 'fun_l' not found in the SCORE_FILE\n")
-    #        l_score = 0.0
-    #    if 'fun_tp' in dir(sys.modules[mod_name]):
-    #        tp_score = sys.modules[mod_name].fun_tp(link.alloc_bw_mbps * 1000)
-    #    else:
-    #        if debug >= 1:
-    #            print("Function 'fun_tp' not found in the SCORE_FILE\n")
-    #        tp_score = 0.0
-    #else:
-    #    l_score = 0.0
-    #    tp_score = 0.0
-
-    #link_info_pad.addstr(row+2, 96, "{0:0.1f}".format(l_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
-    #link_info_pad.addstr(row+4, 96, "{0:0.1f}".format(tp_score), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
-    link_info_pad.addstr(row + 2, 96, "{0:0.1f}".format(link.latency_point_value), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
-    link_info_pad.addstr(row + 4, 96, "{0:0.1f}".format(link.throughput_point_value), txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    link_info_pad.addstr(row + 2, 96, "{0:0.1f}".format(link.latency_point_value),
+                         txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+    link_info_pad.addstr(row + 4, 96, "{0:0.1f}".format(link.throughput_point_value),
+                         txt_color | curses.A_UNDERLINE | curses.A_BOLD)
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
@@ -862,36 +742,54 @@ def main(stdscr):
         r.check_guardbands()
 
     # Load JSON scoring file
+    ld_link_scores = None
     if score_file is not None:
-        with open(score_file) as f:
-            ld_link_scores = json.load(f)
+        try:
+            with open(score_file) as f:
+                ld_link_scores = json.load(f)
+        except (FileNotFoundError):
+            ld_link_scores = None
+            if debug >= 1:
+                print("JSON Score File Not Found!\r")
 
-    for d in ld_link_scores:
-        for ran in rans_list:
-            for l in ran.links:
-                if "Link" in d:
-                    print("found src, dst: {}.{}".format(d['Link']['LinkSrc'], d['Link']['LinkDst']))
-                    if ((int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst']))):
-                        print("found link: {0} --> {1}\r".format(l.src, l.dst))
-                        if "Latency" in d:
-                            lat_max_thd = d['Latency']['max_thd']
-                            lat_min_thd = d['Latency']['min_thd']
-                            print("max: {0}, min: {1}\r".format(lat_max_thd, lat_min_thd))
+    if ld_link_scores is not None:
+        for d in ld_link_scores:
+            for ran in rans_list:
+                for l in ran.links:
+                    if "Link" in d:
+                        if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
+                            lat_min_thd = 0
+                            lat_max_thd = 0
+                            bw_min_thd = 0
+                            bw_max_thd = 0
+                            bw_coef = 0
+                            if "Latency" in d:
+                                if "max_thd" in d['Latency']:
+                                    lat_max_thd = d['Latency']['max_thd']
+                                if "min_thd" in d['Latency']:
+                                    lat_min_thd = d['Latency']['min_thd']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Latency' was not found in the dictionary for the specified link.")
+                            if "Bandwidth" in d:
+                                if "min_thd" in d['Bandwidth']:
+                                    bw_min_thd = d['Bandwidth']['min_thd']
+                                if "max_thd" in d['Bandwidth']:
+                                    bw_max_thd = d['Bandwidth']['max_thd']
+                                if "coef" in d['Bandwidth']:
+                                    bw_coef = d['Bandwidth']['coef']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
                             l.calc_latency_value(int(lat_max_thd), int(lat_min_thd))
-                            print(l.latency_point_value)
-                        if "Bandwidth" in d:
-                            bw_min_thd = d['Bandwidth']['min_thd']
-                            bw_max_thd = d['Bandwidth']['max_thd']
-                            bw_coef = d['Bandwidth']['coef']
                             l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef)
-                            print(l.throughput_point_value)
+                        else:
+                            if debug >= 1:
+                                print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
                     else:
-                        print("no match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
-                else:
-                    print("no match for key 'Link' in score file\r")
-    print("done with for ld_link_scores\r")
+                        if debug >= 1:
+                            print("No match for key 'Link' in score file for link.\r")
 
-    stdscr.getkey()
     # Print to screen
     num_rans = len(rans_list)
     ran_idx = 1
@@ -912,7 +810,7 @@ def main(stdscr):
             if num_rans > 0:
                 print_ran_stats(rans_list[ran_idx-1])
                 if len(rans_list[ran_idx-1].links) > 0:
-                    print_links_info(rans_list[ran_idx-1].links, num_rans, rans_list[ran_idx-1].epoch_ms)
+                    print_links_info(rans_list[ran_idx-1].links, num_rans)
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
             print_toolbar()
         stdscr.refresh()
@@ -924,7 +822,7 @@ def main(stdscr):
             break
         
         if ran_idx == 0:
-            ran_idx += 1
+            ran_idx = 1
         if ran_idx > len(rans_list):
             ran_idx = len(rans_list)
 
@@ -952,20 +850,6 @@ if __name__ == "__main__":
     debug = cli_args.debug
     text_d = {}
     border_d = {}
-
-    #if score_file is not None:
-    #    mod_name, ext = os.path.splitext(os.path.split(score_file)[-1])
-    #    if ext == '.ipynb':
-    #        sys.meta_path.append(NotebookFinder())      # Register the NotebookFinder with sys.meta_path
-    #        InteractiveShell.enable_gui = no_gui()
-    #        try:
-    #            import_module(mod_name)
-    #        except:
-    #            score_file = None
-    #    else:
-    #        if debug >= 1:
-    #            print("{} is not a valid SCORE_FILE.  Please specify an *.ipynb file.".format(score_file))
-    #        score_file = None
 
     stdscr = curses.initscr()
     banner_pad = curses.newpad(4, 106)          # Initialize Banner Pad
