@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---    TxOp Schedule Viewer for Link Manager Algorithm Evaluator           ---
 # ---                                                                        ---
-# --- Last Updated: March 6, 2019                                            ---
+# --- Last Updated: March 7, 2019                                            ---
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -193,17 +193,17 @@ def print_file_info(f, name, config, s_file):
     msg2 = "Name: {}".format(name)
     msg3 = "Configuration Version: {}".format(config)
     msg4 = "Score Criteria: {}".format(s_file)
-    file_info_pad.addstr(0, 0, "{0:^102}".format(msg1), text_d['BG'] | curses.A_BOLD)
-    file_info_pad.addstr(1, 0, "{0:^102}".format(msg2), text_d['BG'] | curses.A_BOLD)
-    file_info_pad.addstr(2, 0, "{0:^102}".format(msg3), text_d['BG'] | curses.A_BOLD)
+    file_info_pad.addstr(0, 0, "{0:^102}".format(msg1), text_d['BG'] | BOLD)
+    file_info_pad.addstr(1, 0, "{0:^102}".format(msg2), text_d['BG'] | BOLD)
+    file_info_pad.addstr(2, 0, "{0:^102}".format(msg3), text_d['BG'] | BOLD)
     if s_file is None:
         file_info_pad.addstr(3, 0, "{0:>102}".format('Not for score'),
-                             text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_UNDERLINE)
+                             text_d['ERROR_BLACK'] | BOLD | curses.A_UNDERLINE)
     elif os.path.isfile(s_file):
-        file_info_pad.addstr(3, 0, "{0:>102}".format(msg4), text_d['FOR_SCORE'] | curses.A_BOLD | curses.A_UNDERLINE)
+        file_info_pad.addstr(3, 0, "{0:>102}".format(msg4), text_d['FOR_SCORE'] | BOLD | curses.A_UNDERLINE)
     else:
         file_info_pad.addstr(3, 0, "{0:>102}".format('Score File Not Found: {0}'.format(s_file)),
-                             text_d['ERROR_BLACK'] | curses.A_BOLD | curses.A_UNDERLINE)
+                             text_d['ERROR_BLACK'] | BOLD | curses.A_UNDERLINE)
     
     if (height-1) >= 9:
         file_info_pad.noutrefresh(0, 0, 4, 2, 7, (width-1))
@@ -222,13 +222,13 @@ def print_ran_stats(ran):
     height, width = stdscr.getmaxyx()
     
     ran_pad.addstr(0, 0, " RAN Configuration Name:.....   {0:70}".format(ran.name),
-                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | BOLD)
     ran_pad.addstr(1, 0, " Center Frequency:...........   {0} MHz{1:60}".format(int(ran.freq)/1000000, ' '),
-                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | BOLD)
     ran_pad.addstr(2, 0, " Epoch Size:.................   {0} ms{1:64}".format(ran.epoch_ms, ' '),
-                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | BOLD)
     ran_pad.addstr(3, 0, " Guard Time:.................   {0:0.3f} ms{1:62}".format(ran.guard_ms, ' '),
-                   text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+                   text_d['BG'] | curses.A_REVERSE | BOLD)
     
     start_row_pos = 9
     last_row_pos = 12
@@ -288,11 +288,11 @@ def print_link_info(link, row, cp):
 
     txt_color = curses.color_pair((cp % 10) + 1)
 
-    link_info_pad.addstr(row, 0, "Link: {}".format(link.name), txt_color | curses.A_BOLD)
+    link_info_pad.addstr(row, 0, "Link: {}".format(link.name), txt_color | BOLD)
     link_info_pad.addstr(row+1, 0, "Source Radio RF MAC Addr:      {0:5d} [0x{0:04x}] ".format(int(link.src)),
-                         txt_color | curses.A_BOLD)
+                         txt_color | BOLD)
     link_info_pad.addstr(row+2, 0, "Destination Group RF MAC Addr: {0:5d} [0x{0:04x}] ".format(int(link.dst)),
-                         txt_color | curses.A_BOLD)
+                         txt_color | BOLD)
     link_info_pad.addstr(row+1, 56, "Max Latency Requirement:    ", txt_color)
     link_info_pad.addstr(row+2, 56, "Max Latency Achievable:     ", txt_color | curses.A_UNDERLINE)
     link_info_pad.addstr(row+3, 56, "Minimum Capacity Required:  ", txt_color)
@@ -300,7 +300,7 @@ def print_link_info(link, row, cp):
 
     if link.qos_policy is None:
         link_info_pad.addstr(row+1, 84, "No QoS Policy!",
-                             txt_color | curses.A_BOLD | curses.A_REVERSE)
+                             txt_color | BOLD | curses.A_REVERSE)
         if link.max_latency_usec == 0:
             link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'), txt_color | curses.A_UNDERLINE)
         else:
@@ -330,7 +330,7 @@ def print_link_info(link, row, cp):
     
     if link.qos_policy is None:
         link_info_pad.addstr(row+3, 84, "No QoS Policy!", txt_color |
-                             curses.A_BOLD | curses.A_REVERSE)
+                             BOLD | curses.A_REVERSE)
         link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
     else:
         qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
@@ -342,15 +342,15 @@ def print_link_info(link, row, cp):
             link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color | curses.A_REVERSE)
 
     link_info_pad.addstr(row + 2, 96, "{0:0.1f}".format(link.latency_point_value),
-                         txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+                         txt_color | curses.A_UNDERLINE | BOLD)
     link_info_pad.addstr(row + 4, 96, "{0:0.1f}".format(link.throughput_point_value),
-                         txt_color | curses.A_UNDERLINE | curses.A_BOLD)
+                         txt_color | curses.A_UNDERLINE | BOLD)
 
     if (len(link.tx_sched)) > 0:
         print_txops_info(link.tx_sched, row+3, cp)
     else:
         link_info_pad.addstr(row+3, 2, "  NO TXOPS DEFINED IN MDL FOR THIS LINK  ",
-                             txt_color | curses.A_REVERSE | curses.A_BOLD)
+                             txt_color | curses.A_REVERSE | BOLD)
 
 
 # ------------------------------------------------------------------------------
@@ -430,14 +430,14 @@ def print_txops_in_epoch(ran, ran_num, sel):
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'] | curses.A_REVERSE)
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
                          format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | curses.A_REVERSE |
-                         curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 54, 'Guardbands:', text_d['BG'] | curses.A_REVERSE | curses.A_BOLD)
+                         BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_REVERSE | BOLD)
+        epoch_pad.addstr(start_row_num, 54, 'Guardbands:', text_d['BG'] | curses.A_REVERSE | BOLD)
 
         if ran.gb_violated is False:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_WHITE'] | curses.A_BOLD)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_WHITE'] | BOLD)
         else:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_WHITE'] | curses.A_BOLD | BLINK)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_WHITE'] | BOLD | BLINK)
 
         epoch_pad.addstr(start_row_num + 1, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']),
                          text_d['BG'] | curses.A_REVERSE)
@@ -448,14 +448,14 @@ def print_txops_in_epoch(ran, ran_num, sel):
     else:
         epoch_pad.addstr(start_row_num, 0, "{0:>102}".format(scale_str), text_d['BG'])
         epoch_pad.addstr(start_row_num, 0, "{0}.)  {1}\t|\tBW Efficiency: {2:5.2f}%".
-                         format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | curses.A_BOLD)
-        epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), text_d['BG'] | curses.A_BOLD)
+                         format((ran_num+1), ran.name, ran.efficiency_pct), text_d['BG'] | BOLD)
+        epoch_pad.addstr(start_row_num, 51, '|'.format(" "), text_d['BG'] | BOLD)
+        epoch_pad.addstr(start_row_num, 54, '{}'.format("Guardbands:"), text_d['BG'] | BOLD)
 
         if ran.gb_violated is False:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_BLACK'] | curses.A_BOLD)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("OK"), text_d['PASS_BLACK'] | BOLD)
         else:
-            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+            epoch_pad.addstr(start_row_num, 66, '{}'.format("VIOLATION"), text_d['ERROR_BLACK'] | BOLD | BLINK)
 
         epoch_pad.addstr(start_row_num + 1, 0, "{0}{1}{2}".format(border_d['TL'], horizon, border_d['TR']),
                          text_d['BG'])
@@ -521,7 +521,7 @@ def print_toolbar():
 
     toolbar_pad.addstr(0, 0, "{0}".format(border_d['TS'] * (tp_width - 1)))
     toolbar_pad.addstr(1, 0, " {0} | {1} ".format(select_msg, quit_msg), text_d['BORDER'])
-    toolbar_pad.addstr(1, 34, 'q', text_d['BORDER'] | curses.A_BOLD | curses.A_REVERSE)
+    toolbar_pad.addstr(1, 34, 'q', text_d['BORDER'] | BOLD | curses.A_REVERSE)
 
     toolbar_pad.noutrefresh(0, 0, (height - 3), 0, (height - 1), (width - 1))
 
@@ -537,9 +537,9 @@ def print_too_short(width):
     msg1 = bangs + '  DID YOU WANT TO SEE SOMETHING IN THIS WINDOW?  ' + bangs
     msg2 = bangs + '    TRY MAKING THE WINDOW A LITTLE BIT DEEPER.   ' + bangs
     msg3 = bangs + '            RESIZE WINDOW TO CONTINUE            ' + bangs
-    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
+    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
+    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
 
 
 # ------------------------------------------------------------------------------
@@ -554,10 +554,10 @@ def print_too_skinny(width):
     msg2 = bangs + '  SEE ON SUCH A SKINNY SCREEN  ' + bangs
     msg3 = bangs + '  TRY MAKING IT WIDER, OR RISK ' + bangs
     msg4 = bangs + '            SKYNET             ' + bangs
-    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
-    stdscr.addstr(3, 0, "{0:^{1}}".format(msg4, width), text_d['ERROR_BLACK'] | curses.A_BOLD | BLINK)
+    stdscr.addstr(0, 0, "{0:^{1}}".format(msg1, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
+    stdscr.addstr(1, 0, "{0:^{1}}".format(msg2, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
+    stdscr.addstr(2, 0, "{0:^{1}}".format(msg3, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
+    stdscr.addstr(3, 0, "{0:^{1}}".format(msg4, width), text_d['ERROR_BLACK'] | BOLD | BLINK)
     
 
 # ------------------------------------------------------------------------------
@@ -591,6 +591,16 @@ def main(stdscr):
     curses.init_pair(18, 135, 15)       # purplish 2 on white
     curses.init_pair(19, 175, 15)       # redish 2 on white
     curses.init_pair(20, 222, 15)       # yellowish 2 on white
+    curses.init_pair(31, 12, 235)       # Windows: MSG ERROR - redish
+    curses.init_pair(32, 14, 235)       # Windows: MSG WARNING - yellowish
+    curses.init_pair(33, 8, 235)        # Windows: MSG INFO - grayish
+    curses.init_pair(34, 24, 235)       # Windows: MSG UNKNOWN - bluish
+    curses.init_pair(35, 47, 235)       # Windows: Trend Up - greenish
+    curses.init_pair(36, 24, 235)       # Windows: Trend Steady - bluish
+    curses.init_pair(37, 160, 235)      # Windows: Trend Down - redish
+    curses.init_pair(38, 14, 235)       # Windows: Warning - Black
+    curses.init_pair(39, 12, 15)        # Windows: Error - White
+    curses.init_pair(40, 12, 235)       # Windows: Error - Black
     curses.init_pair(247, 63, 235)      # border
     curses.init_pair(248, 11, 235)
     curses.init_pair(249, 27, 235)
@@ -610,6 +620,18 @@ def main(stdscr):
     text_d['ERROR_WHITE'] = curses.color_pair(253)
     text_d['ERROR_BLACK'] = curses.color_pair(254)
     text_d['BG'] = curses.color_pair(255)
+
+    # If running on Windows, use the following terminal colors
+    if os.name == 'nt':
+        text_d['BORDER'] = curses.color_pair(247)
+        text_d['WARNING_BLACK'] = curses.color_pair(38)
+        text_d['BANNER'] = curses.color_pair(249)
+        text_d['FOR_SCORE'] = curses.color_pair(250)
+        text_d['PASS_WHITE'] = curses.color_pair(251)
+        text_d['PASS_BLACK'] = curses.color_pair(252)
+        text_d['ERROR_WHITE'] = curses.color_pair(39)
+        text_d['ERROR_BLACK'] = curses.color_pair(40)
+        text_d['BG'] = curses.color_pair(255)
 
     border_d['LS'] = u'\u2502'
     border_d['RS'] = u'\u2502'
@@ -747,7 +769,7 @@ def main(stdscr):
         try:
             with open(score_file) as f:
                 ld_link_scores = json.load(f)
-        except (FileNotFoundError):
+        except FileNotFoundError:
             ld_link_scores = None
             if debug >= 1:
                 print("JSON Score File Not Found!\r")
@@ -861,8 +883,10 @@ if __name__ == "__main__":
     txop_display_pad = curses.newpad(1, 100)    # Initialize TxOp Display Pad
     
     if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
-        BLINK = 0                               # because it doesn't look very good.
+        BLINK = 0                               # because it doesn't look very good.  Also disabling the "bold" feature
+        BOLD = 0                                # because it changes the color on Windows
     else:
         BLINK = curses.A_BLINK
+        BOLD = curses.A_BOLD
     
     wrapper(main)

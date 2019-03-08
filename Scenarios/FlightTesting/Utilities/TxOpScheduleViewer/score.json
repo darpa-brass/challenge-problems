@@ -1,0 +1,14 @@
+[
+    {
+        "Link": {"LinkSrc": 4097, "LinkDst": 61457}, 
+        "Latency": {"max_thd": 50, "min_thd":60},
+        "Bandwidth": {"min_thd": 200, "max_thd": 2000, "coef": 0.005},
+        "OtherThing": "theresonlyONE",
+        "BRASS": {"top": 1, "knuckles":  2, "tacks": "ouch"}
+     },
+     {
+        "Link": {"LinkSrc": 4113, "LinkDst": 61456},
+        "Latency": {"max_thd": 50, "min_thd":60}, 
+        "Bandwidth": {"min_thd": 2000, "max_thd": 3000, "coef": 0.000005}
+     }
+]
