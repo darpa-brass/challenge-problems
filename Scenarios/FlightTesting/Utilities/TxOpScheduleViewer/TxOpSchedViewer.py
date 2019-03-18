@@ -563,45 +563,42 @@ def print_too_skinny(width):
 # ------------------------------------------------------------------------------
 
 
-def main(stdscr):  
-    global mdl_file
-    global score_file
+def init_text_colors():
     global text_d
-    rans_list = []
-    qos_policies_list = []
-    
+    global border_d
+
     # Color Pair Setup
-    curses.init_pair(1, 114, 235)       # greenish 1
-    curses.init_pair(2, 152, 235)       # bluish 1
-    curses.init_pair(3, 182, 235)       # purplish 1
-    curses.init_pair(4, 210, 235)       # redish 1
-    curses.init_pair(5, 229, 235)       # yellowish 1
-    curses.init_pair(6, 42,  235)       # greenish 2
-    curses.init_pair(7, 37,  235)       # bluish 2
-    curses.init_pair(8, 135, 235)       # purplish 2
-    curses.init_pair(9, 175, 235)       # redish 2
-    curses.init_pair(10, 222, 235)      # yellowish 2
-    curses.init_pair(11, 114, 15)       # greenish 1 on white
-    curses.init_pair(12, 152, 15)       # bluish 1 on white
-    curses.init_pair(13, 182, 15)       # purplish 1 on white
-    curses.init_pair(14, 210, 15)       # redish 1 on white
-    curses.init_pair(15, 229, 15)       # yellowish 1 on white
-    curses.init_pair(16, 42, 15)        # greenish 2 on white
-    curses.init_pair(17, 37, 15)        # bluish 2 on white
-    curses.init_pair(18, 135, 15)       # purplish 2 on white
-    curses.init_pair(19, 175, 15)       # redish 2 on white
-    curses.init_pair(20, 222, 15)       # yellowish 2 on white
-    curses.init_pair(31, 12, 235)       # Windows: MSG ERROR - redish
-    curses.init_pair(32, 14, 235)       # Windows: MSG WARNING - yellowish
-    curses.init_pair(33, 8, 235)        # Windows: MSG INFO - grayish
-    curses.init_pair(34, 24, 235)       # Windows: MSG UNKNOWN - bluish
-    curses.init_pair(35, 47, 235)       # Windows: Trend Up - greenish
-    curses.init_pair(36, 24, 235)       # Windows: Trend Steady - bluish
-    curses.init_pair(37, 160, 235)      # Windows: Trend Down - redish
-    curses.init_pair(38, 14, 235)       # Windows: Warning - Black
-    curses.init_pair(39, 12, 15)        # Windows: Error - White
-    curses.init_pair(40, 12, 235)       # Windows: Error - Black
-    curses.init_pair(247, 63, 235)      # border
+    curses.init_pair(1, 114, 235)  # greenish 1
+    curses.init_pair(2, 152, 235)  # bluish 1
+    curses.init_pair(3, 182, 235)  # purplish 1
+    curses.init_pair(4, 210, 235)  # redish 1
+    curses.init_pair(5, 229, 235)  # yellowish 1
+    curses.init_pair(6, 42, 235)  # greenish 2
+    curses.init_pair(7, 37, 235)  # bluish 2
+    curses.init_pair(8, 135, 235)  # purplish 2
+    curses.init_pair(9, 175, 235)  # redish 2
+    curses.init_pair(10, 222, 235)  # yellowish 2
+    curses.init_pair(11, 114, 15)  # greenish 1 on white
+    curses.init_pair(12, 152, 15)  # bluish 1 on white
+    curses.init_pair(13, 182, 15)  # purplish 1 on white
+    curses.init_pair(14, 210, 15)  # redish 1 on white
+    curses.init_pair(15, 229, 15)  # yellowish 1 on white
+    curses.init_pair(16, 42, 15)  # greenish 2 on white
+    curses.init_pair(17, 37, 15)  # bluish 2 on white
+    curses.init_pair(18, 135, 15)  # purplish 2 on white
+    curses.init_pair(19, 175, 15)  # redish 2 on white
+    curses.init_pair(20, 222, 15)  # yellowish 2 on white
+    curses.init_pair(31, 12, 235)  # Windows: MSG ERROR - redish
+    curses.init_pair(32, 14, 235)  # Windows: MSG WARNING - yellowish
+    curses.init_pair(33, 8, 235)  # Windows: MSG INFO - grayish
+    curses.init_pair(34, 24, 235)  # Windows: MSG UNKNOWN - bluish
+    curses.init_pair(35, 47, 235)  # Windows: Trend Up - greenish
+    curses.init_pair(36, 24, 235)  # Windows: Trend Steady - bluish
+    curses.init_pair(37, 160, 235)  # Windows: Trend Down - redish
+    curses.init_pair(38, 14, 235)  # Windows: Warning - Black
+    curses.init_pair(39, 12, 15)  # Windows: Error - White
+    curses.init_pair(40, 12, 235)  # Windows: Error - Black
+    curses.init_pair(247, 63, 235)  # border
     curses.init_pair(248, 11, 235)
     curses.init_pair(249, 27, 235)
     curses.init_pair(250, 10, 235)
@@ -641,6 +638,21 @@ def main(stdscr):
     border_d['TR'] = u'\u2510'
     border_d['BL'] = u'\u2514'
     border_d['BR'] = u'\u2518'
+
+
+# ------------------------------------------------------------------------------
+
+
+def main(stdscr):  
+    global mdl_file
+    global score_file
+    global text_d
+    rans_list = []
+    qos_policies_list = []
+
+    init_text_colors()
+
+
 
     stdscr.bkgd(text_d['BG'])
     banner_pad.bkgd(text_d['BG'])
@@ -741,27 +753,16 @@ def main(stdscr):
 
     # Calculate Schedule Efficiency per RAN
     for r in rans_list:
-        total_time_usec = 0
+        total_ran_tx_time_usec = 0
+        ran_epoch_usec = int(r.epoch_ms) * 1000
         for l in r.links:
             for t in l.tx_sched:
-                total_time_usec += t.duration_usec
+                total_ran_tx_time_usec += t.duration_usec
+            l.calc_max_latency(ran_epoch_usec)  # Calculate Minimum Latency Requirement Achievable per link
+            l.calc_alloc_bw_mbps(r.epoch_ms)    # Calculate and set the Allocated Bandwidth per link
         
-        r.efficiency_pct = total_time_usec / (int(r.epoch_ms) * 1000) * 100
-            
-    # Calculate Minimum Latency Requirement Achievable
-    for r in rans_list:
-        epoch_usec = int(r.epoch_ms) * 1000
-        for l in r.links:
-            l.calc_max_latency(epoch_usec)
-
-    # Calculate and set the Allocated Bandwidth per link
-    for r in rans_list:
-        for l in r.links:
-            l.calc_alloc_bw_mbps(r.epoch_ms)
-
-    # Check for any guardband violations
-    for r in rans_list:
-        r.check_guardbands()
+        r.efficiency_pct = (total_ran_tx_time_usec / ran_epoch_usec) * 100  # Calculate Schedule Efficiency per RAN
+        r.check_guardbands()                    # Check for any guardband violations
 
     # Load JSON scoring file
     ld_link_scores = None
@@ -812,9 +813,11 @@ def main(stdscr):
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
 
-    # Print to screen
+    # Initialize print loop variables
     num_rans = len(rans_list)
     ran_idx = 1
+
+    # Begin print loop; Loop until user quits application
     while True:
         height, width = stdscr.getmaxyx()
 
@@ -881,12 +884,12 @@ if __name__ == "__main__":
     link_info_pad = curses.newpad(8, 102)       # Initialize Link Info Pad
     epoch_pad = curses.newpad(10, 102)          # Initialize Epoch Pad
     txop_display_pad = curses.newpad(1, 100)    # Initialize TxOp Display Pad
-    
-    if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
-        BLINK = 0                               # because it doesn't look very good.  Also disabling the "bold" feature
-        BOLD = 0                                # because it changes the color on Windows
+
+    if os.name == 'nt':             # If running on Windows, disable the "blinking" feature of curses
+        BLINK = 0                   # because it doesn't look very good.  Also disabling the "bold" feature
+        BOLD = 0                    # because it changes the color on Windows
     else:
         BLINK = curses.A_BLINK
         BOLD = curses.A_BOLD
-    
+
     wrapper(main)
