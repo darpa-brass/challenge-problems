@@ -1,0 +1,80 @@
+************************************************************
+********* README File For TxOp Schedule Vizualizer *********
+************************************************************
+
+Run with Python 3.
+
+    > python3 TxOpSchedViewer.py test.mdl
+    
+    
+Command Line Arguments are available via the '-h' argument:
+    > python3 TxOpSchedViewer.py -h
+    usage: TxOpSchedViewer.py [-h] [-s SCORE] [-d DEBUG] [-v] FILE
+
+    positional arguments:
+      FILE           MDL file to examine
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      -s SCORE       JSON file to score MDL file performance
+      -d DEBUG       Set the Debug level
+      -v, --version  show program's version number and exit
+      
+      
+The FILE argument is required.  It shall be an MDL file containing links and
+    their associated Transmission Opportunities (TxOps).  The MDL file also 
+    includes QoS policies that have the inherent latency and throughput 
+    requirements within them.
+
+All other command line arguments are optional.  If no SCORE file is provided,
+    the MDL file can still be loaded and evaluated, but no points/values will be
+    awarded based on the latency or throughput assigned.
+
+    
+KNOWN ISSUES:
+On Windows, you need to run a 'pip install windows-curses' for the Python 
+interpreter that will be running the script.  The curses library doesn't work 
+by default on Windows.
+
+On Windows, you need to run a 'pip install lxml' in order to be able to import
+the lxml module used for parsing MDL files.
+
+When running on Windows, the application does not display well if the terminal
+is resized during execution.  The best approach is to make the window large
+enough when starting the application.
+
+Errors will be thrown if the window does not meet the minimum size.
+
+
+INPUT FILES:
+When scoring a particular MDL file, a SCORE file needs to be loaded.  The
+SCORE file is a JSON file, and it is detailed below:
+
+    score.json - example SCORE file (name need not match)
+        [
+            {
+                "Link": {"LinkSrc": 4097, "LinkDst": 61457}, 
+                "Latency": {"max_thd": 50, "min_thd":60},
+                "Bandwidth": {"min_thd": 200, "max_thd": 2000, "coef": 0.005}
+             },
+             {
+                "Link": {"LinkSrc": 4113, "LinkDst": 61456},
+                "Latency": {"max_thd": 50, "min_thd":60}, 
+                "Bandwidth": {"min_thd": 1000, "max_thd": 3000, "coef": 0.000005}
+             }
+        ]
+
+    The "Link" key contains a dictionary of "LinkSrc" and "LinkDst":
+        LinkSrc - RF MAC Address of the link source radio
+        LinkDst - RF MAC Address of the link destination radio/group
+
+    The "Latency" key contains a dictionary of "max_thd" and "min_thd":
+        max_thd - Latency values below this threshold (ms) achieve maximum
+                  point value	`
+        min_thd - Latency values above this threshold (ms) achieve 0 point value
+
+    The "Bandwidth" key contains a dictionary of "min_thd", "max_thd", and "coef":
+        min_thd - Bandwidth values below this threshold (bps) receive 0 point value
+        max_thd - Bandwidth values above this threshold (bps) achieve maximum
+                  point value
+        coef    - Coefficient for the value function
