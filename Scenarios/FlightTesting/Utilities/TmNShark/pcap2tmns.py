@@ -12,7 +12,16 @@ import argparse
 import time
 from time import sleep
 from scapy.all import *
+from lxml import etree
 import numpy as np
+
+ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
+      "mdl": "http://www.wsmr.army.mil/RCC/schemas/MDL",
+      "tmatsP": "http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup",
+      "tmatsD": "http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup"}
+
+# shortcut dictionary for passing common arguments
+n = {"namespaces": ns}
 
 DEFAULT_TDM_PORT = 50003
 DEFAULT_BINARY_TDM_FILE = "tmns.bin"
@@ -51,6 +60,25 @@ class TmnsDataMessage:
 
         raw = b"".join([raw_ver_adf, raw_rsvd, raw_flags, raw_mdid, raw_seqno, raw_len, raw_sec, raw_nanosec, self.payload])
         return raw
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+
+class MessageDefinition:
+    '''Class to contain Message Definitions'''
+
+    def __init__(self, name='', mdid=0xffffffff, dscp=0, dst_addr='239.255.255.254', dst_port=50003):
+        self.name = name
+        self.mdid = mdid
+        self.dscp = dscp
+        self.dst_addr = dst_addr
+        self.dst_port = dst_port
+
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def write_packet_to_file(pkt):
@@ -225,23 +253,104 @@ def offline_pcap_input():
 # ------------------------------------------------------------------------------
 
 
-def realtime_tdm_stream_to_network_output():
-    pass
+def realtime_tdm_stream_to_network_output(mdid_lookup):
+    if os.path.exists(binfile) is False:
+        os.mkfifo(binfile)      # Create Pipe if it doesn't exist
+
+    # Loop over reading the pipe, parsing out the TDMs and sending over the network when a TDM is completely read
+    tdm_cnt = 0
+    pipein = open(binfile, 'rb')
+    while True:
+        #ver_adf = pipein.read(1)
+        #ver = int.from_bytes(ver_adf, byteorder='big') >> 4
+        #adf_words = int.from_bytes(ver_adf, byteorder='big') & 0x0f
+        #pipein.read(1)  # Read byte.  Field is RESERVED
+        #flags = int.from_bytes(pipein.read(2), byteorder='big')
+        #mdid = int.from_bytes(pipein.read(4), byteorder='big')
+        #seqno = int.from_bytes(pipein.read(4), byteorder='big')
+        #msglen = int.from_bytes(pipein.read(4), byteorder='big')
+        #secs = int.from_bytes(pipein.read(4), byteorder='big')
+        #nanosecs = int.from_bytes(pipein.read(4), byteorder='big')
+        #hdrlen = 24 + (adf_words * 4)
+        #adf_payload = ''
+        #if adf_words > 0:
+        #    adf_payload = pipein.read(adf_words * 4)
+        #payloadlen = msglen - hdrlen
+        #payload = pipein.read(payloadlen)
+
+        raw_ver_adf_flags = pipein.read(4) #os.read(pipein, 4)
+        raw_mdid = pipein.read(4) #os.read(pipein, 4)
+        mdid = int.from_bytes(raw_mdid, byteorder='big')
+        raw_seqno = pipein.read(4) #os.read(pipein, 4)
+        raw_msglen = pipein.read(4) #os.read(pipein, 4)
+        msglen = int.from_bytes(raw_msglen, byteorder='big')
+        len_remaining = msglen - 16
+        raw_rest_of_tdm = pipein.read(len_remaining) #os.read(pipein, len_remaining)
+
+        raw = b"".join([raw_ver_adf_flags, raw_mdid, raw_seqno, raw_msglen, raw_rest_of_tdm])
+
+        if mdid in mdid_lookup:
+            ip_addr = mdid_lookup[mdid].dst_addr
+            dport = mdid_lookup[mdid].dst_port
+        else:
+            ip_addr = '239.88.88.88'    # Default IP address to use IF MDID is not found in the MDL file
+            dport = 50003               # Default UDP destination port to use IF MDID is not found in the MDL file
+
+        msg_ip_hdr = IP(version=4, ihl=5, flags='DF', ttl=4, src='172.16.0.31', dst=ip_addr)
+        msg = msg_ip_hdr / UDP(sport=55501, dport=dport) / Raw(raw)
+
+        tdm_cnt += 1
 
 
 # ------------------------------------------------------------------------------
 
 
-def replay_tdm_stream_to_network_output():
+def replay_tdm_stream_to_network_output(mdid_lookup):
     tdm_list = make_tdm_packet_list(binfile)
     tdm_cnt = len(tdm_list)
+    pkt_list = []
 
     for i, tdm in enumerate(tdm_list):
-        msg = IP(version=4, ihl=5, flags='DF', ttl=4, src='172.16.0.31', dst='239.255.0.1')/UDP(sport=55501, dport=50003)/Raw(tdm.get_raw())
-        sr1(msg)
-        break
+        if tdm.mdid in mdid_lookup:
+            ip_addr = mdid_lookup[tdm.mdid].dst_addr
+            dport = mdid_lookup[tdm.mdid].dst_port
+        else:
+            ip_addr = '239.88.88.88'    # Default IP address to use IF MDID is not found in the MDL file
+            dport = 50003               # Default UDP destination port to use IF MDID is not found in the MDL file
+        msg_ip_hdr = IP(version=4, ihl=5, flags='DF', ttl=4, src='172.16.0.31', dst=ip_addr)
+        msg = msg_ip_hdr/UDP(sport=55501, dport=dport)/Raw(tdm.get_raw())
+
+        pkt_list.append(msg)
+
+    send(pkt_list)
 
 
+# ------------------------------------------------------------------------------
+
+
+def parse_mdl(mdl_file):
+    mdid_dict = {}
+
+    if os.path.exists(mdl_file) is False:
+        print("MDL file not found.  Using defaults for MDID and Multicast Addresses.")
+        return mdid_dict
+
+    # Parse MDL file, and create the mapping between MDIDs and their associated Multicast IP Address
+    mdl_parser = etree.XMLParser(remove_blank_text=True)
+    root = etree.parse(mdl_file, mdl_parser)
+
+    messages = root.xpath("//mdl:MessageDefinition", namespaces=ns)
+    for message in messages:
+        name = message.find("mdl:Name", namespaces=ns).text
+        mdid = int(message.find("mdl:MessageDefinitionID", namespaces=ns).text, 16)
+        dscp = message.find("mdl:DSCPTableEntryRef", namespaces=ns).text
+        dst_addr = message.find("mdl:DestinationAddress", namespaces=ns).text
+        dst_port = int(message.find("mdl:DestinationPort", namespaces=ns).text)
+
+        new_mdef = MessageDefinition(name, mdid, 0, dst_addr, dst_port)         # TODO: do DSCP table lookup. For now, hard-coded to Best Effort
+        mdid_dict[mdid] = new_mdef
+
+    return mdid_dict
 
 
 # ------------------------------------------------------------------------------
@@ -264,7 +373,7 @@ if __name__ == "__main__":
                              "will run the software in offline mode.  The absence of this argument will run the "
                              "software in live-capture mode.", type=str)
     net2tdm_parser.add_argument('-o', action='store', default=DEFAULT_BINARY_TDM_FILE, dest='BINFILE',
-                        help="Output file or pipe for storing binary stream of TmNS Data Messages (defaut: tmns.bin).",
+                        help="Output file or pipe for storing binary stream of TmNS Data Messages (default: tmns.bin).",
                         type=str)
     net2tdm_parser.add_argument('-p', action='store', default=DEFAULT_TDM_PORT, dest='PORT',
                         help="UDP Port number of TmNS Data Messages.", type=int)
@@ -274,14 +383,15 @@ if __name__ == "__main__":
 
     # Add arguments to the tdm2net parser
     tdm2net_parser.add_argument('-i', action='store', default=DEFAULT_BINARY_TDM_FILE, dest='BINFILE',
-                        help="Input file or pipe for stream of TmNS Data Messages (defaut: tmns.bin).",
+                        help="Input file or pipe for stream of TmNS Data Messages (default: tmns.bin).",
                         type=str)
     tdm2net_parser.add_argument('-o', action='store', default=None, dest='OUTPUT_PCAP_FILE',
                         help="Name of the resulting PCAP file for use in offline playback mode.")
     tdm2net_parser.add_argument('-m', action='store', default=None, dest='MDL_FILE',
                         help="MDL file with TmNS Data Message descriptions for configuration.")
     tdm2net_parser.add_argument('-r', action='store_true', default=False, dest='REPLAY',
-                        help="Replay the binary TmNS Data Message file over the network.")
+                        help="Replay the binary TmNS Data Message file over the network.  If not set, the application"
+                             "will run in live mode reading from the named pipe (see arg '-i').")
     tdm2net_parser.add_argument('-q', action='store_true', default=False, dest='QUICK_PLAY',
                                 help="Quick Play mode will replay the input binary TmNS Data Message stream as fast"
                                      "as possible (e.g. not at 1-for-1 realtime rate).  Default is real-time rate. "
@@ -292,6 +402,7 @@ if __name__ == "__main__":
 
     # CLI argument assignments
     mode = cli_args.MODE
+    mdid_lookup = {}
 
     if mode == 'ni':
         interface = cli_args.INTERFACE
@@ -313,12 +424,14 @@ if __name__ == "__main__":
         replay = cli_args.REPLAY
         quick_play = cli_args.QUICK_PLAY
 
+        mdid_lookup = parse_mdl(mdl_file)
+
         if replay is False:
             live_mode = True
-            realtime_tdm_stream_to_network_output()
+            realtime_tdm_stream_to_network_output(mdid_lookup)
         else:
             live_mode = False
-            replay_tdm_stream_to_network_output()
+            replay_tdm_stream_to_network_output(mdid_lookup)
     else:
         print("You must select a mode: Network Input (ni) or Network Output (no).")
         print("Use '-h' for help menu.")
