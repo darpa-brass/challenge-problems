@@ -1,0 +1,311 @@
+<!-- derived processing examples -->
+    <DerivedProcessing>
+        <Functions>
+            <Function ID="F_001">
+                <Name>48-bit time construction</Name>
+                <Description>Used to combine three 16 bit measurements into a 48-bit time measurement</Description>
+                <InputCount>3</InputCount>
+                <UpdateFrequency>IfAll</UpdateFrequency>
+                <Algorithm>(m &lt;&lt; 32) | (s &lt;&lt; 16) | h</Algorithm>
+            </Function>
+            <Function ID="F_002">
+                <Name>Arinc-429 data field</Name>
+                <Description>Used to extract the data field from a Arinc-429 measurement</Description>
+                <InputCount>1</InputCount>
+                <UpdateFrequency>IfAny</UpdateFrequency>
+                <Algorithm>(meas &amp; 0x3ffff8) >> 3</Algorithm>
+            </Function>
+            <Function ID="F_003">
+                <Name>Conditional Measurement</Name>
+                <Description>Output 1 when input > 0, else output sin(input)</Description>
+                <InputCount>1</InputCount>
+                <UpdateFrequency>IfAny</UpdateFrequency>
+                <ConditionalBlock>
+                    <If>
+                        <Conditional>input > 0</Conditional>
+                        <Result>1</Result>
+                    </If>
+                    <Else>
+                        <Result>sin(input)</Result>
+                    </Else>
+                </ConditionalBlock>
+            </Function>
+            <Function ID="F_004">
+                <Name>Chained Measurement Part 1</Name>
+                <Description>Create a computed measurement on update from either of two measurements</Description>
+                <InputCount>2</InputCount>
+                <UpdateFrequency>IfAny</UpdateFrequency>
+                <Algorithm>a + b</Algorithm>
+            </Function>
+            <Function ID="F_005">
+                <Name>Chained Measurement Part 2</Name>
+                <Description>Update triggered by result of other function</Description>
+                <InputCount>2</InputCount>
+                <UpdateFrequency>Triggered</UpdateFrequency>
+                <Algorithm>c * d</Algorithm>
+            </Function>
+            <Function ID="F_006">
+                <Name>Historical Data</Name>
+                <Description>Creates the buffer measurement which stores 10 samples of 16-bit measurement data</Description>
+                <InputCount>2</InputCount>
+                <UpdateFrequency>IfAll</UpdateFrequency>
+                <Algorithm>(b >> 16) &amp; i</Algorithm>
+            </Function>
+            <Function ID="F_007">
+                <Name>Moving Average (FIR)</Name>
+                <Description>Calculates the average across 10 samples if the buffer is full (the last measurement is not 0)</Description>
+                <InputCount>1</InputCount>
+                <UpdateFrequency>IfAll</UpdateFrequency>
+                <ConditionalBlock>
+                    <If>
+                        <Conditional>(b &amp; 0xF000000000) != 0x0000000000</Conditional>
+                        <Result>
+                            (
+                                ((b &amp; 0xF000000000) >> 144) +
+                                ((b &amp; 0x0F00000000) >> 128) +
+                                ((b &amp; 0x00F0000000) >> 112) +
+                                ((b &amp; 0x000F000000) >> 96) +
+                                ((b &amp; 0x0000F00000) >> 80) +
+                                ((b &amp; 0x00000F0000) >> 64) +
+                                ((b &amp; 0x000000F000) >> 48) +
+                                ((b &amp; 0x0000000F00) >> 32) +
+                                ((b &amp; 0x00000000F0) >> 16) +
+                                ((b &amp; 0x000000000F))
+                            ) / 10
+                        </Result>
+                    </If>
+                </ConditionalBlock>
+            </Function>
+            <Function ID="F_008">
+                <Name>Moving Average (IIR)</Name>
+                <Description>Calculates the moving average of a measurement</Description>
+                <InputCount>2</InputCount>
+                <UpdateFrequency>IfAll</UpdateFrequency>
+                <Algorithm>(a * (.9 - .001)) + (i * .1)</Algorithm>
+            </Function>
+        </Functions>
+        <FunctionMappings>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_001"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Micros"/>
+                    <Variable>m</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Seconds"/>
+                    <Variable>s</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Hours"/>
+                    <Variable>h</Variable>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="Time"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_002"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Arinc429"/>
+                    <Variable>meas</Variable>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="Arinc429Data"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_003"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="ConditionalInput"/>
+                    <Variable>input</Variable>
+                </InputMeasurement>
+                <ResultMeasurement Index="1">
+                    <MeasurementRef IDREF="InputGreaterThanZero"/>
+                </ResultMeasurement>
+                <ResultMeasurement Index="2">
+                    <MeasurementRef IDREF="InputNotGreaterThanZero"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_004"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Meas1"/>
+                    <Variable>a</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Meas2"/>
+                    <Variable>b</Variable>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="RMeas1"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_005"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="Meas3"/>
+                    <Variable>c</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="RMeas1"/>
+                    <Variable>d</Variable>
+                    <Trigger>true</Trigger>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="RMeas2"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_006"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="HistoryInput"/>
+                    <Variable>i</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="AverageBuffer"/>
+                    <Variable>b</Variable>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="AverageBuffer"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_007"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="AverageBuffer"/>
+                    <Variable>b</Variable>
+                </InputMeasurement>
+                <ResultMeasurement Index="1">
+                    <MeasurementRef IDREF="MovingAverageFIR"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+            <FunctionMapping>
+                <FunctionRef IDREF="F_008"/>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="HistoryInput"/>
+                    <Variable>i</Variable>
+                </InputMeasurement>
+                <InputMeasurement>
+                    <MeasurementRef IDREF="MovingAverageIIR"/>
+                    <Variable>a</Variable>
+                </InputMeasurement>
+                <ResultMeasurement>
+                    <MeasurementRef IDREF="MovingAverageIIR"/>
+                </ResultMeasurement>
+            </FunctionMapping>
+        </FunctionMappings>
+    </DerivedProcessing>
+
+    <!-- MDL User Group Transfer Functions -->
+    <Function ID="T_001">
+        <Name>Simple Linear</Name>
+        <Description/>
+        <InputCount>1</InputCount>
+        <UpdateFrequency>IfAny</UpdateFrequency>
+        <Algorithm>5*x + 10</Algorithm>
+    </Function>
+
+    <Function ID="T_002">
+        <Name>Polynomial</Name>
+        <Description/>
+        <InputCount>1</InputCount>
+        <UpdateFrequency>IfAny</UpdateFrequency>
+        <Algorithm>6*x**3 + 2*x**2 + 5*x + 2</Algorithm>
+    </Function>
+
+    <Function ID="T_003">
+        <Name>Piecewise</Name>
+        <Description/>
+        <InputCount>1</InputCount>
+        <UpdateFrequency>IfAny</UpdateFrequency>
+        <ConditionalBlock>
+            <If>
+                <Conditional>x &gt;= -5 &amp;&amp; x &lt;= -1</Conditional>
+                <Result>5</Result>
+            </If>
+            <ElseIf>
+                <Conditional>x &gt; -1 &amp;&amp; x &lt;= 1</Conditional>
+                <Result>5*x + 10</Result>
+            </ElseIf>
+            <ElseIf>
+                <Conditional>x &gt; 1 &amp;&amp; x &lt;= 10</Conditional>
+                <Result>6*x**3 + 2*x**2 + 5*x + 2</Result>
+            </ElseIf>
+        </ConditionalBlock>
+    </Function>
+
+    <FunctionMapping>
+        <FunctionRef IDREF="T_003"/>
+        <InputMeasurement>
+            <MeasurementRef IDREF="PiecewiseInput"/>
+            <Variable>x</Variable>
+        </InputMeasurement>
+        <ResultMeasurement Index="1">
+            <MeasurementRef IDREF="PiecewiseOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="2">
+            <MeasurementRef IDREF="PiecewiseOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="3">
+            <MeasurementRef IDREF="PiecewiseOutput"/>
+        </ResultMeasurement>
+    </FunctionMapping>
+
+    <Function ID="T_004">
+        <Name>Table Lookup</Name>
+        <Description/>
+        <InputCount>1</InputCount>
+        <UpdateFrequency>IfAny</UpdateFrequency>
+        <ConditionalBlock>
+            <If>
+                <Conditional>x = 0</Conditional>
+                <Result>0</Result>
+            </If>
+            <ElseIf>
+                <Conditional>x &gt; 0 x &lt;= 1</Conditional>
+                <Result>1</Result>
+            </ElseIf>
+            <ElseIf>
+                <Conditional>x &gt; 1 &amp;&amp; x &lt;= 2</Conditional>
+                <Result>4</Result>
+            </ElseIf>
+            <ElseIf>
+                <Conditional>x &gt; 2 &amp;&amp; x &lt;= 3</Conditional>
+                <Result>9</Result>
+            </ElseIf>
+            <ElseIf>
+                <Conditional>x &gt; 3 &amp;&amp; x &lt;= 4</Conditional>
+                <Result>16</Result>
+            </ElseIf>
+            <ElseIf>
+                <Conditional>x &gt; 4 &amp;&amp; x &lt;= 5</Conditional>
+                <Result>25</Result>
+            </ElseIf>
+        </ConditionalBlock>
+    </Function>
+
+    <FunctionMapping>
+        <FunctionRef IDREF="T_004"/>
+        <InputMeasurement>
+            <MeasurementRef IDREF="TableLookupInput"/>
+            <Variable>x</Variable>
+        </InputMeasurement>
+        <ResultMeasurement Index="1">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="2">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="3">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="4">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="5">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+        <ResultMeasurement Index="6">
+            <MeasurementRef IDREF="TableLookupOutput"/>
+        </ResultMeasurement>
+    </FunctionMapping>
