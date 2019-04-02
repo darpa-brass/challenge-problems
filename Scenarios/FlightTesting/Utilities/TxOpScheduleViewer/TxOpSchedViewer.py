@@ -876,14 +876,11 @@ if __name__ == "__main__":
     score_file = cli_args.SCORE
     mod_name = None
     debug = cli_args.debug
-    if cli_args.DATABASE is not None and cli_args.CONFIG is not None:
-        try:
+    if cli_args.DATABASE is not None or cli_args.CONFIG is not None:
             database = cli_args.DATABASE
             configFile = cli_args.CONFIG
             exporter = MDLExporter(database, mdl_file, configFile)
             exporter.export_xml()
-        except:
-            sys.exit('Arguements for --database or --config were incorrect. Please provide valid arguments and try again.')
 
     text_d = {}
     border_d = {}
