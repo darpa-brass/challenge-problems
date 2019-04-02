@@ -15,7 +15,7 @@ import math
 import operator
 import curses
 from curses import wrapper
-
+from brass_api.translator.orientdb_exporter import OrientDBXMLExporter as MDLExporter
 
 ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
       "mdl": "http://www.wsmr.army.mil/RCC/schemas/MDL",
@@ -866,13 +866,22 @@ if __name__ == "__main__":
                         help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.4.1')
+    parser.add_argument('--database', action='store', default=None, dest='DATABASE', help='Set Name of OrientDB database. If set the MDL file will be exported from the OrientDB database', type=str)
+    parser.add_argument('--config', action='store',default=None, dest='CONFIG', help='Set config.json for OrientDB', type=str)
     cli_args = parser.parse_args()
 
     # CLI argument assignments
+
     mdl_file = cli_args.FILE
     score_file = cli_args.SCORE
     mod_name = None
     debug = cli_args.debug
+    if cli_args.DATABASE is not None or cli_args.CONFIG is not None:
+            database = cli_args.DATABASE
+            configFile = cli_args.CONFIG
+            exporter = MDLExporter(database, mdl_file, configFile)
+            exporter.export_xml()
+
     text_d = {}
     border_d = {}
 
