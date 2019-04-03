@@ -56,7 +56,8 @@ class TmnsDataMessage:
         raw_sec = (self.time_sec).to_bytes(4, byteorder='big', signed=False)
         raw_nanosec = (self.time_nanosec).to_bytes(4, byteorder='big', signed=False)
 
-        raw = b"".join([raw_ver_adf, raw_rsvd, raw_flags, raw_mdid, raw_seqno, raw_len, raw_sec, raw_nanosec, self.payload])
+        raw = b"".join([raw_ver_adf, raw_rsvd, raw_flags, raw_mdid, raw_seqno,
+                        raw_len, raw_sec, raw_nanosec, self.payload])
         return raw
 
 
@@ -79,20 +80,31 @@ class MessageDefinition:
 # ------------------------------------------------------------------------------
 
 
-def write_packet_to_file(pkt):
+def write_packet_to_pipe(pkt):
     global tdm_cnt
     global pipein
     
     if UDP in pkt:
         if pkt[UDP].dport == TDM_PORT:
-            if pipe_mode:
-                pipein.write(bytes(pkt[UDP].payload))
-            else:
-                f = open(binfile, 'a+b')
-                f.write(bytes(pkt[UDP].payload))
-                f.close()
+            pipein.write(bytes(pkt[UDP].payload))
             tdm_cnt +=1
             print("\rTDM Count: {0}.    CTRL-C to quit".format(tdm_cnt), end =" ")
+
+
+# ------------------------------------------------------------------------------
+
+
+def write_packet_to_file(pkt):
+    global tdm_cnt
+    global pipein
+
+    if UDP in pkt:
+        if pkt[UDP].dport == TDM_PORT:
+            f = open(binfile, 'a+b')
+            f.write(bytes(pkt[UDP].payload))
+            f.close()
+            tdm_cnt += 1
+            print("\rTDM Count: {0}.    CTRL-C to quit".format(tdm_cnt), end=" ")
 
 
 # ------------------------------------------------------------------------------
@@ -136,40 +148,27 @@ def make_tdm_packet_list(bin):
 # ------------------------------------------------------------------------------
 
 
-def live_network_input():
+def live_network_input_to_pipe():
     global interface
     global tdm_cnt
     global pipein
 
+    print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(pipe))
+    pipein = open(pipe, 'wb')
+    print("Connected to Named Pipe '{0}'.  Writing binary TDMs into pipe.".format(pipe))
+
     if interface is None:
         print("Listening on default interface.")
-        interface = ''
-        if not pipe_mode:
-            if os.path.exists(binfile):
-                os.remove(binfile)
-        else:
-            print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(pipe))
-            pipein = open(pipe, 'wb')
-            print("Connected to Named Pipe '{0}'.  Writing binary TDMs into pipe.".format(pipe))
-
         try:
-            sniff(prn=write_packet_to_file)
+            sniff(prn=write_packet_to_pipe)
         except IOError as e:
             print("got an IOError")
             if e.errno == errno.EPIPE:
                 print("its an EPIPE")
     else:
         print("Listening on interface: {0}".format(interface))
-        if not pipe_mode:
-            if os.path.exists(binfile):
-                os.remove(binfile)
-        else:
-            print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(pipe))
-            pipein = open(pipe, 'wb')
-            print("Connected to Named Pipe '{0}'.  Writing binary TDMs into pipe.".format(pipe))
-
         try:
-            sniff(iface=interface, prn=write_packet_to_file)
+            sniff(iface=interface, prn=write_packet_to_pipe)
         except IOError as e:
             if e.errno == errno.EPIPE:
                 print("Broken Pipe: EPIPE")
@@ -178,19 +177,74 @@ def live_network_input():
 # ------------------------------------------------------------------------------
 
 
-def offline_pcap_input():
+def live_network_input_to_file():
+    global interface
+    global tdm_cnt
+    global pipein
+
+    if os.path.exists(binfile):
+        os.remove(binfile)
+
+    if interface is None:
+        print("Listening on default interface.")
+        sniff(prn=write_packet_to_file)
+    else:
+        print("Listening on interface: {0}".format(interface))
+        sniff(iface=interface, prn=write_packet_to_file)
+
+
+# ------------------------------------------------------------------------------
+
+
+def offline_pcap_input_to_pipe():
     global tdm_cnt
 
-    print("Offline mode: Reading TDMs from PCAP/PCAPNG file.")
+    print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to pipe.")
     pkt_list = rdpcap(infile)  # read the PCAP/PCAPNG file and return a list of packets
 
     # Parse the Packet List for TmNS Data Messages (TDMs), and write them to the binary TDM file
-    if pipe_mode:
-        print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(pipe))
-        f = open(pipe, 'wb')
-        print("Connected to Named Pipe '{0}'.  Writing binary TDMs into pipe.".format(pipe))
+    print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(pipe))
+    pipeout = open(pipe, 'wb')
+    print("Connected to Named Pipe '{0}'.  Writing binary TDMs into pipe.".format(pipe))
+
+    delta_from_current_time = time.time() - pkt_list[0].time
+
+    for pkt in pkt_list:
+        if pkt[UDP].dport == TDM_PORT:
+            if quick_load is False:
+                while (pkt.time + delta_from_current_time) > time.time():
+                    sleep(0.0001)
+            pipeout.write(bytes(pkt[UDP].payload))
+            tdm_cnt += 1
+            print("\rTDM Count: {0}".format(tdm_cnt), end=" ")
+    pipeout.close()
+
+    if tdm_cnt == 0:
+        print("ZERO TmNS Data Messages found in {0}.  No data written to {1}.".format(infile, pipe))
     else:
-        f = open(binfile, 'w+b')
+        print("\nComplete.  There were {0} TmNS Data Messages written to {1}.".format(tdm_cnt, pipe))
+
+    #while True:
+    #    print("  'q' to quit  |  'h' to hexdump TDMs  ")
+    #    choice = input()
+    #    if choice == 'h':
+    #        os.system("hexdump -C {}".format(binfile))
+    #    elif choice == 'q':
+    #        print('q: quitting')
+    #        break
+
+
+# ------------------------------------------------------------------------------
+
+
+def offline_pcap_input_to_file():
+    global tdm_cnt
+
+    print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to file.")
+    pkt_list = rdpcap(infile)  # read the PCAP/PCAPNG file and return a list of packets
+
+    # Parse the Packet List for TmNS Data Messages (TDMs), and write them to the binary TDM file
+    f = open(binfile, 'w+b')
 
     delta_from_current_time = time.time() - pkt_list[0].time
 
@@ -208,15 +262,6 @@ def offline_pcap_input():
         print("ZERO TmNS Data Messages found in {0}.  {1} is empty.".format(infile, binfile))
     else:
         print("\nComplete.  Binary file of {0} TmNS Data Messages is stored at {1}.".format(tdm_cnt, binfile))
-
-    while True:
-        print("  'q' to quit  |  'h' to hexdump TDMs  ")
-        choice = input()
-        if choice == 'h':
-            os.system("hexdump -C {}".format(binfile))
-        elif choice == 'q':
-            print('q: quitting')
-            break
 
 
 # ------------------------------------------------------------------------------
@@ -244,8 +289,9 @@ def realtime_tdm_stream_to_network_output(mdid_lookup):
             raw_ver_adf_flags = pipeout.read(4) #os.read(pipein, 4)
             raw_mdid = pipeout.read(4) #os.read(pipein, 4)
             mdid = int.from_bytes(raw_mdid, byteorder='big')
-            mdid = mdid + 3992977408        # TODO: REMOVE...THIS IS TEMPORARY
-            print("mdid: {0}".format(mdid))
+            #mdid = mdid + 3992977408        # TODO: REMOVE...THIS IS TEMPORARY
+            mdid = mdid + 16        # TODO: REMOVE...THIS IS TEMPORARY
+            print(" mdid: 0x{0:08x}".format(mdid))      # TODO: REMOVE...THIS IS TEMPORARY
             raw_mdid = mdid.to_bytes(4, byteorder='big', signed=False)      # TODO: REMOVE...THIS IS TEMPORARY
             raw_seqno = pipeout.read(4) #os.read(pipein, 4)
             raw_msglen = pipeout.read(4) #os.read(pipein, 4)
@@ -255,15 +301,19 @@ def realtime_tdm_stream_to_network_output(mdid_lookup):
             #print("seq # = {}".format(int.from_bytes(raw_seqno, byteorder='big')))
             #print("msglen is {}.  Is this greater than 16?".format(msglen))
             len_remaining = msglen - 16
+            print("remaining length: {}".format(len_remaining))
             raw_rest_of_tdm = pipeout.read(len_remaining) #os.read(pipein, len_remaining)
 
             raw = b"".join([raw_ver_adf_flags, raw_mdid, raw_seqno, raw_msglen, raw_rest_of_tdm])
 
             if mdid in mdid_lookup:
                 ip_addr = mdid_lookup[mdid].dst_addr
+                #ip_addr = '10.1.1.201'
                 dport = mdid_lookup[mdid].dst_port
             else:
                 ip_addr = '239.88.88.88'    # Default IP address to use IF MDID is not found in the MDL file
+                #ip_addr = '10.1.1.201'
+                #ip_addr = '172.16.0.27'  # TODO: REMOVE...THIS IS TEMPORARY
                 dport = 50003               # Default UDP destination port to use IF MDID is not found in the MDL file
 
             msg_ip_hdr = IP(version=4, ihl=5, flags='DF', ttl=4, dst=ip_addr)
@@ -422,6 +472,7 @@ if __name__ == "__main__":
         TDM_PORT = cli_args.PORT
         quick_load = cli_args.QUICK_LOAD
 
+        # Output Selection Mode: Output to a Named Pipe or to a Binary File
         if pipe is not None:
             pipe_mode = True
             if os.path.exists(pipe) is False:
@@ -429,21 +480,28 @@ if __name__ == "__main__":
         elif binfile is not None:
             pipe_mode = False
         else:
-            print("You must select the destination of the TmNS Data Message binary file: pipe (-p) or output file (-o).")
+            print("You must select the destination of the TmNS Data Message binary file: "
+                  "pipe (-p) or output file (-o).")
             print("Use '-h' for help menu.")
             exit(0)
 
-        if infile is None:
+        # Input Selection Mode: Input from a network interface (live) or from a PCAP/PCAPNG file (offline)
+        if infile is None:              # LIVE MODE: No input file is specified.  Run in live capture mode.
             live_mode = True
             while True:
-                #try:
-                live_network_input()
-                os.remove(pipe)
-                os.mkfifo(pipe)
-                print("\nRestarting.")
-        else:
+                if pipe_mode:
+                    live_network_input_to_pipe()    # Code will run in this function call forever until user quits or pipe breaks
+                    os.remove(pipe)         # Pipe must have broken.  Delete it from the filesystem.
+                    os.mkfifo(pipe)         # Then, create it all over again, which will ensure the pipe is empty.
+                    print("\nRestarting.")
+                else:
+                    live_network_input_to_file()
+        else:                           # OFFLINE MODE: Input file is specified.  Run in offline mode.
             live_mode = False
-            offline_pcap_input()
+            if pipe_mode:
+                offline_pcap_input_to_pipe()
+            else:
+                offline_pcap_input_to_file()        # Code will run in this function until user quits or file is completely read.
 
     elif mode == 'no':
         pipe = cli_args.PIPE
@@ -457,7 +515,7 @@ if __name__ == "__main__":
         if pipe is not None:
             pipe_mode = True
             if os.path.exists(pipe) is False:
-                os.mkfifo(pipe)  # Create Named Pipe if it doesn't exist
+                os.mkfifo(pipe)                     # Create Named Pipe if it doesn't exist
         elif binfile is not None:
             pipe_mode = False
         else:
