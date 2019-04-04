@@ -500,7 +500,7 @@ if __name__ == "__main__":
     tdm2net_parser.add_argument('-m', action='store', default=None, dest='MDL_FILE',
                                 help="MDL file with TmNS Data Message descriptions for configuration.")
     tdm2net_parser.add_argument('-q', action='store_true', default=False, dest='QUICK_PLAY',
-                                help="Quick Play mode will replay the input binary TmNS Data Message stream as fast"
+                                help="Quick Play mode will replay the input binary TmNS Data Message stream as fast "
                                      "as possible (e.g. not at 1-for-1 realtime rate).  Default is real-time rate. "
                                      "CAUTION: This mode may saturate your network if outputting onto the wire.")
     cli_args = parser.parse_args()
@@ -561,7 +561,6 @@ if __name__ == "__main__":
         binfile = cli_args.BINFILE
         outfile = cli_args.OUTPUT_PCAP_FILE
         mdl_file = cli_args.MDL_FILE
-        quick_play = cli_args.QUICK_PLAY
 
         # Output Selection Mode: Output to a Named Pipe or to a Binary File
         if pipename is not None:
@@ -597,5 +596,5 @@ if __name__ == "__main__":
                 replay_tdm_stream_to_pcap_output(bfile=binfile, mdid_list=mdid_lookup, pcap=outfile)
 
     else:
-        print("You must select a mode: Network Input (ni) or Network Output (no).")
+        print("You must select a mode: Message Input (mi) or Message Output (mo).")
         print("Use '-h' for help menu.")
