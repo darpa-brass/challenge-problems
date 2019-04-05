@@ -340,7 +340,6 @@ def realtime_tdm_stream_to_pcap_output(p=None, mdid_list=None, pcap=None):
             raw_msglen = pipeout.read(4)
             msglen = int.from_bytes(raw_msglen, byteorder='big')
             len_remaining = msglen - 16
-            print("remaining length: {}".format(len_remaining))
             raw_rest_of_tdm = pipeout.read(len_remaining)
 
             raw = b"".join([raw_ver_adf_flags, raw_mdid, raw_seqno, raw_msglen, raw_rest_of_tdm])
