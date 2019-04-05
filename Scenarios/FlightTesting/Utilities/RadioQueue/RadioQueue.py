@@ -18,7 +18,7 @@ import curses
 from curses import wrapper
 import signal
 import random
-
+from brass_api.orientdb.orientdb_helper import BrassOrientDBHelper
 
 next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
@@ -138,6 +138,10 @@ def run_epoch():
     global realtime_mode
     global q_viz_mode
     global history_plot_mode
+    global data_input_rates
+    global bw_allocs
+    global database
+
     
     # Set callback timer for next epoch update
     next_timer = threading.Timer(epoch_sec, run_epoch)
@@ -164,7 +168,18 @@ def run_epoch():
             sys.exit()
 
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
-    with open("data_input_rates.json") as f:        # TODO: make filename a command line argument
+
+    if database:
+        radio_usage_node = database.get_nodes_by_type('input_rate')
+        db_data_input_rates = radio_usage_node.input_rate
+        db_bw_allocs = radio_usage_node.bw_allocations
+        with open(data_input_rates, 'w') as f:
+            json.dump(db_data_input_rates, f)
+        with open(bw_allocs, 'w') as f:
+            json.dump(db_bw_allocs, f)
+
+
+    with open(data_input_rates, 'r') as f:
         ldict_radios = json.load(f)
 
     # Parse the list of Radio dictionaries from JSON file
@@ -203,7 +218,7 @@ def run_epoch():
                         print("'{}' has gone offline.".format(r.name))
 
     # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
-    with open("bw_allocs.json", 'r') as f:          # TODO: make filename a command line argument
+    with open(bw_allocs, 'r') as f:
         d_bw_allocs = json.load(f)
 
     # Parse the Bandwidth Allocations dictionaries from JSON file
@@ -237,7 +252,10 @@ def run_epoch():
     for r in radio_list:
         r.update_q()
 
-    write_qlens_to_json(radio_list)
+    queues = write_qlens_to_json(radio_list)
+
+    if database:
+        database.update_node(radio_usage_node._rid, ['radio_queues = %s' % queues])
 
     total_bw_allocated = 0
     total_bw_utilized = 0
@@ -333,6 +351,7 @@ def add_radio_to_list(radio_d):
 
 
 def write_qlens_to_json(radios):
+    # return queues to be used optionally write_qlens_to_database and log_updates
     queues = []
     
     for r in radios:
@@ -349,6 +368,27 @@ def write_qlens_to_json(radios):
     with open("radio_queues.json", "w") as f:
         json.dump(queues, f)
 
+    return queues
+
+# ------------------------------------------------------------------------------
+def write_qlens_to_database(queues):
+    # Starts with queues in json format. Creates Classes if the don't exist and populates a single node with the json.
+
+    pass
+
+# ------------------------------------------------------------------------------
+def log_updates(queues):
+    # Updates a csv log with queues writen to json.
+    pass
+
+# ------------------------------------------------------------------------------
+# Reads inputs from database instead of from file. Must define what classes these inputs are stored in.
+
+def read_input_rates_from_database():
+    pass
+
+def read_allocation_from_database():
+    pass
 
 # ------------------------------------------------------------------------------
 
@@ -1301,10 +1341,19 @@ if __name__ == "__main__":
                         help='Realtime mode (screen updates 1x per epoch.  Default: Slow Refresh rate (1x per sec)')
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.3.2')
+    parser.add_argument('-i', action='store', dest='data_input_rates', help='Json with the data  input rates for a set of Radios', type=str)
+    parser.add_argument('-b', action='store', dest='bw_allocs', help='Json with the avaliable bandwidth for a set of Radios', type=str)
+    parser.add_argument('--config', action='store', default=None, dest='config', help='Set config file for OrientDB ', type=str)
+    parser.add_argument('--database', action='store', default=None, dest='database', help='Set config file for OrientDB', type=str)
     cli_args = parser.parse_args()
 
     # CLI argument assignments
+    data_input_rates = cli_args.data_input_rates
+    bw_allocs = cli_args.bw_allocs
     init_epoch_vals(cli_args.epoch_size_ms)     # Pass CLI Epoch size (ms) to the init_epoch_vals() function
+    if cli_args.database is not None and cli_args.config is not None:
+        database = BrassOrientDBHelper(cli_args.database, cli_args.config)
+        database.open_database()
 
     enforce_max_q_size = cli_args.enforce_max_q_size
     if cli_args.max_queue_size >= 0:
