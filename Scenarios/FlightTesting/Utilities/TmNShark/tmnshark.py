@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---                                TmNShark                                ---
 # ---                                                                        ---
-# --- Last Updated: April 4, 2019                                            ---
+# --- Last Updated: April 5, 2019                                            ---
 # ------------------------------------------------------------------------------
 # ---                                                                        ---
 # --- This utility can convert network packets into a binary stream of TmNS  ---
@@ -189,7 +189,7 @@ def live_network_input_to_file(iface=None):
 # ------------------------------------------------------------------------------
 
 
-def offline_pcap_input_to_pipe(pcap=None, p=None):
+def offline_pcap_input_to_pipe(pcap=None, p=None, quick=False):
     tdm_cnt = 0
 
     print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to pipe.")
@@ -205,7 +205,7 @@ def offline_pcap_input_to_pipe(pcap=None, p=None):
     try:
         for pkt in pkt_list:
             if pkt[UDP].dport == TDM_PORT:
-                if quick_load is False:
+                if quick is False:
                     while (pkt.time + delta_from_current_time) > time.time():
                         sleep(0.0001)
                 pipeout.write(bytes(pkt[UDP].payload))
@@ -226,7 +226,7 @@ def offline_pcap_input_to_pipe(pcap=None, p=None):
 # ------------------------------------------------------------------------------
 
 
-def offline_pcap_input_to_file(pcap=None, bfile=None):
+def offline_pcap_input_to_file(pcap=None, bfile=None, quick=False):
     tdm_cnt = 0
 
     print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to file.")
@@ -239,7 +239,7 @@ def offline_pcap_input_to_file(pcap=None, bfile=None):
 
     for pkt in pkt_list:
         if pkt[UDP].dport == TDM_PORT:
-            if quick_load is False:
+            if quick is False:
                 while (pkt.time + delta_from_current_time) > time.time():
                     sleep(0.0001)
             f.write(bytes(pkt[UDP].payload))
@@ -551,10 +551,10 @@ if __name__ == "__main__":
                     live_network_input_to_file(iface=interface)
         else:  # OFFLINE MODE: Input file is specified.  Run in offline mode.
             if pipe_mode:
-                offline_pcap_input_to_pipe(pcap=infile, p=pipename)
+                offline_pcap_input_to_pipe(pcap=infile, p=pipename, quick=quick_load)
             else:
-                offline_pcap_input_to_file(pcap=infile, bfile=binfile)  # Code will run in this function until user
-                # quits or file is completely read.
+                offline_pcap_input_to_file(pcap=infile, bfile=binfile, quick=quick_load)  # Code will run in this
+                # function until user quits or file is completely read.
 
     elif mode == 'mo':  # Message Output Mode
         pipename = cli_args.PIPE

@@ -2,6 +2,9 @@
 *********         README File For TmNShark         *********
 ************************************************************
 
+* Version: 0.0.5
+* Date:    April 5, 2019
+
 TmNShark runs under Python 3.
 
     > python3 tmnshark.py -h
@@ -106,11 +109,21 @@ binary file to create and send the resulting packets to their output destination
 given if sending onto the network as it could result in saturating the network.
 
       
-      
-The FILE argument is required.  It shall be an MDL file containing links and
-    their associated Transmission Opportunities (TxOps).  The MDL file also 
-    includes QoS policies that have the inherent latency and throughput 
-    requirements within them.
+QUICK START:
+To begin using the utility out of the box, you can run 2 instances of TmNShark,
+running one in "mi" and the other in "mo" mode.  The "mi" should be set to send
+to a pipe, and the "mo" should be set to read from that same pipe.  Here's an
+example that has one instance in "mi" reading a PCAP file with TDMs, extracts
+and sends the binary stream of TDMs into the pipe.  The other instance in "mo"
+reads the binary stream of TDMs from the pipe and writes them out onto the
+network.
+    > python tmnshark.py mi -p pipe4tmns -i TmNS_Data_Messages_DAU_1.pcapng
+
+    > python tmnshark.py mo -p pipe4tmns -m example_DAU_1.xml
+
+Run the 2 instances in different terminals at the same time.  Verify things
+are working properly by running Wireshark to capture the outgoing TDMs on the
+network.
 
     
 KNOWN ISSUES:
@@ -119,3 +132,9 @@ to create these named pipes, this is not expected to run on Windows.
 
 In "Message Out" mode, the '-q' argument currently does nothing.  This feature
 is not yet implemented.
+
+Performance for writing TDM packets to the network is not optimal.  The fastest
+that can be sent out the network interface seems to be about 7-10 ms.  For
+network traffic that has a higher packet per second rate, the output rate will
+be slower, regardless of whether the input method is live from the network or
+from a prerecorded PCAP file.
