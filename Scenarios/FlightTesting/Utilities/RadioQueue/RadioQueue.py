@@ -170,9 +170,10 @@ def run_epoch():
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
 
     if database:
-        radio_usage_node = database.get_nodes_by_type('input_rate')
-        db_data_input_rates = radio_usage_node.input_rate
-        db_bw_allocs = radio_usage_node.bw_allocations
+        radio_usage_node_list = database.get_nodes_by_type('Radio_Usage')
+        radio_usage_node = radio_usage_node_list[0]
+        db_data_input_rates = radio_usage_node.Input_Rate
+        db_bw_allocs = radio_usage_node.BW_Allocs
         with open(data_input_rates, 'w') as f:
             json.dump(db_data_input_rates, f)
         with open(bw_allocs, 'w') as f:
@@ -255,7 +256,7 @@ def run_epoch():
     queues = write_qlens_to_json(radio_list)
 
     if database:
-        database.update_node(radio_usage_node._rid, ['radio_queues = %s' % queues])
+        database.update_node(radio_usage_node._rid, 'Radio_Queues = %s' % str(queues))
 
     total_bw_allocated = 0
     total_bw_utilized = 0
@@ -368,27 +369,7 @@ def write_qlens_to_json(radios):
     with open("radio_queues.json", "w") as f:
         json.dump(queues, f)
 
-    return queues
-
-# ------------------------------------------------------------------------------
-def write_qlens_to_database(queues):
-    # Starts with queues in json format. Creates Classes if the don't exist and populates a single node with the json.
-
-    pass
-
-# ------------------------------------------------------------------------------
-def log_updates(queues):
-    # Updates a csv log with queues writen to json.
-    pass
-
-# ------------------------------------------------------------------------------
-# Reads inputs from database instead of from file. Must define what classes these inputs are stored in.
-
-def read_input_rates_from_database():
-    pass
-
-def read_allocation_from_database():
-    pass
+    return json.dumps(queues)
 
 # ------------------------------------------------------------------------------
 
