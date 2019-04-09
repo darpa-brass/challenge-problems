@@ -87,6 +87,12 @@ class MessageDefinition:
 
 
 def write_tdm_to_pipe(pkt):
+    '''This function takes in an IP packet and searches it to see if it contains a
+    TmNS Data Message.  If it does, then it extracts it from teh UDP payload and
+    writes it into the pipe identified by the global g_pipein.  It utilizes two
+    global variables:
+    g_tdm_cnt - a global counter of the number of TDMs written to the pipe
+    g_pipein - the name of the pipe to write the TDMs to.'''
     global g_tdm_cnt
     global g_pipein
 
@@ -101,11 +107,17 @@ def write_tdm_to_pipe(pkt):
 
 
 def write_tdm_to_file(pkt):
+    '''This function takes in an IP packet and searches it to see if it contains a
+    TmNS Data Message.  If it does, then it extracts it from the UDP payload and
+    appends it to the binary file of TDMs.  It utilizes two global variables:
+    g_tdm_cnt - a global counter of the number of TDMs written to the file
+    g_binfile = the binary file to write the TDMs to.'''
     global g_tdm_cnt
+    global g_binfile
 
     if UDP in pkt:
         if pkt[UDP].dport == TDM_PORT:
-            f = open(binfile, 'a+b')
+            f = open(g_binfile, 'a+b')
             f.write(bytes(pkt[UDP].payload))
             f.close()
             g_tdm_cnt += 1
@@ -116,6 +128,7 @@ def write_tdm_to_file(pkt):
 
 
 def make_tdm_packet_list(bfile):
+    '''This function '''
     tdm_list = []
 
     if os.path.exists(bfile):
@@ -271,31 +284,19 @@ def realtime_tdm_stream_to_network_output(p=None, mdid_list=None):
             raw_ver_adf_flags = pipeout.read(4)
             raw_mdid = pipeout.read(4)
             mdid = int.from_bytes(raw_mdid, byteorder='big')
-            # mdid = mdid + 3992977408        # TODO: REMOVE...THIS IS TEMPORARY
-            mdid = mdid + 16  # TODO: REMOVE...THIS IS TEMPORARY
-            # print(" mdid: 0x{0:08x}".format(mdid))  # TODO: REMOVE...THIS IS TEMPORARY
-            raw_mdid = mdid.to_bytes(4, byteorder='big', signed=False)  # TODO: REMOVE...THIS IS TEMPORARY
             raw_seqno = pipeout.read(4)
             raw_msglen = pipeout.read(4)
             msglen = int.from_bytes(raw_msglen, byteorder='big')
-            # print("ver|flags|rsvd|flags = {}".format(int.from_bytes(raw_ver_adf_flags, byteorder='big')))
-            # print("MDID = {}".format(int.from_bytes(raw_mdid, byteorder='big')))
-            # print("seq # = {}".format(int.from_bytes(raw_seqno, byteorder='big')))
-            # print("msglen is {}.  Is this greater than 16?".format(msglen))
             len_remaining = msglen - 16
-            # print("remaining length: {}".format(len_remaining))
             raw_rest_of_tdm = pipeout.read(len_remaining)
 
             raw = b"".join([raw_ver_adf_flags, raw_mdid, raw_seqno, raw_msglen, raw_rest_of_tdm])
 
             if mdid in mdid_list:
                 ip_addr = mdid_list[mdid].dst_addr
-                # ip_addr = '10.1.1.201'
                 dport = mdid_list[mdid].dst_port
             else:
                 ip_addr = '239.88.88.88'  # Default IP address to use IF MDID is not found in the MDL file
-                # ip_addr = '10.1.1.201'
-                # ip_addr = '172.16.0.27'  # TODO: REMOVE...THIS IS TEMPORARY
                 dport = 50003  # Default UDP destination port to use IF MDID is not found in the MDL file
 
             msg_ip_hdr = IP(version=4, ihl=5, flags='DF', ttl=4, dst=ip_addr)
@@ -506,6 +507,7 @@ if __name__ == "__main__":
 
     g_tdm_cnt = 0  # initialize the Global TDM Counter
     g_pipein = 0
+    g_binfile = None
 
     signal.signal(signal.SIGINT, sig_handler)  # Register signal handler for graceful exiting (e.g. CTRL-C)
 
@@ -521,6 +523,8 @@ if __name__ == "__main__":
         binfile = cli_args.BINFILE
         TDM_PORT = cli_args.PORT
         quick_load = cli_args.QUICK_LOAD
+
+        g_binfile = binfile
 
         # Output Selection Mode: Output to a Named Pipe or to a Binary File
         if pipename is not None:
