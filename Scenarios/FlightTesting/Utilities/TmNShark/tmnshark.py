@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---                                TmNShark                                ---
 # ---                                                                        ---
-# --- Last Updated: April 5, 2019                                            ---
+# --- Last Updated: April 9, 2019                                            ---
 # ------------------------------------------------------------------------------
 # ---                                                                        ---
 # --- This utility can convert network packets into a binary stream of TmNS  ---
@@ -87,12 +87,13 @@ class MessageDefinition:
 
 
 def write_tdm_to_pipe(pkt):
-    '''This function takes in an IP packet and searches it to see if it contains a
-    TmNS Data Message.  If it does, then it extracts it from teh UDP payload and
-    writes it into the pipe identified by the global g_pipein.  It utilizes two
-    global variables:
-    g_tdm_cnt - a global counter of the number of TDMs written to the pipe
-    g_pipein - the name of the pipe to write the TDMs to.'''
+    """ This function takes in an IP packet and searches it to see if it contains a
+        TmNS Data Message.  If it does, then it extracts it from teh UDP payload and
+        writes it into the pipe identified by the global g_pipein.  It utilizes two
+        global variables:
+        g_tdm_cnt - a global counter of the number of TDMs written to the pipe
+        g_pipein - the name of the pipe to write the TDMs to."""
+
     global g_tdm_cnt
     global g_pipein
 
@@ -107,11 +108,12 @@ def write_tdm_to_pipe(pkt):
 
 
 def write_tdm_to_file(pkt):
-    '''This function takes in an IP packet and searches it to see if it contains a
-    TmNS Data Message.  If it does, then it extracts it from the UDP payload and
-    appends it to the binary file of TDMs.  It utilizes two global variables:
-    g_tdm_cnt - a global counter of the number of TDMs written to the file
-    g_binfile = the binary file to write the TDMs to.'''
+    """ This function takes in an IP packet and searches it to see if it contains a
+        TmNS Data Message.  If it does, then it extracts it from the UDP payload and
+        appends it to the binary file of TDMs.  It utilizes two global variables:
+        g_tdm_cnt - a global counter of the number of TDMs written to the file
+        g_binfile = the binary file to write the TDMs to."""
+
     global g_tdm_cnt
     global g_binfile
 
@@ -128,7 +130,10 @@ def write_tdm_to_file(pkt):
 
 
 def make_tdm_packet_list(bfile):
-    '''This function '''
+    """ This function reads a binary file (bfile) of TmNS Data Messages, parses the
+        TDMs, and adds each TDM to the list of TDMs (tdm_list).
+        It returns the TDM list."""
+
     tdm_list = []
 
     if os.path.exists(bfile):
@@ -165,6 +170,16 @@ def make_tdm_packet_list(bfile):
 
 
 def live_network_input_to_pipe(iface=None, p=None):
+    """ This function opens a pipe for writing in binary mode, and then it calls
+        scapy's 'sniff' function with a callback to write_tdm_to_pipe function.  If
+        no interface is specified, packet sniffing is done on the default interface.
+        The function requires 2 arguments:
+        iface - The interface to sniff on
+        p = the name of the Pipe to open
+        It utilizes one global variable:
+        g_pipein - a variable that stores the named pipe file descriptor.  The pipe
+        is opened in this function and is written in the referenced callback function."""
+
     global g_pipein
 
     print("Named Pipe '{0}' has been opened for writing.  Waiting for Pipe Reader to connect.".format(p))
@@ -191,6 +206,11 @@ def live_network_input_to_pipe(iface=None, p=None):
 
 
 def live_network_input_to_file(iface=None):
+    """ This function calls scapy's 'sniff' function with a callback to write_tdm_to_file
+        function.  If no interface is specified, packet sniffing is done on the default
+        interface.  The function requires 1 argument:
+        iface = the interface to sniff on"""
+
     if iface is None:
         print("Listening on default interface.")
         sniff(prn=write_tdm_to_file)
@@ -203,6 +223,16 @@ def live_network_input_to_file(iface=None):
 
 
 def offline_pcap_input_to_pipe(pcap=None, p=None, quick=False):
+    """ This function reads a PCAP/PCAPNG file to create a list of packets.  The list
+        is iterated through to filter for packets carrying TmNS Data Messages.  For each
+        TDM found, the TDM is written to a pipe as a stream of binary data.  The function
+        has 3 input arguments:
+        pcap - the PCAP/PCAPNG file to read
+        p - the name of the pipe to open and write to
+        quick - true/false flag as to whether data should be written as fast as possible
+        to the pipe (true) or if it should be delayed relative to the timestamp of the
+        captured packet (false)."""
+
     tdm_cnt = 0
 
     print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to pipe.")
@@ -240,6 +270,15 @@ def offline_pcap_input_to_pipe(pcap=None, p=None, quick=False):
 
 
 def offline_pcap_input_to_file(pcap=None, bfile=None, quick=False):
+    """ This function reads a PCAP/PCAPNG file to create a list of packets.  The list
+        is iterated through to filter for packets carrying TmNS Data Messages.  For each
+        TDM found, the TDM is written to a binary file.  The function has 3 input arguments:
+        pcap - the PCAP/PCAPNG file to read
+        bfile - the name of the file to open and write to
+        quick - true/false flag as to whether data should be written as fast as possible
+        to the file (true) or if it should be delayed relative to the timestamp of the
+        captured packet (false)."""
+
     tdm_cnt = 0
 
     print("Offline mode: Reading TDMs from PCAP/PCAPNG file and writing to file.")
@@ -270,6 +309,13 @@ def offline_pcap_input_to_file(pcap=None, bfile=None, quick=False):
 
 
 def realtime_tdm_stream_to_network_output(p=None, mdid_list=None):
+    """ This function reads a binary stream of TmNS Data Messages from a pipe, builds an
+        IP packet for the TDM, and then sends the packet out of a network interface.  The
+        destination IP address and the destination UDP port are set according to the TDM's
+        MDID and the associated MDID within the mdid_list.  The function has 2 input arguments:
+        p = the name of the pipe to open and read from
+        mdid_list - a list of MessageDefinition objects """
+
     if os.path.exists(p) is False:
         os.mkfifo(p)  # Create Named Pipe if it doesn't exist
 
@@ -323,6 +369,15 @@ def realtime_tdm_stream_to_network_output(p=None, mdid_list=None):
 
 
 def realtime_tdm_stream_to_pcap_output(p=None, mdid_list=None, pcap=None):
+    """ This function reads a binary stream of TmNS Data Messages from a pipe, builds an
+        IP packet for the TDM, and then writes the packet to a PCAP/PCAPNG file for offline
+        analysis.  The destination IP address and the destination UDP port are set according
+        to the TDM's MDID and the associated MDID within the mdid_list.  The function has 3
+        input arguments:
+        p = the name of the pipe to open and read from
+        mdid_list - a list of MessageDefinition objects
+        pcap = the name of the PCAP/PCAPNG file to write packets out to."""
+
     if os.path.exists(p) is False:
         os.mkfifo(p)  # Create Named Pipe if it doesn't exist
 
@@ -376,6 +431,13 @@ def realtime_tdm_stream_to_pcap_output(p=None, mdid_list=None, pcap=None):
 
 
 def replay_tdm_stream_to_network_output(bfile=None, mdid_list=None):
+    """ This function reads a binary file of TmNS Data Messages, builds an IP packet for
+        the TDM, and then sends the packet out of a network interface.  The destination
+        IP address and the destination UDP port are set according to the TDM's MDID and
+        the associated MDID within the mdid_list.  The function has 2 input arguments:
+        bfile = the name of the binary file to open and read from
+        mdid_list - a list of MessageDefinition objects"""
+
     tdm_list = make_tdm_packet_list(bfile)
     tdm_cnt = len(tdm_list)
     pkt_list = []
@@ -400,6 +462,15 @@ def replay_tdm_stream_to_network_output(bfile=None, mdid_list=None):
 
 
 def replay_tdm_stream_to_pcap_output(bfile=None, mdid_list=None, pcap=None):
+    """ This function reads a binary file of TmNS Data Messages, builds an IP packet for
+        the TDM, and then writes the packet to a PCAP/PCAPNG file for offline analysis.
+        The destination IP address and the destination UDP port are set according
+        to the TDM's MDID and the associated MDID within the mdid_list.  The function has 3
+        input arguments:
+        bfile = the name of the binary file to open and read from
+        mdid_list - a list of MessageDefinition objects
+        pcap = the name of the PCAP/PCAPNG file to write packets out to."""
+
     tdm_list = make_tdm_packet_list(bfile)
     tdm_cnt = len(tdm_list)
     pkt_list = []
@@ -424,6 +495,14 @@ def replay_tdm_stream_to_pcap_output(bfile=None, mdid_list=None, pcap=None):
 
 
 def parse_mdl(mdl=None):
+    """ This function parses an MDL file for all MessageDefinition elements within the file.
+        For each MessageDefinition found, a new MessageDefinition object is created and added
+        to the dictionary of all MDIDs.  Because MDID's are unique, the dictionary is indexed
+        by the MDID.  The function has 1 input argument:
+        mdl - the name of the MDL file to parse
+        After all MDIDs have been parsed in the file and added to the MDID dictionary, the
+        dictionary is returned. """
+
     mdid_dict = {}
 
     if os.path.exists(mdl) is False:
@@ -454,6 +533,7 @@ def parse_mdl(mdl=None):
 
 
 def sig_handler(sig, frame):
+    """ Generic signal handler to catch 'CTRL+C' keystrokes from the uses."""
     print("User signals: 'The End'")
     exit(0)
 
@@ -465,7 +545,7 @@ if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="MODE", help="Command / Mode Selection")
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.5')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.6')
 
     net2tdm_parser = subparsers.add_parser('mi', help="Message Input: Receive IP packets and extract TDMs out")
     tdm2net_parser = subparsers.add_parser('mo', help="Message Output: Receive TDM stream and output as IP packets")
@@ -543,6 +623,7 @@ if __name__ == "__main__":
         if infile is None:  # LIVE MODE: No input file is specified.  Run in live capture mode.
             while True:
                 if pipe_mode:
+                    print("Network Interface -----> ==TDM=PIPE==")
                     live_network_input_to_pipe(iface=interface, p=pipename)  # Code will run in this function call
                     # forever until user quits or pipe breaks
                     os.remove(pipename)  # Pipe must have broken.  Delete it from the filesystem.
@@ -551,11 +632,14 @@ if __name__ == "__main__":
                 else:
                     if os.path.exists(binfile):
                         os.remove(binfile)
+                    print("Network Interface -----> [TDM BINARY FILE]")
                     live_network_input_to_file(iface=interface)
         else:  # OFFLINE MODE: Input file is specified.  Run in offline mode.
             if pipe_mode:
+                print("[PCAP FILE] -----> ==TDM=PIPE==")
                 offline_pcap_input_to_pipe(pcap=infile, p=pipename, quick=quick_load)
             else:
+                print("[PCAP FILE] -----> [TDM BINARY FILE]")
                 offline_pcap_input_to_file(pcap=infile, bfile=binfile, quick=quick_load)  # Code will run in this
                 # function until user quits or file is completely read.
 
@@ -588,14 +672,18 @@ if __name__ == "__main__":
         if pipe_mode:
             while True:
                 if outfile is None:
+                    print("==TDM=PIPE== -----> Network Interface")
                     realtime_tdm_stream_to_network_output(p=pipename, mdid_list=mdid_lookup)
                 else:
+                    print("==TDM=PIPE== -----> [PCAP FILE]")
                     realtime_tdm_stream_to_pcap_output(p=pipename, mdid_list=mdid_lookup, pcap=outfile)
                 print("Restarting...")
         else:
             if outfile is None:
+                print("[TDM BINARY FILE] -----> Network Interface")
                 replay_tdm_stream_to_network_output(bfile=binfile, mdid_list=mdid_lookup)
             else:
+                print("[TDM BINARY FILE] -----> [PCAP FILE]")
                 replay_tdm_stream_to_pcap_output(bfile=binfile, mdid_list=mdid_lookup, pcap=outfile)
 
     else:
