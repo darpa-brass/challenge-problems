@@ -253,7 +253,15 @@ def run_epoch():
     queues = write_qlens_to_json(radio_list)
 
     if database:
-        database.update_node(radio_usage_node._rid, 'Radio_Queues = %s' % str(queues))
+        try:
+            database.update_node(radio_usage_node._rid,
+                                 {'Radio_Queues': queues},
+                                 {'Input_Rate': ldict_radios},
+                                 {'BW_Allocs': d_bw_allocs},
+                                 version=radio_usage_node._version,
+                                 transaction=True)
+        except:
+            pass
 
     total_bw_allocated = 0
     total_bw_utilized = 0
@@ -368,7 +376,7 @@ def write_qlens_to_json(radios):
         with open("radio_queues.json", "w") as f:
             json.dump(queues, f)
 
-    return json.dumps(queues)
+    return queues
 
 # ------------------------------------------------------------------------------
 
