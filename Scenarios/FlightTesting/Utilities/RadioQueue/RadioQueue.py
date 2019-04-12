@@ -168,20 +168,19 @@ def run_epoch():
             sys.exit()
 
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
+    # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
 
     if database:
         radio_usage_node_list = database.get_nodes_by_type('Radio_Usage')
         radio_usage_node = radio_usage_node_list[0]
-        db_data_input_rates = radio_usage_node.Input_Rate
-        db_bw_allocs = radio_usage_node.BW_Allocs
-        with open(data_input_rates, 'w') as f:
-            json.dump(db_data_input_rates, f)
-        with open(bw_allocs, 'w') as f:
-            json.dump(db_bw_allocs, f)
+        ldict_radios = radio_usage_node.Input_Rate
+        d_bw_allocs = radio_usage_node.BW_Allocs
+    else:
+        with open(data_input_rates, 'r') as f:
+            ldict_radios = json.load(f)
 
-
-    with open(data_input_rates, 'r') as f:
-        ldict_radios = json.load(f)
+        with open(bw_allocs, 'r') as f:
+            d_bw_allocs = json.load(f)
 
     # Parse the list of Radio dictionaries from JSON file
     for d in ldict_radios:
@@ -218,9 +217,7 @@ def run_epoch():
                     if debug >= 1:
                         print("'{}' has gone offline.".format(r.name))
 
-    # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
-    with open(bw_allocs, 'r') as f:
-        d_bw_allocs = json.load(f)
+
 
     # Parse the Bandwidth Allocations dictionaries from JSON file
     for d in d_bw_allocs:
@@ -256,7 +253,15 @@ def run_epoch():
     queues = write_qlens_to_json(radio_list)
 
     if database:
-        database.update_node(radio_usage_node._rid, 'Radio_Queues = %s' % str(queues))
+        try:
+            database.update_node(radio_usage_node._rid,
+                                 {'Radio_Queues': queues},
+                                 {'Input_Rate': ldict_radios},
+                                 {'BW_Allocs': d_bw_allocs},
+                                 version=radio_usage_node._version,
+                                 transaction=True)
+        except:
+            pass
 
     total_bw_allocated = 0
     total_bw_utilized = 0
@@ -353,6 +358,8 @@ def add_radio_to_list(radio_d):
 
 def write_qlens_to_json(radios):
     # return queues to be used optionally write_qlens_to_database and log_updates
+
+    global database
     queues = []
     
     for r in radios:
@@ -365,11 +372,11 @@ def write_qlens_to_json(radios):
         else:
             radio_d['IsOnline'] = 0
         queues.append(radio_d)
-    
-    with open("radio_queues.json", "w") as f:
-        json.dump(queues, f)
+    if database is None:
+        with open("radio_queues.json", "w") as f:
+            json.dump(queues, f)
 
-    return json.dumps(queues)
+    return queues
 
 # ------------------------------------------------------------------------------
 
@@ -1331,7 +1338,8 @@ if __name__ == "__main__":
     # CLI argument assignments
     data_input_rates = cli_args.data_input_rates
     bw_allocs = cli_args.bw_allocs
-    init_epoch_vals(cli_args.epoch_size_ms)     # Pass CLI Epoch size (ms) to the init_epoch_vals() function
+    init_epoch_vals(cli_args.epoch_size_ms)   # Pass CLI Epoch size (ms) to the init_epoch_vals() function
+    database = None
     if cli_args.database is not None and cli_args.config is not None:
         database = BrassOrientDBHelper(cli_args.database, cli_args.config)
         database.open_database()
