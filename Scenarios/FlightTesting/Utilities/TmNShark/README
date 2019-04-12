@@ -1,0 +1,140 @@
+************************************************************
+*********         README File For TmNShark         *********
+************************************************************
+
+* Version: 0.0.6
+* Date:    April 9, 2019
+
+TmNShark runs under Python 3.
+
+    > python3 tmnshark.py -h
+    
+
+There are 2 modes for TmNShark: Message In ("mi") and Message Out ("mo").
+Each has their own set of command line arguments.  You must select either
+"mi" or "mo" on the command line.  The "in" and "out" point of reference
+is an application such as a Computational Element (CE) that when running
+in conjunction with instances of TmNShark, the mode that provides TmNS
+Data Messages into the CE is the "mi" mode while the "mo" mode takes TDMs
+it has received from the CE and puts them out onto the network.  You can
+think of it in terms of the network ("mi" is input from the network; "mo"
+is output to the network).
+
+Command Line Arguments for "Message In" mode:
+    > python tmnshark.py mi -h
+    usage: tmnshark.py mi [-h] [-I INTERFACE] [-i INFILE] [-p PIPE] [-o BINFILE]
+                          [-P PORT] [-q]
+
+    optional arguments:
+      -h, --help    show this help message and exit
+      -I INTERFACE  Interface to listen for incoming TmNS Data Messages on.
+      -i INFILE     PCAP or PCAPNG file to extract TmNS Data Messages from. The
+                    presence of this argument will run the software in offline
+                    mode. The absence of this argument will run the software in
+                    live-capture mode.
+      -p PIPE       Named Pipe to write binary stream of TmNS Data Messages to
+                    (default: pipe4tmns).
+      -o BINFILE    Output file for storing binary stream of TmNS Data Messages
+                    (default: tmns.bin).
+      -P PORT       UDP Port number of TmNS Data Messages.
+      -q            Quick Load mode will parse the provided input PCAP/PCAPNG file
+                    and return all TDMs as fast as possible (e.g. not at 1-for-1
+                    received rate). Default is received-time rate.
+
+For live capture mode, a specific interface can be specified with the '-I' argument
+If an interface is not specified, the system will use it's configured default
+network interface
+
+To run in an offline mode, specify the '-i' argument with the PCAP/PCAPNG file
+to use for parsing for TDMs.  If this argument is not used, the default live
+capture mode will be in effect.
+
+There are possible output modes.  The utility can write TDMs parsed out of the
+network/pcap file either into a named pipe or a regular file.  If the named pipe
+is used, as specified with the '-p' argument, the utility will wait until an
+application connects to the named pipe for reading.  If the output is desired
+to be sent to a regular file, the stream of TDMs will be written in binary form
+to the specified output file.
+
+The '-P PORT' argument can be set, indicating that TDMs are expected to utilize
+the UDP port number as indicated by PORT.  Without this argument, the default
+port number is set to 50003.
+
+The '-q' flag can be used in conjunction with the offline mode.  When offline,
+the utility can write the output TDMs to file/pipe at roughly a 1-to-1 rate
+with respect to packet time of arrival, or it can send them as fast as possible.
+By specifying the '-q' argument, the user specifies sending as fast as possible.
+Without specifying this argument, the utility sends at the 1-to-1 rate.
+
+
+Command Line Arguments for "Message Out" mode:
+    > python tmnshark.py mo -h
+    usage: tmnshark.py mo [-h] [-p PIPE] [-i BINFILE] [-o OUTPUT_PCAP_FILE]
+                          [-m MDL_FILE] [-q]
+
+    optional arguments:
+      -h, --help           show this help message and exit
+      -p PIPE              Named Pipe to read binary stream of data from (default:
+                           pipe4tmns).
+      -i BINFILE           Input file for binary stream of TmNS Data Messages
+                           (default: tmns.bin).
+      -o OUTPUT_PCAP_FILE  Name of the resulting PCAP file for use in offline
+                           playback mode.
+      -m MDL_FILE          MDL file with TmNS Data Message descriptions for
+                           configuration.
+      -q                   Quick Play mode will replay the input binary TmNS Data
+                           Message stream as fastas possible (e.g. not at 1-for-1
+                           realtime rate). Default is real-time rate. CAUTION:
+                           This mode may saturate your network if outputting onto
+                           the wire.
+
+There are 2 possible input sources of TDMs: from a named pipe, or from a binary
+file.  To specify the stream of TDMs from a named pipe, use the '-p PIPE' argument.
+To specify the stream of TDMs from a binary file, use the '-i BINFILE' argument.
+
+There are 2 possible output destination for the resulting network packets that
+contain the TDMs: out a network interface (live output mode) or written to a PCAP
+file for post analysis.  The default mode is the live output mode.  The host
+computer will route the outgoing traffic out of the appropriate network interface
+based on the routing table of the host computer.  Therefore, there is no need to
+select an interface for this.  If you want to send the packets to a PCAP file
+(offline mode), simply use the '-o OUTPUT_PCAP_FILE' argument.
+
+An MDL file is required for the "Message Out" mode.  It is specified as an argument
+using the '-m MDL_FILE' argument.
+
+The '-q' flag can be used in conjunction with the input method reading from a
+binary file to create and send the resulting packets to their output destination
+(either an offline PCAP file or out the network interface).  Caution should be
+given if sending onto the network as it could result in saturating the network.
+
+      
+QUICK START:
+To begin using the utility out of the box, you can run 2 instances of TmNShark,
+running one in "mi" and the other in "mo" mode.  The "mi" should be set to send
+to a pipe, and the "mo" should be set to read from that same pipe.  Here's an
+example that has one instance in "mi" reading a PCAP file with TDMs, extracts
+and sends the binary stream of TDMs into the pipe.  The other instance in "mo"
+reads the binary stream of TDMs from the pipe and writes them out onto the
+network.
+    > python tmnshark.py mi -p pipe4tmns -i TmNS_Data_Messages_DAU_1.pcapng
+
+    > python tmnshark.py mo -p pipe4tmns -m example_DAU_1.xml
+
+Run the 2 instances in different terminals at the same time.  Verify things
+are working properly by running Wireshark to capture the outgoing TDMs on the
+network.
+
+    
+KNOWN ISSUES:
+Due to the utility relying on named pipes and utilizing unix-based OS commands
+to create these named pipes, this is not expected to run on Windows.
+
+In "Message Out" mode, the '-q' argument currently does nothing.  This feature
+is not yet implemented.
+
+Performance for writing TDM packets to the network is not optimal.  The fastest
+that can be sent out the network interface seems to be about 7-10 ms.  For
+network traffic that has a higher packet per second rate, the output rate will
+be slower, regardless of whether the input method is live from the network or
+from a prerecorded PCAP file.
