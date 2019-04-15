@@ -1,0 +1,3620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL">
+  <Name>BRASS-Todays_FT_Schedule</Name>
+  <DatabaseID>6</DatabaseID>
+  <Checksum />
+  <ConfigurationVersion>BRASS-ACME_Range_Network</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Generated Test Mission</Name>
+      <Description>System Manager default generated Test Mission.</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>TmNS completeness is not yet determined by System Manager.</TmNSCompletenessDescription>
+      <NetworkRefs>
+        <NetworkRef IDREF="ACME_Range_Network" />
+      </NetworkRefs>
+      <QoSPolicies>
+        <QoSPolicy ID="QoS4_SimpleFIFO">
+          <Name>Simple FIFO</Name>
+          <Description>Mission SLP for Minimal Queue example.</Description>
+          <QoSPolicyID>0x0000007b</QoSPolicyID>
+          <RadioLinkRefs>
+            <RadioLinkRef IDREF="RadioLink_4099to61457" />
+            <RadioLinkRef IDREF="RadioLink_4097to61473" />
+            <RadioLinkRef IDREF="RadioLink_4102to61489" />
+            <RadioLinkRef IDREF="RadioLink_4098to61505" />
+            <RadioLinkRef IDREF="RadioLink_4100to61521" />
+            <RadioLinkRef IDREF="RadioLink_4099to61537" />
+            <RadioLinkRef IDREF="RadioLink_4104to61553" />
+            <RadioLinkRef IDREF="RadioLink_4101to61569" />
+            <RadioLinkRef IDREF="RadioLink_4103to61585" />
+            <RadioLinkRef IDREF="RadioLink_4099to61601" />
+            <RadioLinkRef IDREF="RadioLink_4098to61617" />
+          </RadioLinkRefs>
+          <Priority>4</Priority>
+          <LinkManagementMinCapacity>
+            <Value>100000</Value>
+            <BaseUnit>BitPerSecond</BaseUnit>
+          </LinkManagementMinCapacity>
+          <AssuredCapacity>
+            <Value>200000</Value>
+            <BaseUnit>BitPerSecond</BaseUnit>
+          </AssuredCapacity>
+          <ServiceLevelProfiles>
+            <ServiceLevelProfile ID="ServiceLevelProfile26">
+              <Name>SLP_123_0</Name>
+              <Description>Root SLP for Simple FIFO.</Description>
+              <SLPHandle>0x007b0000</SLPHandle>
+              <QueueConstruct>
+                <QDisc>
+                  <FIFO>
+                    <LimitInPackets>100</LimitInPackets>
+                  </FIFO>
+                </QDisc>
+              </QueueConstruct>
+            </ServiceLevelProfile>
+          </ServiceLevelProfiles>
+        </QoSPolicy>
+        <QoSPolicy ID="QoS3_ClassicDownlink">
+          <Name>Classic Downlink</Name>
+          <Description>Mission SLP for Classic Downlink Policy</Description>
+          <QoSPolicyID>0x00c0ffee</QoSPolicyID>
+          <RadioLinkRefs>
+            <RadioLinkRef IDREF="RadioLink_4113to61456" />
+            <RadioLinkRef IDREF="RadioLink_4129to61472" />
+            <RadioLinkRef IDREF="RadioLink_4145to61488" />
+            <RadioLinkRef IDREF="RadioLink_4161to61504" />
+            <RadioLinkRef IDREF="RadioLink_4177to61520" />
+            <RadioLinkRef IDREF="RadioLink_4193to61536" />
+            <RadioLinkRef IDREF="RadioLink_4209to61552" />
+            <RadioLinkRef IDREF="RadioLink_4225to61568" />
+            <RadioLinkRef IDREF="RadioLink_4241to61584" />
+            <RadioLinkRef IDREF="RadioLink_4257to61600" />
+            <RadioLinkRef IDREF="RadioLink_4273to61616" />
+          </RadioLinkRefs>
+          <Priority>1</Priority>
+          <LinkManagementMinCapacity>
+            <Value>1000000</Value>
+            <BaseUnit>BitPerSecond</BaseUnit>
+          </LinkManagementMinCapacity>
+          <AssuredCapacity>
+            <Value>2000000</Value>
+            <BaseUnit>BitPerSecond</BaseUnit>
+          </AssuredCapacity>
+          <ServiceLevelProfiles>
+            <ServiceLevelProfile ID="ServiceLevelProfile9">
+              <Name>SLP_1_0</Name>
+              <Description>Top level queue discipline for the Classic Downlink policy.</Description>
+              <SLPHandle>0x00010000</SLPHandle>
+              <QueueConstruct>
+                <QDisc>
+                  <HTB>
+                    <DefaultClassHandle>0x00010028</DefaultClassHandle>
+                  </HTB>
+                </QDisc>
+              </QueueConstruct>
+              <ServiceLevelProfiles>
+                <ServiceLevelProfile ID="ServiceLevelProfile10">
+                  <Name>SLP_1_1</Name>
+                  <Description>Primary HTB rollup class to enable sharing between subclasses</Description>
+                  <SLPHandle>0x00010001</SLPHandle>
+                  <QueueConstruct>
+                    <Class>
+                      <HTB>
+                        <Priority>1</Priority>
+                        <Rate>
+                          <Value>2000000</Value>
+                          <BaseUnit>BitPerSecond</BaseUnit>
+                        </Rate>
+                        <Ceiling>
+                          <Value>10000000</Value>
+                          <BaseUnit>BitPerSecond</BaseUnit>
+                        </Ceiling>
+                      </HTB>
+                    </Class>
+                  </QueueConstruct>
+                  <ServiceLevelProfiles>
+                    <ServiceLevelProfile ID="ServiceLevelProfile11">
+                      <Name>SLP_1_10</Name>
+                      <Description>HTB class for Network Control and Internetwork Control Traffic (CoS 7 and CoS 6)</Description>
+                      <SLPHandle>0x0001000a</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>1</Priority>
+                            <Rate>
+                              <Value>10000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Rate>
+                            <Ceiling>
+                              <Value>1000000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <Name>Filter CoS 7</Name>
+                          <Description>Filter for RFNMs and other routing protocols: DSCP range 56-63 (class 7)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>1</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xe0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                        <TrafficFilter>
+                          <Name>Filter CoS 6</Name>
+                          <Description>Filter for RFNMs and other routing protocols: DSCP range 48-55 (class 6)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>2</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xc0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>
+                      <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile12">
+                          <Name>SLP_10_0</Name>
+                          <Description>FIFO Qdisc for Network/Internetwork Control Traffic</Description>
+                          <SLPHandle>0x000a0000</SLPHandle>
+                          <QueueConstruct>
+                            <QDisc>
+                              <FIFO>
+                                <LimitInPackets>50</LimitInPackets>
+                              </FIFO>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <ServiceLevelProfile ID="ServiceLevelProfile13">
+                      <Name>SLP_1_20</Name>
+                      <Description>HTB class for Expedited Forwarding (EF) Voice Traffic (CoS 5)</Description>
+                      <SLPHandle>0x00010014</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>2</Priority>
+                            <Rate>
+                              <Value>64000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Rate>
+                            <Ceiling>
+                              <Value>128000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <Name>Filter CoS 5</Name>
+                          <Description>Filter for Voice traffic: DSCP range 40-47 (class 5)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>3</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0xa0</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>
+                      <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile14">
+                          <Name>SLP_20_0</Name>
+                          <Description>FIFO Qdisc for Expedited Forwarding Voice Traffic</Description>
+                          <SLPHandle>0x00140000</SLPHandle>
+                          <AveragePacketDelay>
+                            <Value>0.05</Value>
+                            <BaseUnit>Second</BaseUnit>
+                          </AveragePacketDelay>
+                          <QueueConstruct>
+                            <QDisc>
+                              <FIFO>
+                                <LimitInPackets>50</LimitInPackets>
+                              </FIFO>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <ServiceLevelProfile ID="ServiceLevelProfile15">
+                      <Name>SLP_1_30</Name>
+                      <Description>HTB class for Assured Forwarding (AF) Traffic (CoS 4, CoS 3, CoS 2, and CoS 1)</Description>
+                      <SLPHandle>0x0001001e</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>3</Priority>
+                            <Rate>
+                              <Value>1750000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Rate>
+                            <Ceiling>
+                              <Value>5000000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile16">
+                          <Name>SLP_1_300</Name>
+                          <Description>HTB class for AF4 traffic (includes all CoS 4)</Description>
+                          <SLPHandle>0x0001012c</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>1</Priority>
+                                <Rate>
+                                  <Value>250000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Rate>
+                                <Ceiling>
+                                  <Value>5000000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <Name>Filter CoS 4</Name>
+                              <Description>Filter for SM and Video: DSCP range 32-39 (Class 4)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>4</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x80</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <ServiceLevelProfile ID="ServiceLevelProfile17">
+                              <Name>SLP_30_0</Name>
+                              <Description>SFQ Qdisc for SM and Video traffic (Class 4)</Description>
+                              <SLPHandle>0x001e0000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <SFQ>
+                                    <Perturb>
+                                      <Value>10</Value>
+                                      <BaseUnit>Second</BaseUnit>
+                                    </Perturb>
+                                  </SFQ>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <ServiceLevelProfile ID="ServiceLevelProfile18">
+                          <Name>SLP_1_301</Name>
+                          <Description>HTB class for AF3 traffic (includes all CoS 3)</Description>
+                          <SLPHandle>0x0001012d</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>2</Priority>
+                                <Rate>
+                                  <Value>250000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Rate>
+                                <Ceiling>
+                                  <Value>5000000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <Name>Filter CoS 3</Name>
+                              <Description>Filter for RC delivery at high priority: DSCP range 24-31 (Class 3)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>5</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x60</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <ServiceLevelProfile ID="ServiceLevelProfile19">
+                              <Name>SLP_40_0</Name>
+                              <Description>RED Qdisc for RC delivery at high priority (Class 3)</Description>
+                              <SLPHandle>0x00280000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <RED>
+                                    <Limit>
+                                      <Value>1024000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Limit>
+                                    <Min>
+                                      <Value>42400</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Min>
+                                    <Max>
+                                      <Value>128000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Max>
+                                    <Avpkt>
+                                      <Value>8000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Avpkt>
+                                    <Burst>9</Burst>
+                                    <EnableECN>false</EnableECN>
+                                    <Bandwidth>
+                                      <Value>256000</Value>
+                                      <BaseUnit>BitPerSecond</BaseUnit>
+                                    </Bandwidth>
+                                    <Probability>0.02</Probability>
+                                  </RED>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <ServiceLevelProfile ID="ServiceLevelProfile20">
+                          <Name>SLP_1_302</Name>
+                          <Description>HTB class for AF2 traffic (includes all CoS 2)</Description>
+                          <SLPHandle>0x0001012e</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>3</Priority>
+                                <Rate>
+                                  <Value>250000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Rate>
+                                <Ceiling>
+                                  <Value>5000000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <Name>Filter CoS 2</Name>
+                              <Description>Filter for LTC delivery: DSCP range 16-23 (Class 2)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>6</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x40</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <ServiceLevelProfile ID="ServiceLevelProfile21">
+                              <Name>SLP_50_0</Name>
+                              <Description>SFQ Qdisc for LTC delivery (Class 2)</Description>
+                              <SLPHandle>0x00320000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <SFQ>
+                                    <Perturb>
+                                      <Value>10</Value>
+                                      <BaseUnit>Second</BaseUnit>
+                                    </Perturb>
+                                  </SFQ>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                        <ServiceLevelProfile ID="ServiceLevelProfile22">
+                          <Name>SLP_1_303</Name>
+                          <Description>HTB class for AF1 traffic (includes all CoS 1)</Description>
+                          <SLPHandle>0x0001012f</SLPHandle>
+                          <QueueConstruct>
+                            <Class>
+                              <HTB>
+                                <Priority>4</Priority>
+                                <Rate>
+                                  <Value>1000000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Rate>
+                                <Ceiling>
+                                  <Value>5000000</Value>
+                                  <BaseUnit>BitPerSecond</BaseUnit>
+                                </Ceiling>
+                              </HTB>
+                            </Class>
+                          </QueueConstruct>
+                          <TrafficFilters>
+                            <TrafficFilter>
+                              <Name>Filter CoS 1</Name>
+                              <Description>Filter for RC delivery at normal priority and SM status: DSCP range 8-15 (Class 1)</Description>
+                              <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                              <Protocol>IPv4</Protocol>
+                              <Priority>7</Priority>
+                              <Classifier>PacketFields</Classifier>
+                              <Conditions>
+                                <Condition>
+                                  <MatchField>
+                                    <Offset>1</Offset>
+                                    <FieldWidth>8-bit</FieldWidth>
+                                    <Pattern>0x20</Pattern>
+                                    <Mask>0xe0</Mask>
+                                  </MatchField>
+                                </Condition>
+                              </Conditions>
+                            </TrafficFilter>
+                          </TrafficFilters>
+                          <ServiceLevelProfiles>
+                            <ServiceLevelProfile ID="ServiceLevelProfile23">
+                              <Name>SLP_60_0</Name>
+                              <Description>RED Qdisc for RC delivery at normal priority and SM status (Class 1)</Description>
+                              <SLPHandle>0x003c0000</SLPHandle>
+                              <QueueConstruct>
+                                <QDisc>
+                                  <RED>
+                                    <Limit>
+                                      <Value>1024000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Limit>
+                                    <Min>
+                                      <Value>168000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Min>
+                                    <Max>
+                                      <Value>512000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Max>
+                                    <Avpkt>
+                                      <Value>8000</Value>
+                                      <BaseUnit>Bit</BaseUnit>
+                                    </Avpkt>
+                                    <Burst>35</Burst>
+                                    <EnableECN>false</EnableECN>
+                                    <Bandwidth>
+                                      <Value>1024000</Value>
+                                      <BaseUnit>BitPerSecond</BaseUnit>
+                                    </Bandwidth>
+                                    <Probability>0.02</Probability>
+                                  </RED>
+                                </QDisc>
+                              </QueueConstruct>
+                            </ServiceLevelProfile>
+                          </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                    <ServiceLevelProfile ID="ServiceLevelProfile24">
+                      <Name>SLP_1_40</Name>
+                      <Description>HTB class for Best Effort (BE) Traffic and all other default traffic (CoS 0)</Description>
+                      <SLPHandle>0x00010028</SLPHandle>
+                      <QueueConstruct>
+                        <Class>
+                          <HTB>
+                            <Priority>4</Priority>
+                            <Rate>
+                              <Value>150000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Rate>
+                            <Ceiling>
+                              <Value>5000000</Value>
+                              <BaseUnit>BitPerSecond</BaseUnit>
+                            </Ceiling>
+                          </HTB>
+                        </Class>
+                      </QueueConstruct>
+                      <TrafficFilters>
+                        <TrafficFilter>
+                          <Name>Filter CoS 0</Name>
+                          <Description>Filter for general network traffic: DSCP range 0-7 (Class 0)</Description>
+                          <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                          <Protocol>IPv4</Protocol>
+                          <Priority>8</Priority>
+                          <Classifier>PacketFields</Classifier>
+                          <Conditions>
+                            <Condition>
+                              <MatchField>
+                                <Offset>1</Offset>
+                                <FieldWidth>8-bit</FieldWidth>
+                                <Pattern>0x00</Pattern>
+                                <Mask>0xe0</Mask>
+                              </MatchField>
+                            </Condition>
+                          </Conditions>
+                        </TrafficFilter>
+                      </TrafficFilters>
+                      <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile25">
+                          <Name>SLP_70_0</Name>
+                          <Description>SFQ Qdisc for Best Effort / Default traffic (Class 0)</Description>
+                          <SLPHandle>0x00460000</SLPHandle>
+                          <QueueConstruct>
+                            <QDisc>
+                              <SFQ>
+                                <Perturb>
+                                  <Value>10</Value>
+                                  <BaseUnit>Second</BaseUnit>
+                                </Perturb>
+                              </SFQ>
+                            </QDisc>
+                          </QueueConstruct>
+                        </ServiceLevelProfile>
+                      </ServiceLevelProfiles>
+                    </ServiceLevelProfile>
+                  </ServiceLevelProfiles>
+                </ServiceLevelProfile>
+              </ServiceLevelProfiles>
+            </ServiceLevelProfile>
+          </ServiceLevelProfiles>
+        </QoSPolicy>
+      </QoSPolicies>
+      <RadioLinks>
+        <RadioLink ID="RadioLink_4099to61457">
+          <Name>4099 to 61457</Name>
+          <SourceRadioRef IDREF="TMA_GR3a" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61457" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4097to61473">
+          <Name>4097 to 61473</Name>
+          <SourceRadioRef IDREF="TMA_GR1" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61473" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4102to61489">
+          <Name>4102 to 61489</Name>
+          <SourceRadioRef IDREF="TMA_GR6" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61489" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4098to61505">
+          <Name>4098 to 61505</Name>
+          <SourceRadioRef IDREF="TMA_GR2a" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61505" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4100to61521">
+          <Name>4100 to 61521</Name>
+          <SourceRadioRef IDREF="TMA_GR4" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61521" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4099to61537">
+          <Name>4099 to 61537</Name>
+          <SourceRadioRef IDREF="TMA_GR3b" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61537" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4104to61553">
+          <Name>4104 to 61553</Name>
+          <SourceRadioRef IDREF="TMA_GR8" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61553" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4101to61569">
+          <Name>4101 to 61569</Name>
+          <SourceRadioRef IDREF="TMA_GR5" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61569" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4103to61585">
+          <Name>4103 to 61585</Name>
+          <SourceRadioRef IDREF="TMA_GR7" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61585" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4099to61601">
+          <Name>4099 to 61601</Name>
+          <SourceRadioRef IDREF="TMA_GR3c" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61601" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4098to61617">
+          <Name>4098 to 61617</Name>
+          <SourceRadioRef IDREF="TMA_GR2b" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61617" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>2000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4113to61456">
+          <Name>4113 to 61456</Name>
+          <SourceRadioRef IDREF="TMA_TAR1" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61456" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4129to61472">
+          <Name>4129 to 61472</Name>
+          <SourceRadioRef IDREF="TMA_TAR2" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61472" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4145to61488">
+          <Name>4145 to 61488</Name>
+          <SourceRadioRef IDREF="TMA_TAR3" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61488" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4161to61504">
+          <Name>4161 to 61504</Name>
+          <SourceRadioRef IDREF="TMA_TAR4" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61504" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4177to61520">
+          <Name>4177 to 61520</Name>
+          <SourceRadioRef IDREF="TMA_TAR5" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61520" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4193to61536">
+          <Name>4193 to 61536</Name>
+          <SourceRadioRef IDREF="TMA_TAR6" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61536" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4209to61552">
+          <Name>4209 to 61552</Name>
+          <SourceRadioRef IDREF="TMA_TAR7" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61552" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4225to61568">
+          <Name>4225 to 61568</Name>
+          <SourceRadioRef IDREF="TMA_TAR8" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61568" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4241to61584">
+          <Name>4241 to 61584</Name>
+          <SourceRadioRef IDREF="TMA_TAR9" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61584" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4257to61600">
+          <Name>4257 to 61600</Name>
+          <SourceRadioRef IDREF="TMA_TAR10" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61600" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+        <RadioLink ID="RadioLink_4273to61616">
+          <Name>4273 to 61616</Name>
+          <SourceRadioRef IDREF="TMA_TAR11" />
+          <DestinationRadioGroupRef IDREF="RadioGroup_RAN_4919_61616" />
+          <TxRxEnable>true</TxRxEnable>
+          <HeartbeatTimeout>65535</HeartbeatTimeout>
+          <LinkManagerHeartbeatTimeout>3000</LinkManagerHeartbeatTimeout>
+          <LinkManagerTxOpTimeout>150</LinkManagerTxOpTimeout>
+          <EncryptionEnabled>false</EncryptionEnabled>
+          <EncryptionKeyID>0</EncryptionKeyID>
+        </RadioLink>
+      </RadioLinks>
+      <HandoffRules>
+        <HandoffRule ID="DefaultRule">
+          <Name>RSSI Rule</Name>
+          <Description>Link Manager default handoff rule.</Description>
+          <Rule>rssi_engine.py</Rule>
+        </HandoffRule>
+      </HandoffRules>
+    </TestMission>
+  </TestMissions>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Default Measurement Domain</Name>
+      <Description>System Manager default measurement domain.</Description>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomain>
+    <Networks>
+      <Network ID="ACME_Range_Network">
+        <Name>ACME_Range_Network</Name>
+        <Description>Example network for ACME Range</Description>
+        <NetworkType>GenericNetwork</NetworkType>
+        <NetworkNodes>
+          <NetworkNode ID="Node30_LM1">
+            <Name>LM1</Name>
+            <Description>Link Manager 1 - ITC Demo</Description>
+            <InventoryID>LM1</InventoryID>
+            <HostName />
+            <Manufacturer>SwRI</Manufacturer>
+            <Model>System Manager Template</Model>
+            <ModelVersion>0.1.1</ModelVersion>
+            <SerialID>12345</SerialID>
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <TmNSApps>
+              <TmNSApp ID="TMA28_LM1">
+                <Name>LM1</Name>
+                <Description>System Manager template TmNS Application with Link Manager capabilities.</Description>
+                <RoleID>LM1</RoleID>
+                <LoggingLevel>Info</LoggingLevel>
+                <Manufacturer>SwRI</Manufacturer>
+                <Product>System Manager Template</Product>
+                <ProductVersion>0.1.1</ProductVersion>
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSLinkManager>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <TxOpUpdateRate>0</TxOpUpdateRate>
+                  <TmNSAppRefs>
+                    <TmNSAppRef IDREF="TMA29_GR1" />
+                    <TmNSAppRef IDREF="TMA30_GR2" />
+                    <TmNSAppRef IDREF="TMA35_TAR1" />
+                    <TmNSAppRef IDREF="TMA36_TAR2" />
+                  </TmNSAppRefs>
+                </TmNSLinkManager>
+                <TmNSTSSClient>
+                  <TSSTunnels>
+                    <TSSTunnel>
+                      <TSSTunnelInterface ID="ClientInterface5">
+                        <Name>TssTunnC5</Name>
+                        <IPAddress>192.168.201.1</IPAddress>
+                        <Netmask>255.255.255.0</Netmask>
+                        <MACAddress>02:BA:5E:BA:77:01</MACAddress>
+                      </TSSTunnelInterface>
+                      <TSSServer>
+                        <NetworkInterfaceRef IDREF="NetworkInterface_eth1_110-1-201-1" />
+                        <TSSTunnelConnectionRef IDREF="TssServerTunnel7" />
+                      </TSSServer>
+                      <TSSRouteDestinations>
+                        <TSSRouteDestination>
+                          <RadioLinkRef IDREF="RadioLink_4097to61457" />
+                          <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-1-1" />
+                          </NetworkInterfaceRefs>
+                        </TSSRouteDestination>
+                      </TSSRouteDestinations>
+                      <Enabled>true</Enabled>
+                    </TSSTunnel>
+                    <TSSTunnel>
+                      <TSSTunnelInterface ID="ClientInterface6">
+                        <Name>TssTunnC6</Name>
+                        <IPAddress>192.168.202.1</IPAddress>
+                        <Netmask>255.255.255.0</Netmask>
+                        <MACAddress>02:BA:5E:BA:77:03</MACAddress>
+                      </TSSTunnelInterface>
+                      <TSSServer>
+                        <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-2" />
+                        <TSSTunnelConnectionRef IDREF="TssServerTunnel8" />
+                      </TSSServer>
+                      <TSSRouteDestinations>
+                        <TSSRouteDestination>
+                          <RadioLinkRef IDREF="RadioLink_4098to61473" />
+                          <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-2-1" />
+                          </NetworkInterfaceRefs>
+                        </TSSRouteDestination>
+                      </TSSRouteDestinations>
+                      <Enabled>true</Enabled>
+                    </TSSTunnel>
+                  </TSSTunnels>
+                  <PacketCatalogSize>0</PacketCatalogSize>
+                </TmNSTSSClient>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eno1_10-1-201-51" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule35">
+                  <Name>LM1_Module</Name>
+                  <Description>System Manager template Module.</Description>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eno1_10-1-201-51">
+                      <Name>eno1</Name>
+                      <Description>System Manager template Network Interface.</Description>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.51</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="NetworkPort75">
+                          <Name>LM1_PNP</Name>
+                          <Description>System Manager template Physical Network Port.</Description>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPortecf342b9-6cf3-4ce4-afd4-faf7aff99521" Index="1" Enabled="false">
+                      <Name>LM1_PNP</Name>
+                      <Description>Implicit Port for Physical Network Port LM1_PNP</Description>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="NetworkPort75" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR1">
+            <Name>GR1</Name>
+            <Description>Ground Radio 1</Description>
+            <InventoryID>GR1</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.2.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4097to61473" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR1">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR1</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4097</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61472" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR1">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR1_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR1" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR1_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR2a">
+            <Name>GR2a</Name>
+            <Description>Ground Radio 2a</Description>
+            <InventoryID>GR2a</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.4.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4098to61505" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR2a">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR2</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4099</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61504" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-2a" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-2a" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR2a">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-2a">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.2</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR2a_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR2a" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR2a_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR2b">
+            <Name>GR2b</Name>
+            <Description>Ground Radio 2b</Description>
+            <InventoryID>GR2b</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.11.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4098to61617" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR2b">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR2b</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4099</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61516" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-2b" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-2b" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR2b">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-2b">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.2</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR2b_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR2b" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR2b_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR3a">
+            <Name>GR3a</Name>
+            <Description>Ground Radio 3a</Description>
+            <InventoryID>GR3a</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.1.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4099to61457" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR3a">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR3a</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4099</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61456" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3a" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3a" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR3a">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-3a">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.3</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR3a_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR3a" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR3a_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR3b">
+            <Name>GR3b</Name>
+            <Description>Ground Radio 3b</Description>
+            <InventoryID>GR3b</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.6.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4099to61537" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR3b">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR3b</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4099</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61536" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3b" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3b" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR3b">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-3b">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.3</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR3b_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR3b" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR3b_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR3c">
+            <Name>GR3c</Name>
+            <Description>Ground Radio 3c</Description>
+            <InventoryID>GR3c</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.10.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4099to61601" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR3c">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR3c</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4099</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61600" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3c" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-3c" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR3c">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-3c">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.3</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR3c_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR3c" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR3c_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR4">
+            <Name>GR4</Name>
+            <Description>Ground Radio 4</Description>
+            <InventoryID>GR4</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.5.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4100to61521" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR4">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR4</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4100</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61520" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-4" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-4" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR4">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-4">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.4</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR4_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR4" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR4_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR5">
+            <Name>GR5</Name>
+            <Description>Ground Radio 5</Description>
+            <InventoryID>GR5</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.8.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4101to61569" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR5">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR5</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4101</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61568" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-5" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-5" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR5">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-5">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.5</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR5_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR5" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR5_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR6">
+            <Name>GR6</Name>
+            <Description>Ground Radio 6</Description>
+            <InventoryID>GR6</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.3.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4102to61489" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR6">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR6</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4102</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61488" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-6" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-6" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR6">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-6">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.6</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR6_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR6" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR6_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR7">
+            <Name>GR7</Name>
+            <Description>Ground Radio 7</Description>
+            <InventoryID>GR7</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.9.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4103to61585" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR7">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR7</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4103</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61584" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-7" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-7" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR7">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-7">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.7</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR7_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR7" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR7_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_GR8">
+            <Name>GR8</Name>
+            <Description>Ground Radio 8</Description>
+            <InventoryID>GR8</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.1.7.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4104to61553" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_GR8">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>GR8</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4104</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61552" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-8" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-201-8" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModuleGR8">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-201-8">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.201.8</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="GR8_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_GR8" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="GR8_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR1">
+            <Name>TAR1</Name>
+            <Description>Test Article Radio 1</Description>
+            <InventoryID>TAR1</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4113to61456" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4113to61456" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4113to61456" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR1">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR1</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel4">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4113</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61457" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-1-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-1-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule45">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-1-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.1.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA1_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR1" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA1_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR2">
+            <Name>TAR2</Name>
+            <Description>Test Article Radio 2</Description>
+            <InventoryID>TAR2</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4129to61472" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4129to61472" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4129to61472" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR2">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR2</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>0</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4889" />
+                  <RFMACAddress>4129</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61473" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-2-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-2-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule46">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-2-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.2.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA2_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR2" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA2_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR3">
+            <Name>TAR3</Name>
+            <Description>Test Article Radio 3</Description>
+            <InventoryID>TAR3</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61488" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61488" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61488" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR3">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR3</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR3">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4113</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61489" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-3-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-3-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR3">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-3-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.3.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA3_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR3" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA3_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR4">
+            <Name>TAR4</Name>
+            <Description>Test Article Radio 4</Description>
+            <InventoryID>TAR4</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4161to61504" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4161to61504" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4161to61504" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR4">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR4</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR4">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4161</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61505" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-4-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-4-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR4">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-4-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.4.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA4_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR4" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA4_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR5">
+            <Name>TAR5</Name>
+            <Description>Test Article Radio 5</Description>
+            <InventoryID>TAR5</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4177to61520" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4177to61520" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4177to61520" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR5">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR5</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR5">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4177</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61521" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-5-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-5-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR5">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-5-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.5.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA5_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR5" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA5_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR6">
+            <Name>TAR6</Name>
+            <Description>Test Article Radio 6</Description>
+            <InventoryID>TAR6</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4193to61536" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4193to61536" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4193to61536" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR6">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR6</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR6">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4193</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61537" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-6-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-6-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR6">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-6-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.6.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA6_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR6" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA6_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR7">
+            <Name>TAR7</Name>
+            <Description>Test Article Radio 7</Description>
+            <InventoryID>TAR7</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4209to61552" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4209to61552" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4209to61552" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR7">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR7</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR7">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4209</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61553" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-7-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-7-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR7">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-7-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.7.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA7_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR7" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA7_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR8">
+            <Name>TAR8</Name>
+            <Description>Test Article Radio 8</Description>
+            <InventoryID>TAR8</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4225to61568" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4225to61568" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4225to61568" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR8">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR8</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR8">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4225</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61569" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-8-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-8-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR8">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-8-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.8.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA8_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR8" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA8_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR9">
+            <Name>TAR9</Name>
+            <Description>Test Article Radio 9</Description>
+            <InventoryID>TAR9</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR9">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR9</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR9">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4241</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61585" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-9-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-9-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR9">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-9-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.9.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA9_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR9" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA9_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR10">
+            <Name>TAR10</Name>
+            <Description>Test Article Radio 10</Description>
+            <InventoryID>TAR10</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4257to61600" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4257to61600" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4257to61600" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR10">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR10</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR10">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4257</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61601" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-10-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-10-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR10">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-10-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.10.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA10_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR10" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA10_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Node_TAR11">
+            <Name>TAR11</Name>
+            <Description>Test Article Radio 11</Description>
+            <InventoryID>TAR11</InventoryID>
+            <HostName />
+            <Manufacturer />
+            <Model />
+            <ModelVersion />
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <Routes>
+              <Route>
+                <Destination>10.11.29.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4273to61616" />
+              </Route>
+              <Route>
+                <Destination>10.1.201.0</Destination>
+                <Netmask>255.255.255.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4273to61616" />
+              </Route>
+              <Route>
+                <Destination>0.0.0.0</Destination>
+                <Netmask>0.0.0.0</Netmask>
+                <RadioLinkRef IDREF="RadioLink_4273to61616" />
+              </Route>
+            </Routes>
+            <TmNSApps>
+              <TmNSApp ID="TMA_TAR11">
+                <Name>New TmNS Application 1</Name>
+                <RoleID>TAR11</RoleID>
+                <LoggingLevel>Error</LoggingLevel>
+                <Manufacturer />
+                <Product />
+                <ProductVersion />
+                <ConfigurationVersion />
+                <TmNSManagementResourcesVersion />
+                <DirtyBit>false</DirtyBit>
+                <TmNSNetworkFabricDevice>
+                  <MulticastRoutingMode>Dynamic</MulticastRoutingMode>
+                  <IGMPQuerier>Auto</IGMPQuerier>
+                  <IGMPQuerierInterval>30</IGMPQuerierInterval>
+                </TmNSNetworkFabricDevice>
+                <TmNSSSTTx>
+                  <SSTTxRCCVersion />
+                  <Channel ID="SstTxChannel_TAR11">
+                    <Name>SstTxChannel</Name>
+                    <ChannelNumber>1</ChannelNumber>
+                    <CenterFrequency>
+                      <Value>4800</Value>
+                      <BaseUnit>Hertz</BaseUnit>
+                    </CenterFrequency>
+                    <DifferentialEncoding>true</DifferentialEncoding>
+                    <Randomize>false</Randomize>
+                    <RFEnable>true</RFEnable>
+                    <RFHighPowerEnable>true</RFHighPowerEnable>
+                    <DataPolarityInverted>true</DataPolarityInverted>
+                    <DataSourceInternal>false</DataSourceInternal>
+                    <InternalClock>true</InternalClock>
+                    <FECEnable>true</FECEnable>
+                    <SleepMode>false</SleepMode>
+                  </Channel>
+                </TmNSSSTTx>
+                <TmNSRadio>
+                  <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
+                  <RFMACAddress>4273</RFMACAddress>
+                  <JoinRadioGroupRefs>
+                    <RadioGroupRef IDREF="RadioGroup_RAN_4919_61616" />
+                  </JoinRadioGroupRefs>
+                  <FragmentationPersistencePeriodUSec>0</FragmentationPersistencePeriodUSec>
+                  <TxPowerLeveldBm>43</TxPowerLeveldBm>
+                  <LowPowerModeEnable>false</LowPowerModeEnable>
+                  <LinkAgent>
+                    <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-11-1" />
+                    <ListeningPort>12345</ListeningPort>
+                  </LinkAgent>
+                </TmNSRadio>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="DSCP_BestEffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="NetworkInterface_eth1_10-1-11-1" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="NodeModule_TAR10">
+                  <Name>NodeModule 1</Name>
+                  <Manufacturer />
+                  <Model />
+                  <Position>1</Position>
+                  <PositionsOccupied>1</PositionsOccupied>
+                  <NetworkInterfaces>
+                    <NetworkInterface ID="NetworkInterface_eth1_10-1-11-1">
+                      <Name>eth1</Name>
+                      <DHCPEnable>false</DHCPEnable>
+                      <IPAddress>10.1.11.1</IPAddress>
+                      <Netmask>255.255.255.0</Netmask>
+                      <PhysicalNetworkPorts>
+                        <PhysicalNetworkPort ID="TA11_net">
+                          <Name>NetworkPort 1</Name>
+                          <Medium>Copper</Medium>
+                          <PortNumber>1</PortNumber>
+                          <PortDataRate>
+                            <Value>1000000000</Value>
+                            <BaseUnit>BitPerSecond</BaseUnit>
+                          </PortDataRate>
+                        </PhysicalNetworkPort>
+                      </PhysicalNetworkPorts>
+                    </NetworkInterface>
+                  </NetworkInterfaces>
+                  <Ports>
+                    <Port ID="NetworkPort_TAR11" Index="1" Enabled="false">
+                      <Name>NetworkPort 1</Name>
+                      <PortDirection>Bidirectional</PortDirection>
+                      <PhysicalNetworkPortRef IDREF="TA11_net" />
+                    </Port>
+                  </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+        </NetworkNodes>
+      </Network>
+    </Networks>
+  </NetworkDomain>
+  <RANConfigurations>
+    <RANConfiguration ID="RANConfig15_RAN_4919">
+      <Name>RAN_4919</Name>
+      <LinkAgentConnectionEncryptionEnabled>false</LinkAgentConnectionEncryptionEnabled>
+      <TSSTunnelEncryptionEnabled>false</TSSTunnelEncryptionEnabled>
+      <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+      <ModulationType>SOQPSK-TG</ModulationType>
+      <EpochSize>100</EpochSize>
+      <LDPCBlocksPerBurst>1</LDPCBlocksPerBurst>
+      <MaxGuardTimeSec>0.001</MaxGuardTimeSec>
+      <RadioControlLoopDSCPRef IDREF="DSCP_NetworkControl_111000" />
+      <RANCommandControlDSCPRef IDREF="DSCP_NetworkControl_111000" />
+      <RadioGroups>
+        <RadioGroup ID="RadioGroup_RAN_4919_61456">
+          <Name>TAR1txGroup</Name>
+          <Description>TAR1 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61456</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61457">
+          <Name>TAR1rxGroup</Name>
+          <Description>TAR1 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61457</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61472">
+          <Name>TAR2txGroup</Name>
+          <Description>TAR2 Transmits to this Group</Description>
+          <GroupRFMACAddress>61472</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61473">
+          <Name>TAR2rxGroup</Name>
+          <Description>TAR2 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61473</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61488">
+          <Name>TAR3txGroup</Name>
+          <Description>TAR3 Transmits to this Group</Description>
+          <GroupRFMACAddress>61488</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61489">
+          <Name>TAR3rxGroup</Name>
+          <Description>TAR3 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61489</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61504">
+          <Name>TAR4txGroup</Name>
+          <Description>TAR4 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61504</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61505">
+          <Name>TAR4rxGroup</Name>
+          <Description>TAR4 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61505</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61520">
+          <Name>TAR5txGroup</Name>
+          <Description>TAR5 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61520</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61521">
+          <Name>TAR5rxGroup</Name>
+          <Description>TAR5 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61521</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61536">
+          <Name>TAR6txGroup</Name>
+          <Description>TAR6 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61536</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61537">
+          <Name>TAR6rxGroup</Name>
+          <Description>TAR6 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61537</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61552">
+          <Name>TAR7txGroup</Name>
+          <Description>TAR7 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61552</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61553">
+          <Name>TAR7rxGroup</Name>
+          <Description>TAR7 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61553</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61568">
+          <Name>TAR8txGroup</Name>
+          <Description>TAR8 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61568</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61569">
+          <Name>TAR8rxGroup</Name>
+          <Description>TAR8 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61569</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61584">
+          <Name>TAR9txGroup</Name>
+          <Description>TAR9 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61584</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61585">
+          <Name>TAR9rxGroup</Name>
+          <Description>TAR9 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61585</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61600">
+          <Name>TAR10txGroup</Name>
+          <Description>TAR10 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61600</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61601">
+          <Name>TAR10rxGroup</Name>
+          <Description>TAR10 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61601</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61616">
+          <Name>TAR11txGroup</Name>
+          <Description>TAR11 Transmits to this Group.</Description>
+          <GroupRFMACAddress>61616</GroupRFMACAddress>
+        </RadioGroup>
+        <RadioGroup ID="RadioGroup_RAN_4919_61617">
+          <Name>TAR11rxGroup</Name>
+          <Description>TAR11 Subscribes to this Group.</Description>
+          <GroupRFMACAddress>61617</GroupRFMACAddress>
+        </RadioGroup>
+      </RadioGroups>
+    </RANConfiguration>
+  </RANConfigurations>
+</MDLRoot>
