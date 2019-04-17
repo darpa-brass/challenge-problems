@@ -889,10 +889,25 @@
                   <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
                   <TxOpUpdateRate>0</TxOpUpdateRate>
                   <TmNSAppRefs>
-                    <TmNSAppRef IDREF="TMA29_GR1" />
-                    <TmNSAppRef IDREF="TMA30_GR2" />
-                    <TmNSAppRef IDREF="TMA35_TAR1" />
-                    <TmNSAppRef IDREF="TMA36_TAR2" />
+                    <TmNSAppRef IDREF="TMA_GR1" />
+                    <TmNSAppRef IDREF="TMA_GR2a" />
+                    <TmNSAppRef IDREF="TMA_GR2b" />
+                    <TmNSAppRef IDREF="TMA_GR3a" />
+                    <TmNSAppRef IDREF="TMA_GR3b" />
+                    <TmNSAppRef IDREF="TMA_GR3c" />
+                    <TmNSAppRef IDREF="TMA_GR4" />
+                    <TmNSAppRef IDREF="TMA_GR5" />
+                    <TmNSAppRef IDREF="TMA_GR6" />
+                    <TmNSAppRef IDREF="TMA_GR7" />
+                    <TmNSAppRef IDREF="TMA_GR8" />
+                    <TmNSAppRef IDREF="TMA_TAR1" />
+                    <TmNSAppRef IDREF="TMA_TAR2" />
+                    <TmNSAppRef IDREF="TMA_TAR3" />
+                    <TmNSAppRef IDREF="TMA_TAR4" />
+                    <TmNSAppRef IDREF="TMA_TAR5" />
+                    <TmNSAppRef IDREF="TMA_TAR6" />
+                    <TmNSAppRef IDREF="TMA_TAR7" />
+                    <TmNSAppRef IDREF="TMA_TAR8" />
                   </TmNSAppRefs>
                 </TmNSLinkManager>
                 <TmNSTSSClient>
@@ -1132,7 +1147,7 @@
                 </TmNSNetworkFabricDevice>
                 <TmNSRadio>
                   <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
-                  <RFMACAddress>4099</RFMACAddress>
+                  <RFMACAddress>4098</RFMACAddress>
                   <JoinRadioGroupRefs>
                     <RadioGroupRef IDREF="RadioGroup_RAN_4919_61504" />
                   </JoinRadioGroupRefs>
@@ -1231,7 +1246,7 @@
                 </TmNSNetworkFabricDevice>
                 <TmNSRadio>
                   <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
-                  <RFMACAddress>4099</RFMACAddress>
+                  <RFMACAddress>4098</RFMACAddress>
                   <JoinRadioGroupRefs>
                     <RadioGroupRef IDREF="RadioGroup_RAN_4919_61516" />
                   </JoinRadioGroupRefs>
@@ -2390,7 +2405,7 @@
                 </TmNSSSTTx>
                 <TmNSRadio>
                   <RANConfigurationRef IDREF="RANConfig15_RAN_4919" />
-                  <RFMACAddress>4113</RFMACAddress>
+                  <RFMACAddress>4145</RFMACAddress>
                   <JoinRadioGroupRefs>
                     <RadioGroupRef IDREF="RadioGroup_RAN_4919_61489" />
                   </JoinRadioGroupRefs>
@@ -3113,17 +3128,17 @@
               <Route>
                 <Destination>10.11.29.0</Destination>
                 <Netmask>255.255.255.0</Netmask>
-                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+                <RadioLinkRef IDREF="RadioLink_4241to61584" />
               </Route>
               <Route>
                 <Destination>10.1.201.0</Destination>
                 <Netmask>255.255.255.0</Netmask>
-                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+                <RadioLinkRef IDREF="RadioLink_4241to61584" />
               </Route>
               <Route>
                 <Destination>0.0.0.0</Destination>
                 <Netmask>0.0.0.0</Netmask>
-                <RadioLinkRef IDREF="RadioLink_4145to61584" />
+                <RadioLinkRef IDREF="RadioLink_4241to61584" />
               </Route>
             </Routes>
             <TmNSApps>
