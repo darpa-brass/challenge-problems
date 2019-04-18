@@ -105,8 +105,6 @@ if __name__ == "__main__":
         print("  Must have a valid schedule file to continue.  Good-bye.")
         exit(-4)
 
-
-
     # Load the JSON file containing the schedule and the active links associated with each time in the schedule
     with open(sched_file) as f:
         schedule = json.load(f)
