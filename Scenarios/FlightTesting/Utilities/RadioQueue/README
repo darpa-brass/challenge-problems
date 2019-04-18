@@ -23,6 +23,8 @@ Command Line Arguments are available via the '-h' argument:
                          Refresh rate (1x per sec)
       -d DEBUG           Set the Debug level
       -v, --version      show program's version number and exit
+      --database         Sets the name of the OrientDB database
+      --config           Set config file for OrientDB
       
       
 All arguments are optional.
@@ -96,3 +98,13 @@ radio_queues.json file, depending on the delta between the allocated bandwidth
 for a radio (from the bw_allocs.json file) and the corresponding radio's data
 input rate (from the data_input_rates.json file).  The "IsOnline" key has a value
 of '1' for "true/online" and '2' for "false/offline".
+
+ORIENTDB INTEGRATION:
+The program can also operate using an OrientDB database to store the input files
+and output data. This is triggered by using the --database and --config options.
+The database used should be configured with a node of Class "Radio_Usage".
+This class should have the properties "Input_Rate" and "BW_Allocs" populated with
+the initial conditions. Input_Rate should contain the contents of  the data_input_rates.json
+and BW_Allocs has the contents of the bw_allocs.json file. The outputs from the
+simulation are stored in the property "Radio_Queues" and are the same contents
+as radio_queues.json.

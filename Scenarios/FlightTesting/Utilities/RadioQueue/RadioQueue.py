@@ -18,7 +18,6 @@ import curses
 from curses import wrapper
 import signal
 import random
-from brass_api.orientdb.orientdb_helper import BrassOrientDBHelper
 
 next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
@@ -1332,7 +1331,7 @@ if __name__ == "__main__":
     parser.add_argument('-i', action='store', dest='data_input_rates', help='Json with the data  input rates for a set of Radios', type=str)
     parser.add_argument('-b', action='store', dest='bw_allocs', help='Json with the avaliable bandwidth for a set of Radios', type=str)
     parser.add_argument('--config', action='store', default=None, dest='config', help='Set config file for OrientDB ', type=str)
-    parser.add_argument('--database', action='store', default=None, dest='database', help='Set config file for OrientDB', type=str)
+    parser.add_argument('--database', action='store', default=None, dest='database', help='Sets the name of the OrientDB database', type=str)
     cli_args = parser.parse_args()
 
     # CLI argument assignments
@@ -1341,6 +1340,7 @@ if __name__ == "__main__":
     init_epoch_vals(cli_args.epoch_size_ms)   # Pass CLI Epoch size (ms) to the init_epoch_vals() function
     database = None
     if cli_args.database is not None and cli_args.config is not None:
+        from brass_api.orientdb.orientdb_helper import BrassOrientDBHelper
         database = BrassOrientDBHelper(cli_args.database, cli_args.config)
         database.open_database()
 
