@@ -1,0 +1,116 @@
+[
+    {
+        "RadioName": "TA1",
+        "DataInRate-bps": 5000,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.5
+    },
+    {
+        "RadioName": "TA2",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.2,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA3",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA4",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA5",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA6",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA7",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA8",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA9",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA10",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "TA11",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR1",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR2",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR3",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR4",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR5",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR6",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR7",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    },
+    {
+        "RadioName": "GR8",
+        "DataInRate-bps": 0,
+        "Burstiness": 0.0,
+        "ValuePerKbTx": 0.0
+    }
+]
