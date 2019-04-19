@@ -271,7 +271,7 @@ if __name__ == "__main__":
 
     if mdl_output is None:
         temp, ext = os.path.splitext(mdl_file)
-        mdl_output = temp + '_' + time + '.mdl'
+        mdl_output = temp + '_' + time + '.xml'
 
     with open(mdl_output, 'wb') as f:
         f.write(output)

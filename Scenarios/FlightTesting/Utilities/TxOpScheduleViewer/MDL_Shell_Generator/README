@@ -11,7 +11,7 @@ QUICKSTART:
     Using the example MDL file and example JSON schedule file, one can begin using
     the utility right away.  Here's an example command line argument list specifying
     1300 as the time and using a debug level of 3:
-        > python3 mdl_shell_gen.py -m BRASS-Example_FTSchedule.mdl -s FTSchedule.json -t 1300 -ddd
+        > python3 mdl_shell_gen.py -m BRASS-Example_FTSchedule.xml -s FTSchedule.json -t 1300 -ddd
 
 Command Line Arguments are available via the '-h' argument:
     > python3 mdl_shell_gen.py -h
@@ -41,8 +41,8 @@ The TIME argument is required.  It shall be a single military time value with no
 The MDL_OUTPUT argument is not required.  When specified, this is the location where
     the resulting MDL file will be written.  When not specified, the output file will
     be comprised of the MDL_MASTER filename with an underscore followed by the TIME
-    value.  Default example: MDL_MASTER = 'file.mdl' and TIME = '0830': resulting
-    MDL file will be written to "file_0830.mdl".
+    value.  Default example: MDL_MASTER = 'file.xml' and TIME = '0830': resulting
+    MDL file will be written to "file_0830.xml".
 
 The '-d' argument is optional.  It controls the verbosity of the terminal output.
     It can be specified multiple times, each time increasing the verbosity level.
@@ -61,7 +61,7 @@ elements present).
 
 INPUT FILES:
   MDL_MASTER - MDL file compliant with the MDL 1.0.0 schema (IRIG 106-17 Chapter 23).
-               Example provided: BRASS-Example_FTSchedule.mdl
+               Example provided: BRASS-Example_FTSchedule.xml
 
   SCHEDULE   - JSON file that contains a military time and a list of Radio Links that
                are active at the corresponding time.
