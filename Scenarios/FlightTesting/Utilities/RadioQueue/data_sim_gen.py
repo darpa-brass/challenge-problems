@@ -10,6 +10,7 @@ import sys
 import os
 import argparse
 import json
+from shutil import copyfile
 from collections import deque
 import threading
 import time
@@ -128,37 +129,71 @@ def update_input_rates_file(file, radios):
 if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
-    parser.add_argument('-e', action='store', default=100, dest='epoch_size_ms',
-                        help='Set the Epoch size (milliseconds) [default: 100]', type=int)
-    parser.add_argument('-i', action='store', dest='data_input_rates', required=True, type=str,
-                        help='Json with the data input rates for a set of Radios')
-    parser.add_argument('-w', action='store', default=10, dest='wait',
-                        help='Seconds to wait before switching to the next test condition', type=int)
+    parser.add_argument('-r', action='store', dest='rate_file', required=True, type=str,
+                        help='Name and location to store the current data input rate file.')
+    parser.add_argument('-T', action='store', dest='test_dir', type=str, required=True,
+                        help='The test directory that contains the collection of JSON files that define the radio '
+                             'data input rates for the test.  Files are named according to the time that they should '
+                             'be applied to the simulation (e.g. 30.json, 45.json, 100.json, etc.)')
+    parser.add_argument('-l', action='store_true', default=False, dest='loop_mode',
+                        help='Loop mode.  Repeat all test cases until user quits.')
     parser.add_argument('-d', action='count', default=0, dest='debug', help='Set the Debug/Verbosity level')
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.1')
 
     cli_args = parser.parse_args()
 
     # CLI argument assignments
-    data_input_rates_file = cli_args.data_input_rates
-    wait_sec = cli_args.wait
-
-    init_epoch_vals(cli_args.epoch_size_ms)     # Pass CLI Epoch size (ms) to the init_epoch_vals() function
-
+    rate_file = cli_args.rate_file
+    test_dir = cli_args.test_dir
+    loop = cli_args.loop_mode
     debug = cli_args.debug
 
-    # Initialize the radio_list with all radios from the initial data_input_rate
-    init_radio_list(data_input_rates_file)
+    runtime = 0
 
-    # Test Condition 1
-    change_input_rate("TA1", 5000)
-    change_burstiness("TA2", 0.2)
-    change_value_per_tx("TA1", 0.5)
-    update_input_rates_file(data_input_rates_file, radio_list)
-    print("  Test Condition 1")
-    time.sleep(wait_sec)
+    # Read test_dir for all JSON files.  Sort them by filename (number).
+    test_file_times = []
+    file_listing = os.listdir(test_dir)
+    for f in file_listing:
+        filename, ext = os.path.splitext(f)
+        if ext == '.json':
+            try:
+                num = int(filename)
+                test_file_times.append(num)
+            except ValueError:
+                pass
 
-    # Test Condition 2
-    print("  Test Condition 2")
+    # 0.json is the initializing file.  If it is not present, add a blank JSON file for this
+    if 0 not in test_file_times:
+        print("Initialization file not found.  Creating empty initialization at '{0}/0.json'.".format(test_dir))
+        empty = []
+        with open(test_dir + '/0.json', 'w') as f:
+            json.dump(empty, f)
+        test_file_times.append(0)
 
-    # Test Condition 3
+    test_file_times.sort()
+    print(test_file_times)
+
+    if len(test_file_times) == 0:
+        print("  No test conditions found.  Check the {} directory.".format(test_dir))
+        exit(-1)
+    elif len(test_file_times) == 1:
+        copyfile(test_dir + '/' + str(test_file_times[0]) + '.json', rate_file)
+        print("Only one test condition found.  It has been loaded.  Script exiting.")
+        exit(0)
+
+    while True:
+        for idx, t in enumerate(test_file_times, start=0):
+            copyfile(test_dir + '/' + str(t) + '.json', rate_file)
+            if idx+1 < len(test_file_times):
+                wait_time = test_file_times[idx+1] - t
+                print("  Test Condition {0} in progress...duration: {1} seconds".format(idx+1, wait_time))
+            else:
+                # Last test profile.  Use the previous test duration for this test profile
+                wait_time = t - test_file_times[idx-1]
+                print("  Test Condition {0} in progress...duration: {1} seconds".format(idx+1, wait_time))
+            time.sleep(wait_time)
+        if loop:
+            print(" Repeating test profiles...")
+        else:
+            print(" All test profiles completed.")
+            break
