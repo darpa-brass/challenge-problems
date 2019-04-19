@@ -1,0 +1,73 @@
+************************************************************
+**********   README File For MDL Shell Generator   *********
+************************************************************
+
+Run with Python 3.
+
+    > python3 mdl_shell_gen.py
+    
+
+QUICKSTART:
+    Using the example MDL file and example JSON schedule file, one can begin using
+    the utility right away.  Here's an example command line argument list specifying
+    1300 as the time and using a debug level of 3:
+        > python3 mdl_shell_gen.py -m BRASS-Example_FTSchedule.xml -s FTSchedule.json -t 1300 -ddd
+
+Command Line Arguments are available via the '-h' argument:
+    > python3 mdl_shell_gen.py -h
+    usage: mdl_shell_gen.py [-h] -m MDL_MASTER [-o MDL_OUTPUT] -s SCHEDULE -t TIME
+                        [-d] [-v]
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      -m MDL_MASTER  Master MDL File
+      -o MDL_OUTPUT  Resulting MDL File
+      -s SCHEDULE    JSON file that contains the daily Flight Test Schedule
+      -t TIME        Time (hhmm, where "hh" is in range 0-23) for schedule lookup.
+      -d             Set the Debug/Verbosity level
+      -v, --version  show program's version number and exit
+      
+      
+The MDL_MASTER argument is required.  It shall be an MDL file containing the superset
+    of RadioLinks, RadioGroups, and Radio NetworkNodes that the user wishes to trim.
+
+The SCHEDULE argument is required.  It shall be a JSON file that contains a calendar-
+    type resource file that specifies a time and the active set of RF links active at
+    that time.
+
+The TIME argument is required.  It shall be a single military time value with no
+    colons.  Example: 0600, 0645, 1200, 1300, 1800
+
+The MDL_OUTPUT argument is not required.  When specified, this is the location where
+    the resulting MDL file will be written.  When not specified, the output file will
+    be comprised of the MDL_MASTER filename with an underscore followed by the TIME
+    value.  Default example: MDL_MASTER = 'file.xml' and TIME = '0830': resulting
+    MDL file will be written to "file_0830.xml".
+
+The '-d' argument is optional.  It controls the verbosity of the terminal output.
+    It can be specified multiple times, each time increasing the verbosity level.
+    Currently, there are up to 4 different levels.  Level 4 is the most verbose, and
+    it includes the resulting MDL output file contents being written to the terminal
+    in addition to it being written to the output file.
+
+The '-v' argument can be used to print out the current version of this utility.
+
+    
+KNOWN ISSUES:
+If there are no RadioLinks or Radio NetworkNodes active, the resulting MDL file may
+fail schema validity due to having empty containers (e.g. <RadioLinks> with 0 <RadioLink>
+elements present).
+
+
+INPUT FILES:
+  MDL_MASTER - MDL file compliant with the MDL 1.0.0 schema (IRIG 106-17 Chapter 23).
+               Example provided: BRASS-Example_FTSchedule.xml
+
+  SCHEDULE   - JSON file that contains a military time and a list of Radio Links that
+               are active at the corresponding time.
+               Example provided: FTSchedule.json (snippet of file below:)
+        [
+            {"time": 625, "links":[]},
+            {"time": 630, "links":[{"src": 4113, "dst": 61456}, {"src": 4099, "dst": 61457}]},
+            {"time": 635, "links":[{"src": 4113, "dst": 61456}, {"src": 4099, "dst": 61457}]}
+        ]
