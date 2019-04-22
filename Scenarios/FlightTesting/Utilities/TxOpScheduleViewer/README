@@ -19,6 +19,8 @@ Command Line Arguments are available via the '-h' argument:
       -s SCORE       JSON file to score MDL file performance
       -d DEBUG       Set the Debug level
       -v, --version  show program's version number and exit
+      --database         Sets the name of the OrientDB database
+      --config           Set config file for OrientDB
       
       
 The FILE argument is required.  It shall be an MDL file containing links and
@@ -78,3 +80,9 @@ SCORE file is a JSON file, and it is detailed below:
         max_thd - Bandwidth values above this threshold (bps) achieve maximum
                   point value
         coef    - Coefficient for the value function
+
+ORIENTDB INTEGRATION:
+The program can also operate using an OrientDB database to store the input files
+and output data. This is triggered by using the --database and --config options.
+The database should contain the MDL to be scored. The MDL file will be exported
+and then loaded into the utility for scoring.
