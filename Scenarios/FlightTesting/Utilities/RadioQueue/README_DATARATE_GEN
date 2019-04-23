@@ -1,0 +1,88 @@
+************************************************************
+******* README File For Data Rate Scenario Generator *******
+************************************************************
+
+There are 2 Python tools that support the Radio Queue Visualizer through auto-generating
+and auto-applying the data rate input files.
+
+------------------------------------------------------------
+Generate the Data Rate Scenario: gen_datarate_scenario.py
+
+Run with Python 3.
+
+    > python3 gen_datarate_scenario.py -h
+    
+    
+Command Line Arguments are available via the '-h' argument:
+    > python3 RadioQueue.py -h
+    usage: gen_datarate_scenario.py [-h] -f CSV_FILE -T TEST_DIR [-v]
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      -f CSV_FILE    CSV file of the data rates for the scenario.
+      -T TEST_DIR    The test directory to store the collection of JSON files that
+                     define the radio data input rates for the test. Files are
+                     named according to the time that they should be applied to
+                     the simulation (e.g. 30.json, 45.json, 100.json, etc.)
+      -v, --version  show program's version number and exit
+
+      
+Both the '-f CSV_FILE' and the '-T TEST_DIR' arguments are required.
+
+The CSV_FILE is the master file for which a scenario's data rate input schedules
+will be generated.  The CSV file has the following format (with no header row):
+   <TIME>, <RADIO_NAME>, <INPUT_DATA_RATE_BPS>, <BURSTINESS>, <VALUE_PER_KB_TX>
+
+The TEST_DIR will be created where specified (contents deleted if already existing).
+The resulting scenario data rate input files will be stored in this directory when
+they are created.  This directory and the JSON files contained therein are used by
+the datarate_updater.py tool.
+
+EXAMPLE: > python gen_datarate_scenario.py -f datarate_scenarios.csv -T datarates_001
+
+
+
+------------------------------------------------------------
+Update the Data Rate Input File used by the RadioQueue.py utility: datarate_updater.py
+
+Run with Python 3.
+
+    > python3 datarate_updater.py -h
+
+usage: datarate_updater.py [-h] -r RATE_FILE -T TEST_DIR [-l] [-d] [-v]
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -r RATE_FILE   Name and location to store the current data input rate file.
+  -T TEST_DIR    The test directory that contains the collection of JSON files
+                 that define the radio data input rates for the test. Files
+                 are named according to the time that they should be applied
+                 to the simulation (e.g. 30.json, 45.json, 100.json, etc.)
+  -l             Loop mode. Repeat all test cases until user quits.
+  -d             Set the Debug/Verbosity level
+  -v, --version  show program's version number and exit
+
+Both the '-r RATE_FILE' and the '-T TEST_DIR' are required arguments
+
+RATE_FILE: The name and location for storing the current value of the data rate
+inputs file.  The file is read by a concurrently running instance of the
+RadioQueue.py application.
+
+TEST_DIR: The name of the directory that contains the collection of JSON files
+that are to be used during the scenario.  The JSON files are named with a number
+that represents the relative time (in seconds) from the beginning of the test when
+it will be copied over and applied as the current data rate input file (as specified
+by the RATE_FILE).  The file formats of these JSON files match the format of the
+data rate input file associated with the RadioQueue.py application.
+
+The '-l' will set the test in loop mode.  In this mode, the datarate_updater.py
+application will continue to run until the user stops it with CTRL-C.  After the
+last Test Condition of the scenario has been executed, the first Test Condition
+is started again, and the Test Condition progression continues.
+
+EXAMPLE:
+    Terminal 1:
+        > python datarate_updater.py -r data_input_rates.json -T datarates_001
+
+    Terminal 2:
+        > python RadioQueue.py -i data_input_rates.json -b bw_allocs.json
