@@ -21,35 +21,44 @@ def setup_logger():
     log.setLevel('INFO')
     return log
 
+def setup_node(database, name, property, property_type='String'):
+    database.create_node_class(name)
+    database.create_node_property(name, property, property_type)
+
 
 def main(constraints=None, config_file=None, data_input=None, bw_allocs=None):
-    #Create Radio Queues Database
+    # Create Radio Queues Database
     queue_database = BrassOrientDBHelper(constraints, config_file)
     queue_database.open_database()
 
-    class_name = 'Radio_Usage'
-    input_rate = 'Input_Rate'
-    bw_allocations = 'BW_Allocs'
-    radio_queues = 'Radio_Queues'
+    radio_input_name = 'Radio_Input'
+    radio_control_name = 'Radio_Control'
+    radio_queues_name = 'Radio_Queues'
 
-    # Create Classes in Database
-    queue_database.create_node_class(class_name)
+    radio_input_property = 'Input_Rate'
+    radio_control_property = 'BW_Allocs'
+    radio_queues_property = 'Radio_Queues'
 
-    # Create Properies in Classes
-    queue_database.create_node_property(class_name, input_rate, 'EMBEDDEDLIST')
-    queue_database.create_node_property(class_name, bw_allocations, 'EMBEDDEDLIST')
-    queue_database.create_node_property(class_name, radio_queues, 'EMBEDDEDLIST')
+    # Create Classes and Properties in Database
+    setup_node(queue_database, radio_input_name, radio_input_property, 'EMBEDDEDLIST')
+    setup_node(queue_database, radio_control_name, radio_control_property, 'EMBEDDEDLIST')
+    setup_node(queue_database, radio_queues_name, radio_queues_property, 'EMBEDDEDLIST')
 
-    properties = {}
+    data_input_properties = {}
     if data_input is not None:
         with open(data_input, 'r') as f:
-            properties[input_rate] = json.load(f)
+            data_input_properties[radio_input_property] = json.load(f)
 
+    bw_allocs_properties = {}
     if bw_allocs is not None:
         with open(bw_allocs, 'r') as f:
-            properties[bw_allocations] = json.load(f)
+            bw_allocs_properties[radio_control_property] = json.load(f)
 
-    queue_database.create_node(class_name, properties)
+    radio_queues_properties = {radio_queues_property: {}}
+
+    queue_database.create_node(radio_input_name, data_input_properties)
+    queue_database.create_node(radio_control_name, bw_allocs_properties)
+    queue_database.create_node(radio_queues_name, radio_queues_properties)
     return queue_database
 
 
