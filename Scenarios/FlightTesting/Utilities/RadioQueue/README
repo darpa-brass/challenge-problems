@@ -102,9 +102,15 @@ of '1' for "true/online" and '2' for "false/offline".
 ORIENTDB INTEGRATION:
 The program can also operate using an OrientDB database to store the input files
 and output data. This is triggered by using the --database and --config options.
-The database used should be configured with a node of Class "Radio_Usage".
-This class should have the properties "Input_Rate" and "BW_Allocs" populated with
-the initial conditions. Input_Rate should contain the contents of  the data_input_rates.json
+
+The database used should be configured with 3 nodes of Class "Radio_Queues", "Radio_Control" and "Radio_Input".
+The table below describes the required properties of these classes.
+|Class|Required Property|
+|Radio_Input|Input_Rate|
+|Radio_Control|BW_Allocs|
+|Radio_Queues|Radio_Queues|
+
+Input_Rate should contain the contents of  the data_input_rates.json
 and BW_Allocs has the contents of the bw_allocs.json file. The outputs from the
 simulation are stored in the property "Radio_Queues" and are the same contents
 as radio_queues.json.

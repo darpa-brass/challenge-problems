@@ -18,6 +18,7 @@ import curses
 from curses import wrapper
 import signal
 import random
+import logging
 
 next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
@@ -123,6 +124,21 @@ class Message:
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+def setup_logger():
+    logFormatter = logging.Formatter("%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s")
+    log = logging.getLogger()
+
+    fileHandler = logging.FileHandler(__name__)
+    fileHandler.setFormatter(logFormatter)
+    log.addHandler(fileHandler)
+
+    # consoleHandler = logging.StreamHandler()
+    # consoleHandler.setFormatter(logFormatter)
+    # log.addHandler(consoleHandler)
+
+    log.setLevel('INFO')
+    return log
+
 
 def run_epoch():
     global epoch_num
@@ -170,10 +186,12 @@ def run_epoch():
     # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
 
     if database:
-        radio_usage_node_list = database.get_nodes_by_type('Radio_Usage')
+        radio_usage_node_list = database.get_nodes_by_type('Radio_Input')
+        radio_control_node_list = database.get_nodes_by_type('Radio_Control')
         radio_usage_node = radio_usage_node_list[0]
+        radio_control_node = radio_control_node_list[0]
         ldict_radios = radio_usage_node.Input_Rate
-        d_bw_allocs = radio_usage_node.BW_Allocs
+        d_bw_allocs = radio_control_node.BW_Allocs
     else:
         with open(data_input_rates, 'r') as f:
             ldict_radios = json.load(f)
@@ -253,10 +271,11 @@ def run_epoch():
 
     if database:
         try:
-            database.update_node(radio_usage_node._rid,
+            radio_queues_node_list = database.get_nodes_by_type("Radio_Queues")
+            radio_queues_node = radio_queues_node_list[0]
+
+            database.update_node(radio_queues_node._rid,
                                  {'Radio_Queues': queues},
-                                 {'Input_Rate': ldict_radios},
-                                 {'BW_Allocs': d_bw_allocs},
                                  version=radio_usage_node._version,
                                  transaction=True)
         except:
@@ -1314,6 +1333,9 @@ def main(stdscr):
 
 
 if __name__ == "__main__":
+    log=setup_logger()
+    log.info("Intializing Run")
+
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('-I', action='store_false', default=True, dest='enforce_max_q_size',
@@ -1334,6 +1356,11 @@ if __name__ == "__main__":
     parser.add_argument('--database', action='store', default=None, dest='database', help='Sets the name of the OrientDB database', type=str)
     cli_args = parser.parse_args()
 
+    cli_dict = vars(cli_args)
+    log.info('Command Line Inputs')
+    for key in cli_dict:
+        log.info('{} : {}'.format(key, cli_dict[key]))
+
     # CLI argument assignments
     data_input_rates = cli_args.data_input_rates
     bw_allocs = cli_args.bw_allocs
@@ -1347,6 +1374,7 @@ if __name__ == "__main__":
     enforce_max_q_size = cli_args.enforce_max_q_size
     if cli_args.max_queue_size >= 0:
         MAX_QUEUE_SIZE_BYTES = cli_args.max_queue_size    # Set MAX Queue Size in Byte if CLI argument provided
+
     realtime_mode = cli_args.realtime_mode
     q_viz_mode = True
     history_plot_mode = True
