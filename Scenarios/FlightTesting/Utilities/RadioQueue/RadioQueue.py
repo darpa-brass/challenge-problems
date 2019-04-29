@@ -19,6 +19,7 @@ from curses import wrapper
 import signal
 import random
 import logging
+import csv
 
 next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
@@ -267,6 +268,8 @@ def run_epoch():
     for r in radio_list:
         r.update_q()
 
+    # Add Logging Here
+
     queues = write_qlens_to_json(radio_list)
 
     if database:
@@ -426,6 +429,43 @@ def print_stats(rlist):
                 (r.q_len / 1000),
                 q_status))
 
+def write_stats_to_csv(rlist, epoch_num):
+    now = time.time()
+    log_dir = 'Radio_Logs'
+    log_file_name = "Radio Log {}".format(now)
+    header = ["Radio Name",
+              "Time",
+              "Epochs per Second",
+              "Epoch Count",
+              "Radio Status",
+              "Queue Length (kb)",
+              "Data Input Rate (kbs)",
+              "Data Output Rate (kbs)",
+              "Epoch Value",
+              "Value per kb Tx"]
+    radio_dict_list = []
+    for r in rlist:
+        radio_dict = {}
+        radio_dict["Radio Name"] = r.name
+        radio_dict["Time"] = now
+        radio_dict["Epochs per Second"] = r.epochs_per_sec
+        radio_dict["Epoch Count"] = epoch_num
+        radio_dict["Radio Status"] = r.online
+        radio_dict["Queue Length (bytes)"] = r.q_len
+        radio_dict["Data Input Rate (b/s)"] = r.burst_din_bps
+        radio_dict["Data Output Rate (b/s)"] = r.burst_din_bps
+        radio_dict["Epoch Value"] = r.current_epoch_value
+        radio_dict["Value per kb Tx"] = r.value_per_kb_tx
+        radio_dict_list.append(radio_dict)
+
+    if not os.path.isdir(log_dir):
+        os.mkdir(log_dir)
+
+
+    with open(log_file_name, 'w') as csvfile:
+        writer=csv.DictWriter(csvfile, fieldnames=header)
+        writer.writeheader()
+        writer.writerows(radio_dict_list)
 
 # ------------------------------------------------------------------------------
 
