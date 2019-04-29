@@ -6,8 +6,236 @@
     <Description>TTC DAU.</Description>
     <DatabaseID/>
     <Checksum/>
-    <ConfigurationVersion>2019_04_10_00:00:00_TTCDAU</ConfigurationVersion>
+    <ConfigurationVersion>2019_04_29_00:00:00_TTCDAU</ConfigurationVersion>
     <DirtyBit>false</DirtyBit>
+    <MeasurementDomains>
+        <MeasurementDomain>
+            <Name>Example6MeasurementDomain</Name>
+            <Description>Measurement domain for scenario 5 example 6.</Description>
+            <Measurements>
+                <Measurement ID="meas-temp-16-250">
+                    <Name>Temperature1</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>250</Min>
+                            <Max>250</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4000</Min>
+                            <Max>4000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000010</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-12-1000">
+                    <Name>Temperature2</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>1000</Min>
+                            <Max>1000</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>12</Min>
+                            <Max>12</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>12000</Min>
+                            <Max>12000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000011</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>1000</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-8-1250">
+                    <Name>Temperature3</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>1250</Min>
+                            <Max>1250</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>8</Min>
+                            <Max>8</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>10000</Min>
+                            <Max>10000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000111</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>8</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>1250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>10000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-24-200">
+                    <Name>Temperature4</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>200</Min>
+                            <Max>200</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>24</Min>
+                            <Max>24</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4800</Min>
+                            <Max>4800</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10001111</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>24</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>200</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4800</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+            </Measurements>
+        </MeasurementDomain>
+    </MeasurementDomains>
     <NetworkDomain>
         <Networks>
             <Network ID="net-example">
@@ -22,7 +250,7 @@
                             <NameValues>
                                 <NameValue Name="User" Index="1">BBN</NameValue>
                             </NameValues>
-                            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+                            <BBNDauMonetaryCost>40000</BBNDauMonetaryCost>
                             <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
                         </GenericParameter>
                         <InventoryID>Example6DAU</InventoryID>
@@ -41,7 +269,7 @@
                                 <Manufacturer>TTC</Manufacturer>
                                 <Product>DAUApp</Product>
                                 <ProductVersion>1</ProductVersion>
-                                <ConfigurationVersion>2019_04_10_00:00:00_Example6DAUApp</ConfigurationVersion>
+                                <ConfigurationVersion>2019_04_29_00:00:00_Example6DAUApp</ConfigurationVersion>
                                 <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
                                 <DirtyBit>false</DirtyBit>
                                 <TmNSDAU/>
@@ -146,7 +374,7 @@
                                                 <NameValues>
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
-                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                         </Port>
@@ -496,12 +724,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -513,12 +738,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -530,12 +752,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -547,12 +766,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -564,12 +780,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -581,12 +794,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -598,12 +808,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -615,12 +822,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>1250</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -650,12 +854,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -667,12 +868,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -684,12 +882,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -701,12 +896,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -718,12 +910,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -735,12 +924,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -752,12 +938,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -769,12 +952,9 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <SampleRate>1000</SampleRate>
-                                                <DataLength>12</DataLength>
-                                                <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
+                                                <BBNDataRate>4800</BBNDataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -842,6 +1022,170 @@
                         </InternalStructure>
                     </NetworkNode>
                 </NetworkNodes>
+                <Devices>
+                    <Device ID="dev-thermo1">
+                        <Name>Thermocouple1</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo2">
+                        <Name>Thermocouple2</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo3">
+                        <Name>Thermocouple3</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo3-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo3-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo4">
+                        <Name>Thermocouple4</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo4-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-thermo4-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                </Devices>
+                <PortMappings>
+                    <PortMapping ID="pm-mtcd1-j1ch1-thermo1-j1ch1">
+                        <Name>Temperature1</Name>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 1 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-mtcd1-j1-ch1-ex6"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mtcd2-j1ch1-thermo1-j1ch1">
+                        <Name>Temperature2</Name>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 2 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-mtcd2-j1-ch1-ex6"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-12-1000"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mtcd3-j1ch1-thermo1-j1ch1">
+                        <Name>Temperature3</Name>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 3 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-mtcd3-j1-ch1-ex6"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-8-1250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mtcd4-j1ch1-thermo1-j1ch1">
+                        <Name>Temperature4</Name>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 4 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-mtcd4-j1-ch1-ex6"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-24-200"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                </PortMappings>
             </Network>
         </Networks>
     </NetworkDomain>

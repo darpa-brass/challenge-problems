@@ -3375,7 +3375,7 @@
             <NameValues>
                 <NameValue Name="User" Index="1">BBN</NameValue>
             </NameValues>
-            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
+            <BBNDauMonetaryCost>40000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
         </GenericParameter>
         <InventoryID>Example6DAU</InventoryID>
@@ -3394,7 +3394,7 @@
                 <Manufacturer>TTC</Manufacturer>
                 <Product>DAUApp</Product>
                 <ProductVersion>1</ProductVersion>
-                <ConfigurationVersion>2019_04_10_00:00:00_Example6DAUApp</ConfigurationVersion>
+                <ConfigurationVersion>2019_04_29_00:00:00_Example6DAUApp</ConfigurationVersion>
                 <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
                 <DirtyBit>false</DirtyBit>
                 <TmNSDAU/>
@@ -3499,7 +3499,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -3849,12 +3849,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3866,12 +3863,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3883,12 +3877,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3900,12 +3891,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3917,12 +3905,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3934,12 +3919,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3951,12 +3933,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -3968,12 +3947,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
+                                <SampleRate>1250</SampleRate>
+                                <DataLength>8</DataLength>
                                 <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4003,12 +3979,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4020,12 +3993,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4037,12 +4007,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4054,12 +4021,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4071,12 +4035,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4088,12 +4049,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4105,12 +4063,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -4122,12 +4077,9 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                <SampleRate>250</SampleRate>
-                                <SampleRate>1000</SampleRate>
-                                <DataLength>12</DataLength>
-                                <DataLength>16</DataLength>
-                                <BBNDataRate>4000</BBNDataRate>
-                                <BBNDataRate>12000</BBNDataRate>
+                                <SampleRate>200</SampleRate>
+                                <DataLength>24</DataLength>
+                                <BBNDataRate>4800</BBNDataRate>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
