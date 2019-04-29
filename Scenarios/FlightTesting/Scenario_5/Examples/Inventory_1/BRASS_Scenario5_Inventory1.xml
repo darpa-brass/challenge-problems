@@ -1523,7 +1523,7 @@
                 <Manufacturer>Acra</Manufacturer>
                 <Product>DAUApp</Product>
                 <ProductVersion>1</ProductVersion>
-                <ConfigurationVersion>2018_01_18_00:00:00_Example3DAUApp</ConfigurationVersion>
+                <ConfigurationVersion>2019_04_29_00:00:00_Example3DAUApp</ConfigurationVersion>
                 <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
                 <DirtyBit>false</DirtyBit>
                 <TmNSDAU/>
@@ -1778,7 +1778,7 @@
                         <NameValues>
                             <NameValue Name="User" Index="1">BBN</NameValue>
                         </NameValues>
-                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <!-- <BBNModuleFunctionality>Time</BBNModuleFunctionality> -->
                     </GenericParameter>
                     <Manufacturer>Acra</Manufacturer>
                     <Model>KAM/TCG/102</Model>
@@ -1794,7 +1794,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -1805,7 +1805,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                                 <SampleRate>4800</SampleRate>
                                 <SampleRate>9600</SampleRate>
                                 <SampleRate>19200</SampleRate>
@@ -1833,7 +1833,7 @@
                     <Position>4</Position>
                     <PositionsOccupied>1</PositionsOccupied>
                     <Ports>
-                        <Port ID="port-msb-j1-ch1-ex2" Index="1">
+                        <Port ID="port-msb-j1-ch1-ex3" Index="1">
                             <Name>Ch1</Name>
                             <Description>Ch1 : Channel 1 Signal Input</Description>
                             <GenericParameter>
@@ -1845,7 +1845,7 @@
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
-                        <Port ID="port-msb-j2-ch1-ex2" Index="2">
+                        <Port ID="port-msb-j2-ch1-ex3" Index="2">
                             <Name>Ch2</Name>
                             <Description>Ch2 : Channel 2 Signal Input</Description>
                             <GenericParameter>
