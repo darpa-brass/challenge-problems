@@ -10,8 +10,8 @@
     <DirtyBit>false</DirtyBit>
     <MeasurementDomains>
         <MeasurementDomain>
-            <Name>Example2MeasurementDomain</Name>
-            <Description>Measurement domain for scenario 5 example 2.</Description>
+            <Name>Example3MeasurementDomain</Name>
+            <Description>Measurement domain for scenario 5 example 3.</Description>
             <Measurements>
                 <Measurement ID="meas-signal-16-250">
                     <Name>GenericSignal</Name>

@@ -1917,7 +1917,7 @@
                 <Manufacturer>TTC</Manufacturer>
                 <Product>DAUApp</Product>
                 <ProductVersion>1</ProductVersion>
-                <ConfigurationVersion>2018_03_06_00:00:00_Example4DAUApp</ConfigurationVersion>
+                <ConfigurationVersion>2019_04_29_00:00:00_Example4DAUApp</ConfigurationVersion>
                 <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
                 <DirtyBit>false</DirtyBit>
                 <TmNSDAU/>
@@ -2025,7 +2025,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2036,7 +2036,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2047,7 +2047,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2058,7 +2058,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2069,7 +2069,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2080,7 +2080,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2091,7 +2091,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2102,7 +2102,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2113,7 +2113,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2124,7 +2124,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2135,7 +2135,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2146,7 +2146,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2157,7 +2157,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2168,7 +2168,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2179,7 +2179,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2190,7 +2190,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>General</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2203,7 +2203,7 @@
                         <NameValues>
                             <NameValue Name="User" Index="1">BBN</NameValue>
                         </NameValues>
-                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <!-- <BBNModuleFunctionality>Time</BBNModuleFunctionality> -->
                     </GenericParameter>
                     <Manufacturer>TTC</Manufacturer>
                     <Model>GPS-101</Model>
@@ -2219,7 +2219,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2230,7 +2230,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Bidirectional</PortDirection>
                         </Port>
@@ -2417,7 +2417,7 @@
                         <NameValues>
                             <NameValue Name="User" Index="1">BBN</NameValue>
                         </NameValues>
-                        <BBNModuleFunctionality>Bluetooth</BBNModuleFunctionality>
+                        <!-- <BBNModuleFunctionality>Bluetooth</BBNModuleFunctionality> -->
                     </GenericParameter>
                     <Manufacturer>TTC</Manufacturer>
                     <Model>BLT-101T</Model>
@@ -2433,7 +2433,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Bluetooth</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Bluetooth</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2444,7 +2444,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>PCM</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>PCM</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Output</PortDirection>
                         </Port>
@@ -2685,7 +2685,7 @@
                         <NameValues>
                             <NameValue Name="User" Index="1">BBN</NameValue>
                         </NameValues>
-                        <BBNModuleFunctionality>VoiceConditioner</BBNModuleFunctionality>
+                        <!-- <BBNModuleFunctionality>VoiceConditioner</BBNModuleFunctionality> -->
                     </GenericParameter>
                     <Manufacturer>TTC</Manufacturer>
                     <Model>CVS-102</Model>
@@ -2701,7 +2701,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Voice</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Voice</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
@@ -2712,7 +2712,7 @@
                                 <NameValues>
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
-                                <BBNPortFunctionality>Voice</BBNPortFunctionality>
+                                <!-- <BBNPortFunctionality>Voice</BBNPortFunctionality> -->
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                         </Port>
