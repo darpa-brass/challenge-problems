@@ -430,6 +430,7 @@ def print_stats(rlist):
                 q_status))
 
 def write_stats_to_csv(rlist, epoch_num):
+    cwd = os.getcwd()
     now = time.time()
     log_dir = 'Radio_Logs'
     log_file_name = "Radio Log {}".format(now)
@@ -461,12 +462,14 @@ def write_stats_to_csv(rlist, epoch_num):
     if not os.path.isdir(log_dir):
         os.mkdir(log_dir)
 
+    os.chdir(log_dir)
 
     with open(log_file_name, 'w') as csvfile:
-        writer=csv.DictWriter(csvfile, fieldnames=header)
+        writer = csv.DictWriter(csvfile, fieldnames=header)
         writer.writeheader()
         writer.writerows(radio_dict_list)
 
+    os.chdir(cwd)
 # ------------------------------------------------------------------------------
 
 
