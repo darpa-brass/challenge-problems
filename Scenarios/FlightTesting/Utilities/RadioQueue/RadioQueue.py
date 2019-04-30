@@ -351,7 +351,7 @@ def run_epoch():
 
         else:
             print_stats(radio_list)       # Debug mode: use print() to console rather than curses.
-
+    write_stats_to_csv(radio_list, epoch_num)
     epoch_num = epoch_num + 1
 
 
@@ -428,23 +428,37 @@ def print_stats(rlist):
                 (r.din_bps / 1000),
                 (r.q_len / 1000),
                 q_status))
+# ------------------------------------------------------------------------------
+
 
 def write_stats_to_csv(rlist, epoch_num):
+    global now
     cwd = os.getcwd()
-    now = time.time()
-    log_dir = 'Radio_Logs'
-    log_file_name = "Radio Log {}".format(now)
+    log_dir_name = 'Radio_Logs'
+    log_dir = os.path.join(cwd, log_dir_name)
+    log_file_name = "Radio_Report_{}.log".format(now)
+    log_file = os.path.join(log_dir, log_file_name)
     header = ["Radio Name",
               "Time",
               "Epochs per Second",
               "Epoch Count",
               "Radio Status",
-              "Queue Length (kb)",
-              "Data Input Rate (kbs)",
-              "Data Output Rate (kbs)",
+              "Queue Length (bytes)",
+              "Data Input Rate (b/s)",
+              "Data Output Rate (b/s)",
               "Epoch Value",
               "Value per kb Tx"]
     radio_dict_list = []
+    header_in_file = False
+
+    if not os.path.isdir(log_dir):
+        os.mkdir(log_dir)
+
+    if os.path.isfile(log_file):
+        with open(log_file, 'r') as csvfile:
+            reader = csv.DictReader(csvfile)
+            header_in_file = set(reader.fieldnames) == set(header)
+
     for r in rlist:
         radio_dict = {}
         radio_dict["Radio Name"] = r.name
@@ -459,17 +473,12 @@ def write_stats_to_csv(rlist, epoch_num):
         radio_dict["Value per kb Tx"] = r.value_per_kb_tx
         radio_dict_list.append(radio_dict)
 
-    if not os.path.isdir(log_dir):
-        os.mkdir(log_dir)
-
-    os.chdir(log_dir)
-
-    with open(log_file_name, 'w') as csvfile:
+    with open(log_file, 'a') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=header)
-        writer.writeheader()
+        if not header_in_file:
+            writer.writeheader()
         writer.writerows(radio_dict_list)
 
-    os.chdir(cwd)
 # ------------------------------------------------------------------------------
 
 
@@ -1376,9 +1385,6 @@ def main(stdscr):
 
 
 if __name__ == "__main__":
-    log=setup_logger()
-    log.info("Intializing Run")
-
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('-I', action='store_false', default=True, dest='enforce_max_q_size',
@@ -1398,11 +1404,14 @@ if __name__ == "__main__":
     parser.add_argument('--config', action='store', default=None, dest='config', help='Set config file for OrientDB ', type=str)
     parser.add_argument('--database', action='store', default=None, dest='database', help='Sets the name of the OrientDB database', type=str)
     cli_args = parser.parse_args()
-
     cli_dict = vars(cli_args)
-    log.info('Command Line Inputs')
-    for key in cli_dict:
-        log.info('{} : {}'.format(key, cli_dict[key]))
+    now = time.strftime("%Y%m%d_%H%M%S")
+
+    # log=setup_logger()
+    # log.info("Intializing Run")
+    # log.info('Command Line Inputs')
+    # for key in cli_dict:
+    #     log.info('{} : {}'.format(key, cli_dict[key]))
 
     # CLI argument assignments
     data_input_rates = cli_args.data_input_rates
