@@ -644,18 +644,19 @@ def init_text_colors():
 # ------------------------------------------------------------------------------
 
 def write_report_to_json(rans_list):
+    new_rans_list = copy.deepcopy(rans_list)
     ran_config_dict = {}
-    for ran in rans_list:
-        ran_dict = vars(copy.deepcopy(ran))
+    for ran in new_rans_list:
+        ran_dict = vars(ran)
         links = []
         for l in ran.links:
-            link_dict = vars(copy.deepcopy(l))
+            link_dict = vars(l)
             toxp_list = []
             for t in l.tx_sched:
-                toxp_list.append(vars(copy.deepcopy(t)))
+                toxp_list.append(vars(t))
             link_dict['tx_sched'] = toxp_list
             if link_dict['qos_policy'] is not None:
-                link_dict['qos_policy'] = vars(copy.deepcopy(l.qos_policy))
+                link_dict['qos_policy'] = vars(l.qos_policy)
             links.append(link_dict)
         ran_dict['links'] = links
         ran_config_dict[ran.name] = ran_dict
@@ -671,6 +672,8 @@ def write_report_to_json(rans_list):
 
     with open(log_file.format(now), 'w') as f:
         json.dump(ran_config_dict, f, indent=4, sort_keys=True)
+
+# ------------------------------------------------------------------------------
 
 
 def main(stdscr):  
