@@ -6,8 +6,236 @@
     <Description>TTC DAU.</Description>
     <DatabaseID/>
     <Checksum/>
-    <ConfigurationVersion>2019_04_10_00:00:00_TTCDAU</ConfigurationVersion>
+    <ConfigurationVersion>2019_04_29_00:00:00_TTCDAU</ConfigurationVersion>
     <DirtyBit>false</DirtyBit>
+    <MeasurementDomains>
+        <MeasurementDomain>
+            <Name>Example5MeasurementDomain</Name>
+            <Description>Measurement domain for scenario 5 example 5.</Description>
+            <Measurements>
+                <Measurement ID="meas-signal-16-250">
+                    <Name>GenericSignal</Name>
+                    <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>250</Min>
+                            <Max>250</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4000</Min>
+                            <Max>4000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000001</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-signal-8-500">
+                    <Name>GenericSignal8-500</Name>
+                    <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>500</Min>
+                            <Max>500</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>8</Min>
+                            <Max>8</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4000</Min>
+                            <Max>4000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000002</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>8</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>500</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-signal-12-400">
+                    <Name>GenericSignal12-400</Name>
+                    <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>400</Min>
+                            <Max>400</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>12</Min>
+                            <Max>12</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4800</Min>
+                            <Max>4800</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000003</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>400</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4800</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-signal-24-200">
+                    <Name>GenericSignal24-200</Name>
+                    <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>200</Min>
+                            <Max>200</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>24</Min>
+                            <Max>24</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>4800</Min>
+                            <Max>4800</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000004</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>24</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>200</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4800</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+            </Measurements>
+        </MeasurementDomain>
+    </MeasurementDomains>
     <NetworkDomain>
         <Networks>
             <Network ID="net-example">
@@ -22,8 +250,8 @@
                             <NameValues>
                                 <NameValue Name="User" Index="1">BBN</NameValue>
                             </NameValues>
-                            <BBNDauMonetaryCost>50000</BBNDauMonetaryCost>
-                            <BBNDauOpportunityCost>5</BBNDauOpportunityCost>
+                            <BBNDauMonetaryCost>75000</BBNDauMonetaryCost>
+                            <BBNDauOpportunityCost>3</BBNDauOpportunityCost>
                         </GenericParameter>
                         <InventoryID>Example5DAU</InventoryID>
                         <HostName>SwRI</HostName>
@@ -41,7 +269,7 @@
                                 <Manufacturer>TTC</Manufacturer>
                                 <Product>DAUApp</Product>
                                 <ProductVersion>1</ProductVersion>
-                                <ConfigurationVersion>2019_04_10_00:00:00_Example5DAUApp</ConfigurationVersion>
+                                <ConfigurationVersion>2019_04_29_00:00:00_Example5DAUApp</ConfigurationVersion>
                                 <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
                                 <DirtyBit>false</DirtyBit>
                                 <TmNSDAU/>
@@ -146,7 +374,7 @@
                                                 <NameValues>
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
-                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                                <!-- <BBNPortFunctionality>Time</BBNPortFunctionality> -->
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                         </Port>
@@ -290,8 +518,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -304,8 +532,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -318,8 +546,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -332,8 +560,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -346,8 +574,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -360,8 +588,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>500</SampleRate>
+                                                <DataLength>8</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -392,8 +620,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -406,8 +634,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -420,8 +648,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -434,8 +662,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -448,8 +676,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -462,8 +690,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>400</SampleRate>
+                                                <DataLength>12</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -494,8 +722,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -508,8 +736,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -522,8 +750,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -536,8 +764,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -550,8 +778,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -564,8 +792,8 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <SampleRate>200</SampleRate>
+                                                <DataLength>24</DataLength>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -634,6 +862,452 @@
                         </InternalStructure>
                     </NetworkNode>
                 </NetworkNodes>
+                <Devices>
+                    <Device ID="dev-accel1">
+                        <Name>Accelerometer 1</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-accel2">
+                        <Name>Accelerometer 2</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-accel3">
+                        <Name>Accelerometer 3</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel3-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel3-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel3-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel3-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-accel4">
+                        <Name>Accelerometer 4</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel4-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-accel4-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel4-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-accel4-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain1">
+                        <Name>Strain Guage 1</Name>
+                        <Description>PCB Piezotronics 260A02 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>260A02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 260A02</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>260A02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-strain1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain2">
+                        <Name>Strain Guage 2</Name>
+                        <Description>PCB Piezotronics 261A01 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>261A01</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 261A01</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>261A01</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-strain2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-vibration1">
+                        <Name>Vibration Sensor 1</Name>
+                        <Description>PCB Piezotronics 685A09 Mechanical Vibration Sensor.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>685A09</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 685A09</InventoryID>
+                        <DeviceType Extension="Vibration">Extension</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-vibration1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>685A09</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-vibration1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Vibration)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-vibration1-j2-ch1" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j2 Ch2 (Remote Reset)</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-vibration2">
+                        <Name>Vibration Sensor 2</Name>
+                        <Description>PCB Piezotronics 685A09 Mechanical Vibration Sensor.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>685A09</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 685A09</InventoryID>
+                        <DeviceType Extension="Vibration">Extension</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-vibration2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>685A09</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Ports>
+                                        <Port ID="port-vibration2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Vibration)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-vibration2-j2-ch1" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j2 Ch2 (Remote Reset)</Description>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                </Devices>
+                <PortMappings>
+                    <PortMapping ID="pm-mscd1-j1ch1-accel1-j1ch1">
+                        <Name>Acceleration1</Name>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd1-j1ch2-accel1-j1ch1">
+                        <Name>Acceleration2</Name>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd1-j1ch3-accel1-j1ch1">
+                        <Name>Acceleration3</Name>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd1-j2ch1-accel1-j1ch1">
+                        <Name>Acceleration4</Name>
+                        <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd1-j2ch2-accel1-j1ch1">
+                        <Name>Acceleration5</Name>
+                        <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd1-j2ch3-accel1-j1ch1">
+                        <Name>Acceleration6</Name>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd1-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j1ch1-accel1-j1ch1">
+                        <Name>Acceleration7</Name>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j1ch2-accel1-j1ch1">
+                        <Name>Acceleration8</Name>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j1ch3-accel1-j1ch1">
+                        <Name>Acceleration9</Name>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j2ch1-accel1-j1ch1">
+                        <Name>Acceleration10</Name>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j2ch2-accel1-j1ch1">
+                        <Name>Acceleration11</Name>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd2-j2ch3-accel1-j1ch1">
+                        <Name>Acceleration12</Name>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <PortRef IDREF="port-mscd2-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd3-j1ch1-strain1-j1ch1">
+                        <Name>Strain1</Name>
+                        <Description>Signal Conditioner 3 j1 Ch1 to Strain Guage 1 j1 (Strain)</Description>
+                        <PortRef IDREF="port-mscd3-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-strain1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd3-j1ch2-strain2-j1ch1">
+                        <Name>Strain2</Name>
+                        <Description>Signal Conditioner 3 j1 Ch2 to Strain Guage 2 j1 (Strain)</Description>
+                        <PortRef IDREF="port-mscd3-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-strain2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd4-j1ch1-vibration1-j1ch1">
+                        <Name>Vibration1</Name>
+                        <Description>Signal Conditioner 4 j1 Ch1 to Vibration 1 j1 (Vibration)</Description>
+                        <PortRef IDREF="port-mscd4-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-vibration1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-mscd4-j2ch1-vibration2-j1ch1">
+                        <Name>Vibration2</Name>
+                        <Description>Signal Conditioner 4 j2 Ch1 to Vibration 2 j1 (Vibration)</Description>
+                        <PortRef IDREF="port-mscd4-j2-ch1-ex5"/>
+                        <PortRef IDREF="port-vibration1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                </PortMappings>
             </Network>
         </Networks>
     </NetworkDomain>
