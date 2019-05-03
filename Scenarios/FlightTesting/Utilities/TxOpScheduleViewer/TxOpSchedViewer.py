@@ -14,6 +14,8 @@ import json
 import math
 import operator
 import curses
+import copy
+import time
 from curses import wrapper
 
 ns = {"xsd": "http://www.w3.org/2001/XMLSchema",
@@ -641,11 +643,44 @@ def init_text_colors():
 
 # ------------------------------------------------------------------------------
 
+def write_report_to_json(rans_list):
+    new_rans_list = copy.deepcopy(rans_list)
+    ran_config_dict = {}
+    for ran in new_rans_list:
+        ran_dict = vars(ran)
+        links = []
+        for l in ran.links:
+            link_dict = vars(l)
+            toxp_list = []
+            for t in l.tx_sched:
+                toxp_list.append(vars(t))
+            link_dict['tx_sched'] = toxp_list
+            if link_dict['qos_policy'] is not None:
+                link_dict['qos_policy'] = vars(l.qos_policy)
+            links.append(link_dict)
+        ran_dict['links'] = links
+        ran_config_dict[ran.name] = ran_dict
+
+    cwd = os.getcwd()
+    log_file_name = 'TxOpSched_Report_{}.json'
+    log_dir_name = 'TxOpSched_Logs'
+    log_dir = os.path.join(cwd, log_dir_name)
+    log_file = os.path.join(log_dir, log_file_name)
+
+    if not os.path.isdir(log_dir):
+        os.mkdir(log_dir)
+
+    with open(log_file.format(now), 'w') as f:
+        json.dump(ran_config_dict, f, indent=4, sort_keys=True)
+
+# ------------------------------------------------------------------------------
+
 
 def main(stdscr):  
     global mdl_file
     global score_file
     global text_d
+    global now
     rans_list = []
     qos_policies_list = []
 
@@ -812,6 +847,8 @@ def main(stdscr):
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
 
+    write_report_to_json(rans_list)
+
     # Initialize print loop variables
     num_rans = len(rans_list)
     ran_idx = 1
@@ -858,6 +895,8 @@ def no_gui():
 
 
 if __name__ == "__main__":
+    now = time.strftime("%Y%m%d_%H%M%S")
+
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
