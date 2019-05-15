@@ -676,42 +676,29 @@ def write_report_to_json(rans_list):
 # ------------------------------------------------------------------------------
 
 
-def main(stdscr):  
+def run_schedule_viewer():
     global mdl_file
     global score_file
     global text_d
     global now
+    global stdscr
+
     rans_list = []
     qos_policies_list = []
-
-    init_text_colors()
-
-
-
-    stdscr.bkgd(text_d['BG'])
-    banner_pad.bkgd(text_d['BG'])
-    toolbar_pad.bkgd(text_d['BG'])
-    file_info_pad.bkgd(text_d['BG'])
-    ran_pad.bkgd(text_d['BG'])
-    link_info_pad.bkgd(text_d['BG'])
-    epoch_pad.bkgd(text_d['BG'])
-    txop_display_pad.bkgd(text_d['BG'])
-    stdscr.clear()
-    stdscr.refresh()
 
     # Parse MDL file, and create the RAN Config (assuming only a single RAN Config)
     mdl_parser = etree.XMLParser(remove_blank_text=True)
     root = etree.parse(mdl_file, mdl_parser)
-    
+
     if debug >= 3:
         print("***** MDL FILE CONTENTS *****")
         print(etree.tostring(root))
         print("***** END MDL FILE *****")
-    
+
     # Parse MDL file for Configuration Version
     root_name = root.find("mdl:Name", namespaces=ns).text
     root_config_ver = root.find("mdl:ConfigurationVersion", namespaces=ns).text
-    
+
     # Parse MDL file for RAN Config Parameters
     rans = root.xpath("//mdl:RANConfiguration", namespaces=ns)
     for ran in rans:
@@ -737,9 +724,9 @@ def main(stdscr):
         rldst_idref = radio_link.find("mdl:DestinationRadioGroupRef", namespaces=ns).attrib
         rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref["IDREF"]), namespaces=ns)
         rldst = rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text
-        
+
         new_link = RadioLink(rlname, rlid, rlsrc, rldst)
-        
+
         tx_sched = radio_link.find("mdl:TransmissionSchedule", namespaces=ns)
         if tx_sched is not None:
             # Loop through the TxOps if they are defined for this link
@@ -750,12 +737,12 @@ def main(stdscr):
                 txop_timeout = txop.find("mdl:TxOpTimeout", namespaces=ns).text
                 new_txop = TxOp(txop_freq, txop_start, txop_stop, txop_timeout)
                 new_link.add_txop(new_txop)
-        
+
         # Iterate through the list of RANs, and add the Link to the appropriate RAN
         for r in rans_list:
             if r.id == ran_idref:
                 r.add_link(new_link)
-    
+
     # Parse MDL file for QoS Policy Info (specifically, the max latency requirement)
     qos_policies = root.xpath("//mdl:QoSPolicy", namespaces=ns)
     for qos_policy in qos_policies:
@@ -769,7 +756,7 @@ def main(stdscr):
                 temp_value_usec = temp_value_usec * 1000000
             if temp_value_usec < value_usec:
                 value_usec = temp_value_usec
-                        
+
         qpname = qos_policy.find("mdl:Name", namespaces=ns).text
         qpid = qos_policy.attrib['ID']
         qplmmc = qos_policy.find("mdl:LinkManagementMinCapacity/mdl:Value", namespaces=ns).text
@@ -777,7 +764,7 @@ def main(stdscr):
         qplmax = int(value_usec)
         new_qp = QoSPolicy(qpname, qpid, qplmmc, qpac, qplmax)
         qos_policies_list.append(new_qp)
-        
+
         rlrefs = qos_policy.findall(".//mdl:RadioLinkRef", namespaces=ns)
         for rlref in rlrefs:
             for r in rans_list:
@@ -793,10 +780,10 @@ def main(stdscr):
             for t in l.tx_sched:
                 total_ran_tx_time_usec += t.duration_usec
             l.calc_max_latency(ran_epoch_usec)  # Calculate Minimum Latency Requirement Achievable per link
-            l.calc_alloc_bw_mbps(r.epoch_ms)    # Calculate and set the Allocated Bandwidth per link
-        
+            l.calc_alloc_bw_mbps(r.epoch_ms)  # Calculate and set the Allocated Bandwidth per link
+
         r.efficiency_pct = (total_ran_tx_time_usec / ran_epoch_usec) * 100  # Calculate Schedule Efficiency per RAN
-        r.check_guardbands()                    # Check for any guardband violations
+        r.check_guardbands()  # Check for any guardband violations
 
     # Load JSON scoring file
     ld_link_scores = None
@@ -849,6 +836,33 @@ def main(stdscr):
 
     write_report_to_json(rans_list)
 
+    return rans_list, root_name, root_config_ver
+
+
+# ------------------------------------------------------------------------------
+
+
+def main(stdscr):  
+    global mdl_file
+    global score_file
+    global text_d
+    global now
+
+    init_text_colors()
+
+    stdscr.bkgd(text_d['BG'])
+    banner_pad.bkgd(text_d['BG'])
+    toolbar_pad.bkgd(text_d['BG'])
+    file_info_pad.bkgd(text_d['BG'])
+    ran_pad.bkgd(text_d['BG'])
+    link_info_pad.bkgd(text_d['BG'])
+    epoch_pad.bkgd(text_d['BG'])
+    txop_display_pad.bkgd(text_d['BG'])
+    stdscr.clear()
+    stdscr.refresh()
+
+    rans_list, root_name, root_config_ver = run_schedule_viewer()
+
     # Initialize print loop variables
     num_rans = len(rans_list)
     ran_idx = 1
@@ -859,7 +873,7 @@ def main(stdscr):
 
         stdscr.clear()
         stdscr.refresh()
-           
+
         # Sanity check for window height requirements
         if height < 10:
             print_too_short(width)
@@ -875,13 +889,13 @@ def main(stdscr):
                 print_txops_in_all_rans(rans_list, (ran_idx-1))
             print_toolbar()
         stdscr.refresh()
-    
+
         keypress = stdscr.getkey()          # Wait for user to press a key
         if keypress.isdigit():
             ran_idx = int(keypress)
         elif keypress == 'q':
             break
-        
+
         if ran_idx == 0:
             ran_idx = 1
         if ran_idx > len(rans_list):
@@ -904,6 +918,7 @@ if __name__ == "__main__":
                         help='JSON file to score MDL file performance', type=str)
     parser.add_argument('-d', action='store', default=0, dest='debug', help='Set the Debug level', type=int)
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.4.1')
+    parser.add_argument('-H', action='store_true', dest='HEADLESS', help='Runs Schedule Viewer in headless mode. Useful generating score.')
     parser.add_argument('--database', action='store', default=None, dest='DATABASE', help='Set Name of OrientDB database. If set the MDL file will be exported from the OrientDB database', type=str)
     parser.add_argument('--config', action='store', default=None, dest='CONFIG', help='Set config.json for OrientDB', type=str)
     cli_args = parser.parse_args()
@@ -912,6 +927,7 @@ if __name__ == "__main__":
 
     mdl_file = cli_args.FILE
     score_file = cli_args.SCORE
+    headless = cli_args.HEADLESS
     mod_name = None
     debug = cli_args.debug
     if cli_args.DATABASE is not None or cli_args.CONFIG is not None:
@@ -921,23 +937,25 @@ if __name__ == "__main__":
         exporter = MDLExporter(database, mdl_file, configFile)
         exporter.export_xml()
 
-    text_d = {}
-    border_d = {}
+    if headless:
+        run_schedule_viewer()
+    if not headless:
+        text_d = {}
+        border_d = {}
 
-    stdscr = curses.initscr()
-    banner_pad = curses.newpad(4, 106)          # Initialize Banner Pad
-    toolbar_pad = curses.newpad(3, 106)         # Initialize Toolbar Pad
-    file_info_pad = curses.newpad(6, 102)       # Initialize File Info Pad
-    ran_pad = curses.newpad(5, 102)             # Initialize RAN Pad
-    link_info_pad = curses.newpad(8, 102)       # Initialize Link Info Pad
-    epoch_pad = curses.newpad(10, 102)          # Initialize Epoch Pad
-    txop_display_pad = curses.newpad(1, 100)    # Initialize TxOp Display Pad
+        stdscr = curses.initscr()
+        banner_pad = curses.newpad(4, 106)  # Initialize Banner Pad
+        toolbar_pad = curses.newpad(3, 106)  # Initialize Toolbar Pad
+        file_info_pad = curses.newpad(6, 102)  # Initialize File Info Pad
+        ran_pad = curses.newpad(5, 102)  # Initialize RAN Pad
+        link_info_pad = curses.newpad(8, 102)  # Initialize Link Info Pad
+        epoch_pad = curses.newpad(10, 102)  # Initialize Epoch Pad
+        txop_display_pad = curses.newpad(1, 100)  # Initialize TxOp Display Pad
 
-    if os.name == 'nt':             # If running on Windows, disable the "blinking" feature of curses
-        BLINK = 0                   # because it doesn't look very good.  Also disabling the "bold" feature
-        BOLD = 0                    # because it changes the color on Windows
-    else:
-        BLINK = curses.A_BLINK
-        BOLD = curses.A_BOLD
-
-    wrapper(main)
+        if os.name == 'nt':  # If running on Windows, disable the "blinking" feature of curses
+            BLINK = 0  # because it doesn't look very good.  Also disabling the "bold" feature
+            BOLD = 0  # because it changes the color on Windows
+        else:
+            BLINK = curses.A_BLINK
+            BOLD = curses.A_BOLD
+        wrapper(main)
