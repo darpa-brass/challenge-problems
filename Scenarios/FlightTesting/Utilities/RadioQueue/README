@@ -13,7 +13,8 @@ Command Line Arguments are available via the '-h' argument:
                          [-d DEBUG] [-v]
 
     optional arguments:
-      -h, --help         show this help message and exit
+      -h, --help         show this help message and exit.
+      -H                 run Radio Queue simulation in headless mode
       -I                 Infinite Queue Size (not limited by the MAX_QUEUE_SIZE).
                          WARNING: This can utilize a lot of system resources. Use
                          at your own risk!
@@ -22,7 +23,7 @@ Command Line Arguments are available via the '-h' argument:
       -r                 Realtime mode (screen updates 1x per epoch. Default: Slow
                          Refresh rate (1x per sec)
       -d DEBUG           Set the Debug level
-      -v, --version      show program's version number and exit
+      -v, --version      show program's version number and exi
       --database         Sets the name of the OrientDB database
       --config           Set config file for OrientDB
       

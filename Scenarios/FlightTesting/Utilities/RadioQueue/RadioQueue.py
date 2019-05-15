@@ -157,31 +157,33 @@ def run_epoch():
     global data_input_rates
     global bw_allocs
     global database
+    global headless
 
     
     # Set callback timer for next epoch update
     next_timer = threading.Timer(epoch_sec, run_epoch)
     next_timer.start()
 
-    height, width = stdscr.getmaxyx()
 
-    stdscr.nodelay(True)
 
     # Set Command Line Mode
-    keypress = stdscr.getch()
-    if keypress != -1:
-        if keypress == ord('r'):    # If selected, use 'Realtime Mode'
-            realtime_mode = True
-        elif keypress == ord('s'):  # If selected, use 'Slow Refresh mode'
-            realtime_mode = False
-        elif keypress == ord('q'):  # If selected, toggle Queue Visualization
-            q_viz_mode = not q_viz_mode
-        elif keypress == ord('h'):  # If selected, toggle history plot
-            history_plot_mode = not history_plot_mode
-        elif keypress == ord('x'):  # If selected, exit application
-            next_timer.cancel()
-            restore_screen()
-            sys.exit()
+    if not headless:
+        height, width = stdscr.getmaxyx()
+        stdscr.nodelay(True)
+        keypress = stdscr.getch()
+        if keypress != -1:
+            if keypress == ord('r'):    # If selected, use 'Realtime Mode'
+                realtime_mode = True
+            elif keypress == ord('s'):  # If selected, use 'Slow Refresh mode'
+                realtime_mode = False
+            elif keypress == ord('q'):  # If selected, toggle Queue Visualization
+                q_viz_mode = not q_viz_mode
+            elif keypress == ord('h'):  # If selected, toggle history plot
+                history_plot_mode = not history_plot_mode
+            elif keypress == ord('x'):  # If selected, exit application
+                next_timer.cancel()
+                restore_screen()
+                sys.exit()
 
     # Reload JSON file for Radio Data Input Rates, parse contents, and update Radio objects
     # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
@@ -305,7 +307,7 @@ def run_epoch():
 
     if realtime_mode or ((epoch_num % epochs_per_sec) == 0):
         # Print windows and graphics panels if not in Debug mode
-        if debug == 0:
+        if debug == 0 and not headless:
             stdscr.clear()
             stdscr.noutrefresh()
 
@@ -395,7 +397,7 @@ def write_qlens_to_json(radios):
         queues.append(radio_d)
     if database is None:
         with open("radio_queues.json", "w") as f:
-            json.dump(queues, f)
+            json.dump(queues, f, indent=4)
 
     return queues
 
@@ -403,7 +405,7 @@ def write_qlens_to_json(radios):
 
 
 def print_stats(rlist):
-    if debug == 2:
+    # if debug == 2:
         print("EPOCH  | TIME              | Radio    | Allocated BW  | Data Input Rate | Queue Depth | Queue Status")
         now = time.time()
         for r in rlist:
@@ -1401,6 +1403,7 @@ if __name__ == "__main__":
     parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.3.2')
     parser.add_argument('-i', action='store', dest='data_input_rates', help='Json with the data  input rates for a set of Radios', type=str)
     parser.add_argument('-b', action='store', dest='bw_allocs', help='Json with the avaliable bandwidth for a set of Radios', type=str)
+    parser.add_argument('-H', action='store_true', dest='headless_mode', help='If set, RadioQueue will run in headless mode.')
     parser.add_argument('--config', action='store', default=None, dest='config', help='Set config file for OrientDB ', type=str)
     parser.add_argument('--database', action='store', default=None, dest='database', help='Sets the name of the OrientDB database', type=str)
     cli_args = parser.parse_args()
@@ -1417,6 +1420,7 @@ if __name__ == "__main__":
     data_input_rates = cli_args.data_input_rates
     bw_allocs = cli_args.bw_allocs
     init_epoch_vals(cli_args.epoch_size_ms)   # Pass CLI Epoch size (ms) to the init_epoch_vals() function
+    headless = cli_args.headless_mode
     database = None
     if cli_args.database is not None and cli_args.config is not None:
         from brass_api.orientdb.orientdb_helper import BrassOrientDBHelper
@@ -1434,28 +1438,33 @@ if __name__ == "__main__":
     text_d = {}
     border_d = {}
     graph_d = {}
-    
-    stdscr = curses.initscr()                # Initial main screen for curses
-    banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
-    system_value_pad = curses.newpad(4, 90)  # Initialize System Value Pad
-    time_pad = curses.newpad(3, 87)          # Initialize Time Pad
-    lm_pad = curses.newpad(5, 87)            # Initialize LM Pad
-    radio_pad = curses.newpad(10, 88)        # Initialize Radio Pad
-    q_pad = curses.newpad(10, 88)            # Initialize Queue Pad
-    history_pad = curses.newpad(30, 86)      # Initialize History Pad
-    message_pad = curses.newpad(5, 86)       # Initialize Message Pad
-    toolbar_pad = curses.newpad(2, 100)      # Initialize Toolbar Pad
-    curses.curs_set(0)
-    
-    signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
-    
-    if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
-        BLINK = 0                               # because it doesn't look very good.
-    else:
-        BLINK = curses.A_BLINK
+    if headless:
+        try:
+            run_epoch()
+        except:
+            sys.exit(sys.exc_info())
+    elif not headless:
+        stdscr = curses.initscr()                # Initial main screen for curses
+        banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
+        system_value_pad = curses.newpad(4, 90)  # Initialize System Value Pad
+        time_pad = curses.newpad(3, 87)          # Initialize Time Pad
+        lm_pad = curses.newpad(5, 87)            # Initialize LM Pad
+        radio_pad = curses.newpad(10, 88)        # Initialize Radio Pad
+        q_pad = curses.newpad(10, 88)            # Initialize Queue Pad
+        history_pad = curses.newpad(30, 86)      # Initialize History Pad
+        message_pad = curses.newpad(5, 86)       # Initialize Message Pad
+        toolbar_pad = curses.newpad(2, 100)      # Initialize Toolbar Pad
+        curses.curs_set(0)
 
-    wrapper(main)
-    
-    if os.name == 'posix':
-        while True:
-            signal.pause()      # Need this for graceful exiting
+        signal.signal(signal.SIGINT, sig_handler)   # Register signal handler for graceful exiting (e.g. CTRL-C)
+
+        if os.name == 'nt':                         # If running on Windows, disable the "blinking" feature of curses
+            BLINK = 0                               # because it doesn't look very good.
+        else:
+            BLINK = curses.A_BLINK
+
+        wrapper(main)
+
+        if os.name == 'posix':
+            while True:
+                signal.pause()      # Need this for graceful exiting
