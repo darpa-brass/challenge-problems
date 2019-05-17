@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---                                TmNShark                                ---
 # ---                                                                        ---
-# --- Last Updated: April 9, 2019                                            ---
+# --- Last Updated: May 17, 2019                                             ---
 # ------------------------------------------------------------------------------
 # ---                                                                        ---
 # --- This utility can convert network packets into a binary stream of TmNS  ---
@@ -15,8 +15,11 @@
 # ------------------------------------------------------------------------------
 
 import os
+import sys
 import argparse
 import time
+import struct
+import socket
 import errno
 import signal
 from time import sleep
@@ -532,6 +535,57 @@ def parse_mdl(mdl=None):
 # ------------------------------------------------------------------------------
 
 
+def get_list_of_ltcdatasink_mc_addrs(mdl=None, my_roleid=None):
+    """ This function parses an MDL file and returns a list of all multicast addresses that
+        are associated with the TmNSLTCDataSink capability associated with the TmNSApp referenced
+        by the specified RoleID of the component."""
+
+    mcaddrs = []
+    msg_refs = []
+
+    mdl_parser = etree.XMLParser(remove_blank_text=True)
+    root = etree.parse(mdl, mdl_parser)
+
+    roleids = root.xpath("//mdl:RoleID", namespaces=ns)
+
+    for r in roleids:
+        if r.text == my_roleid:
+            ltc_sink_msg_refs = next(r.iterancestors()).findall("mdl:TmNSLTCDataSink/mdl:MessageDefinitionRefs/"
+                                                             "mdl:MessageDefinitionRef", namespaces=ns)
+            for ref in ltc_sink_msg_refs:
+                msg_refs.append(ref.attrib["IDREF"])
+
+            for mref in msg_refs:
+                msg = root.xpath("//mdl:MessageDefinition[@ID='{}']".format(mref), namespaces=ns)
+                addr = msg[0].find("mdl:DestinationAddress", namespaces=ns).text
+                mcaddrs.append(addr)
+
+    print("Found {} Multicast Groups to subscribe to.".format(len(mcaddrs)))
+    return mcaddrs
+
+
+# ------------------------------------------------------------------------------
+
+
+def subscribe_to_mc_groups(addrs=None):
+    """ This function sends out IGMP join messages for the multicast groups included
+        in the list of addresses provided as the function input.
+        Based on https://svn.python.org/projects/python/trunk/Demo/sockets/mcast.py """
+
+    for mc in addrs:
+        print("subscribing to {}".format(mc))
+        addrinfo = socket.getaddrinfo(mc, None)[0]
+        s = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind(('', DEFAULT_TDM_PORT))
+        group_bin = socket.inet_pton(addrinfo[0], addrinfo[4][0])
+        mreq = group_bin + struct.pack('=I', socket.INADDR_ANY)
+        s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+
+
+# ------------------------------------------------------------------------------
+
+
 def sig_handler(sig, frame):
     """ Generic signal handler to catch 'CTRL+C' keystrokes from the uses."""
     print("User signals: 'The End'")
@@ -545,7 +599,7 @@ if __name__ == "__main__":
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="MODE", help="Command / Mode Selection")
-    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.0.6')
+    parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1.0')
 
     net2tdm_parser = subparsers.add_parser('mi', help="Message Input: Receive IP packets and extract TDMs out")
     tdm2net_parser = subparsers.add_parser('mo', help="Message Output: Receive TDM stream and output as IP packets")
@@ -562,6 +616,10 @@ if __name__ == "__main__":
     net2tdm_parser.add_argument('-o', action='store', default=DEFAULT_BINARY_TDM_FILE, dest='BINFILE',
                                 help="Output file for storing binary stream of TmNS Data Messages (default: tmns.bin).",
                                 type=str)
+    net2tdm_parser.add_argument('-m', action='store', default=None, dest='MDL_FILE', help="MDL file with TmNS Data "
+                                "Message subscription list (use in conjunction with the -r option).")
+    net2tdm_parser.add_argument('-r', action='store', default=None, dest='ROLE_ID', help="RoleID for TmNS node "
+                                "identification within the specified MDL configuation file (use with the -m option).")
     net2tdm_parser.add_argument('-P', action='store', default=DEFAULT_TDM_PORT, dest='PORT',
                                 help="UDP Port number of TmNS Data Messages.", type=int)
     net2tdm_parser.add_argument('-q', action='store_true', default=False, dest='QUICK_LOAD',
@@ -601,6 +659,8 @@ if __name__ == "__main__":
         infile = cli_args.INFILE
         pipename = cli_args.PIPE
         binfile = cli_args.BINFILE
+        mdl_file = cli_args.MDL_FILE
+        role_id = cli_args.ROLE_ID
         TDM_PORT = cli_args.PORT
         quick_load = cli_args.QUICK_LOAD
 
@@ -618,6 +678,25 @@ if __name__ == "__main__":
                   "pipe (-p) or output file (-o).")
             print("Use '-h' for help menu.")
             exit(0)
+
+        # TODO: check for input values of both MDL file AND Role ID.
+        #     if eor, then quit.
+        #     if AND, then parse MDL and send subscriptions and continue.
+        #     if neither, just continue
+
+        if mdl_file is not None:
+            if os.path.exists(mdl_file) is False:
+                print("Specified MDL File does not exist.  Try again.")
+                exit(-1)
+
+            if role_id is None:
+                print("You didn't specify the roleID.  TmNShark needs that if you want it to "
+                      "subscribe to the correct subset of TmNS Data Messages.")
+                exit(-2)
+
+            mc_list = get_list_of_ltcdatasink_mc_addrs(mdl=mdl_file, my_roleid=role_id)
+            subscribe_to_mc_groups(addrs=mc_list)
+
 
         # Input Selection Mode: Input from a network interface (live) or from a PCAP/PCAPNG file (offline)
         if infile is None:  # LIVE MODE: No input file is specified.  Run in live capture mode.
