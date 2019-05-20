@@ -2,7 +2,7 @@
 # ------------------------------------------------------------------------------
 # ---                                TmNShark                                ---
 # ---                                                                        ---
-# --- Last Updated: May 17, 2019                                             ---
+# --- Last Updated: May 20, 2019                                             ---
 # ------------------------------------------------------------------------------
 # ---                                                                        ---
 # --- This utility can convert network packets into a binary stream of TmNS  ---
@@ -15,10 +15,8 @@
 # ------------------------------------------------------------------------------
 
 import os
-import sys
 import argparse
 import time
-import struct
 import socket
 import errno
 import signal
@@ -551,7 +549,7 @@ def get_list_of_ltcdatasink_mc_addrs(mdl=None, my_roleid=None):
     for r in roleids:
         if r.text == my_roleid:
             ltc_sink_msg_refs = next(r.iterancestors()).findall("mdl:TmNSLTCDataSink/mdl:MessageDefinitionRefs/"
-                                                             "mdl:MessageDefinitionRef", namespaces=ns)
+                                                                "mdl:MessageDefinitionRef", namespaces=ns)
             for ref in ltc_sink_msg_refs:
                 msg_refs.append(ref.attrib["IDREF"])
 
@@ -568,19 +566,20 @@ def get_list_of_ltcdatasink_mc_addrs(mdl=None, my_roleid=None):
 
 
 def subscribe_to_mc_groups(addrs=None):
-    """ This function sends out IGMP join messages for the multicast groups included
-        in the list of addresses provided as the function input.
-        Based on https://svn.python.org/projects/python/trunk/Demo/sockets/mcast.py """
+    """ This function sends out IGMP join messages for the multicast groups included in
+        the list of addresses provided as the function input.  It returns the listening
+        socket."""
+
+    listen_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_IP)
+    listen_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    listen_sock.bind(('', DEFAULT_TDM_PORT))
 
     for mc in addrs:
         print("subscribing to {}".format(mc))
-        addrinfo = socket.getaddrinfo(mc, None)[0]
-        s = socket.socket(addrinfo[0], socket.SOCK_DGRAM)
-        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        s.bind(('', DEFAULT_TDM_PORT))
-        group_bin = socket.inet_pton(addrinfo[0], addrinfo[4][0])
-        mreq = group_bin + struct.pack('=I', socket.INADDR_ANY)
-        s.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mreq)
+        mc_req = socket.inet_aton(mc) + socket.inet_aton('0.0.0.0')
+        listen_sock.setsockopt(socket.IPPROTO_IP, socket.IP_ADD_MEMBERSHIP, mc_req)
+
+    return listen_sock
 
 
 # ------------------------------------------------------------------------------
@@ -588,6 +587,12 @@ def subscribe_to_mc_groups(addrs=None):
 
 def sig_handler(sig, frame):
     """ Generic signal handler to catch 'CTRL+C' keystrokes from the uses."""
+
+    # Close down any MC sockets that were opened for listening."
+    if mc_sock is not None:
+        mc_sock.close()
+        print("Closed the MC Listening Socket")
+
     print("User signals: 'The End'")
     exit(0)
 
@@ -653,6 +658,7 @@ if __name__ == "__main__":
     mode = cli_args.MODE
     mdid_lookup = {}
     pipe_mode = True
+    mc_sock = None
 
     if mode == 'mi':  # Message Input Mode
         interface = cli_args.INTERFACE
@@ -679,11 +685,6 @@ if __name__ == "__main__":
             print("Use '-h' for help menu.")
             exit(0)
 
-        # TODO: check for input values of both MDL file AND Role ID.
-        #     if eor, then quit.
-        #     if AND, then parse MDL and send subscriptions and continue.
-        #     if neither, just continue
-
         if mdl_file is not None:
             if os.path.exists(mdl_file) is False:
                 print("Specified MDL File does not exist.  Try again.")
@@ -695,8 +696,7 @@ if __name__ == "__main__":
                 exit(-2)
 
             mc_list = get_list_of_ltcdatasink_mc_addrs(mdl=mdl_file, my_roleid=role_id)
-            subscribe_to_mc_groups(addrs=mc_list)
-
+            mc_sock = subscribe_to_mc_groups(addrs=mc_list)
 
         # Input Selection Mode: Input from a network interface (live) or from a PCAP/PCAPNG file (offline)
         if infile is None:  # LIVE MODE: No input file is specified.  Run in live capture mode.

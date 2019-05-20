@@ -2,8 +2,8 @@
 *********         README File For TmNShark         *********
 ************************************************************
 
-* Version: 0.0.6
-* Date:    April 9, 2019
+* Version: 0.1.0
+* Date:    May 20, 2019
 
 TmNShark runs under Python 3.
 
@@ -23,7 +23,7 @@ is output to the network).
 Command Line Arguments for "Message In" mode:
     > python tmnshark.py mi -h
     usage: tmnshark.py mi [-h] [-I INTERFACE] [-i INFILE] [-p PIPE] [-o BINFILE]
-                          [-P PORT] [-q]
+                      [-m MDL_FILE] [-r ROLE_ID] [-P PORT] [-q]
 
     optional arguments:
       -h, --help    show this help message and exit
@@ -36,10 +36,15 @@ Command Line Arguments for "Message In" mode:
                     (default: pipe4tmns).
       -o BINFILE    Output file for storing binary stream of TmNS Data Messages
                     (default: tmns.bin).
+      -m MDL_FILE   MDL file with TmNS Data Message subscription list (use in
+                    conjunction with the -r option).
+      -r ROLE_ID    RoleID for TmNS node identification within the specified MDL
+                    configuation file (use with the -m option).
       -P PORT       UDP Port number of TmNS Data Messages.
       -q            Quick Load mode will parse the provided input PCAP/PCAPNG file
                     and return all TDMs as fast as possible (e.g. not at 1-for-1
                     received rate). Default is received-time rate.
+
 
 For live capture mode, a specific interface can be specified with the '-I' argument
 If an interface is not specified, the system will use it's configured default
@@ -55,6 +60,13 @@ is used, as specified with the '-p' argument, the utility will wait until an
 application connects to the named pipe for reading.  If the output is desired
 to be sent to a regular file, the stream of TDMs will be written in binary form
 to the specified output file.
+
+In a live capture mode, MC subscriptions can be issued by TmNShark if it is
+provided an MDL_FILE and a ROLE_ID.  Both options are required to be used together.
+When used, TmNShark will subscribe to all multicast group addresses associated
+with the Messages identified as part of the <TmNSLTCDataSink> element of the
+<TmNSApp> with the <RoleID> element that matches the ROLE_ID input.  In this
+fashion, TmNShark becomes the front-end of an LTC Data Sink component.
 
 The '-P PORT' argument can be set, indicating that TDMs are expected to utilize
 the UDP port number as indicated by PORT.  Without this argument, the default
@@ -137,4 +149,8 @@ Performance for writing TDM packets to the network is not optimal.  The fastest
 that can be sent out the network interface seems to be about 7-10 ms.  For
 network traffic that has a higher packet per second rate, the output rate will
 be slower, regardless of whether the input method is live from the network or
-from a prerecorded PCAP file.
+from a pre-recorded PCAP file.
+
+Some of the socket modes may require 'sudo' privileges in order to sniff from
+an incoming interface or to issue multicast joins.  If there are permission
+errors, try running as sudo.
