@@ -1,0 +1,1790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL">
+  <Name>Spiral</Name>
+  <DatabaseID>5</DatabaseID>
+  <Checksum />
+  <ConfigurationVersion>Spiral_XYZ</ConfigurationVersion>
+  <DirtyBit>false</DirtyBit>
+  <TestMissions>
+    <TestMission>
+      <Name>Generated Test Mission</Name>
+      <Description>System Manager default generated Test Mission.</Description>
+      <TmNSCompleteness>false</TmNSCompleteness>
+      <TmNSCompletenessDescription>TmNS completeness is not yet determined by System Manager.</TmNSCompletenessDescription>
+      <NetworkRefs>
+        <NetworkRef IDREF="Acme" />
+      </NetworkRefs>
+    </TestMission>
+  </TestMissions>
+  <MeasurementDomains>
+    <MeasurementDomain>
+      <Name>Default Measurement Domain</Name>
+      <Description>System Manager default measurement domain.</Description>
+    </MeasurementDomain>
+    <MeasurementDomain>
+      <Name>Acme iDAU</Name>
+      <Description />
+      <Measurements>
+        <Measurement ID="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339">
+          <Name>Acme_AccelerationX</Name>
+          <Description>MSCD-606D Acceleration X</Description>
+          <MeasurementID>0x10000001</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement4_4cf78c58-6e97-4432-a70e-905af3dfb523">
+          <Name>Spiral_AccelerationX</Name>
+          <Description>MSCD-606D Acceleration X - Spiral CE</Description>
+          <MeasurementID>0x44444411</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement4_2x">
+          <Name>Spiral_AccelerationX_speedbooster</Name>
+          <Description>MSCD-606D Acceleration X - Spiral CE</Description>
+          <MeasurementID>0x44444441</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement5_a4c5ff79-2e2b-492a-ade9-301d1262dafa">
+          <Name>Acme_AccelerationY</Name>
+          <Description>MSCD-606D Acceleration Y</Description>
+          <MeasurementID>0x10000021</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement6_430e827c-064a-4fbc-8079-414c56d0475d">
+          <Name>Spiral_AccelerationY</Name>
+          <Description>MSCD-606D Acceleration Y - Spiral CE</Description>
+          <MeasurementID>0x44444442</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement7_79928409-e3e4-4185-9570-de1d8a054792">
+          <Name>Acme_AccelerationZ</Name>
+          <Description>MSCD-606D Acceleration Z</Description>
+          <MeasurementID>0x10000011</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+        <Measurement ID="measurement8_bda0f361-ef9b-445e-9d5c-da4fe8562346">
+          <Name>Spiral_AccelerationZ</Name>
+          <Description>MSCD-606D Acceleration Z - Spiral CE</Description>
+          <MeasurementID>0x44444443</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Analog</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>false</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              <SampleRate>
+                <ConditionParameter>
+                  <ConditionOperation>==</ConditionOperation>
+                  <ConditionValue>8192</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </SampleRate>
+              <DataRate>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>131072</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataRate>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
+      </Measurements>
+      <PackageDefinitions>
+        <PackageDefinition ID="package1_43455031">
+          <Name>0x43455031</Name>
+          <Description>CE Package 1 from Spiral</Description>
+          <PackageDefinitionID>0x43455031</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStructureRef IDREF="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7" />
+          <DataMaps>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>0x43455031</Name>
+                <Description>0x43455031</Description>
+                <DataWordWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </DataWordWidth>
+                <MeasurementRef IDREF="measurement4_2x" />
+                <Syllables>
+                  <Syllable>
+                    <Name>0x43455031</Name>
+                    <Description>0x43455031</Description>
+                    <SyllableWidth>
+                      <Value>16</Value>
+                      <BaseUnit>Bit</BaseUnit>
+                    </SyllableWidth>
+                  </Syllable>
+                </Syllables>
+              </DataWord>
+              <DataStructureFieldRef IDREF="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3" />
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMaps>
+        </PackageDefinition>
+        <PackageDefinition ID="package2_0d830316">
+          <Name>0x0d830316</Name>
+          <Description>0x0d830316</Description>
+          <PackageDefinitionID>0x0d830316</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStructureRef IDREF="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7" />
+          <DataMaps>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>0x0d830316</Name>
+                <Description>0x0d830316</Description>
+                <DataWordWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </DataWordWidth>
+                <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                <Syllables>
+                  <Syllable>
+                    <Name>0x0d830316</Name>
+                    <Description>0x0d830316</Description>
+                    <SyllableWidth>
+                      <Value>16</Value>
+                      <BaseUnit>Bit</BaseUnit>
+                    </SyllableWidth>
+                  </Syllable>
+                </Syllables>
+              </DataWord>
+              <DataStructureFieldRef IDREF="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3" />
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMaps>
+        </PackageDefinition>
+        <PackageDefinition ID="package3_0d639772">
+          <Name>0x0d639772</Name>
+          <Description>0x0d639772</Description>
+          <PackageDefinitionID>0x0d639772</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStructureRef IDREF="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7" />
+          <DataMaps>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>0x0d639772</Name>
+                <Description>0x0d639772</Description>
+                <DataWordWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </DataWordWidth>
+                <MeasurementRef IDREF="measurement5_a4c5ff79-2e2b-492a-ade9-301d1262dafa" />
+                <Syllables>
+                  <Syllable>
+                    <Name>0x0d639772</Name>
+                    <Description>0x0d639772</Description>
+                    <SyllableWidth>
+                      <Value>16</Value>
+                      <BaseUnit>Bit</BaseUnit>
+                    </SyllableWidth>
+                  </Syllable>
+                </Syllables>
+              </DataWord>
+              <DataStructureFieldRef IDREF="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3" />
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMaps>
+        </PackageDefinition>
+        <PackageDefinition ID="package4_d1968644">
+          <Name>0xd1968644</Name>
+          <Description>0xd1968644</Description>
+          <PackageDefinitionID>0xd1968644</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStructureRef IDREF="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7" />
+          <DataMaps>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>0xd1968644</Name>
+                <Description>0xd1968644</Description>
+                <DataWordWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </DataWordWidth>
+                <MeasurementRef IDREF="measurement7_79928409-e3e4-4185-9570-de1d8a054792" />
+                <Syllables>
+                  <Syllable>
+                    <Name>0xd1968644</Name>
+                    <Description>0xd1968644</Description>
+                    <SyllableWidth>
+                      <Value>16</Value>
+                      <BaseUnit>Bit</BaseUnit>
+                    </SyllableWidth>
+                  </Syllable>
+                </Syllables>
+              </DataWord>
+              <DataStructureFieldRef IDREF="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3" />
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMaps>
+        </PackageDefinition>
+      </PackageDefinitions>
+      <DataStructures>
+        <DataStructure ID="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7">
+          <Name>Standard RBus Measurement Package Structure</Name>
+          <Description />
+          <DataStructureFields>
+            <DataStructureField ID="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3">
+              <Name>RBus Measurement Data Field</Name>
+              <Description />
+              <ProperName Extension="None">Extension</ProperName>
+              <FieldLocation ID="fieldlocation1_c03598c7-05f1-4534-bdc2-16195f4c7720">
+                <Name>FieldLocation</Name>
+                <FieldOffset>
+                  <OffsetValue>
+                    <Value>96</Value>
+                    <BaseUnit>Unitless</BaseUnit>
+                  </OffsetValue>
+                </FieldOffset>
+                <FieldWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </FieldWidth>
+              </FieldLocation>
+              <FieldEncoding>
+                <Endianness>BigEndian</Endianness>
+                <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+              </FieldEncoding>
+              <FieldRepetitions>0</FieldRepetitions>
+              <FieldOffsetIncrement>
+                <Value>16</Value>
+                <BaseUnit>Unitless</BaseUnit>
+              </FieldOffsetIncrement>
+            </DataStructureField>
+          </DataStructureFields>
+        </DataStructure>
+      </DataStructures>
+      <MessageDefinitions>
+        <MessageDefinition ID="message2_546f6464">
+          <Name>0x546f6464</Name>
+          <Description />
+          <MessageDefinitionID>0x546f6464</MessageDefinitionID>
+          <OptionWordCount>0xA</OptionWordCount>
+          <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+          <DestinationAddress>239.2.18.82</DestinationAddress>
+          <MaximumMessageLength>
+            <Value>8000</Value>
+            <BaseUnit>Bit</BaseUnit>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <Value>0.05</Value>
+            <BaseUnit>Second</BaseUnit>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>false</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstances>
+            <PackageInstance>
+              <PackageDefinitionRef IDREF="package1_43455031" />
+            </PackageInstance>
+          </PackageInstances>
+        </MessageDefinition>
+        <MessageDefinition ID="message3_11010001">
+          <Name>0x11010001</Name>
+          <Description />
+          <MessageDefinitionID>0x11010001</MessageDefinitionID>
+          <OptionWordCount>0xA</OptionWordCount>
+          <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+          <DestinationAddress>239.1.1.1</DestinationAddress>
+          <MaximumMessageLength>
+            <Value>8000</Value>
+            <BaseUnit>Bit</BaseUnit>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <Value>0.05</Value>
+            <BaseUnit>Second</BaseUnit>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>false</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstances>
+            <PackageInstance>
+              <PackageDefinitionRef IDREF="package2_0d830316" />
+            </PackageInstance>
+          </PackageInstances>
+        </MessageDefinition>
+        <MessageDefinition ID="message4_11010002">
+          <Name>0x11010002</Name>
+          <Description />
+          <MessageDefinitionID>0x11010002</MessageDefinitionID>
+          <OptionWordCount>0xA</OptionWordCount>
+          <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+          <DestinationAddress>239.1.1.2</DestinationAddress>
+          <MaximumMessageLength>
+            <Value>8000</Value>
+            <BaseUnit>Bit</BaseUnit>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <Value>0.05</Value>
+            <BaseUnit>Second</BaseUnit>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>false</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstances>
+            <PackageInstance>
+              <PackageDefinitionRef IDREF="package3_0d639772" />
+            </PackageInstance>
+          </PackageInstances>
+        </MessageDefinition>
+        <MessageDefinition ID="message5_11010003">
+          <Name>0x11010003</Name>
+          <Description />
+          <MessageDefinitionID>0x11010003</MessageDefinitionID>
+          <OptionWordCount>0xA</OptionWordCount>
+          <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+          <DestinationAddress>239.1.1.3</DestinationAddress>
+          <MaximumMessageLength>
+            <Value>8000</Value>
+            <BaseUnit>Bit</BaseUnit>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <Value>0.05</Value>
+            <BaseUnit>Second</BaseUnit>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>false</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstances>
+            <PackageInstance>
+              <PackageDefinitionRef IDREF="package4_d1968644" />
+            </PackageInstance>
+          </PackageInstances>
+        </MessageDefinition>
+      </MessageDefinitions>
+      <DataProcessing>
+        <Functions>
+          <Function ID="function2_c192db64-1050-48f3-a9b2-8c0fb6eb99cd">
+            <Name>do-meas-1-1</Name>
+            <Description />
+            <InputCount>1</InputCount>
+            <UpdateFrequency>IfAll</UpdateFrequency>
+            <Algorithm>0.00015625*x**1 + -5.12*x**0</Algorithm>
+          </Function>
+          <Function ID="function3_f8d5b742-09c6-4cd0-8ba3-c7f67c022380">
+            <Name>do-meas-1-2</Name>
+            <Description />
+            <InputCount>1</InputCount>
+            <UpdateFrequency>IfAll</UpdateFrequency>
+            <Algorithm>0.00015625*x**1 + -5.12*x**0</Algorithm>
+          </Function>
+          <Function ID="function4_44fffe51-370c-46cb-95ab-dbb2c0c6927b">
+            <Name>do-meas-1-3</Name>
+            <Description />
+            <InputCount>1</InputCount>
+            <UpdateFrequency>IfAll</UpdateFrequency>
+            <Algorithm>0.00015625*x**1 + -5.12*x**0</Algorithm>
+          </Function>
+          <Function ID="function5_double">
+            <Name>do-doubleit</Name>
+            <Description />
+            <InputCount>1</InputCount>
+            <UpdateFrequency>IfAll</UpdateFrequency>
+            <Algorithm>2*x</Algorithm>
+          </Function>
+        </Functions>
+        <FunctionMappings>
+          <FunctionMapping>
+            <FunctionRef IDREF="function5_double" />
+            <InputMeasurements>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                <Variable>x</Variable>
+              </InputMeasurement>
+            </InputMeasurements>
+            <ResultMeasurements>
+              <ResultMeasurement>
+                <MeasurementRef IDREF="measurement4_2x" />
+              </ResultMeasurement>
+            </ResultMeasurements>
+          </FunctionMapping>
+          <FunctionMapping>
+            <FunctionRef IDREF="function2_c192db64-1050-48f3-a9b2-8c0fb6eb99cd" />
+            <InputMeasurements>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                <Variable>x</Variable>
+              </InputMeasurement>
+            </InputMeasurements>
+            <ResultMeasurements>
+              <ResultMeasurement>
+                <MeasurementRef IDREF="measurement4_4cf78c58-6e97-4432-a70e-905af3dfb523" />
+              </ResultMeasurement>
+            </ResultMeasurements>
+          </FunctionMapping>
+          <FunctionMapping>
+            <FunctionRef IDREF="function3_f8d5b742-09c6-4cd0-8ba3-c7f67c022380" />
+            <InputMeasurements>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement5_a4c5ff79-2e2b-492a-ade9-301d1262dafa" />
+                <Variable>x</Variable>
+              </InputMeasurement>
+            </InputMeasurements>
+            <ResultMeasurements>
+              <ResultMeasurement>
+                <MeasurementRef IDREF="measurement6_430e827c-064a-4fbc-8079-414c56d0475d" />
+              </ResultMeasurement>
+            </ResultMeasurements>
+          </FunctionMapping>
+          <FunctionMapping>
+            <FunctionRef IDREF="function4_44fffe51-370c-46cb-95ab-dbb2c0c6927b" />
+            <InputMeasurements>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement7_79928409-e3e4-4185-9570-de1d8a054792" />
+                <Variable>x</Variable>
+              </InputMeasurement>
+            </InputMeasurements>
+            <ResultMeasurements>
+              <ResultMeasurement>
+                <MeasurementRef IDREF="measurement8_bda0f361-ef9b-445e-9d5c-da4fe8562346" />
+              </ResultMeasurement>
+            </ResultMeasurements>
+          </FunctionMapping>
+        </FunctionMappings>
+      </DataProcessing>
+    </MeasurementDomain>
+  </MeasurementDomains>
+  <NetworkDomain>
+    <Networks>
+      <Network ID="Acme">
+        <Name>DAU</Name>
+        <Description>Acme DAU Network.</Description>
+        <NetworkType>TmNS</NetworkType>
+        <NetworkNodes>
+          <NetworkNode ID="AcmeDAU">
+            <Name>MnACQ-2000</Name>
+            <Description>MnACQ-2000 Network Node</Description>
+            <InventoryID>TA1-Acme-DAU1</InventoryID>
+            <HostName>Acme</HostName>
+            <Manufacturer>Acme</Manufacturer>
+            <Model>MnACQ-2000</Model>
+            <ModelVersion>iNET</ModelVersion>
+            <SerialID>258089</SerialID>
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <TmNSApps>
+              <TmNSApp ID="DAUTma">
+                <Name>MnACQ-2000</Name>
+                <Description>MnACQ-2000</Description>
+                <RoleID>dau201-Acme</RoleID>
+                <LoggingLevel>Warning</LoggingLevel>
+                <Manufacturer>Acme</Manufacturer>
+                <Product>MnACQ-2000</Product>
+                <ProductVersion>iNET</ProductVersion>
+                <ConfigurationVersion>iDAU: app mu.7338, kernel #6983 PREEMPT Fri Dec 11 14:24:21 EST 2015</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>RCC 106-17</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU />
+                <TmNSLTCDataSource>
+                  <LTCInterfaces>
+                    <LTCInterface>
+                      <TimeToLive>10</TimeToLive>
+                      <NetworkInterfaceRef IDREF="MacqEthIf" />
+                      <MessageDefinitionRefs>
+                        <MessageDefinitionRef IDREF="message3_11010001" />
+                        <MessageDefinitionRef IDREF="message4_11010002" />
+                        <MessageDefinitionRef IDREF="message5_11010003" />
+                      </MessageDefinitionRefs>
+                    </LTCInterface>
+                  </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="MacqEthIf" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="module-101">
+            <Name>MPPC-500</Name>
+            <Description>MnACQ-2000 Processor</Description>
+            <Manufacturer>Acme</Manufacturer>
+            <Model>MPPC-500</Model>
+            <SerialID>258085</SerialID>
+            <InventoryID>TA1-Acme-DAU1</InventoryID>
+            <Position>101</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <RunningAppRefs>
+              <TmNSAppRef IDREF="DAUTma"/>
+            </RunningAppRefs>
+            <Connectors>
+            <Connector>
+              <Name>J1 Serial Port</Name>
+              <Description>J1: 9 pin D-subminiature</Description>
+              <Pins>
+              <Pin ID="MppcJ1Pin2" Index="1">
+                <Name>RS232 RCV</Name>
+                <Description>RS-232: receive signal from the host</Description>
+                <Designator>SerialRx</Designator>
+              </Pin>
+              <Pin ID="MppcJ1Pin3" Index="2">
+                <Name>RS232 XMT</Name>
+                <Description>RS-232: transmit signal to the host</Description>
+                <Designator>SerialTx</Designator>
+              </Pin>
+              <Pin ID="MppcJ1Pin9" Index="3">
+                <Name>1PPS OUT</Name>
+                <Description>One pulse per second output</Description>
+                <Designator>1PPS</Designator>
+              </Pin>
+              </Pins>
+            </Connector>
+            </Connectors>
+            <Ports>
+              <Port ID="MppcRs232" Index="1">
+                <Name>Console</Name>
+                <Description>Console Serial Port</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PortTypes>
+                  <PortType>Serial</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MppcJ1Pin2"/>
+                  <PinRef IDREF="MppcJ1Pin3"/>
+                  <PinRef IDREF="MppcJ1Pin9"/>
+                </PinRefs>
+              </Port>
+            </Ports>
+                </Module>
+                <Module ID="module-102">
+            <Name>MACQ-500</Name>
+            <Description>MnACQ-2000 Controller</Description>
+            <Manufacturer>Acme</Manufacturer>
+            <Model>MACQ-500</Model>
+            <SerialID>258080</SerialID>
+            <InventoryID>TA1-Acme-DAU1</InventoryID>
+            <Position>102</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <NetworkInterfaces>
+            <NetworkInterface ID="MacqEthIf">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <PhysicalNetworkPorts>
+              <PhysicalNetworkPort ID="MacqEthPhy">
+                <Name>Ethernet</Name>
+                <Description>MACQ J2 10/100Base-T Ethernet</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <Value>1e8</Value>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              </PhysicalNetworkPorts>
+            </NetworkInterface>
+            </NetworkInterfaces>
+            <Connectors>
+            <Connector>
+              <Name>J1 GPIO RS422</Name>
+              <Description>J1: 15 pin D-subminiature</Description>
+              <Pins>
+              <Pin ID="MacqJ1Pin1" Index="1">
+                <Name>GND</Name>
+                <Description>Digital ground</Description>
+                <Designator>GND</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin2" Index="2">
+                <Name>Port2+</Name>
+                <Description>RS-422 Output port 2 +</Description>
+                <Designator>Port2_plus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin3" Index="3">
+                <Name>Port2-</Name>
+                <Description>RS-422 Output port 2 -</Description>
+                <Designator>Port2_minus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin4" Index="4">
+                <Name>Port4+</Name>
+                <Description>RS-422 Output port 4 +</Description>
+                <Designator>Port4_plus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin5" Index="5">
+                <Name>Port4-</Name>
+                <Description>RS-422 Output port 4 -</Description>
+                <Designator>Port4_minus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin7" Index="6">
+                <Name>GPO1_A</Name>
+                <Description>General-purpose opto-isolated switch 1</Description>
+                <Designator>GPO1_A</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin8" Index="7">
+                <Name>GPO1_B</Name>
+                <Description>General-purpose opto-isolated switch 1</Description>
+                <Designator>GPO1_B</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin9" Index="8">
+                <Name>Port1+</Name>
+                <Description>RS-422 Output port 1 +</Description>
+                <Designator>Port1_plus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin10" Index="9">
+                <Name>Port1-</Name>
+                <Description>RS-422 Output port 1 -</Description>
+                <Designator>Port1_minus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin11" Index="10">
+                <Name>Port3+</Name>
+                <Description>RS-422 Output port 3 +</Description>
+                <Designator>Port3_plus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin12" Index="11">
+                <Name>Port3-</Name>
+                <Description>RS-422 Output port 3 -</Description>
+                <Designator>Port3_minus</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin14" Index="12">
+                <Name>GPO2_A</Name>
+                <Description>General-purpose opto-isolated switch 2</Description>
+                <Designator>GPO2_A</Designator>
+              </Pin>
+              <Pin ID="MacqJ1Pin15" Index="13">
+                <Name>GPO2_B</Name>
+                <Description>General-purpose opto-isolated switch 2</Description>
+                <Designator>GPO2_B</Designator>
+              </Pin>
+              </Pins>
+            </Connector>
+            <Connector>
+              <Name>J2 Ethernet</Name>
+              <Description>J2: 9 pin D-subminiature</Description>
+              <Pins>
+              <Pin ID="MacqJ2Pin1" Index="1">
+                <Name>TXDN</Name>
+                <Description>Transmit signal (negative polarity)</Description>
+                <Designator>TXDN</Designator>
+              </Pin>
+              <Pin ID="MacqJ2Pin2" Index="2">
+                <Name>TXDP</Name>
+                <Description>Transmit signal (positive polarity)</Description>
+                <Designator>TXDP</Designator>
+              </Pin>
+              <Pin ID="MacqJ2Pin4" Index="3">
+                <Name>RXDN</Name>
+                <Description>Receive signal (negative polarity)</Description>
+                <Designator>RXDN</Designator>
+              </Pin>
+              <Pin ID="MacqJ2Pin5" Index="4">
+                <Name>RXDP</Name>
+                <Description>Receive signal (positive polarity)</Description>
+                <Designator>RXDP</Designator>
+              </Pin>
+              <Pin ID="MacqJ2Pin6" Index="5">
+                <Name>CHASSIS GND</Name>
+                <Description>Chassis ground</Description>
+                <Designator>GND</Designator>
+              </Pin>
+              </Pins>
+            </Connector>
+            </Connectors>
+            <Ports>
+              <Port ID="Macq-RS-422-1" Index="1" Enabled="true">
+                <Name>TX1</Name>
+                <Description>RS-422 Port 1</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="Source" Index="1">6</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="RS-422">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MacqJ1Pin9"/>
+                  <PinRef IDREF="MacqJ1Pin10"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Macq-RS-422-2" Index="2" Enabled="false">
+                <Name>TX2</Name>
+                <Description>RS-422 Port 2</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="Source" Index="1">4</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="RS-422">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MacqJ1Pin2"/>
+                  <PinRef IDREF="MacqJ1Pin3"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Macq-RS-422-3" Index="3" Enabled="false">
+                <Name>TX3</Name>
+                <Description>RS-422 Port 3</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="Source" Index="1">6</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="RS-422">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MacqJ1Pin11"/>
+                  <PinRef IDREF="MacqJ1Pin12"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Macq-RS-422-4" Index="4" Enabled="false">
+                <Name>TX4</Name>
+                <Description>RS-422 Port 4</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="Source" Index="1">3</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="RS-422">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MacqJ1Pin4"/>
+                  <PinRef IDREF="MacqJ1Pin5"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Macq-PCM-Multicast" Index="5" Enabled="true">
+                <Name>PCM Multicast</Name>
+                <Description>Ethernet PCM Multicast</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType>Ethernet</PortType>
+                </PortTypes>
+              </Port>
+              <Port ID="MacqEthernet" Index="6">
+                <Name>Ethernet</Name>
+                <Description>10/100 Fast Ethernet</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PortTypes>
+                  <PortType>Ethernet</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="MacqJ2Pin1"/>
+                  <PinRef IDREF="MacqJ2Pin2"/>
+                  <PinRef IDREF="MacqJ2Pin4"/>
+                  <PinRef IDREF="MacqJ2Pin5"/>
+                </PinRefs>
+                <PhysicalNetworkPortRef IDREF="MacqEthPhy"/>
+              </Port>
+            </Ports>
+                </Module>
+                <Module ID="module-1">
+            <Name>MSCD-606D-13 at Position 1</Name>
+            <Description>6-channel Simultaneous Sampling Signal Conditioner</Description>
+            <GenericParameter>
+              <NameValues>
+                <NameValue Name="CurrentLimit" Index="4">0</NameValue>
+                <NameValue Name="AutoCalibration" Index="5">0</NameValue>
+              </NameValues>
+            </GenericParameter>
+            <Manufacturer>Acme</Manufacturer>
+            <Model>MSCD-606D-13</Model>
+            <SerialID>250020</SerialID>
+            <InventoryID>TA1-Acme-DAU1</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <Children>
+              <Child>
+                <Name>VoltageExcitationValue</Name>
+                <Description>Sets Voltage Excitation to 5 or 10 Volt</Description>
+                <ChildRefs>
+                  <ChildRef IDREF="VoltageExcitationValue-pos1"/>
+                </ChildRefs>
+              </Child>
+            </Children>
+            <Connectors>
+            <Connector>
+              <Name>J1</Name>
+              <Description>J1: 25 pin D-subminiature, Signal I/O, Channels 1-3</Description>
+              <Pins>
+              <Pin ID="Pos1-J1-Pin1" Index="1">
+                <Name>EX1</Name>
+                <Description>Channel 1 Voltage Excitation Out</Description>
+                <Designator>Pos1-J1-Pin1</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin2" Index="2">
+                <Name>IN1+</Name>
+                <Description>Channel 1 Differential Signal Input +</Description>
+                <Designator>Pos1-J1-Pin2</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin3" Index="3">
+                <Name>IOUT_1</Name>
+                <Description>Channel 1 Current Excitation Out</Description>
+                <Designator>Pos1-J1-Pin3</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin4" Index="4">
+                <Name>EX2</Name>
+                <Description>Channel 2 Voltage Excitation Out</Description>
+                <Designator>Pos1-J1-Pin4</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin5" Index="5">
+                <Name>IN2+</Name>
+                <Description>Channel 2 Differential Signal Input +</Description>
+                <Designator>Pos1-J1-Pin5</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin6" Index="6">
+                <Name>RSVD1</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J1-Pin6</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin7" Index="7">
+                <Name>RSVD2</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J1-Pin7</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin8" Index="8">
+                <Name>AGND1</Name>
+                <Description>Analog Ground</Description>
+                <Designator>Pos1-J1-Pin8</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin9" Index="9">
+                <Name>IOUT_2</Name>
+                <Description>Channel 2 Current Excitation Out</Description>
+                <Designator>Pos1-J1-Pin9</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin10" Index="10">
+                <Name>EX3</Name>
+                <Description>Channel 3 Voltage Excitation Out</Description>
+                <Designator>Pos1-J1-Pin10</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin11" Index="11">
+                <Name>IN3+</Name>
+                <Description>Channel 3 Differential Signal Input +</Description>
+                <Designator>Pos1-J1-Pin11</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin12" Index="12">
+                <Name>IOUT_3</Name>
+                <Description>Channel 3 Current Excitation Out</Description>
+                <Designator>Pos1-J1-Pin12</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin13" Index="13">
+                <Name>CGND</Name>
+                <Description>Chassis Ground</Description>
+                <Designator>Pos1-J1-Pin13</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin14" Index="14">
+                <Name>REX1</Name>
+                <Description>Channel 1 Voltage Excitation Return</Description>
+                <Designator>Pos1-J1-Pin14</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin15" Index="15">
+                <Name>IN1-</Name>
+                <Description>Channel 1 Differential Signal Input -</Description>
+                <Designator>Pos1-J1-Pin15</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin16" Index="16">
+                <Name>IRTN_1</Name>
+                <Description>Channel 1 Current Excitation Return</Description>
+                <Designator>Pos1-J1-Pin16</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin17" Index="17">
+                <Name>REX2</Name>
+                <Description>Channel 2 Voltage Excitation Return</Description>
+                <Designator>Pos1-J1-Pin17</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin18" Index="18">
+                <Name>IN2-</Name>
+                <Description>Channel 2 Differential Signal Input -</Description>
+                <Designator>Pos1-J1-Pin18</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin19" Index="19">
+                <Name>RSVD3</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J1-Pin19</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin20" Index="20">
+                <Name>RSVD4</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J1-Pin20</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin21" Index="21">
+                <Name>AGND2</Name>
+                <Description>Analog Ground</Description>
+                <Designator>Pos1-J1-Pin21</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin22" Index="22">
+                <Name>IRTN_2</Name>
+                <Description>Channel 2 Current Excitation Return</Description>
+                <Designator>Pos1-J1-Pin22</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin23" Index="23">
+                <Name>REX3</Name>
+                <Description>Channel 3 Voltage Excitation Return</Description>
+                <Designator>Pos1-J1-Pin23</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin24" Index="24">
+                <Name>IN3-</Name>
+                <Description>Channel 3 Differential Signal Input -</Description>
+                <Designator>Pos1-J1-Pin24</Designator>
+              </Pin>
+              <Pin ID="Pos1-J1-Pin25" Index="25">
+                <Name>IRTN_3</Name>
+                <Description>Channel 3 Current Excitation Return</Description>
+                <Designator>Pos1-J1-Pin25</Designator>
+              </Pin>
+              </Pins>
+            </Connector>
+            <Connector>
+              <Name>J2</Name>
+              <Description>J2: 25 pin D-subminiature, Signal I/O, Channels 4-6</Description>
+              <Pins>
+              <Pin ID="Pos1-J2-Pin1" Index="1">
+                <Name>EX4</Name>
+                <Description>Channel 4 Voltage Excitation Out</Description>
+                <Designator>Pos1-J2-Pin1</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin2" Index="2">
+                <Name>IN4+</Name>
+                <Description>Channel 4 Differential Signal Input +</Description>
+                <Designator>Pos1-J2-Pin2</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin3" Index="3">
+                <Name>IOUT_4</Name>
+                <Description>Channel 4 Current Excitation Out</Description>
+                <Designator>Pos1-J2-Pin3</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin4" Index="4">
+                <Name>EX5</Name>
+                <Description>Channel 5 Voltage Excitation Out</Description>
+                <Designator>Pos1-J2-Pin4</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin5" Index="5">
+                <Name>IN5+</Name>
+                <Description>Channel 5 Differential Signal Input +</Description>
+                <Designator>Pos1-J2-Pin5</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin6" Index="6">
+                <Name>RSVD1</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J2-Pin6</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin7" Index="7">
+                <Name>RSVD2</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J2-Pin7</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin8" Index="8">
+                <Name>AGND1</Name>
+                <Description>Analog Ground</Description>
+                <Designator>Pos1-J2-Pin8</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin9" Index="9">
+                <Name>IOUT_5</Name>
+                <Description>Channel 5 Current Excitation Out</Description>
+                <Designator>Pos1-J2-Pin9</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin10" Index="10">
+                <Name>EX6</Name>
+                <Description>Channel 6 Voltage Excitation Out</Description>
+                <Designator>Pos1-J2-Pin10</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin11" Index="11">
+                <Name>IN6+</Name>
+                <Description>Channel 6 Differential Signal Input +</Description>
+                <Designator>Pos1-J2-Pin11</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin12" Index="12">
+                <Name>IOUT_6</Name>
+                <Description>Channel 6 Current Excitation Out</Description>
+                <Designator>Pos1-J2-Pin12</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin13" Index="13">
+                <Name>CGND</Name>
+                <Description>Chassis Ground</Description>
+                <Designator>Pos1-J2-Pin13</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin14" Index="14">
+                <Name>REX4</Name>
+                <Description>Channel 4 Voltage Excitation Return</Description>
+                <Designator>Pos1-J2-Pin14</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin15" Index="15">
+                <Name>IN4-</Name>
+                <Description>Channel 4 Differential Signal Input -</Description>
+                <Designator>Pos1-J2-Pin15</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin16" Index="16">
+                <Name>IRTN_4</Name>
+                <Description>Channel 4 Current Excitation Return</Description>
+                <Designator>Pos1-J2-Pin16</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin17" Index="17">
+                <Name>REX5</Name>
+                <Description>Channel 5 Voltage Excitation Return</Description>
+                <Designator>Pos1-J2-Pin17</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin18" Index="18">
+                <Name>IN5-</Name>
+                <Description>Channel 5 Differential Signal Input -</Description>
+                <Designator>Pos1-J2-Pin18</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin19" Index="19">
+                <Name>RSVD3</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J2-Pin19</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin20" Index="20">
+                <Name>RSVD4</Name>
+                <Description>Reserved</Description>
+                <Designator>Pos1-J2-Pin20</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin21" Index="21">
+                <Name>AGND2</Name>
+                <Description>Analog Ground</Description>
+                <Designator>Pos1-J2-Pin21</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin22" Index="22">
+                <Name>IRTN_5</Name>
+                <Description>Channel 5 Current Excitation Return</Description>
+                <Designator>Pos1-J2-Pin22</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin23" Index="23">
+                <Name>REX6</Name>
+                <Description>Channel 6 Voltage Excitation Return</Description>
+                <Designator>Pos1-J2-Pin23</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin24" Index="24">
+                <Name>IN6-</Name>
+                <Description>Channel 6 Differential Signal Input -</Description>
+                <Designator>Pos1-J2-Pin24</Designator>
+              </Pin>
+              <Pin ID="Pos1-J2-Pin25" Index="25">
+                <Name>IRTN_6</Name>
+                <Description>Channel 6 Current Excitation Return</Description>
+                <Designator>Pos1-J2-Pin25</Designator>
+              </Pin>
+              </Pins>
+            </Connector>
+            </Connectors>
+            <Ports>
+              <Port ID="Module1-Ch1" Index="1" Enabled="true">
+                <Name>Ch1</Name>
+                <Description>MSCD-606D-13 Channel 1 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin2"/>
+                  <PinRef IDREF="Pos1-J1-Pin15"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch2" Index="2" Enabled="true">
+                <Name>Ch2</Name>
+                <Description>MSCD-606D-13 Channel 2 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin5"/>
+                  <PinRef IDREF="Pos1-J1-Pin18"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch3" Index="3" Enabled="true">
+                <Name>Ch3</Name>
+                <Description>MSCD-606D-13 Channel 3 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin11"/>
+                  <PinRef IDREF="Pos1-J1-Pin24"/>
+                </PinRefs>  
+              </Port>
+              <Port ID="Module1-Ch4" Index="4" Enabled="false">
+                <Name>Ch4</Name>
+                <Description>MSCD-606D-13 Channel 4 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J2-Pin2"/>
+                  <PinRef IDREF="Pos1-J2-Pin15"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch5" Index="5" Enabled="false">
+                <Name>Ch5</Name>
+                <Description>MSCD-606D-13 Channel 5 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J2-Pin5"/>
+                  <PinRef IDREF="Pos1-J2-Pin18"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch6" Index="6" Enabled="false">
+                <Name>Ch6</Name>
+                <Description>MSCD-606D-13 Channel 6 Signal Input</Description>
+                <GenericParameter>
+                  <NameValues>
+                    <NameValue Name="CouplingType" Index="1">0</NameValue>
+                    <NameValue Name="DataOutput" Index="2">0</NameValue>
+                    <NameValue Name="InputRange" Index="3">0</NameValue>
+                    <NameValue Name="Sampling" Index="4">1</NameValue>
+                  </NameValues>
+                </GenericParameter>
+                <PortDirection>Input</PortDirection>
+                <PortTypes>
+                  <PortType>Analog</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J2-Pin11"/>
+                  <PinRef IDREF="Pos1-J2-Pin24"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch1-EC" Index="21">
+                <Name>Ch1-EC</Name>
+                <Description>MSCD-606D-13 Channel 1 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin3"/>
+                  <PinRef IDREF="Pos1-J1-Pin16"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch2-EC" Index="22" Enabled="true">
+                <Name>Ch2-EC</Name>
+                <Description>MSCD-606D-13 Channel 2 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin9"/>
+                  <PinRef IDREF="Pos1-J1-Pin22"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch3-EC" Index="23" Enabled="true">
+                <Name>Ch3-EC</Name>
+                <Description>MSCD-606D-13 Channel 3 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J1-Pin12"/>
+                  <PinRef IDREF="Pos1-J1-Pin25"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch4-EC" Index="24" Enabled="true">
+                <Name>Ch4-EC</Name>
+                <Description>MSCD-606D-13 Channel 4 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J2-Pin3"/>
+                  <PinRef IDREF="Pos1-J2-Pin16"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch5-EC" Index="25" Enabled="true">
+                <Name>Ch5-EC</Name>
+                <Description>MSCD-606D-13 Channel 5 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes>
+                <PinRefs>
+                  <PinRef IDREF="Pos1-J2-Pin9"/>
+                  <PinRef IDREF="Pos1-J2-Pin22"/>
+                </PinRefs>
+              </Port>
+              <Port ID="Module1-Ch6-EC" Index="26" Enabled="true">
+                <Name>Ch6-EC</Name>
+                <Description>MSCD-606D-13 Channel 6 Excitation Constant Current Output</Description>
+                <PortDirection>Output</PortDirection>
+                <PortTypes>
+                  <PortType Extension="Excitation">Extension</PortType>
+                </PortTypes> 
+                <PinRefs> 
+                  <PinRef IDREF="Pos1-J2-Pin12"/>
+                  <PinRef IDREF="Pos1-J2-Pin25"/>
+                </PinRefs>
+              </Port>
+            </Ports>
+            <SubModules>
+             <SubModule ID="VoltageExcitationValue-pos1">
+              <Name>VoltageExcitationValue</Name>
+              <Description>Set this SubModule Port/Excitation to 5 or 10 Volt</Description>
+              <Manufacturer>Acme</Manufacturer>
+              <Model/>
+              <SerialID/>
+              <InventoryID/>
+              <Position>1000</Position>
+              <Children>
+                <Child>
+                  <Name>VoltageExcitationOnOff123</Name>
+                  <Description>Voltage Excitation Ports 1,2,3 enable</Description>
+                  <ChildRefs>
+                    <ChildRef IDREF="VoltageExcitationOnOff123-pos1"/>
+                  </ChildRefs>
+                </Child>
+                <Child>
+                  <Name>VoltageExcitationOnOff456</Name>
+                  <Description>Voltage Excitation Ports 4,5,6 enable</Description>
+                  <ChildRefs>
+                    <ChildRef IDREF="VoltageExcitationOnOff456-pos1"/>
+                  </ChildRefs>
+                </Child>
+              </Children>
+              <Ports>
+                <Port ID="VoltageExcitationValuePort-pos1" Index="1" Enabled="true">
+                  <Name>VoltageExcitationValuePort</Name>
+                  <Description>MSCD-606D-13 Constant Voltage Excitation value for all ports</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                </Port>
+              </Ports>
+             </SubModule>
+             <SubModule ID="VoltageExcitationOnOff123-pos1">
+              <Name>VoltageExcitationOnOff123</Name>
+              <Description>Set this SubModule Port Enabled to true to turn on Port 1,2,3 Voltage Excitation</Description>
+              <Manufacturer>Acme</Manufacturer>
+              <Model/>
+              <SerialID/>
+              <InventoryID/>
+              <Position>1010</Position>
+              <Children>
+                <Child>
+                  <Name>VoltageExcitation123</Name>
+                  <Description>Voltage Excitation Ports 1,2,3 container</Description>
+                  <ChildRefs>
+                    <ChildRef IDREF="VoltageExcitationPorts123-pos1"/>
+                  </ChildRefs>
+                </Child>
+              </Children>
+              <Ports>
+                <Port ID="VoltageExcitationOnOff123Port-pos1" Index="1" Enabled="true">
+                  <Name>VoltageExcitationOnOff123Port</Name>
+                  <Description>MSCD-606D-13 Constant Voltage Excitation enable ports 1,2,3</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                </Port>
+              </Ports>
+             </SubModule>
+             <SubModule ID="VoltageExcitationPorts123-pos1">
+              <Name>VoltageExcitationPorts123</Name>
+              <Description>Container for Voltage Excitation ports 1,2,3</Description>
+              <Manufacturer>Acme</Manufacturer>
+              <Model/>
+              <SerialID/>
+              <InventoryID/>
+              <Position>1011</Position>
+              <Ports>
+                <Port ID="Module1-Ch1-EV" Index="11" Enabled="true">
+                  <Name>Ch1-EV</Name>
+                  <Description>MSCD-606D-13 Channel 1 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>
+                    <PinRef IDREF="Pos1-J1-Pin1"/>
+                    <PinRef IDREF="Pos1-J1-Pin14"/>
+                  </PinRefs>
+                </Port>
+                <Port ID="Module1-Ch2-EV" Index="12" Enabled="true">
+                  <Name>Ch2-EV</Name>
+                  <Description>MSCD-606D-13 Channel 2 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>
+                    <PinRef IDREF="Pos1-J1-Pin4"/>
+                    <PinRef IDREF="Pos1-J1-Pin17"/>
+                  </PinRefs>
+                </Port>
+                <Port ID="Module1-Ch3-EV" Index="13" Enabled="true">
+                  <Name>Ch3-EV</Name>
+                  <Description>MSCD-606D-13 Channel 3 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>
+                    <PinRef IDREF="Pos1-J1-Pin10"/>
+                    <PinRef IDREF="Pos1-J1-Pin23"/>
+                  </PinRefs>
+                </Port>
+              </Ports>
+             </SubModule>
+             <SubModule ID="VoltageExcitationOnOff456-pos1">
+              <Name>VoltageExcitationOnOff456</Name>
+              <Description>Set this SubModule Port Enabled to true to turn on Port 4,5,6 Voltage Excitation</Description>
+              <Manufacturer>Acme</Manufacturer>
+              <Model/>
+              <SerialID/>
+              <InventoryID/>
+              <Position>1020</Position>
+              <Children>
+                <Child>
+                  <Name>VoltageExcitation456</Name>
+                  <Description>Voltage Excitation Ports 4,5,6 container</Description>
+                  <ChildRefs>
+                    <ChildRef IDREF="VoltageExcitationPorts456-pos1"/>
+                  </ChildRefs>
+                </Child>
+              </Children>
+              <Ports>
+                <Port ID="VoltageExcitationOnOff456Port-pos1" Index="1" Enabled="false">
+                  <Name>VoltageExcitationOnOff456Port</Name>
+                  <Description>MSCD-606D-13 Constant Voltage Excitation enable ports 4,5,6</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                </Port>
+              </Ports>
+             </SubModule>
+             <SubModule ID="VoltageExcitationPorts456-pos1">
+              <Name>VoltageExcitationPorts456</Name>
+              <Description>Container for Voltage Excitation ports 4,5,6</Description>
+              <Manufacturer>Acme</Manufacturer>
+              <Model/>
+              <SerialID/>
+              <InventoryID/>
+              <Position>1021</Position>
+              <Ports>
+                <Port ID="Module1-Ch4-EV" Index="14">
+                  <Name>Ch4-EV</Name>
+                  <Description>MSCD-606D-13 Channel 4 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>  
+                    <PinRef IDREF="Pos1-J2-Pin1"/>
+                    <PinRef IDREF="Pos1-J2-Pin14"/>
+                  </PinRefs>
+                </Port>
+                <Port ID="Module1-Ch5-EV" Index="15">
+                  <Name>Ch5-EV</Name>
+                  <Description>MSCD-606D-13 Channel 5 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>
+                    <PinRef IDREF="Pos1-J2-Pin4"/>
+                    <PinRef IDREF="Pos1-J2-Pin17"/>
+                  </PinRefs>
+                </Port>
+                <Port ID="Module1-Ch6-EV" Index="16">
+                  <Name>Ch6-EV</Name>
+                  <Description>MSCD-606D-13 Channel 6 Excitation Constant Voltage Output</Description>
+                  <PortDirection>Output</PortDirection>
+                  <PortTypes>
+                    <PortType Extension="Excitation">Extension</PortType>
+                  </PortTypes>
+                  <PinRefs>
+                    <PinRef IDREF="Pos1-J2-Pin10"/>
+                    <PinRef IDREF="Pos1-J2-Pin23"/>
+                  </PinRefs>
+                </Port>
+              </Ports>
+             </SubModule>
+            </SubModules>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+          <NetworkNode ID="Spiral-CE">
+            <Name>spiral</Name>
+            <Description>Spiral Computational Element</Description>
+            <InventoryID>spiral-001</InventoryID>
+            <HostName>spiral</HostName>
+            <Manufacturer>Spiral</Manufacturer>
+            <Model>spiral-001</Model>
+            <ModelVersion>iNET</ModelVersion>
+            <SerialID>001</SerialID>
+            <IEEE1588Version>2008e2e</IEEE1588Version>
+            <TmNSApps>
+              <TmNSApp ID="SpiralCE-TMA">
+                <Name>spiral-CE</Name>
+                <Description>spiral-CE</Description>
+                <RoleID>spiral</RoleID>
+                <LoggingLevel>Warning</LoggingLevel>
+                <Manufacturer>spiral</Manufacturer>
+                <Product>spiral-ce</Product>
+                <ProductVersion>iNET</ProductVersion>
+                <ConfigurationVersion>basic</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>RCC 106-17</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU />
+                <TmNSLTCDataSource>
+                  <LTCInterfaces>
+                    <LTCInterface>
+                      <TimeToLive>10</TimeToLive>
+                      <NetworkInterfaceRef IDREF="ni30_eth0_10-1-1-202" />
+                      <MessageDefinitionRefs>
+                        <MessageDefinitionRef IDREF="message2_546f6464" />
+                      </MessageDefinitionRefs>
+                    </LTCInterface>
+                  </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <TmNSLTCDataSink>
+                  <NetworkInterfaceRef IDREF="ni30_eth0_10-1-1-202" />
+                  <MessageDefinitionRefs>
+                    <MessageDefinitionRef IDREF="message3_11010001" />
+                  </MessageDefinitionRefs>
+                </TmNSLTCDataSink>
+                <TmNSMeasurementProcessor>
+                  <MeasurementRefs>
+                    <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                  </MeasurementRefs>
+                </TmNSMeasurementProcessor>
+                <SMInterface>
+                  <SNMPSetup>
+                    <SNMPVersions>
+                      <SNMPVersion>v3</SNMPVersion>
+                    </SNMPVersions>
+                    <SNMPPort>161</SNMPPort>
+                    <NotificationPort>162</NotificationPort>
+                    <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+                    <NetworkInterfaceRefs>
+                      <NetworkInterfaceRef IDREF="ni30_eth0_10-1-1-202" />
+                    </NetworkInterfaceRefs>
+                  </SNMPSetup>
+                </SMInterface>
+              </TmNSApp>
+            </TmNSApps>
+            <InternalStructure>
+              <Modules>
+                <Module ID="spiral-module">
+            <Name>spiral</Name>
+            <Description>spiral network interface</Description>
+            <Manufacturer>spiral</Manufacturer>
+            <Model>spiral</Model>
+            <SerialID>001</SerialID>
+            <InventoryID>spiral-001</InventoryID>
+            <Position>1</Position>
+            <PositionsOccupied>1</PositionsOccupied>
+            <NetworkInterfaces>
+             <NetworkInterface ID="ni30_eth0_10-1-1-202">
+              <Name>eth0</Name>
+              <DHCPEnable>false</DHCPEnable>
+              <PhysicalNetworkPorts>
+              <PhysicalNetworkPort ID="SpiralEthPhy">
+                <Name>Ethernet</Name>
+                <Description>10/100Base-T Ethernet</Description>
+                <Medium>Copper</Medium>
+                <PortNumber>1</PortNumber>
+                <PortDataRate>
+                  <Value>1e8</Value>
+                  <BaseUnit>BitPerSecond</BaseUnit>
+                </PortDataRate>
+              </PhysicalNetworkPort>
+              </PhysicalNetworkPorts>
+             </NetworkInterface>
+            </NetworkInterfaces>
+            <Ports>
+              <Port ID="SpiralEthernet" Index="1">
+                <Name>Ethernet</Name>
+                <Description>10/100 Fast Ethernet</Description>
+                <PortDirection>Bidirectional</PortDirection>
+                <PortTypes>
+                  <PortType>Ethernet</PortType>
+                </PortTypes>
+                <PhysicalNetworkPortRef IDREF="SpiralEthPhy"/>
+              </Port>
+            </Ports>
+                </Module>
+              </Modules>
+            </InternalStructure>
+          </NetworkNode>
+        </NetworkNodes>
+      </Network>
+    </Networks>
+  </NetworkDomain>
+  <DSCPTable>
+    <DSCPTableEntry ID="dscp1_besteffort_000000">
+      <Name>Best Effort</Name>
+      <DSCPValue>0b000000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp2_background_001000">
+      <Name>Background</Name>
+      <DSCPValue>0b001000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp3_excellenteffort_010000">
+      <Name>Excellent Effort</Name>
+      <DSCPValue>0b010000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp4_criticalapplications_011000">
+      <Name>Critical Applications</Name>
+      <DSCPValue>0b011000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp5_video_100000">
+      <Name>Video</Name>
+      <DSCPValue>0b100000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp6_voice_101000">
+      <Name>Voice</Name>
+      <DSCPValue>0b101000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp7_internetworkcontrol_110000">
+      <Name>Internetwork Control</Name>
+      <DSCPValue>0b110000</DSCPValue>
+    </DSCPTableEntry>
+    <DSCPTableEntry ID="dscp8_networkcontrol_111000">
+      <Name>Network Control</Name>
+      <DSCPValue>0b111000</DSCPValue>
+    </DSCPTableEntry>
+  </DSCPTable>
+</MDLRoot>
