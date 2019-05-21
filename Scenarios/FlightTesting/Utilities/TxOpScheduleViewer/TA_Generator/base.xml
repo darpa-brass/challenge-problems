@@ -1,0 +1,644 @@
+<MDLRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL">
+    <Name>Generated TAs</Name>
+    <DatabaseID>6</DatabaseID>
+    <Checksum/>
+    <ConfigurationVersion>None</ConfigurationVersion>
+    <DirtyBit>false</DirtyBit>
+    <TestMissions>
+        <TestMission>
+            <Name>Generated Test Mission</Name>
+            <Description>System Manager default generated Test Mission.</Description>
+            <TmNSCompleteness>false</TmNSCompleteness>
+            <TmNSCompletenessDescription>TmNS completeness is not yet determined by System Manager.</TmNSCompletenessDescription>
+            <NetworkRefs>
+                <NetworkRef IDREF="ACME_Range_Network"/>
+            </NetworkRefs>
+            <QoSPolicies>
+                <QoSPolicy ID="QoS4_SimpleUplink">
+                    <Name>Simple Uplink</Name>
+                    <Description>Mission SLP for Minimal Queue example.</Description>
+                    <QoSPolicyID>0x0000007b</QoSPolicyID>
+                    <RadioLinkRefs/>
+                    <Priority>4</Priority>
+                    <LinkManagementMinCapacity>
+                        <Value>100000</Value>
+                        <BaseUnit>BitPerSecond</BaseUnit>
+                    </LinkManagementMinCapacity>
+                    <AssuredCapacity>
+                        <Value>200000</Value>
+                        <BaseUnit>BitPerSecond</BaseUnit>
+                    </AssuredCapacity>
+                    <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile26">
+                            <Name>SLP_123_0</Name>
+                            <Description>Root SLP for Simple FIFO.</Description>
+                            <SLPHandle>0x007b0000</SLPHandle>
+                            <QueueConstruct>
+                                <QDisc>
+                                    <FIFO>
+                                        <LimitInPackets>100</LimitInPackets>
+                                    </FIFO>
+                                </QDisc>
+                            </QueueConstruct>
+                        </ServiceLevelProfile>
+                    </ServiceLevelProfiles>
+                </QoSPolicy>
+                <QoSPolicy ID="QoS3_ClassicDownlink">
+                    <Name>Classic Downlink</Name>
+                    <Description>Mission SLP for Classic Downlink Policy</Description>
+                    <QoSPolicyID>0x00c0ffee</QoSPolicyID>
+                    <RadioLinkRefs/>
+                    <Priority>1</Priority>
+                    <LinkManagementMinCapacity>
+                        <Value>1000000</Value>
+                        <BaseUnit>BitPerSecond</BaseUnit>
+                    </LinkManagementMinCapacity>
+                    <AssuredCapacity>
+                        <Value>2000000</Value>
+                        <BaseUnit>BitPerSecond</BaseUnit>
+                    </AssuredCapacity>
+                    <ServiceLevelProfiles>
+                        <ServiceLevelProfile ID="ServiceLevelProfile9">
+                            <Name>SLP_1_0</Name>
+                            <Description>Top level queue discipline for the Classic Downlink policy.</Description>
+                            <SLPHandle>0x00010000</SLPHandle>
+                            <QueueConstruct>
+                                <QDisc>
+                                    <HTB>
+                                        <DefaultClassHandle>0x00010028</DefaultClassHandle>
+                                    </HTB>
+                                </QDisc>
+                            </QueueConstruct>
+                            <ServiceLevelProfiles>
+                                <ServiceLevelProfile ID="ServiceLevelProfile10">
+                                    <Name>SLP_1_1</Name>
+                                    <Description>Primary HTB rollup class to enable sharing between subclasses</Description>
+                                    <SLPHandle>0x00010001</SLPHandle>
+                                    <QueueConstruct>
+                                        <Class>
+                                            <HTB>
+                                                <Priority>1</Priority>
+                                                <Rate>
+                                                    <Value>2000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Rate>
+                                                <Ceiling>
+                                                    <Value>10000000</Value>
+                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                </Ceiling>
+                                            </HTB>
+                                        </Class>
+                                    </QueueConstruct>
+                                    <ServiceLevelProfiles>
+                                        <ServiceLevelProfile ID="ServiceLevelProfile11">
+                                            <Name>SLP_1_10</Name>
+                                            <Description>HTB class for Network Control and Internetwork Control Traffic (CoS 7 and CoS 6)</Description>
+                                            <SLPHandle>0x0001000a</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>1</Priority>
+                                                        <Rate>
+                                                            <Value>10000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>1000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>Filter CoS 7</Name>
+                                                    <Description>Filter for RFNMs and other routing protocols: DSCP range 56-63 (class 7)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>1</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0xe0</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                                <TrafficFilter>
+                                                    <Name>Filter CoS 6</Name>
+                                                    <Description>Filter for RFNMs and other routing protocols: DSCP range 48-55 (class 6)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>2</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0xc0</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile12">
+                                                    <Name>SLP_10_0</Name>
+                                                    <Description>FIFO Qdisc for Network/Internetwork Control Traffic</Description>
+                                                    <SLPHandle>0x000a0000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <FIFO>
+                                                                <LimitInPackets>50</LimitInPackets>
+                                                            </FIFO>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="ServiceLevelProfile13">
+                                            <Name>SLP_1_20</Name>
+                                            <Description>HTB class for Expedited Forwarding (EF) Voice Traffic (CoS 5)</Description>
+                                            <SLPHandle>0x00010014</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>2</Priority>
+                                                        <Rate>
+                                                            <Value>64000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>128000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>Filter CoS 5</Name>
+                                                    <Description>Filter for Voice traffic: DSCP range 40-47 (class 5)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>3</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0xa0</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile14">
+                                                    <Name>SLP_20_0</Name>
+                                                    <Description>FIFO Qdisc for Expedited Forwarding Voice Traffic</Description>
+                                                    <SLPHandle>0x00140000</SLPHandle>
+                                                    <AveragePacketDelay>
+                                                        <Value>0.05</Value>
+                                                        <BaseUnit>Second</BaseUnit>
+                                                    </AveragePacketDelay>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <FIFO>
+                                                                <LimitInPackets>50</LimitInPackets>
+                                                            </FIFO>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="ServiceLevelProfile15">
+                                            <Name>SLP_1_30</Name>
+                                            <Description>HTB class for Assured Forwarding (AF) Traffic (CoS 4, CoS 3, CoS 2, and CoS 1)</Description>
+                                            <SLPHandle>0x0001001e</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>3</Priority>
+                                                        <Rate>
+                                                            <Value>1750000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile16">
+                                                    <Name>SLP_1_300</Name>
+                                                    <Description>HTB class for AF4 traffic (includes all CoS 4)</Description>
+                                                    <SLPHandle>0x0001012c</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <Class>
+                                                            <HTB>
+                                                                <Priority>1</Priority>
+                                                                <Rate>
+                                                                    <Value>250000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Rate>
+                                                                <Ceiling>
+                                                                    <Value>5000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Ceiling>
+                                                            </HTB>
+                                                        </Class>
+                                                    </QueueConstruct>
+                                                    <TrafficFilters>
+                                                        <TrafficFilter>
+                                                            <Name>Filter CoS 4</Name>
+                                                            <Description>Filter for SM and Video: DSCP range 32-39 (Class 4)</Description>
+                                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                            <Protocol>IPv4</Protocol>
+                                                            <Priority>4</Priority>
+                                                            <Classifier>PacketFields</Classifier>
+                                                            <Conditions>
+                                                                <Condition>
+                                                                    <MatchField>
+                                                                        <Offset>1</Offset>
+                                                                        <FieldWidth>8-bit</FieldWidth>
+                                                                        <Pattern>0x80</Pattern>
+                                                                        <Mask>0xe0</Mask>
+                                                                    </MatchField>
+                                                                </Condition>
+                                                            </Conditions>
+                                                        </TrafficFilter>
+                                                    </TrafficFilters>
+                                                    <ServiceLevelProfiles>
+                                                        <ServiceLevelProfile ID="ServiceLevelProfile17">
+                                                            <Name>SLP_30_0</Name>
+                                                            <Description>SFQ Qdisc for SM and Video traffic (Class 4)</Description>
+                                                            <SLPHandle>0x001e0000</SLPHandle>
+                                                            <QueueConstruct>
+                                                                <QDisc>
+                                                                    <SFQ>
+                                                                        <Perturb>
+                                                                            <Value>10</Value>
+                                                                            <BaseUnit>Second</BaseUnit>
+                                                                        </Perturb>
+                                                                    </SFQ>
+                                                                </QDisc>
+                                                            </QueueConstruct>
+                                                        </ServiceLevelProfile>
+                                                    </ServiceLevelProfiles>
+                                                </ServiceLevelProfile>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile18">
+                                                    <Name>SLP_1_301</Name>
+                                                    <Description>HTB class for AF3 traffic (includes all CoS 3)</Description>
+                                                    <SLPHandle>0x0001012d</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <Class>
+                                                            <HTB>
+                                                                <Priority>2</Priority>
+                                                                <Rate>
+                                                                    <Value>250000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Rate>
+                                                                <Ceiling>
+                                                                    <Value>5000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Ceiling>
+                                                            </HTB>
+                                                        </Class>
+                                                    </QueueConstruct>
+                                                    <TrafficFilters>
+                                                        <TrafficFilter>
+                                                            <Name>Filter CoS 3</Name>
+                                                            <Description>Filter for RC delivery at high priority: DSCP range 24-31 (Class 3)</Description>
+                                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                            <Protocol>IPv4</Protocol>
+                                                            <Priority>5</Priority>
+                                                            <Classifier>PacketFields</Classifier>
+                                                            <Conditions>
+                                                                <Condition>
+                                                                    <MatchField>
+                                                                        <Offset>1</Offset>
+                                                                        <FieldWidth>8-bit</FieldWidth>
+                                                                        <Pattern>0x60</Pattern>
+                                                                        <Mask>0xe0</Mask>
+                                                                    </MatchField>
+                                                                </Condition>
+                                                            </Conditions>
+                                                        </TrafficFilter>
+                                                    </TrafficFilters>
+                                                    <ServiceLevelProfiles>
+                                                        <ServiceLevelProfile ID="ServiceLevelProfile19">
+                                                            <Name>SLP_40_0</Name>
+                                                            <Description>RED Qdisc for RC delivery at high priority (Class 3)</Description>
+                                                            <SLPHandle>0x00280000</SLPHandle>
+                                                            <QueueConstruct>
+                                                                <QDisc>
+                                                                    <RED>
+                                                                        <Limit>
+                                                                            <Value>1024000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Limit>
+                                                                        <Min>
+                                                                            <Value>42400</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Min>
+                                                                        <Max>
+                                                                            <Value>128000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Max>
+                                                                        <Avpkt>
+                                                                            <Value>8000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Avpkt>
+                                                                        <Burst>9</Burst>
+                                                                        <EnableECN>false</EnableECN>
+                                                                        <Bandwidth>
+                                                                            <Value>256000</Value>
+                                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                                        </Bandwidth>
+                                                                        <Probability>0.02</Probability>
+                                                                    </RED>
+                                                                </QDisc>
+                                                            </QueueConstruct>
+                                                        </ServiceLevelProfile>
+                                                    </ServiceLevelProfiles>
+                                                </ServiceLevelProfile>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile20">
+                                                    <Name>SLP_1_302</Name>
+                                                    <Description>HTB class for AF2 traffic (includes all CoS 2)</Description>
+                                                    <SLPHandle>0x0001012e</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <Class>
+                                                            <HTB>
+                                                                <Priority>3</Priority>
+                                                                <Rate>
+                                                                    <Value>250000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Rate>
+                                                                <Ceiling>
+                                                                    <Value>5000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Ceiling>
+                                                            </HTB>
+                                                        </Class>
+                                                    </QueueConstruct>
+                                                    <TrafficFilters>
+                                                        <TrafficFilter>
+                                                            <Name>Filter CoS 2</Name>
+                                                            <Description>Filter for LTC delivery: DSCP range 16-23 (Class 2)</Description>
+                                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                            <Protocol>IPv4</Protocol>
+                                                            <Priority>6</Priority>
+                                                            <Classifier>PacketFields</Classifier>
+                                                            <Conditions>
+                                                                <Condition>
+                                                                    <MatchField>
+                                                                        <Offset>1</Offset>
+                                                                        <FieldWidth>8-bit</FieldWidth>
+                                                                        <Pattern>0x40</Pattern>
+                                                                        <Mask>0xe0</Mask>
+                                                                    </MatchField>
+                                                                </Condition>
+                                                            </Conditions>
+                                                        </TrafficFilter>
+                                                    </TrafficFilters>
+                                                    <ServiceLevelProfiles>
+                                                        <ServiceLevelProfile ID="ServiceLevelProfile21">
+                                                            <Name>SLP_50_0</Name>
+                                                            <Description>SFQ Qdisc for LTC delivery (Class 2)</Description>
+                                                            <SLPHandle>0x00320000</SLPHandle>
+                                                            <QueueConstruct>
+                                                                <QDisc>
+                                                                    <SFQ>
+                                                                        <Perturb>
+                                                                            <Value>10</Value>
+                                                                            <BaseUnit>Second</BaseUnit>
+                                                                        </Perturb>
+                                                                    </SFQ>
+                                                                </QDisc>
+                                                            </QueueConstruct>
+                                                        </ServiceLevelProfile>
+                                                    </ServiceLevelProfiles>
+                                                </ServiceLevelProfile>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile22">
+                                                    <Name>SLP_1_303</Name>
+                                                    <Description>HTB class for AF1 traffic (includes all CoS 1)</Description>
+                                                    <SLPHandle>0x0001012f</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <Class>
+                                                            <HTB>
+                                                                <Priority>4</Priority>
+                                                                <Rate>
+                                                                    <Value>1000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Rate>
+                                                                <Ceiling>
+                                                                    <Value>5000000</Value>
+                                                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                                                </Ceiling>
+                                                            </HTB>
+                                                        </Class>
+                                                    </QueueConstruct>
+                                                    <TrafficFilters>
+                                                        <TrafficFilter>
+                                                            <Name>Filter CoS 1</Name>
+                                                            <Description>Filter for RC delivery at normal priority and SM status: DSCP range 8-15 (Class 1)</Description>
+                                                            <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                            <Protocol>IPv4</Protocol>
+                                                            <Priority>7</Priority>
+                                                            <Classifier>PacketFields</Classifier>
+                                                            <Conditions>
+                                                                <Condition>
+                                                                    <MatchField>
+                                                                        <Offset>1</Offset>
+                                                                        <FieldWidth>8-bit</FieldWidth>
+                                                                        <Pattern>0x20</Pattern>
+                                                                        <Mask>0xe0</Mask>
+                                                                    </MatchField>
+                                                                </Condition>
+                                                            </Conditions>
+                                                        </TrafficFilter>
+                                                    </TrafficFilters>
+                                                    <ServiceLevelProfiles>
+                                                        <ServiceLevelProfile ID="ServiceLevelProfile23">
+                                                            <Name>SLP_60_0</Name>
+                                                            <Description>RED Qdisc for RC delivery at normal priority and SM status (Class 1)</Description>
+                                                            <SLPHandle>0x003c0000</SLPHandle>
+                                                            <QueueConstruct>
+                                                                <QDisc>
+                                                                    <RED>
+                                                                        <Limit>
+                                                                            <Value>1024000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Limit>
+                                                                        <Min>
+                                                                            <Value>168000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Min>
+                                                                        <Max>
+                                                                            <Value>512000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Max>
+                                                                        <Avpkt>
+                                                                            <Value>8000</Value>
+                                                                            <BaseUnit>Bit</BaseUnit>
+                                                                        </Avpkt>
+                                                                        <Burst>35</Burst>
+                                                                        <EnableECN>false</EnableECN>
+                                                                        <Bandwidth>
+                                                                            <Value>1024000</Value>
+                                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                                        </Bandwidth>
+                                                                        <Probability>0.02</Probability>
+                                                                    </RED>
+                                                                </QDisc>
+                                                            </QueueConstruct>
+                                                        </ServiceLevelProfile>
+                                                    </ServiceLevelProfiles>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                        <ServiceLevelProfile ID="ServiceLevelProfile24">
+                                            <Name>SLP_1_40</Name>
+                                            <Description>HTB class for Best Effort (BE) Traffic and all other default traffic (CoS 0)</Description>
+                                            <SLPHandle>0x00010028</SLPHandle>
+                                            <QueueConstruct>
+                                                <Class>
+                                                    <HTB>
+                                                        <Priority>4</Priority>
+                                                        <Rate>
+                                                            <Value>150000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Rate>
+                                                        <Ceiling>
+                                                            <Value>5000000</Value>
+                                                            <BaseUnit>BitPerSecond</BaseUnit>
+                                                        </Ceiling>
+                                                    </HTB>
+                                                </Class>
+                                            </QueueConstruct>
+                                            <TrafficFilters>
+                                                <TrafficFilter>
+                                                    <Name>Filter CoS 0</Name>
+                                                    <Description>Filter for general network traffic: DSCP range 0-7 (Class 0)</Description>
+                                                    <ParentQDiscHandle>0x00010000</ParentQDiscHandle>
+                                                    <Protocol>IPv4</Protocol>
+                                                    <Priority>8</Priority>
+                                                    <Classifier>PacketFields</Classifier>
+                                                    <Conditions>
+                                                        <Condition>
+                                                            <MatchField>
+                                                                <Offset>1</Offset>
+                                                                <FieldWidth>8-bit</FieldWidth>
+                                                                <Pattern>0x00</Pattern>
+                                                                <Mask>0xe0</Mask>
+                                                            </MatchField>
+                                                        </Condition>
+                                                    </Conditions>
+                                                </TrafficFilter>
+                                            </TrafficFilters>
+                                            <ServiceLevelProfiles>
+                                                <ServiceLevelProfile ID="ServiceLevelProfile25">
+                                                    <Name>SLP_70_0</Name>
+                                                    <Description>SFQ Qdisc for Best Effort / Default traffic (Class 0)</Description>
+                                                    <SLPHandle>0x00460000</SLPHandle>
+                                                    <QueueConstruct>
+                                                        <QDisc>
+                                                            <SFQ>
+                                                                <Perturb>
+                                                                    <Value>10</Value>
+                                                                    <BaseUnit>Second</BaseUnit>
+                                                                </Perturb>
+                                                            </SFQ>
+                                                        </QDisc>
+                                                    </QueueConstruct>
+                                                </ServiceLevelProfile>
+                                            </ServiceLevelProfiles>
+                                        </ServiceLevelProfile>
+                                    </ServiceLevelProfiles>
+                                </ServiceLevelProfile>
+                            </ServiceLevelProfiles>
+                        </ServiceLevelProfile>
+                    </ServiceLevelProfiles>
+                </QoSPolicy>
+            </QoSPolicies>
+            <RadioLinks/>
+            <HandoffRules>
+                <HandoffRule ID="DefaultRule">
+                    <Name>RSSI Rule</Name>
+                    <Description>Link Manager default handoff rule.</Description>
+                    <Rule>rssi_engine.py</Rule>
+                </HandoffRule>
+            </HandoffRules>
+        </TestMission>
+    </TestMissions>
+    <NetworkDomain>
+        <Networks>
+            <Network ID="ACME_Range_Network">
+                <Name>ACME_Range_Network</Name>
+                <Description>Example network for ACME Range</Description>
+                <NetworkType>GenericNetwork</NetworkType>
+                <NetworkNodes/>
+            </Network>
+        </Networks>
+    </NetworkDomain>
+    <RANConfigurations>
+        <RANConfiguration ID="RANConfig15_RAN_4919">
+            <Name>RAN_4919</Name>
+            <LinkAgentConnectionEncryptionEnabled>false</LinkAgentConnectionEncryptionEnabled>
+            <TSSTunnelEncryptionEnabled>false</TSSTunnelEncryptionEnabled>
+            <CenterFrequencyHz>4919500000</CenterFrequencyHz>
+            <ModulationType>SOQPSK-TG</ModulationType>
+            <EpochSize>100</EpochSize>
+            <LDPCBlocksPerBurst>1</LDPCBlocksPerBurst>
+            <MaxGuardTimeSec>0.001</MaxGuardTimeSec>
+            <RadioControlLoopDSCPRef IDREF="DSCP_NetworkControl_111000"/>
+            <RANCommandControlDSCPRef IDREF="DSCP_NetworkControl_111000"/>
+            <RadioGroups/>
+        </RANConfiguration>
+    </RANConfigurations>
+    <DSCPTable>
+        <DSCPTableEntry ID="DSCP_BestEffort_000000">
+            <Name>Best Effort</Name>
+            <DSCPValue>0b000000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_Background_001000">
+            <Name>Background</Name>
+            <DSCPValue>0b001000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_ExcellentEffort_010000">
+            <Name>Excellent Effort</Name>
+            <DSCPValue>0b010000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_CriticalApplications_011000">
+            <Name>Critical Applications</Name>
+            <DSCPValue>0b011000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_Video_100000">
+            <Name>Video</Name>
+            <DSCPValue>0b100000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_Voice_101000">
+            <Name>Voice</Name>
+            <DSCPValue>0b101000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_InternetworkControl_110000">
+            <Name>Internetwork Control</Name>
+            <DSCPValue>0b110000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="DSCP_NetworkControl_111000">
+            <Name>Network Control</Name>
+            <DSCPValue>0b111000</DSCPValue>
+        </DSCPTableEntry>
+    </DSCPTable>
+</MDLRoot>
