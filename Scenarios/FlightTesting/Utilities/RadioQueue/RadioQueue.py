@@ -281,10 +281,10 @@ def run_epoch():
 
             database.update_node(radio_queues_node._rid,
                                  {'Radio_Queues': queues},
-                                 version=radio_usage_node._version,
+                                 version=radio_queues_node._version,
                                  transaction=True)
-        except:
-            pass
+        except Exception as e:
+            sys.exit(sys.exc_info())
 
     total_bw_allocated = 0
     total_bw_utilized = 0
