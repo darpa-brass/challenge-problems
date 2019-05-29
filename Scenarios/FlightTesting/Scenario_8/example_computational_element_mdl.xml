@@ -136,6 +136,29 @@
             </DigitalAttributes>
           </DataAttributes>
         </Measurement>
+        <Measurement ID="multi_input_result">
+          <Name>Multi-Input Result</Name>
+          <Description>Big Math</Description>
+          <MeasurementID>0x444444F9</MeasurementID>
+          <MeasurementTypes>
+            <MeasurementType>Computed</MeasurementType>
+          </MeasurementTypes>
+          <MeasurementActive>true</MeasurementActive>
+          <ProperName Extension="None">Extension</ProperName>
+          <DataAttributes>
+            <BaseUnit>Unitless</BaseUnit>
+            <DigitalAttributes>
+              <DataLength>
+                <ConditionParameter>
+                  <ConditionOperation>&gt;</ConditionOperation>
+                  <ConditionValue>16</ConditionValue>
+                  <BaseUnit>Unitless</BaseUnit>
+                </ConditionParameter>
+              </DataLength>
+              <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+            </DigitalAttributes>
+          </DataAttributes>
+        </Measurement>
         <Measurement ID="measurement5_a4c5ff79-2e2b-492a-ade9-301d1262dafa">
           <Name>Acme_AccelerationY</Name>
           <Description>MSCD-606D Acceleration Y</Description>
@@ -414,6 +437,38 @@
             </DataWordToFieldMap>
           </DataMaps>
         </PackageDefinition>
+        <PackageDefinition ID="package5">
+          <Name>0xd1968645</Name>
+          <Description>0xd1968645</Description>
+          <PackageDefinitionID>0xd1968645</PackageDefinitionID>
+          <StandardPackageHeader>true</StandardPackageHeader>
+          <DataStructureRef IDREF="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7" />
+          <DataMaps>
+            <DataWordToFieldMap>
+              <DataWord>
+                <Name>0xd1968644</Name>
+                <Description>0xd1968644</Description>
+                <DataWordWidth>
+                  <Value>16</Value>
+                  <BaseUnit>Bit</BaseUnit>
+                </DataWordWidth>
+                <MeasurementRef IDREF="multi_input_result" />
+                <Syllables>
+                  <Syllable>
+                    <Name>0xd1968645</Name>
+                    <Description>0xd1968645</Description>
+                    <SyllableWidth>
+                      <Value>16</Value>
+                      <BaseUnit>Bit</BaseUnit>
+                    </SyllableWidth>
+                  </Syllable>
+                </Syllables>
+              </DataWord>
+              <DataStructureFieldRef IDREF="datastructurefield1_6d42c514-c44a-40dc-9637-a7fff911f4b3" />
+              <TimeOrder>IncreasingTemporal</TimeOrder>
+            </DataWordToFieldMap>
+          </DataMaps>
+        </PackageDefinition>
       </PackageDefinitions>
       <DataStructures>
         <DataStructure ID="datastructure1_6c2092c5-5fb2-4306-9345-825ff13933e7">
@@ -543,6 +598,29 @@
             </PackageInstance>
           </PackageInstances>
         </MessageDefinition>
+        <MessageDefinition ID="message6">
+          <Name>0x11010006</Name>
+          <Description />
+          <MessageDefinitionID>0x11010006</MessageDefinitionID>
+          <OptionWordCount>0xA</OptionWordCount>
+          <DSCPTableEntryRef IDREF="dscp1_besteffort_000000" />
+          <DestinationAddress>239.1.1.6</DestinationAddress>
+          <MaximumMessageLength>
+            <Value>8000</Value>
+            <BaseUnit>Bit</BaseUnit>
+          </MaximumMessageLength>
+          <MaximumMessageLatency>
+            <Value>0.05</Value>
+            <BaseUnit>Second</BaseUnit>
+          </MaximumMessageLatency>
+          <FixedPackageOrder>false</FixedPackageOrder>
+          <FixedNumberOfPackages>false</FixedNumberOfPackages>
+          <PackageInstances>
+            <PackageInstance>
+              <PackageDefinitionRef IDREF="package5" />
+            </PackageInstance>
+          </PackageInstances>
+        </MessageDefinition>
       </MessageDefinitions>
       <DataProcessing>
         <Functions>
@@ -574,6 +652,13 @@
             <UpdateFrequency>IfAll</UpdateFrequency>
             <Algorithm>2*x</Algorithm>
           </Function>
+          <Function ID="function_multi_input">
+            <Name>Multi-Input Trig</Name>
+            <Description />
+            <InputCount>3</InputCount>
+            <UpdateFrequency>IfAll</UpdateFrequency>
+            <Algorithm>sin(x) + cos(y) + tan(z)</Algorithm>
+          </Function>
         </Functions>
         <FunctionMappings>
           <FunctionMapping>
@@ -587,6 +672,28 @@
             <ResultMeasurements>
               <ResultMeasurement>
                 <MeasurementRef IDREF="measurement4_2x" />
+              </ResultMeasurement>
+            </ResultMeasurements>
+          </FunctionMapping>
+          <FunctionMapping>
+            <FunctionRef IDREF="function_multi_input" />
+            <InputMeasurements>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                <Variable>x</Variable>
+              </InputMeasurement>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement5_a4c5ff79-2e2b-492a-ade9-301d1262dafa" />
+                <Variable>y</Variable>
+              </InputMeasurement>
+              <InputMeasurement>
+                <MeasurementRef IDREF="measurement7_79928409-e3e4-4185-9570-de1d8a054792" />
+                <Variable>z</Variable>
+              </InputMeasurement>
+            </InputMeasurements>
+            <ResultMeasurements>
+              <ResultMeasurement>
+                <MeasurementRef IDREF="multi_input_result" />
               </ResultMeasurement>
             </ResultMeasurements>
           </FunctionMapping>
@@ -1675,6 +1782,7 @@
                       <NetworkInterfaceRef IDREF="ni30_eth0_10-1-1-202" />
                       <MessageDefinitionRefs>
                         <MessageDefinitionRef IDREF="message2_546f6464" />
+                        <MessageDefinitionRef IDREF="message6" />
                       </MessageDefinitionRefs>
                     </LTCInterface>
                   </LTCInterfaces>
@@ -1688,6 +1796,7 @@
                 <TmNSMeasurementProcessor>
                   <MeasurementRefs>
                     <MeasurementRef IDREF="measurement3_959a2a0e-d1cc-49c7-92a7-292ac1aef339" />
+                    <MeasurementRef IDREF="multi_input_result" />
                   </MeasurementRefs>
                 </TmNSMeasurementProcessor>
                 <SMInterface>
