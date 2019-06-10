@@ -113,6 +113,9 @@ class RadioLink:
         self.alloc_bw_mbps = 0
         self.latency_point_value = 0
         self.throughput_point_value = 0
+        self.greedy_tx_dur_per_epoch_usec = 0
+        self.greedy_alloc_bw_mbps = 0
+        self.greedy_throughput_point_value = 0
 
     def add_txop(self, txop):
         self.tx_sched.append(txop)
@@ -155,6 +158,18 @@ class RadioLink:
             self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
         else:
             self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
+
+    def calc_greedy_alloc_bw_mbps(self, epoch_ms):
+        self.greedy_alloc_bw_mbps = ((int(self.greedy_tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
+
+    def calc_greedy_throughput_value(self, min_points_thd, max_points_thd, coef):
+        alloc_bw_kbps = self.greedy_alloc_bw_mbps * 1000
+        if alloc_bw_kbps < min_points_thd:
+            self.greedy_throughput_point_value = 0.0
+        elif alloc_bw_kbps < max_points_thd:
+            self.greedy_throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
+        else:
+            self.greedy_throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
 
 
 # ------------------------------------------------------------------------------
@@ -643,6 +658,104 @@ def init_text_colors():
 
 # ------------------------------------------------------------------------------
 
+def generated_sorted_list(rans_list, link_scores):
+    scored_links = []
+
+    if link_scores is not None:
+        for ran in rans_list:
+            greedy_ran = {"Epoch": int(ran.epoch_ms)/1000, "Guard_Band": ran.guard_ms/1000, "Links": []}  # s, s
+            for l in ran.links:
+                link_data = {}
+                for d in link_scores:
+                    if "Link" in d:
+                        if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
+                            link_data = {"Link": l}
+                            bandwidth = {}
+                            latency = {}
+                            bandwidth['bw_min_thd'] = 0
+                            bandwidth['bw_max_thd'] = 0
+                            bandwidth['bw_coef'] = 0
+                            if "Latency" in d:
+                                if "max_thd" in d['Latency']:
+                                    latency['lat_max_thd'] = d['Latency']['max_thd']
+                                if "min_thd" in d['Latency']:
+                                    latency['lat_min_thd'] = d['Latency']['min_thd']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Latency' was not found in the dictionary for the specified link.")
+
+                            if "Bandwidth" in d:
+                                if "min_thd" in d['Bandwidth']:
+                                    bandwidth['bw_min_thd'] = d['Bandwidth']['min_thd']
+                                if "max_thd" in d['Bandwidth']:
+                                    bandwidth['bw_max_thd'] = d['Bandwidth']['max_thd']
+                                if "coef" in d['Bandwidth']:
+                                    bandwidth['bw_coef'] = d['Bandwidth']['coef']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
+
+                            link_data["Bandwith_Data"] = bandwidth
+                            link_data["Latency_Data"] = latency
+                            greedy_ran["Links"].append(link_data)
+                        else:
+                            if debug >= 1:
+                                print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
+                    else:
+                        if debug >= 1:
+                            print("No match for key 'Link' in score file for link.\r")
+            if greedy_ran["Links"]:
+                scored_links.append(greedy_ran)
+
+    for ran in scored_links:
+        ran["Links"] = sorted(ran["Links"], key=lambda x: x["Bandwith_Data"]["bw_coef"], reverse=True)
+
+    return scored_links
+
+
+def min_required_schedule(rans_list, link_scores):
+
+
+    sorted_rans = generated_sorted_list(rans_list, link_scores)
+
+
+def max_requested_schedule(rans_list, link_scores):
+    bandwidth = MAX_BW_MBPS * 1000  # kb/s
+
+    sorted_rans = generated_sorted_list(rans_list, link_scores)
+    for ran in sorted_rans:
+        gb = ran["Guard_Band"]  # s
+        epoch = ran["Epoch"]   # s
+        epoch_ms = epoch * 1000
+        uepoch = epoch * 1000000  # us
+        ugb = gb * 1000000
+        links = ran["Links"]
+        epoch_remaining = uepoch  # us
+        for link_data in links:
+            link = link_data["Link"]
+            bw_data = link_data["Bandwith_Data"]
+            lat_data = link_data["Latency_Data"]
+            min_point_threshold = bw_data['bw_min_thd']  # s
+            min_point_threshold_time = min_point_threshold / bandwidth  # s
+            mix_point_threshold_time_per_epoch = min_point_threshold_time * uepoch  # us
+            max_point_threshold = bw_data['bw_max_thd']  # s
+            max_point_threshold_time = max_point_threshold / bandwidth  # s
+            max_point_threshold_time_per_epoch = max_point_threshold_time * uepoch  # us
+            coef = bw_data['bw_coef']
+            latency = lat_data["lat_min_thd"] / 1000  # us
+            guard_band_count = math.ceil(max_point_threshold_time / latency)  # s/s
+            total_gb_time = guard_band_count * ugb  # s
+            bw_consumed = max_point_threshold_time_per_epoch+total_gb_time
+            if epoch_remaining > bw_consumed:
+                link.greedy_tx_dur_per_epoch_usec = max_point_threshold_time_per_epoch
+                link.calc_greedy_alloc_bw_mbps(epoch_ms)
+                link.calc_greedy_throughput_value(min_point_threshold, max_point_threshold, coef)
+                epoch_remaining = epoch_remaining - bw_consumed
+
+
+# ------------------------------------------------------------------------------
+
+
 def write_report_to_json(rans_list):
     new_rans_list = copy.deepcopy(rans_list)
     ran_config_dict = {}
@@ -833,6 +946,7 @@ def run_schedule_viewer():
                     else:
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
+        max_requested_schedule(rans_list, ld_link_scores)
 
     write_report_to_json(rans_list)
 

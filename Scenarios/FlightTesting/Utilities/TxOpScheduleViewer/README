@@ -76,8 +76,8 @@ SCORE file is a JSON file, and it is detailed below:
         min_thd - Latency values above this threshold (ms) achieve 0 point value
 
     The "Bandwidth" key contains a dictionary of "min_thd", "max_thd", and "coef":
-        min_thd - Bandwidth values below this threshold (bps) receive 0 point value
-        max_thd - Bandwidth values above this threshold (bps) achieve maximum
+        min_thd - Bandwidth values below this threshold (kbps) receive 0 point value
+        max_thd - Bandwidth values above this threshold (kbps) achieve maximum
                   point value
         coef    - Coefficient for the value function
 
