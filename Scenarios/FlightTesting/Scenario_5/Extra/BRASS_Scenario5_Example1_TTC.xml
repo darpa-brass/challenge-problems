@@ -585,13 +585,6 @@
                     <NetworkNode ID="TTCDAU">
                         <Name>MnACQ-2000</Name>
                         <Description>TA1 TTC DAU Network Node</Description>
-                        <GenericParameter>
-                            <NameValues>
-                                <NameValue Name="User" Index="1">BBN</NameValue>
-                            </NameValues>
-                            <BBNDauMonetaryCost>90000</BBNDauMonetaryCost>
-                            <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
-                        </GenericParameter>
                         <InventoryID>TA1-TTC-DAU1</InventoryID>
                         <HostName>TTC</HostName>
                         <Manufacturer>TTC</Manufacturer>
