@@ -81,6 +81,9 @@ SCORE file is a JSON file, and it is detailed below:
                   point value
         coef    - Coefficient for the value function
 
+    The "Multiplier" key contains a value for multiplying the calculated Latency and
+        Bandwidth scores.
+
 ORIENTDB INTEGRATION:
 The program can also operate using an OrientDB database to store the input files
 and output data. This is triggered by using the --database and --config options.
