@@ -138,7 +138,7 @@ class RadioLink:
     def calc_alloc_bw_mbps(self, epoch_ms):
         self.alloc_bw_mbps = ((int(self.tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
 
-    def calc_latency_value(self, max_points_thd_ms, min_points_thd_ms):
+    def calc_latency_value(self, max_points_thd_ms, min_points_thd_ms, multiplier):
         if self.max_latency_usec < int(max_points_thd_ms*1000):
             self.latency_point_value = 100
         elif self.max_latency_usec < int(min_points_thd_ms*1000):
@@ -149,8 +149,9 @@ class RadioLink:
                 self.latency_point_value = 0
         else:
             self.latency_point_value = 0
+        self.latency_point_value = self.latency_point_value * multiplier
 
-    def calc_throughput_value(self, min_points_thd, max_points_thd, coef):
+    def calc_throughput_value(self, min_points_thd, max_points_thd, coef, multiplier):
         alloc_bw_kbps = self.alloc_bw_mbps * 1000
         if alloc_bw_kbps < min_points_thd:
             self.throughput_point_value = 0.0
@@ -158,18 +159,20 @@ class RadioLink:
             self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
         else:
             self.throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
+        self.throughput_point_value = self.throughput_point_value * multiplier
 
     def calc_greedy_alloc_bw_mbps(self, epoch_ms):
         self.greedy_alloc_bw_mbps = ((int(self.greedy_tx_dur_per_epoch_usec) * (1000 / int(epoch_ms))) / 1000000) * MAX_BW_MBPS
 
-    def calc_greedy_throughput_value(self, min_points_thd, max_points_thd, coef):
+    def calc_greedy_throughput_value(self, min_points_thd, max_points_thd, coef, multiplier):
         alloc_bw_kbps = self.greedy_alloc_bw_mbps * 1000
         if alloc_bw_kbps < min_points_thd:
             self.greedy_throughput_point_value = 0.0
         elif alloc_bw_kbps < max_points_thd:
-            self.greedy_throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
+            self.greedy_throughput_point_value = (100 - 100 * (math.e ** ((-1 * coef) * alloc_bw_kbps)))
         else:
             self.greedy_throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
+        self.greedy_throughput_point_value = self.greedy_throughput_point_value * multiplier
 
 
 # ------------------------------------------------------------------------------
@@ -719,7 +722,7 @@ def min_required_schedule(rans_list, link_scores):
     sorted_rans = generated_sorted_list(rans_list, link_scores)
 
 
-def max_requested_schedule(rans_list, link_scores):
+def max_requested_schedule(rans_list, link_scores, mult):
     bandwidth = MAX_BW_MBPS * 1000  # kb/s
 
     sorted_rans = generated_sorted_list(rans_list, link_scores)
@@ -749,7 +752,7 @@ def max_requested_schedule(rans_list, link_scores):
             if epoch_remaining > bw_consumed:
                 link.greedy_tx_dur_per_epoch_usec = max_point_threshold_time_per_epoch
                 link.calc_greedy_alloc_bw_mbps(epoch_ms)
-                link.calc_greedy_throughput_value(min_point_threshold, max_point_threshold, coef)
+                link.calc_greedy_throughput_value(min_point_threshold, max_point_threshold, coef, mult)
                 epoch_remaining = epoch_remaining - bw_consumed
 
 
@@ -920,6 +923,7 @@ def run_schedule_viewer():
                             bw_min_thd = 0
                             bw_max_thd = 0
                             bw_coef = 0
+                            mult = 1
                             if "Latency" in d:
                                 if "max_thd" in d['Latency']:
                                     lat_max_thd = d['Latency']['max_thd']
@@ -938,15 +942,20 @@ def run_schedule_viewer():
                             else:
                                 if debug >= 1:
                                     print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
-                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd))
-                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef)
+                            if "Multiplier" in d:
+                                mult = d["Multiplier"]
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Multiplier' was not found in the dictionary for the specified link.")
+                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd), mult)
+                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
                         else:
                             if debug >= 1:
                                 print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
                     else:
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
-        max_requested_schedule(rans_list, ld_link_scores)
+        max_requested_schedule(rans_list, ld_link_scores, mult)
 
     write_report_to_json(rans_list)
 
