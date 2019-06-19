@@ -865,6 +865,12 @@
                                 <Module ID="module-101">
                                     <Name>MPPC-500</Name>
                                     <Description>MnACQ-2000 Processor</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MPPC-500-1</Model>
                                     <SerialID>3258085</SerialID>
@@ -901,6 +907,14 @@
                                         <Port ID="MppcRs232" Index="1">
                                             <Name>Console</Name>
                                             <Description>Console Serial Port</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                                <SampleRate>1250000</SampleRate>
+                                                <DataLength>1</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PortTypes>
                                                 <PortType>Serial</PortType>
@@ -916,6 +930,12 @@
                                 <Module ID="module-102">
                                     <Name>MACQ-500</Name>
                                     <Description>MnACQ-2000 Controller</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MACQ-500</Model>
                                     <SerialID>3258080</SerialID>
@@ -1097,6 +1117,12 @@
                                         <Port Enabled="true" ID="Macq-PCM-Multicast" Index="5">
                                             <Name>PCM Multicast</Name>
                                             <Description>Ethernet PCM Multicast</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType>Ethernet</PortType>
@@ -1105,6 +1131,12 @@
                                         <Port ID="MacqEthernet" Index="6">
                                             <Name>Ethernet</Name>
                                             <Description>10/100 Fast Ethernet</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                            </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PortTypes>
                                                 <PortType>Ethernet</PortType>
@@ -1122,6 +1154,12 @@
                                 <Module ID="module-1">
                                     <Name>MSCD at Position 1</Name>
                                     <Description>6-channel Simultaneous Sampling Signal Conditioner</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MSCD</Model>
                                     <SerialID>3250020</SerialID>
@@ -1405,6 +1443,15 @@
                                         <Port Enabled="true" ID="Module1-Ch1" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>MSCD Channel 1 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1417,6 +1464,15 @@
                                         <Port Enabled="true" ID="Module1-Ch2" Index="2">
                                             <Name>Ch2</Name>
                                             <Description>MSCD Channel 2 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1429,6 +1485,15 @@
                                         <Port Enabled="true" ID="Module1-Ch3" Index="3">
                                             <Name>Ch3</Name>
                                             <Description>MSCD Channel 3 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1441,6 +1506,15 @@
                                         <Port Enabled="true" ID="Module1-Ch4" Index="4">
                                             <Name>Ch4</Name>
                                             <Description>MSCD Channel 4 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1453,6 +1527,15 @@
                                         <Port Enabled="true" ID="Module1-Ch5" Index="5">
                                             <Name>Ch5</Name>
                                             <Description>MSCD Channel 5 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1465,6 +1548,15 @@
                                         <Port Enabled="true" ID="Module1-Ch6" Index="6">
                                             <Name>Ch6</Name>
                                             <Description>MSCD Channel 6 Signal Input</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType>Analog</PortType>
@@ -1748,6 +1840,12 @@
                                 <Module ID="module-2">
                                     <Name>MTCD at Position 2</Name>
                                     <Description>8-channel thermocouple conditioner</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
                                     <Manufacturer>TTC</Manufacturer>
                                     <Model>MTCD</Model>
                                     <SerialID>3251874</SerialID>
@@ -1926,6 +2024,14 @@
                                         <Port Enabled="true" ID="Module2-Ch1" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>MTCD Channel 1</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -1941,6 +2047,14 @@
                                         <Port Enabled="true" ID="Module2-Ch2" Index="2">
                                             <Name>Ch2</Name>
                                             <Description>MTCD Channel 2</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -1956,6 +2070,14 @@
                                         <Port Enabled="true" ID="Module2-Ch3" Index="3">
                                             <Name>Ch3</Name>
                                             <Description>MTCD Channel 3</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -1971,6 +2093,14 @@
                                         <Port Enabled="true" ID="Module2-Ch4" Index="4">
                                             <Name>Ch4</Name>
                                             <Description>MTCD Channel 4</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -1986,6 +2116,14 @@
                                         <Port Enabled="true" ID="Module2-Ch5" Index="5">
                                             <Name>Ch5</Name>
                                             <Description>MTCD Channel 5</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -2001,6 +2139,14 @@
                                         <Port Enabled="true" ID="Module2-Ch6" Index="6">
                                             <Name>Ch6</Name>
                                             <Description>MTCD Channel 6</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -2016,6 +2162,14 @@
                                         <Port Enabled="true" ID="Module2-Ch7" Index="7">
                                             <Name>Ch7</Name>
                                             <Description>MTCD Channel 7</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
@@ -2031,6 +2185,14 @@
                                         <Port Enabled="true" ID="Module2-Ch8" Index="8">
                                             <Name>Ch8</Name>
                                             <Description>MTCD Channel 8</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <SampleRate>128</SampleRate>
+                                                <DataLength>16</DataLength>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
