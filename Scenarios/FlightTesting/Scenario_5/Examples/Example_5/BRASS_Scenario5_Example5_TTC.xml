@@ -252,6 +252,7 @@
                             </NameValues>
                             <BBNDauMonetaryCost>75000</BBNDauMonetaryCost>
                             <BBNDauOpportunityCost>3</BBNDauOpportunityCost>
+                            <BBNDauFlaggedForReplacement/>
                         </GenericParameter>
                         <InventoryID>Example5DAU</InventoryID>
                         <HostName>SwRI</HostName>

@@ -591,6 +591,7 @@
                             </NameValues>
                             <BBNDauMonetaryCost>90000</BBNDauMonetaryCost>
                             <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
+                            <BBNDauFlaggedForReplacement/>
                         </GenericParameter>
                         <InventoryID>TA1-TTC-DAU1</InventoryID>
                         <HostName>TTC</HostName>
