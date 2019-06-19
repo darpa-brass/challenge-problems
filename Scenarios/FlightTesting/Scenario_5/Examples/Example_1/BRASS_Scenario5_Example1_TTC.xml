@@ -43,6 +43,23 @@
                 <Measurement ID="meas-1-1">
                     <Name>Device1_AccelerationX</Name>
                     <Description>MSCD Acceleration X</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000001</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -81,6 +98,23 @@
                 <Measurement ID="meas-1-2">
                     <Name>Device1_AccelerationZ</Name>
                     <Description>MSCD Acceleration Z</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000002</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -119,6 +153,23 @@
                 <Measurement ID="meas-1-3">
                     <Name>Device1_AccelerationY</Name>
                     <Description>MSCD Acceleration Y</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000003</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -157,6 +208,23 @@
                 <Measurement ID="meas-1-4">
                     <Name>Device2_AccelerationX</Name>
                     <Description>MSCD Acceleration X</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000004</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -195,6 +263,23 @@
                 <Measurement ID="meas-1-5">
                     <Name>Device2_AccelerationZ</Name>
                     <Description>MSCD Acceleration Z</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000005</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -233,6 +318,23 @@
                 <Measurement ID="meas-1-6">
                     <Name>Device2_AccelerationY</Name>
                     <Description>MSCD Acceleration Y</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000006</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -271,6 +373,23 @@
                 <Measurement ID="meas-2-1">
                     <Name>Temp1Therm</Name>
                     <Description>MTCD Temperature 1 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000007</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -309,6 +428,23 @@
                 <Measurement ID="meas-2-2">
                     <Name>Temp2Therm</Name>
                     <Description>MTCD Temperature 2 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000008</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -347,6 +483,23 @@
                 <Measurement ID="meas-2-3">
                     <Name>Temp3Therm</Name>
                     <Description>MTCD Temperature 3 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000009</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -385,6 +538,23 @@
                 <Measurement ID="meas-2-4">
                     <Name>Temp4Therm</Name>
                     <Description>MTCD Temperature 4 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000010</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -423,6 +593,23 @@
                 <Measurement ID="meas-2-5">
                     <Name>Temp5Therm</Name>
                     <Description>MTCD Temperature 5 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000011</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -461,6 +648,23 @@
                 <Measurement ID="meas-2-6">
                     <Name>Temp6Therm</Name>
                     <Description>MTCD Temperature 6 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000012</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -499,6 +703,23 @@
                 <Measurement ID="meas-2-7">
                     <Name>Temp7Therm</Name>
                     <Description>MTCD Temperature 7 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000013</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
@@ -537,6 +758,23 @@
                 <Measurement ID="meas-2-8">
                     <Name>Temp8Therm</Name>
                     <Description>MTCD Temperature 8 Thermocouple</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>128</Min>
+                            <Max>128</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>16</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>2048</Min>
+                            <Max>2048</Max>
+                        </DataRate>
+                    </GenericParameter>
                     <MeasurementID>0x10000014</MeasurementID>
                     <MeasurementTypes>
                         <MeasurementType>Analog</MeasurementType>
