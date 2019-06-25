@@ -9,7 +9,7 @@ Run with Python 3.
     
 Command Line Arguments are available via the '-h' argument:
     > python3 RadioQueue.py -h
-    usage: RadioQueue.py [-h] [-I] [-M MAX_QUEUE_SIZE] [-E EPOCH_SIZE_MS] [-r]
+    usage: RadioQueue.py [-h] [-H] [-I] [-M MAX_QUEUE_SIZE] [-E EPOCH_SIZE_MS] [-r]
                          [-d DEBUG] [-v]
 
     optional arguments:
