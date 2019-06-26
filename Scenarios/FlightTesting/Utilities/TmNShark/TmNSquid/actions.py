@@ -60,7 +60,7 @@ def get_field_info(data_structure, package):
 
     return field_info
 
-
+import numpy
 def make_tdm_packet_list(bfile, package_decoders):
     """ This function reads a binary file (bfile) of TmNS Data Messages, parses the
         TDMs, and adds each TDM to the list of TDMs (tdm_list).
@@ -71,19 +71,30 @@ def make_tdm_packet_list(bfile, package_decoders):
     if os.path.exists(bfile):
         with open(bfile, mode='rb') as f:
             reader = TmnsPcapReader(f)
-            message = reader.get_message()
-            for package in message.packages:
-                package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
-                measurements = package_decoders[package.pdid](package.payload, package_time)
+            messages = reader.get_messages()
+            # message = reader.get_message()
+            count = 0
+            for message in messages:
+                count = count +1
+                with open(r'out/test_new_and_fast-' + str(count) + "-" + str(message.mdid) + r'.csv', 'a') as csvfile:
+                    for package in message.packages:
+                        package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
+                        # payload = str(package.payload)
+                        payload = bitarray()
+                        payload.frombytes(package.payload)
+                        # payload = bytes.fromhex(payload)
+                        measurements = package_decoders[package.pdid](payload, package_time)
+                        # print(message.mdid)
+                        # print(package.pdid)
+                        for key, value in measurements.items():
+                            # with open(r'test_new_and_fast.csv', 'a') as csvfile:
+                                csv_out = csv.writer(csvfile)
+                                csv_out.writerow(['value', 'timestamp'])
 
-                for key, value in measurements.items():
-                    with open(r'test_faster_code.csv', 'a') as csvfile:
-                        csv_out = csv.writer(csvfile)
-                        csv_out.writerow(['value', 'timestamp'])
-                        for row in value:
-                            csv_out.writerow(row)
+                                for row in value:
+                                    csv_out.writerow(row)
 
-            bits = bitarray()
+            # bits = bitarray()
             # bits.frombytes(bytes(f.read()))
             # bits.fromfile(f)
 
@@ -177,7 +188,7 @@ def preprocess_mdl(mdl=None):
 
             pdid = int(package.find("mdl:PackageDefinitionID", **n).text, base=16)
 
-            def package_decoder(package_bits, start_time, data_structure=data_structure, package=package):
+            def package_decoder(package_bits: bitarray, start_time: int, data_structure=data_structure, package=package):
                 field_info = get_field_info(data_structure, package)
                 measurement_results = defaultdict(list)
                 current_time = start_time

@@ -9,8 +9,16 @@ class TmnsPcapReader:
         self.pcap = pcap
 
     def get_messages(self):
-        # fill this in if have multiple messages
-        pass
+        # how do we know we get to the end of the stream?
+        messages = []
+        while True:
+            message = self.get_message()
+            if message is None:
+                print("Message is none now.")
+                break
+            messages.append(message)
+        # position = position + message.length
+        return messages
 
     def get_message(self):
         # message = TmnsDataMessage()
@@ -19,8 +27,6 @@ class TmnsPcapReader:
         version_and_words = self.pcap.read(1)
         ver = int.from_bytes(version_and_words, byteorder='big') >> 4
         adf_words = int.from_bytes(version_and_words, byteorder='big') & 0x0f
-        # ver = int.from_bytes(version_and_words, byteorder='big') # TODO only first 4 bits
-        # adf_words = int.from_bytes(version_and_words, byteorder='big') # TODO only last 4 bits
         # skipping 4 reserved bits
         # skipping 4 bits of useless message type
         self.pcap.read(1)
@@ -31,6 +37,9 @@ class TmnsPcapReader:
         secs = int.from_bytes(self.pcap.read(4), byteorder='big')
         nanosecs = int.from_bytes(self.pcap.read(4), byteorder='big')
 
+        if mdid is 0:
+            return None
+
         hdrlen = 3 + (adf_words * 4)
         adf_payload = 0
         adf_size = (adf_words * 4)
@@ -39,11 +48,15 @@ class TmnsPcapReader:
 
         packages = []
         position = 24 + adf_payload
+        print(mdid)
         while position < msglen:
             package = self.get_package()
+            print(package.pdid)
             if package is None:
                 break
             packages.append(package)
+            if len(packages) > 1:
+                continue
             position = position + package.length
 
         message = TmnsDataMessage(version=ver, adf_words=adf_words,

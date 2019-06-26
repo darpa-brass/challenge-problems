@@ -59,6 +59,6 @@ class TmnsDataMessage:
         # rewrite as stream
 
         new_msg = TmnsDataMessage(ver=ver, adf_words=adf_words, flags=flags, mdid=mdid, seqno=seqno, length=msglen, secs=secs,
-                                  nanosecs=nanosecs, adf_payload=adf_payload, payload=payload)
+                                  nanosecs=nanosecs, adf_payload=adf_payload, packages=payload)
 
         return new_msg, bits   # where 5 is the bits left after removing this message
