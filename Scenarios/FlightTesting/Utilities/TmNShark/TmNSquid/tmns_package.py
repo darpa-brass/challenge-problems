@@ -12,7 +12,7 @@ class TmnsPackage:
         self.measurements = measurements
 
     @staticmethod
-    @profile
+    # @profile
     def from_bits(bits):
 
         # at some point will ahve to look at MDL to check boolean for whether this is standard or not, and then get pckg length

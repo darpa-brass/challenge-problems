@@ -31,7 +31,7 @@ class TmnsDataMessage:
         return raw
 
     @staticmethod
-    @profile
+    # @profile
     def from_bits(bits: []):
         # make message
         ver = bits[:4]

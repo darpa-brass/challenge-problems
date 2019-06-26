@@ -77,7 +77,7 @@ def make_tdm_packet_list(bfile, package_decoders):
                 measurements = package_decoders[package.pdid](package.payload, package_time)
 
                 for key, value in measurements.items():
-                    with open(r'test_csv_2.csv', 'a') as csvfile:
+                    with open(r'test_faster_code.csv', 'a') as csvfile:
                         csv_out = csv.writer(csvfile)
                         csv_out.writerow(['value', 'timestamp'])
                         for row in value:
