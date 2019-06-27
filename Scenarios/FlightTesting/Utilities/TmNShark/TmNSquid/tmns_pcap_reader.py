@@ -9,7 +9,6 @@ class TmnsPcapReader:
         self.pcap = pcap
 
     def get_messages(self):
-        # how do we know we get to the end of the stream?
         messages = []
         while True:
             message = self.get_message()
@@ -17,11 +16,9 @@ class TmnsPcapReader:
                 print("Message is none now.")
                 break
             messages.append(message)
-        # position = position + message.length
         return messages
 
     def get_message(self):
-        # message = TmnsDataMessage()
         # find beginning of message
         # make message
         version_and_words = self.pcap.read(1)
@@ -40,7 +37,6 @@ class TmnsPcapReader:
         if mdid is 0:
             return None
 
-        hdrlen = 3 + (adf_words * 4)
         adf_payload = 0
         adf_size = (adf_words * 4)
         if adf_words > 0:
@@ -48,15 +44,9 @@ class TmnsPcapReader:
 
         packages = []
         position = 24 + adf_payload
-        print(mdid)
         while position < msglen:
             package = self.get_package()
-            print(package.pdid)
-            if package is None:
-                break
             packages.append(package)
-            if len(packages) > 1:
-                continue
             position = position + package.length
 
         message = TmnsDataMessage(version=ver, adf_words=adf_words,
@@ -73,14 +63,8 @@ class TmnsPcapReader:
         _ = int.from_bytes(self.pcap.read(1), byteorder='big')
         package_status_flags = int.from_bytes(self.pcap.read(1), byteorder='big')
         package_time_delta = int.from_bytes(self.pcap.read(4), byteorder='big')
-
-        # package = mdid_dict[mdid](package_bytes)
-
-        # package_payload_len = (package_length * 8) - 96
-        # package_payload = self.pcap.read(96:package_payload_len + 96)
         package_payload_len = package_length - 12
         package_payload = self.pcap.read(package_payload_len)
-        # bits = self.pcap.read[96 + package_payload_len:]
 
         package = TmnsPackage(pdid=package_id, length=package_length,
                               status_flags=package_status_flags,

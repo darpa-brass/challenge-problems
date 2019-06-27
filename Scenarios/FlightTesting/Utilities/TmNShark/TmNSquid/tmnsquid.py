@@ -47,6 +47,4 @@ def test2():
 if __name__ == "__main__":
     # cProfile.run('main()')
     main()
-    # print(timeit.timeit(test, number=100))
-    # print(timeit.timeit(test2, number=100))
 

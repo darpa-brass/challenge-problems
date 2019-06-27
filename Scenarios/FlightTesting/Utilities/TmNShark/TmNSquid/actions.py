@@ -46,8 +46,6 @@ def get_field_info(data_structure, package):
 
         width = int(((field.xpath(".//mdl:FieldLocation/mdl:FieldWidth/mdl:Value", **n))[0]).text)
         repetitions = int((field.xpath(".//mdl:FieldRepetitions", **n)[0]).text)
-        # width = int((field.xpath("//mdl:FieldWidth/mdl:Value", **n)[0]))
-        # repetitions = int(field.find("//mdl:FieldRepetitions", **n)[0])
 
         info = TmnsDataField(width, measurement_name)
 
@@ -60,7 +58,7 @@ def get_field_info(data_structure, package):
 
     return field_info
 
-import numpy
+@profile
 def make_tdm_packet_list(bfile, package_decoders):
     """ This function reads a binary file (bfile) of TmNS Data Messages, parses the
         TDMs, and adds each TDM to the list of TDMs (tdm_list).
@@ -72,83 +70,23 @@ def make_tdm_packet_list(bfile, package_decoders):
         with open(bfile, mode='rb') as f:
             reader = TmnsPcapReader(f)
             messages = reader.get_messages()
-            # message = reader.get_message()
             count = 0
             for message in messages:
-                count = count +1
-                with open(r'out/test_new_and_fast-' + str(count) + "-" + str(message.mdid) + r'.csv', 'a') as csvfile:
-                    for package in message.packages:
-                        package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
-                        # payload = str(package.payload)
-                        payload = bitarray()
-                        payload.frombytes(package.payload)
-                        # payload = bytes.fromhex(payload)
-                        measurements = package_decoders[package.pdid](payload, package_time)
-                        # print(message.mdid)
-                        # print(package.pdid)
-                        for key, value in measurements.items():
-                            # with open(r'test_new_and_fast.csv', 'a') as csvfile:
-                                csv_out = csv.writer(csvfile)
-                                csv_out.writerow(['value', 'timestamp'])
-
-                                for row in value:
-                                    csv_out.writerow(row)
-
-            # bits = bitarray()
-            # bits.frombytes(bytes(f.read()))
-            # bits.fromfile(f)
-
-
-            # while len(bits):
-            #     # for i in range(10):
-            #     message, remaining_bits = TmnsDataMessage.from_bits(bits)
-            #     # print(hex(message.mdid))
-            #     package, remaining_bits_message = TmnsPackage.from_bits(message.payload)
-            #     # print(hex(package.pdid))
-            #     time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
-            #     # package1_payload = package.payload
-            #
-            #     # write this all out to separate files - each measurement gets its own file - 2 cols: meas timestamp; append to it when see more that meas\
-            #     # open file for appending and if it doesn't exist, open it, if it does, append to end *this should just work if open file in append mode
-            #
-            #     # keep iterating through each package
-            #     # while there are any remaining bits, keep pulling (only a pckg for message in this file)
-            #     #print(package_decoders[package.pdid](package.payload, package.time_delta))
-            #
-            #     measurements = package_decoders[package.pdid](package.payload, time)
-            #     # print(measurements)
-            #
-            #     for key, value in measurements.items():
-            #         with open(r'test_csv_2.csv', 'a') as csvfile:
-            #             csv_out = csv.writer(csvfile)
-            #             csv_out.writerow(['value', 'timestamp'])
-            #             for row in value:
-            #                 csv_out.writerow(row)
-            #
-            #     bits = remaining_bits
-            #
-            # # # get array of messages
-            # # # then get array of packages in each message
-            # # # call package constructor on each payload -> you'll have package payloads
-            # # # num_bytes = os.path.getsize(bfile)
-            # # # while f.tell() < num_bytes:     #iterate though each bite
-            # #
-            # # # TODO: here need to go through each package - look at tables and go into the payload -> packages -> measurements
-            # # # look up mdid and figure out contents so we know what packages we are looking for from the MDL file
-            # # # get package header (96 bits) - will have to look at package length and see how much more there is to claim
-            # # # every pdid has a fixed size so can get that from the MDL
-            # # # if field reptitions is 0 (not fixed len) then will have to count length - start with pack header - pull off in grps of 16 numbers bc feild 16 bits wide
-            # #
-            # # # payload is optional, but if present, the TmNSMessagePayload includes one or more packages
-            # # # need to get package header:
-            # # #
-            # #
-            # # # moving all this so each decoder is defined in the class
-            # #
-            # # pprint(new_msg.__dict__)
-            # # pprint(new_package.__dict__)
-            # # print("0x{:08X}".format(new_package.pdid))
-            # # tdm_list.append(new_msg)
+                count = count + 1
+                for package in message.packages:
+                    package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
+                    payload = bitarray()
+                    payload.frombytes(package.payload)
+                    measurements = package_decoders[package.pdid](payload, package_time)
+                    cnt_key = 0
+                    for _measurement_name, value in measurements.items():
+                        with open(r'measurements/' + str(count) + '-' + str(_measurement_name) + "-" + str(message.sequence_number) + r'.csv',
+                                  'w') as csvfile:
+                            cnt_key = cnt_key + 1
+                            csv_out = csv.writer(csvfile)
+                            csv_out.writerow(['value', 'timestamp'])
+                            for row in value:
+                                csv_out.writerow(row)
         return tdm_list
     else:
         print("The file '{0}' was not found.".format(bin))
@@ -192,6 +130,8 @@ def preprocess_mdl(mdl=None):
                 field_info = get_field_info(data_structure, package)
                 measurement_results = defaultdict(list)
                 current_time = start_time
+
+                package_bits = memoryview(package_bits)
 
                 while len(package_bits):  # there's bits left
                     next_field = next(field_info)

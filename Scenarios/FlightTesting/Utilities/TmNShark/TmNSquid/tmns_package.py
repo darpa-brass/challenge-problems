@@ -23,8 +23,6 @@ class TmnsPackage:
         package_status_flags = int.from_bytes(bits[56:64], byteorder='big')
         package_time_delta = int.from_bytes(bits[64:96], byteorder='big')
 
-        # package = mdid_dict[mdid](package_bytes)
-
         package_payload_len = (package_length * 8) - 96
         package_payload = bits[96:package_payload_len+96]
         bits = bits[96+package_payload_len:]
