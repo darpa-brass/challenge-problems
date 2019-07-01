@@ -140,7 +140,6 @@ def setup_logger():
     log.setLevel('INFO')
     return log
 
-
 def run_epoch():
     global epoch_num
     global epochs_per_sec
@@ -161,11 +160,9 @@ def run_epoch():
 
     
     # Set callback timer for next epoch update
-    next_timer = threading.Timer(epoch_sec, run_epoch)
-    next_timer.start()
-
-
-
+    if not headless:
+        next_timer = threading.Timer(epoch_sec, run_epoch)
+        next_timer.start()
     # Set Command Line Mode
     if not headless:
         height, width = stdscr.getmaxyx()
@@ -189,12 +186,15 @@ def run_epoch():
     # Reload JSON file for LM Bandwidth Allocations for Radio Data Output Rates (a.k.a. the "RF Drain Rate")
 
     if database:
-        radio_usage_node_list = database.get_nodes_by_type('Radio_Input')
-        radio_control_node_list = database.get_nodes_by_type('Radio_Control')
-        radio_usage_node = radio_usage_node_list[0]
-        radio_control_node = radio_control_node_list[0]
-        ldict_radios = radio_usage_node.Input_Rate
-        d_bw_allocs = radio_control_node.BW_Allocs
+        try:
+            radio_usage_node_list = database.get_nodes_by_type('Radio_Input')
+            radio_control_node_list = database.get_nodes_by_type('Radio_Control')
+            radio_usage_node = radio_usage_node_list[0]
+            radio_control_node = radio_control_node_list[0]
+            ldict_radios = radio_usage_node.Input_Rate
+            d_bw_allocs = radio_control_node.BW_Allocs
+        except AttributeError as e:
+            print(e)
     else:
         with open(data_input_rates, 'r') as f:
             ldict_radios = json.load(f)
@@ -1440,9 +1440,14 @@ if __name__ == "__main__":
     graph_d = {}
     if headless:
         try:
-            run_epoch()
-        except:
-            sys.exit(sys.exc_info())
+            while True:
+                start_time = time.time()
+                run_epoch()
+                time_waited = time.time() - start_time
+                if time_waited < epoch_sec:
+                    time.sleep(epoch_sec-time_waited)
+        except Exception as e:
+            print(e)
     elif not headless:
         stdscr = curses.initscr()                # Initial main screen for curses
         banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
