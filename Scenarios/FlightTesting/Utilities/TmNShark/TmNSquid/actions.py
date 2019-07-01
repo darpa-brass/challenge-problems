@@ -108,7 +108,7 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
     # Loop over reading the pipe, parsing out the TDMs and sending over the network when a TDM is completely read
     tdm_cnt = 0
     print("Input '{0}' has been opened for reading.  Waiting for writer to connect.".format(stream_of_data))
-    pipeout = open(stream_of_data, 'rb')
+    input_file_or_pipe = open(stream_of_data, 'rb')
     print("Connected to input '{0}'.  Reading binary TDMs from input.".format(stream_of_data))
 
     # clear file contents before reading in new values
@@ -121,11 +121,11 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
     delete.close()
 
     try:
-        reader = TmnsPcapReader(pipeout)
+        data_stream = TmnsPcapReader(input_file_or_pipe)
 
         count = 0
         while True:
-            message = reader.get_message()
+            message = data_stream.get_message()
 
             if message is None:
                 break
@@ -194,12 +194,13 @@ def preprocess_mdl(mdl=None):
                 measurement_results = defaultdict(list)
                 current_time = start_time
 
-                package_bits = memoryview(package_bits)
+                package_bits = memoryview(bytes(package_bits))
 
                 while len(package_bits):  # there's bits left
                     next_field = next(field_info)
 
-                    measurement_bytes = package_bits[:next_field.width]
+                    amt = int(next_field.width/8)
+                    measurement_bytes = bytes(package_bits[:amt])
 
                     if next_field.measurement_name is not None:
                         measurement_results[next_field.measurement_name.text].append((int.from_bytes(measurement_bytes, byteorder="big"), current_time))

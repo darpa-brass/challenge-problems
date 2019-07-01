@@ -70,6 +70,8 @@ class TmnsPcapReader:
             package_status_flags = int.from_bytes(self._read(1), byteorder='big')
             package_time_delta = int.from_bytes(self._read(4), byteorder='big')
             package_payload_len = package_length - 12
+            if package_payload_len < 0:
+                return None
             package_payload = self._read(package_payload_len)
 
             package = TmnsPackage(pdid=package_id, length=package_length,
