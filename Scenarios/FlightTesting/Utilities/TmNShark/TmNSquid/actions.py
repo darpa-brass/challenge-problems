@@ -58,7 +58,7 @@ def get_field_info(data_structure, package):
 
     return field_info
 
-@profile
+
 def make_tdm_packet_list(bfile, package_decoders):
     """ This function reads a binary file (bfile) of TmNS Data Messages, parses the
         TDMs, and adds each TDM to the list of TDMs (tdm_list).
@@ -69,9 +69,15 @@ def make_tdm_packet_list(bfile, package_decoders):
     if os.path.exists(bfile):
         with open(bfile, mode='rb') as f:
             reader = TmnsPcapReader(f)
-            messages = reader.get_messages()
+            # messages = reader.get_messages()
+
             count = 0
-            for message in messages:
+            while True:
+                message = reader.get_message()
+                if message is None:
+                    print("Message is none now.")
+                    break
+
                 count = count + 1
                 for package in message.packages:
                     package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
@@ -91,6 +97,63 @@ def make_tdm_packet_list(bfile, package_decoders):
     else:
         print("The file '{0}' was not found.".format(bin))
         return tdm_list
+
+
+def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders: {}):
+    """ This function reads a binary stream of TmNS Data Messages from a pipe """
+
+    if os.path.exists(stream_of_data) is False:
+        print("\nNo pipe or file exists.")
+
+    # Loop over reading the pipe, parsing out the TDMs and sending over the network when a TDM is completely read
+    tdm_cnt = 0
+    print("Input '{0}' has been opened for reading.  Waiting for writer to connect.".format(stream_of_data))
+    pipeout = open(stream_of_data, 'rb')
+    print("Connected to input '{0}'.  Reading binary TDMs from input.".format(stream_of_data))
+
+    # clear file contents before reading in new values
+    # delete and create the directory or make a new folder
+    delete = open(r'new_measurements/' + str("Acme_AccelerationX") + r'.csv', 'w')
+    delete.close()
+    delete = open(r'new_measurements/' + str("Acme_AccelerationY") + r'.csv', 'w')
+    delete.close()
+    delete = open(r'new_measurements/' + str("Acme_AccelerationZ") + r'.csv', 'w')
+    delete.close()
+
+    try:
+        reader = TmnsPcapReader(pipeout)
+
+        count = 0
+        while True:
+            message = reader.get_message()
+
+            if message is None:
+                break
+
+            count = count + 1
+            for package in message.packages:
+                package_time = message.time_nanosec + package.time_delta + (message.time_sec * 1e9)
+                payload = bitarray()
+                payload.frombytes(package.payload)
+                measurements = package_decoders[package.pdid](payload, package_time)
+                cnt_key = 0
+                for _measurement_name, value in measurements.items():
+                    with open(r'new_measurements/' + str(_measurement_name) + r'.csv', 'a') as csvfile:
+                        cnt_key = cnt_key + 1
+                        csv_out = csv.writer(csvfile)
+                        csv_out.writerow(['value', 'timestamp'])
+                        for row in value:
+                            csv_out.writerow(row)
+    except IOError as e:
+        if e.errno == errno.EPIPE:
+            print("Looks like the pipe closed.  Closing the pipe and will reopen it for listening.")
+            pipeout.close()
+        else:
+            print("some other IOError other than EPIPE. quitting")
+            exit(-1)
+    except ValueError:
+        print("\nPipe Writer has closed.  Closing our Pipe Reader.")
+        pipeout.close()
 
 
 def preprocess_mdl(mdl=None):

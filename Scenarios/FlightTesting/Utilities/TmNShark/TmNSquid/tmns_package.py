@@ -3,7 +3,7 @@ class TmnsPackage:
 
     def __init__(self, pdid: int = 0, length: int = 0,
                  status_flags: int = 0, time_delta: int = 0,
-                 payload: int = 0, measurements: [] = None):
+                 payload: bytes = 0, measurements: [] = None):
         self.pdid = pdid
         self.length = length
         self.status_flags = status_flags
