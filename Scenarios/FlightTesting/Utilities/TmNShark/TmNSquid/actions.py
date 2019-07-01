@@ -1,4 +1,7 @@
+import os
 import csv
+from datetime import datetime
+import time
 
 from scapy.all import *
 from lxml import etree
@@ -111,14 +114,9 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
     input_file_or_pipe = open(stream_of_data, 'rb')
     print("Connected to input '{0}'.  Reading binary TDMs from input.".format(stream_of_data))
 
-    # clear file contents before reading in new values
-    # delete and create the directory or make a new folder
-    delete = open(r'new_measurements/' + str("Acme_AccelerationX") + r'.csv', 'w')
-    delete.close()
-    delete = open(r'new_measurements/' + str("Acme_AccelerationY") + r'.csv', 'w')
-    delete.close()
-    delete = open(r'new_measurements/' + str("Acme_AccelerationZ") + r'.csv', 'w')
-    delete.close()
+    # create a new folder to save measurements into each time
+    mydir = os.path.join(os.getcwd(), 'measurements/', datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
+    os.makedirs(mydir)
 
     try:
         data_stream = TmnsPcapReader(input_file_or_pipe)
@@ -138,7 +136,7 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
                 measurements = package_decoders[package.pdid](payload, package_time)
                 cnt_key = 0
                 for _measurement_name, value in measurements.items():
-                    with open(r'new_measurements/' + str(_measurement_name) + r'.csv', 'a') as csvfile:
+                    with open(str(mydir) + '/' + str(_measurement_name) + r'.csv', 'a') as csvfile:
                         cnt_key = cnt_key + 1
                         csv_out = csv.writer(csvfile)
                         csv_out.writerow(['value', 'timestamp'])
@@ -147,13 +145,13 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
     except IOError as e:
         if e.errno == errno.EPIPE:
             print("Looks like the pipe closed.  Closing the pipe and will reopen it for listening.")
-            pipeout.close()
+            input_file_or_pipe.close()
         else:
             print("some other IOError other than EPIPE. quitting")
             exit(-1)
     except ValueError:
         print("\nPipe Writer has closed.  Closing our Pipe Reader.")
-        pipeout.close()
+        input_file_or_pipe.close()
 
 
 def preprocess_mdl(mdl=None):
