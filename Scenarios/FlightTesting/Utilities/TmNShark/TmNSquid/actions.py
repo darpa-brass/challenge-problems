@@ -72,7 +72,6 @@ def make_tdm_packet_list(bfile, package_decoders):
     if os.path.exists(bfile):
         with open(bfile, mode='rb') as f:
             reader = TmnsPcapReader(f)
-            # messages = reader.get_messages()
 
             count = 0
             while True:
@@ -114,7 +113,7 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
     input_file_or_pipe = open(stream_of_data, 'rb')
     print("Connected to input '{0}'.  Reading binary TDMs from input.".format(stream_of_data))
 
-    # create a new folder to save measurements into each time
+    # creates a new folder to save measurements into each time
     mydir = os.path.join(os.getcwd(), 'measurements/', datetime.now().strftime('%Y-%m-%d_%H-%M-%S'))
     os.makedirs(mydir)
 
@@ -155,7 +154,7 @@ def realtime_tdm_stream_to_network_output(stream_of_data: str, package_decoders:
 
 
 def preprocess_mdl(mdl=None):
-    """Stuff"""
+    """Reads MDL to extract expected measurement."""
 
     package_decoders = {}
 
