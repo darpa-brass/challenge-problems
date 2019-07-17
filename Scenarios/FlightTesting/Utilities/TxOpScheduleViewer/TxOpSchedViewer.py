@@ -791,6 +791,62 @@ def write_report_to_json(rans_list):
 
 # ------------------------------------------------------------------------------
 
+def find_next_step_in_relay(rans_list, src, dest, current_step):
+    pass
+
+def score_transmission_schedule(rans_list, ld_link_scores):
+    if ld_link_scores is not None:
+        for d in ld_link_scores:
+            for ran in rans_list:
+                for l in ran.links:
+                    if "Link" in d:
+                        # If Scoring Source and destination are on the same link.
+                        if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
+                            lat_min_thd = 0
+                            lat_max_thd = 0
+                            bw_min_thd = 0
+                            bw_max_thd = 0
+                            bw_coef = 0
+                            mult = 1
+                            if "Latency" in d:
+                                if "max_thd" in d['Latency']:
+                                    lat_max_thd = d['Latency']['max_thd']
+                                if "min_thd" in d['Latency']:
+                                    lat_min_thd = d['Latency']['min_thd']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Latency' was not found in the dictionary for the specified link.")
+                            if "Bandwidth" in d:
+                                if "min_thd" in d['Bandwidth']:
+                                    bw_min_thd = d['Bandwidth']['min_thd']
+                                if "max_thd" in d['Bandwidth']:
+                                    bw_max_thd = d['Bandwidth']['max_thd']
+                                if "coef" in d['Bandwidth']:
+                                    bw_coef = d['Bandwidth']['coef']
+                            else:
+                                if debug >= 1:
+                                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
+                            if "Multiplier" in d:
+                                mult = d["Multiplier"]
+                            else:
+                                if debug >= 1:
+                                    print(
+                                        "The key 'Multiplier' was not found in the dictionary for the specified link.")
+                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd), mult)
+                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
+                        elif (int(l.src) == int(d['Link']['LinkSrc'])) or (int(l.dst) == int(d['Link']['LinkDst'])):
+                            pass
+                        else:
+                            if debug >= 1:
+                                print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
+                    else:
+                        if debug >= 1:
+                            print("No match for key 'Link' in score file for link.\r")
+        max_requested_schedule(rans_list, ld_link_scores, mult)
+
+
+# ------------------------------------------------------------------------------
+
 
 def run_schedule_viewer():
     global mdl_file
@@ -912,50 +968,7 @@ def run_schedule_viewer():
             if debug >= 1:
                 print("JSON Score File Not Found!\r")
 
-    if ld_link_scores is not None:
-        for d in ld_link_scores:
-            for ran in rans_list:
-                for l in ran.links:
-                    if "Link" in d:
-                        if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
-                            lat_min_thd = 0
-                            lat_max_thd = 0
-                            bw_min_thd = 0
-                            bw_max_thd = 0
-                            bw_coef = 0
-                            mult = 1
-                            if "Latency" in d:
-                                if "max_thd" in d['Latency']:
-                                    lat_max_thd = d['Latency']['max_thd']
-                                if "min_thd" in d['Latency']:
-                                    lat_min_thd = d['Latency']['min_thd']
-                            else:
-                                if debug >= 1:
-                                    print("The key 'Latency' was not found in the dictionary for the specified link.")
-                            if "Bandwidth" in d:
-                                if "min_thd" in d['Bandwidth']:
-                                    bw_min_thd = d['Bandwidth']['min_thd']
-                                if "max_thd" in d['Bandwidth']:
-                                    bw_max_thd = d['Bandwidth']['max_thd']
-                                if "coef" in d['Bandwidth']:
-                                    bw_coef = d['Bandwidth']['coef']
-                            else:
-                                if debug >= 1:
-                                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
-                            if "Multiplier" in d:
-                                mult = d["Multiplier"]
-                            else:
-                                if debug >= 1:
-                                    print("The key 'Multiplier' was not found in the dictionary for the specified link.")
-                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd), mult)
-                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
-                        else:
-                            if debug >= 1:
-                                print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
-                    else:
-                        if debug >= 1:
-                            print("No match for key 'Link' in score file for link.\r")
-        max_requested_schedule(rans_list, ld_link_scores, mult)
+    score_transmission_schedule(rans_list, ld_link_scores)
 
     write_report_to_json(rans_list)
 
