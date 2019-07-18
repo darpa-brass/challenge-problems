@@ -290,8 +290,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>PCM</BBNPortFunctionality>
+                                                <PortType>PCM</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>PCM</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j2-ch1-ex4" Index="2">
                                             <Name>Ethernet</Name>
@@ -301,8 +305,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Ethernet</PortType>
+                                            </PortTypes>
                                             <PhysicalNetworkPortRef IDREF="pnp-eup-ethernet-ex4"/>
                                         </Port>
                                         <Port ID="port-eup-j3-ch1-ex4" Index="3">
@@ -313,8 +321,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>VGA</BBNPortFunctionality>
+                                                <PortType>Video</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Video</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch1-ex4" Index="4">
                                             <Name>GeneralInput1</Name>
@@ -324,8 +336,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch2-ex4" Index="5">
                                             <Name>GeneralInput2</Name>
@@ -335,8 +351,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch3-ex4" Index="6">
                                             <Name>GeneralInput3</Name>
@@ -346,8 +366,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch4-ex4" Index="7">
                                             <Name>GeneralInput4</Name>
@@ -357,8 +381,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch5-ex4" Index="8">
                                             <Name>GeneralInput5</Name>
@@ -368,8 +396,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch6-ex4" Index="9">
                                             <Name>GeneralInput6</Name>
@@ -379,8 +411,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch7-ex4" Index="10">
                                             <Name>GeneralInput7</Name>
@@ -390,8 +426,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j4-ch8-ex4" Index="11">
                                             <Name>GeneralInput8</Name>
@@ -401,8 +441,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch1-ex4" Index="12">
                                             <Name>GeneralOutput1</Name>
@@ -412,8 +456,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch2-ex4" Index="13">
                                             <Name>GeneralOutput2</Name>
@@ -423,8 +471,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch3-ex4" Index="14">
                                             <Name>GeneralOutput3</Name>
@@ -436,6 +488,9 @@
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch4-ex4" Index="15">
                                             <Name>GeneralOutput4</Name>
@@ -445,8 +500,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch5-ex4" Index="16">
                                             <Name>GeneralOutput5</Name>
@@ -456,8 +515,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch6-ex4" Index="17">
                                             <Name>GeneralOutput6</Name>
@@ -467,8 +530,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch7-ex4" Index="18">
                                             <Name>GeneralOutput7</Name>
@@ -478,8 +545,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-eup-j5-ch8-ex4" Index="19">
                                             <Name>GeneralOutput8</Name>
@@ -489,8 +560,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>General</BBNPortFunctionality> -->
+                                                <PortType>GPIO</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>GPIO</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -559,9 +634,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j1-ch2-ex4" Index="2">
                                             <Name>J1Ch2</Name>
@@ -572,9 +651,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j1-ch3-ex4" Index="3">
                                             <Name>J1Ch3</Name>
@@ -585,9 +668,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j1-ch4-ex4" Index="4">
                                             <Name>J1Ch4</Name>
@@ -598,9 +685,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j1-ch5-ex4" Index="5">
                                             <Name>J1Ch5</Name>
@@ -611,9 +702,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j1-ch6-ex4" Index="6">
                                             <Name>J1Ch6</Name>
@@ -624,9 +719,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch1-ex4" Index="7">
                                             <Name>J2Ch1</Name>
@@ -637,9 +736,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch2-ex4" Index="8">
                                             <Name>J2Ch2</Name>
@@ -650,9 +753,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch3-ex4" Index="9">
                                             <Name>J2Ch3</Name>
@@ -663,9 +770,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch4-ex4" Index="10">
                                             <Name>J2Ch4</Name>
@@ -676,9 +787,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch5-ex4" Index="11">
                                             <Name>J2Ch5</Name>
@@ -689,9 +804,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-amd-j2-ch6-ex4" Index="12">
                                             <Name>J2Ch6</Name>
@@ -702,9 +821,13 @@
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -743,8 +866,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>PCM</BBNPortFunctionality> -->
+                                                <PortType>PCM</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
+                                            <PortTypes>
+                                                <PortType>PCM</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -774,8 +901,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j1-ch2-ex4" Index="2">
                                             <Name>J1Ch2</Name>
@@ -787,8 +918,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j1-ch3-ex4" Index="3">
                                             <Name>J1Ch3</Name>
@@ -800,8 +935,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j1-ch4-ex4" Index="4">
                                             <Name>J1Ch4</Name>
@@ -813,8 +952,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j2-ch1-ex4" Index="5">
                                             <Name>J2Ch1</Name>
@@ -826,8 +969,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j2-ch2-ex4" Index="6">
                                             <Name>J2Ch2</Name>
@@ -839,8 +986,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j2-ch3-ex4" Index="7">
                                             <Name>J2Ch3</Name>
@@ -852,8 +1003,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-scd-j2-ch4-ex4" Index="8">
                                             <Name>J2Ch4</Name>
@@ -865,8 +1020,12 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <DataLength>16</DataLength>
                                                 <DataRate>20000</DataRate>
+                                                <PortType>SignalConditioner</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -894,8 +1053,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j1-ch2-ex4" Index="2">
                                             <Name>J1Ch2</Name>
@@ -905,8 +1068,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j1-ch3-ex4" Index="3">
                                             <Name>J1Ch3</Name>
@@ -916,8 +1083,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j1-ch4-ex4" Index="4">
                                             <Name>J1Ch4</Name>
@@ -927,8 +1098,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j2-ch1-ex4" Index="5">
                                             <Name>J2Ch1</Name>
@@ -938,8 +1113,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j2-ch2-ex4" Index="6">
                                             <Name>J2Ch2</Name>
@@ -949,8 +1128,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j2-ch3-ex4" Index="7">
                                             <Name>J2Ch3</Name>
@@ -960,8 +1143,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-tcm-j2-ch4-ex4" Index="8">
                                             <Name>J2Ch4</Name>
@@ -971,8 +1158,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -1000,8 +1191,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>Voice</BBNPortFunctionality> -->
+                                                <PortType>Audio</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Audio</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-cvs-j2-ch1-ex4" Index="2">
                                             <Name>J2Ch1</Name>
@@ -1011,8 +1206,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <!-- <BBNPortFunctionality>Voice</BBNPortFunctionality> -->
+                                                <PortType>Audio</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Audio</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -1363,27 +1562,27 @@
                     </PortMapping>
                     <PortMapping ID="pm-tcm-j1ch3-thermo2-j1ch1">
                         <Name>Temperature2</Name>
-                        <Description>Thermocouple j1 Ch1 to Thermocouple 2 j1 (Temperature)</Description>
+                        <Description>Thermocouple j1 Ch3 to Thermocouple 2 j1 (Temperature)</Description>
                         <PortRef IDREF="port-tcm-j1-ch3-ex4"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <PortRef IDREF="port-thermo2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-tcm-j2ch1-thermo3-j1ch1">
                         <Name>Temperature3</Name>
-                        <Description>Thermocouple j1 Ch1 to Thermocouple 3 j2 (Temperature)</Description>
-                        <PortRef IDREF="port-tcm-j1-ch1-ex4"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <Description>Thermocouple j2 Ch1 to Thermocouple 3 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-tcm-j2-ch1-ex4"/>
+                        <PortRef IDREF="port-thermo3-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-12-1000"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-tcm-j2ch3-thermo4-j1ch1">
                         <Name>Temperature4</Name>
-                        <Description>Thermocouple j1 Ch1 to Thermocouple 4 j2 (Temperature)</Description>
-                        <PortRef IDREF="port-tcm-j1-ch1-ex4"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <Description>Thermocouple j1 Ch1 to Thermocouple 4 j1 (Temperature)</Description>
+                        <PortRef IDREF="port-tcm-j2-ch3-ex4"/>
+                        <PortRef IDREF="port-thermo4-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-12-1000"/>
                         </MeasurementRefs>
