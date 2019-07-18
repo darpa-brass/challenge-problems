@@ -306,8 +306,12 @@
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <SampleRate>1250000</SampleRate>
                                                 <DataLength>1</DataLength>
+                                                <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Serial</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-processor-j1-2"/>
                                                 <PinRef IDREF="pin-processor-j1-3"/>
@@ -490,8 +494,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Ethernet</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-ieee-j2-1"/>
                                                 <PinRef IDREF="pin-ieee-j2-2"/>
@@ -793,9 +801,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-15"/>
@@ -813,9 +825,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-18"/>
@@ -833,9 +849,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-14"/>
@@ -853,9 +873,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-15"/>
@@ -873,9 +897,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-18"/>
@@ -893,9 +921,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-14"/>
@@ -1195,9 +1227,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-15"/>
@@ -1215,9 +1251,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-18"/>
@@ -1235,9 +1275,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j1-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j1-14"/>
@@ -1255,9 +1299,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-2"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-15"/>
@@ -1275,9 +1323,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-5"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-18"/>
@@ -1295,9 +1347,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-sigcond1-j2-11"/>
                                                 <PinRef IDREF="pin-sigcond1-j2-14"/>
@@ -1337,8 +1393,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch2" Index="2">
                                             <Name>Ch2</Name>
@@ -1354,8 +1414,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch3" Index="3">
                                             <Name>Ch3</Name>
@@ -1371,8 +1435,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch4" Index="4">
                                             <Name>Ch4</Name>
@@ -1388,8 +1456,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch5" Index="5">
                                             <Name>Ch5</Name>
@@ -1405,8 +1477,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch6" Index="6">
                                             <Name>Ch6</Name>
@@ -1422,8 +1498,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch7" Index="7">
                                             <Name>Ch7</Name>
@@ -1439,8 +1519,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-thermo-j1-ch8" Index="8">
                                             <Name>Ch8</Name>
@@ -1456,8 +1540,12 @@
                                                 <DataLength>16</DataLength>
                                                 <BBNDataRate>4000</BBNDataRate>
                                                 <BBNDataRate>12000</BBNDataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -1485,11 +1573,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch2" Index="2">
                                             <Name>Ch2</Name>
@@ -1499,11 +1588,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch3" Index="3">
                                             <Name>Ch3</Name>
@@ -1513,11 +1603,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch4" Index="4">
                                             <Name>Ch4</Name>
@@ -1527,11 +1618,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch5" Index="5">
                                             <Name>Ch5</Name>
@@ -1541,11 +1633,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch6" Index="6">
                                             <Name>Ch6</Name>
@@ -1555,11 +1648,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch7" Index="7">
                                             <Name>Ch7</Name>
@@ -1569,11 +1663,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus1-j1-ch8" Index="8">
                                             <Name>Ch8</Name>
@@ -1583,11 +1678,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -1615,11 +1711,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-bus2-j2-ch1" Index="2">
                                             <Name>Ch2</Name>
@@ -1629,11 +1726,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Bus</BBNPortFunctionality>
-                                                <SampleRate>12500</SampleRate>
-                                                <SampleRate>50000</SampleRate>
-                                                <SampleRate>100000</SampleRate>
+                                                <PortType>Bus</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Bus</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -2734,7 +2832,7 @@
                     <PortMapping ID="pm-thermo-j1ch2-thermo2-j1ch1">
                         <Name>Temperature2</Name>
                         <Description>Thermocouple j1 Ch2 to Thermocouple 2 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch2"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2743,7 +2841,7 @@
                     <PortMapping ID="pm-thermo-j1ch3-thermo3-j1ch1">
                         <Name>Temperature3</Name>
                         <Description>Thermocouple j1 Ch3 to Thermocouple 3 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch3"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2752,7 +2850,7 @@
                     <PortMapping ID="pm-thermo-j1ch4-thermo4-j1ch1">
                         <Name>Temperature4</Name>
                         <Description>Thermocouple j1 Ch4 to Thermocouple 4 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch4"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2761,7 +2859,7 @@
                     <PortMapping ID="pm-thermo-j1ch5-thermo5-j1ch1">
                         <Name>Temperature5</Name>
                         <Description>Thermocouple j1 Ch5 to Thermocouple 5 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch5"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2770,7 +2868,7 @@
                     <PortMapping ID="pm-thermo-j1ch6-thermo6-j1ch1">
                         <Name>Temperature6</Name>
                         <Description>Thermocouple j1 Ch6 to Thermocouple 6 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch6"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2779,7 +2877,7 @@
                     <PortMapping ID="pm-thermo-j1ch7-thermo7-j1ch1">
                         <Name>Temperature7</Name>
                         <Description>Thermocouple j1 Ch7 to Thermocouple 7 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch7"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
@@ -2788,7 +2886,7 @@
                     <PortMapping ID="pm-thermo-j1ch8-thermo8-j1ch1">
                         <Name>Temperature8</Name>
                         <Description>Thermocouple j1 Ch8 to Thermocouple 8 j1 (Temperature)</Description>
-                        <PortRef IDREF="port-thermo-j1-ch1"/>
+                        <PortRef IDREF="port-thermo-j1-ch8"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
