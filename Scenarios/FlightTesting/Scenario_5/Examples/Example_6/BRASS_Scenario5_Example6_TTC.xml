@@ -421,8 +421,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -438,8 +438,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -455,8 +455,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -472,8 +472,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -489,8 +489,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -506,8 +506,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -523,8 +523,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -540,8 +540,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -575,8 +575,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -592,8 +592,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -609,8 +609,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -626,8 +626,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -643,8 +643,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -660,8 +660,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -677,8 +677,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -694,8 +694,8 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -727,7 +727,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -741,7 +741,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -755,7 +755,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -769,7 +769,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -783,7 +783,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -797,7 +797,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -811,7 +811,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -825,7 +825,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -857,7 +857,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -871,7 +871,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -885,7 +885,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -899,7 +899,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -913,7 +913,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -927,7 +927,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -941,7 +941,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
@@ -955,7 +955,7 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                         </Port>
