@@ -1,0 +1,241 @@
+<MDLRoot>
+    <!--<DatabaseID/>-->
+    <!--<Checksum/>-->
+    <!--<ConfigurationVersion>2015-10-14_20:31:46_TA1</ConfigurationVersion>-->
+    <!--<LastBuildDateTime/>-->
+    <!--<DirtyBit>false</DirtyBit>-->
+    <!--<TestMissions/>-->
+    <!--<Units/>-->
+    <!--<RANConfiguration/>-->
+    <!--<SupportedMulticastAddresses/>-->
+    <MeasurementDomains>
+        <MeasurementDomain>
+            <Measurements>
+                <Measurement ID="meas-1-1">
+                    <GenericParameter>
+                        <SampleRate/><!--Supported rate-->
+                        <DataLength/><!--Supported length-->
+                        <DataRate/><!--Supported rate-->
+                    </GenericParameter>
+                    <!--<MeasurementID>0x10000001</MeasurementID>-->
+                    <!--<MeasurementTypes>-->
+                    <!--	<MeasurementType>Analog</MeasurementType> Obtained from original DAU usage-->
+                    <!--</MeasurementTypes>-->
+                    <!--<MeasurementActive>true</MeasurementActive>-->
+                    <!--<DeliveryClass>BestEffort</DeliveryClass>-->
+                    <!--<MeasurementTimeRef/>-->
+                    <DataAttributes>
+                        <!--<PCMMeasurementRefs/>-->
+                        <!--<UnitRef/>-->
+                        <!--<BaseUnit>Counts</BaseUnit>-->
+                        <!--<Uncertainties/>-->
+                        <!--<Calibration/>-->
+                        <!--<AnalogAttributes/>-->
+                        <!--<TimeAttributes/>-->
+                        <DigitalAttributes>
+                            <!--<Endianness/>-->
+                            <!--<DigitalEncoding/>-->
+                            <!--<ActiveInputRange/>-->
+                            <!--<DefaultValue/>-->
+                            <!--<ConstantValue/>-->
+                            <DataLength>
+                                <ConditionParameter>
+                                    <!--<ConditionOperation/>-->
+                                    <ConditionValue/><!--Current length-->
+                                    <!--<BaseUnit/>-->
+                                </ConditionParameter>
+                            </DataLength>
+                            <!--<DigitalEncoding/>-->
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <!--<ConditionOperation/>-->
+                                    <ConditionValue/><!--Current rate-->
+                                    <!--<BaseUnit/>-->
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <!--<ConditionOperation/>-->
+                                    <ConditionValue/><!--Current rate-->
+                                    <!--<BaseUnit/>-->
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+            </Measurements>
+            <!--<PackageDefinitions/>-->
+            <!--<DataStructures/>-->
+            <!--<MessageDefinitions/>-->
+            <DataStreams>
+                <DataStream ID="ds-data1">
+                    <!--<DataRate/>-->
+                    <!--<BusSpeed/>-->
+                    <!--<DataStreamMessages/>-->
+                    <!--<PCMDataLink/>-->
+                </DataStream>
+            </DataStreams>
+            <!--<DataProcessing/>-->
+            <!--<MeasurementGroups/>-->
+            <!--<MessageGroups/>-->
+        </MeasurementDomain>
+    </MeasurementDomains>
+    <NetworkDomain>
+        <!--<NetworkToNetworkMapping/>-->
+        <Networks>
+            <Network><!-- ID ignored-->
+                <!--<NetworkType/>-->
+                <!--<Networks/>-->
+                <!--<Antennas/>-->
+                <NetworkNodes>
+                    <NetworkNode>
+                        <GenericParameter>
+                            <BBNDauMonetaryCost/>
+                            <BBNDauOpportunityCost/>
+                            <BBNDauFlaggedForReplacement/>
+                        </GenericParameter>
+                        <!--<IEEE1588Version/>-->
+                        <!--<Routes/>-->
+                        <!--<LogicalLocation/>-->
+                        <!--<PhysicalLocation/>-->
+                        <!--<Capabilities/>-->
+                        <!--<HostName>TTC</HostName>-->
+                        <!--<IEEE1588Version>2008e2e</IEEE1588Version>-->
+                        <TmNSApps>
+                            <TmNSApp><!-- ID ignored-->
+                                <!--<RoleID>TTC_DAU1</RoleID>-->
+                                <!--<LoggingLevel>Warning</LoggingLevel>-->
+                                <!--<ConfigurationVersion>iDAU: app mu.7115+, kernel #6983 PREEMPT Tue May 19 13:32:41 EDT 2015</ConfigurationVersion>-->
+                                <!--<TmNSManagementResourcesVersion>SMS v0.8.7</TmNSManagementResourcesVersion>-->
+                                <!--<LastValidationDateTime/>-->
+                                <!--<LastConfigurationDateTime/>-->
+                                <!--<DirtyBit>false</DirtyBit>-->
+                                <!--<DataBufferLength/>-->
+                                <!--<TmNSNull/>-->
+                                <!--<TmNSNetworkFabricDevice/>-->
+                                <!--<TmNSACU/>-->
+                                <!--<TmNSRecorder/>-->
+                                <!--<TmNSMasterClock/>-->
+                                <!--<TmNSEncryptor/>-->
+                                <!--<TmNSMFD/>-->
+                                <!--<TmNSSSTTx/>-->
+                                <!--<TmNSSSTRx/>-->
+                                <!--<TmNSRCDataSource/>-->
+                                <!--<TmNSRCDataSink/>-->
+                                <!--<TmNSLTCDataSource/>-->
+                                <!--<TmNSLTCDataSink/>-->
+                                <!--<TmNSConsolidatedManager/>-->
+                                <!--<TmNSRadio/>-->
+                                <!--<TmNSLinkManager/>-->
+                                <!--<TmNSTSSClient/>-->
+                                <!--<TmNSSServer/>-->
+                                <!--<TmNSVoiceGateway/>-->
+                                <!--<TmNSMeasurementProcessor/>-->
+                                <TmNSDAU/><!--Presense indicates NetworkNode has DAU capabilities-->
+                                <!--<TmNSLTCDataSource>-->
+                                <!--	<LTCInterfaces>-->
+                                <!--		<LTCInterface>-->
+                                <!--			<TimeToLive>10</TimeToLive>-->
+                                <!--		</LTCInterface>-->
+                                <!--	</LTCInterfaces>-->
+                                <!--</TmNSLTCDataSource>-->
+                                <!--<SMInterface>-->
+                                <!--	<SNMPSetup>-->
+                                <!--		<SNMPVersions>-->
+                                <!--			<SNMPVersion>v3</SNMPVersion>-->
+                                <!--		</SNMPVersions>-->
+                                <!--		<SNMPPort>1234</SNMPPort>-->
+                                <!--		<NotificationPort>1234</NotificationPort>-->
+                                <!--		<DSCPTableEntryRef IDREF="dscp-0"/>-->
+                                <!--		<NetworkInterfaceRefs>-->
+                                <!--			<NetworkInterfaceRef IDREF="ni-bcu-eth0-ex3"/>-->
+                                <!--		</NetworkInterfaceRefs>-->
+                                <!--	</SNMPSetup>-->
+                                <!--</SMInterface>-->
+                            </TmNSApp>
+                        </TmNSApps>
+                        <InternalStructure>
+                            <Modules>
+                                <Module ID="module-101">
+                                    <GenericParameter>
+                                        <BBNModuleFunctionality/>
+                                    </GenericParameter>
+                                    <!--<Position>101</Position>-->
+                                    <!--<PositionsOccupied>1</PositionsOccupied>-->
+                                    <!--<RunningAppRefs/>-->
+                                    <!--<NetworkInterfaces/>-->
+                                    <!--<Children/>-->
+                                    <!--<Connectors/>-->
+                                    <!--<SubModules/>-->
+                                    <Ports>
+                                        <Port ID="port">
+                                            <GenericParameter>
+                                                <BBNPortFunctionality/><!--Replacement Port must contain a match-->
+                                                <SampleRate/><!--Supported sample rate-->
+                                                <DataLength/><!--Supported data length-->
+                                                <ExcitationPortIsPresent/><!--Allows connecting this Port to another Port requiring excitation-->
+                                            </GenericParameter>
+                                            <PortDirection/><!--Direction must be compatible with connecting Port-->
+                                            <PortPolarity/><!--Polarity must be compatible with connecting Port-->
+                                            <PortTypes>
+                                                <PortType/><!--Type must be compatible with connecting Port-->
+                                            </PortTypes>
+                                            <Excitation/>
+                                            <!--<CaptureCapabilityRefs/>-->
+                                            <!--<PhysicalNetworkPortRef/>--><!--Marks this port as a network port-->
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                            </Modules>
+                        </InternalStructure>
+                    </NetworkNode>
+                </NetworkNodes>
+                <Devices>
+                    <Device ID="id_0x00000001">
+                        <!--<DeviceType/> Obtained from original DAU usage-->
+                        <!--<LogicalLocation/>-->
+                        <!--<PhysicalLocation/>-->
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="d1e01">
+                                    <!--<Position>1</Position>-->
+                                    <!--<PositionsOccupied>1</PositionsOccupied>-->
+                                    <!--<Sensitivity/>-->
+                                    <!--<Calibration/>-->
+                                    <!--<Children/>-->
+                                    <!--<DeviceSubModules/>-->
+                                    <ExcitationSource/><!--'External' requires being connected to a Port with excitation-->
+                                    <Ports>
+                                        <Port ID="id_0x00000038">
+                                            <PortDirection>Output</PortDirection><!--Direction must be compatible with connecting Port-->
+                                            <PortPolarity/><!--Polarity must be compatible with connecting Port-->
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                </Devices>
+                <PortMappings>
+                    <PortMapping>
+                        <!--Use PortRefs to determine connectivity-->
+                        <PortRef IDREF="id_0x00000038"/>
+                        <PortRef IDREF="Module1-Ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-1-1"/><!--Connected NetworkNode Port must support Measurement-->
+                        </MeasurementRefs>
+                        <!--MeasurementRefs OR DataStreamRefs-->
+                        <DataStreamRefs>
+                            <DataStreamRef IDREF="ds-data1"/><!--Connected NetworkNode Port must support DataStream-->
+                        </DataStreamRefs>
+                    </PortMapping>
+                </PortMappings>
+            </Network>
+        </Networks>
+    </NetworkDomain>
+    <!--<DSCPTable>-->
+    <!--	<DSCPTableEntry ID="dscp-0">-->
+    <!--		<DSCPValue>0b000000</DSCPValue>-->
+    <!--	</DSCPTableEntry>-->
+    <!--</DSCPTable>-->
+</MDLRoot>
