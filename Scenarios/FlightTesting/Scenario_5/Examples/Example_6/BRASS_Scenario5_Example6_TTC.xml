@@ -327,8 +327,12 @@
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <SampleRate>1250000</SampleRate>
                                                 <DataLength>1</DataLength>
+                                                <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Serial</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -387,8 +391,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Ethernet</PortType>
+                                            </PortTypes>
                                             <PhysicalNetworkPortRef IDREF="pnp-macq-ethernet-ex6"/>
                                         </Port>
                                     </Ports>
@@ -421,10 +429,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch2-ex6" Index="2">
                                             <Name>Ch2</Name>
@@ -438,10 +450,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch3-ex6" Index="3">
                                             <Name>Ch3</Name>
@@ -455,10 +471,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch4-ex6" Index="4">
                                             <Name>Ch4</Name>
@@ -472,10 +492,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch5-ex6" Index="5">
                                             <Name>Ch5</Name>
@@ -489,10 +513,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch6-ex6" Index="6">
                                             <Name>Ch6</Name>
@@ -506,10 +534,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch7-ex6" Index="7">
                                             <Name>Ch7</Name>
@@ -523,10 +555,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd1-j1-ch8-ex6" Index="8">
                                             <Name>Ch8</Name>
@@ -540,10 +576,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -575,10 +615,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch2-ex6" Index="2">
                                             <Name>Ch2</Name>
@@ -592,10 +636,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch3-ex6" Index="3">
                                             <Name>Ch3</Name>
@@ -609,10 +657,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch4-ex6" Index="4">
                                             <Name>Ch4</Name>
@@ -626,10 +678,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch5-ex6" Index="5">
                                             <Name>Ch5</Name>
@@ -643,10 +699,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch6-ex6" Index="6">
                                             <Name>Ch6</Name>
@@ -660,10 +720,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch7-ex6" Index="7">
                                             <Name>Ch7</Name>
@@ -677,10 +741,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd2-j1-ch8-ex6" Index="8">
                                             <Name>Ch8</Name>
@@ -694,10 +762,14 @@
                                                 <SampleRate>1000</SampleRate>
                                                 <DataLength>12</DataLength>
                                                 <DataLength>16</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
-                                                <BBNDataRate>12000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <DataRate>12000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -727,9 +799,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch2-ex6" Index="2">
                                             <Name>Ch2</Name>
@@ -741,9 +817,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch3-ex6" Index="3">
                                             <Name>Ch3</Name>
@@ -755,9 +835,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch4-ex6" Index="4">
                                             <Name>Ch4</Name>
@@ -769,9 +853,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch5-ex6" Index="5">
                                             <Name>Ch5</Name>
@@ -783,9 +871,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch6-ex6" Index="6">
                                             <Name>Ch6</Name>
@@ -797,9 +889,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch7-ex6" Index="7">
                                             <Name>Ch7</Name>
@@ -811,9 +907,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd3-j1-ch8-ex6" Index="8">
                                             <Name>Ch8</Name>
@@ -825,9 +925,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>1250</SampleRate>
                                                 <DataLength>8</DataLength>
-                                                <BBNDataRate>4000</BBNDataRate>
+                                                <DataRate>4000</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -857,9 +961,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch2-ex6" Index="2">
                                             <Name>Ch2</Name>
@@ -871,9 +979,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch3-ex6" Index="3">
                                             <Name>Ch3</Name>
@@ -885,9 +997,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch4-ex6" Index="4">
                                             <Name>Ch4</Name>
@@ -899,9 +1015,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch5-ex6" Index="5">
                                             <Name>Ch5</Name>
@@ -913,9 +1033,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch6-ex6" Index="6">
                                             <Name>Ch6</Name>
@@ -927,9 +1051,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch7-ex6" Index="7">
                                             <Name>Ch7</Name>
@@ -941,9 +1069,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mtcd4-j1-ch8-ex6" Index="8">
                                             <Name>Ch8</Name>
@@ -955,9 +1087,13 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
-                                                <BBNDataRate>4800</BBNDataRate>
+                                                <DataRate>4800</DataRate>
+                                                <PortType>Thermocouple</PortType>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>

@@ -327,8 +327,12 @@
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <SampleRate>1250000</SampleRate>
                                                 <DataLength>1</DataLength>
+                                                <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Serial</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -387,8 +391,12 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Ethernet</PortType>
+                                            </PortTypes>
                                             <PhysicalNetworkPortRef IDREF="pnp-macq-ethernet-ex5"/>
                                         </Port>
                                     </Ports>
@@ -419,9 +427,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd1-j1-ch2-ex5" Index="2">
                                             <Name>Ch2</Name>
@@ -433,9 +445,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd1-j1-ch3-ex5" Index="3">
                                             <Name>Ch3</Name>
@@ -447,9 +463,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd1-j2-ch1-ex5" Index="4">
                                             <Name>Ch4</Name>
@@ -461,9 +481,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd1-j2-ch2-ex5" Index="5">
                                             <Name>Ch5</Name>
@@ -475,9 +499,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd1-j2-ch3-ex5" Index="6">
                                             <Name>Ch6</Name>
@@ -489,9 +517,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>250</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -521,9 +553,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd2-j1-ch2-ex5" Index="2">
                                             <Name>Ch2</Name>
@@ -535,9 +571,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd2-j1-ch3-ex5" Index="3">
                                             <Name>Ch3</Name>
@@ -549,9 +589,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd2-j2-ch1-ex5" Index="4">
                                             <Name>Ch4</Name>
@@ -563,9 +607,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd2-j2-ch2-ex5" Index="5">
                                             <Name>Ch5</Name>
@@ -577,9 +625,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd2-j2-ch3-ex5" Index="6">
                                             <Name>Ch6</Name>
@@ -591,9 +643,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>500</SampleRate>
                                                 <DataLength>8</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -623,9 +679,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd3-j1-ch2-ex5" Index="2">
                                             <Name>Ch2</Name>
@@ -637,9 +697,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd3-j1-ch3-ex5" Index="3">
                                             <Name>Ch3</Name>
@@ -651,9 +715,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd3-j2-ch1-ex5" Index="4">
                                             <Name>Ch4</Name>
@@ -665,9 +733,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd3-j2-ch2-ex5" Index="5">
                                             <Name>Ch5</Name>
@@ -679,9 +751,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd3-j2-ch3-ex5" Index="6">
                                             <Name>Ch6</Name>
@@ -693,9 +769,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>400</SampleRate>
                                                 <DataLength>12</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -725,9 +805,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd4-j1-ch2-ex5" Index="2">
                                             <Name>Ch2</Name>
@@ -739,9 +823,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd4-j1-ch3-ex5" Index="3">
                                             <Name>Ch3</Name>
@@ -753,9 +841,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd4-j2-ch1-ex5" Index="4">
                                             <Name>Ch4</Name>
@@ -767,9 +859,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd4-j2-ch2-ex5" Index="5">
                                             <Name>Ch5</Name>
@@ -781,9 +877,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                         <Port ID="port-mscd4-j2-ch3-ex5" Index="6">
                                             <Name>Ch6</Name>
@@ -795,9 +895,13 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>200</SampleRate>
                                                 <DataLength>24</DataLength>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
                                         </Port>
                                     </Ports>
                                 </Module>
@@ -1194,7 +1298,7 @@
                     <PortMapping ID="pm-mscd1-j2ch1-accel1-j1ch1">
                         <Name>Acceleration4</Name>
                         <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd1-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-mscd1-j2-ch1-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
@@ -1203,7 +1307,7 @@
                     <PortMapping ID="pm-mscd1-j2ch2-accel1-j1ch1">
                         <Name>Acceleration5</Name>
                         <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd1-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-mscd1-j2-ch2-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
@@ -1212,7 +1316,7 @@
                     <PortMapping ID="pm-mscd1-j2ch3-accel1-j1ch1">
                         <Name>Acceleration6</Name>
                         <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd1-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-mscd1-j2-ch3-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
@@ -1248,7 +1352,7 @@
                     <PortMapping ID="pm-mscd2-j2ch1-accel1-j1ch1">
                         <Name>Acceleration10</Name>
                         <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd2-j1-ch1-ex5"/>
+                        <PortRef IDREF="port-mscd2-j2-ch1-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
@@ -1257,7 +1361,7 @@
                     <PortMapping ID="pm-mscd2-j2ch2-accel1-j1ch1">
                         <Name>Acceleration11</Name>
                         <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd2-j1-ch2-ex5"/>
+                        <PortRef IDREF="port-mscd2-j2-ch2-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
@@ -1266,7 +1370,7 @@
                     <PortMapping ID="pm-mscd2-j2ch3-accel1-j1ch1">
                         <Name>Acceleration12</Name>
                         <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
-                        <PortRef IDREF="port-mscd2-j1-ch3-ex5"/>
+                        <PortRef IDREF="port-mscd2-j2-ch3-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>

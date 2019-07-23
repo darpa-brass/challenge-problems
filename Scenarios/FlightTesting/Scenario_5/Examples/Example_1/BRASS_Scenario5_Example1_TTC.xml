@@ -1,4 +1,9 @@
-<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL" xmlns:tmatsCommon="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsCommonTypes" xmlns:tmatsP="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup" xmlns:tmatsD="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL"
+    xmlns:tmatsCommon="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsCommonTypes"
+    xmlns:tmatsP="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsPGroup"
+    xmlns:tmatsD="http://www.wsmr.army.mil/RCC/schemas/TMATS/TmatsDGroup"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
     <Name>MDLRoot</Name>
     <Description>TBD</Description>
     <DatabaseID/>
@@ -914,6 +919,7 @@
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
                                                 <SampleRate>1250000</SampleRate>
                                                 <DataLength>1</DataLength>
+                                                <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PortTypes>
@@ -1069,6 +1075,12 @@
                                         <Port Enabled="true" ID="Macq-RS-422-1" Index="1">
                                             <Name>TX1</Name>
                                             <Description>RS-422 Port 1</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="RS-422">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="RS-422">Extension</PortType>
@@ -1081,6 +1093,12 @@
                                         <Port Enabled="false" ID="Macq-RS-422-2" Index="2">
                                             <Name>TX2</Name>
                                             <Description>RS-422 Port 2</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="RS-422">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="RS-422">Extension</PortType>
@@ -1093,6 +1111,12 @@
                                         <Port Enabled="false" ID="Macq-RS-422-3" Index="3">
                                             <Name>TX3</Name>
                                             <Description>RS-422 Port 3</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="RS-422">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="RS-422">Extension</PortType>
@@ -1105,6 +1129,12 @@
                                         <Port Enabled="false" ID="Macq-RS-422-4" Index="4">
                                             <Name>TX4</Name>
                                             <Description>RS-422 Port 4</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="RS-422">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="RS-422">Extension</PortType>
@@ -1122,6 +1152,7 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
@@ -1136,6 +1167,7 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
                                             <PortTypes>
@@ -1450,6 +1482,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1471,6 +1504,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1492,6 +1526,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1513,6 +1548,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1534,6 +1570,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1555,6 +1592,7 @@
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
+                                                <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
@@ -1569,6 +1607,12 @@
                                         <Port ID="Module1-Ch1-EC" Index="21">
                                             <Name>Ch1-EC</Name>
                                             <Description>MSCD Channel 1 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1581,6 +1625,12 @@
                                         <Port ID="Module1-Ch2-EC" Index="22">
                                             <Name>Ch2-EC</Name>
                                             <Description>MSCD Channel 2 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1593,6 +1643,12 @@
                                         <Port ID="Module1-Ch3-EC" Index="23">
                                             <Name>Ch3-EC</Name>
                                             <Description>MSCD Channel 3 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1605,6 +1661,12 @@
                                         <Port ID="Module1-Ch4-EC" Index="24">
                                             <Name>Ch4-EC</Name>
                                             <Description>MSCD Channel 4 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1617,6 +1679,12 @@
                                         <Port ID="Module1-Ch5-EC" Index="25">
                                             <Name>Ch5-EC</Name>
                                             <Description>MSCD Channel 5 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1629,6 +1697,12 @@
                                         <Port ID="Module1-Ch6-EC" Index="26">
                                             <Name>Ch6-EC</Name>
                                             <Description>MSCD Channel 6 Excitation Constant Current Output</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="Excitation">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="Excitation">Extension</PortType>
@@ -1668,6 +1742,12 @@
                                                 <Port ID="VoltageExcitationValuePort-pos1" Index="1">
                                                     <Name>VoltageExcitationValuePort</Name>
                                                     <Description>MSCD Constant Voltage Excitation value for all ports</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1706,6 +1786,12 @@
                                                 <Port Enabled="false" ID="VoltageExcitationOnOff123Port-pos1" Index="1">
                                                     <Name>VoltageExcitationOnOff123Port</Name>
                                                     <Description>MSCD Constant Voltage Excitation enable ports 1,2,3</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1725,6 +1811,12 @@
                                                 <Port ID="Module1-Ch1-EV" Index="11">
                                                     <Name>Ch1-EV</Name>
                                                     <Description>MSCD Channel 1 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1737,6 +1829,12 @@
                                                 <Port ID="Module1-Ch2-EV" Index="12">
                                                     <Name>Ch2-EV</Name>
                                                     <Description>MSCD Channel 2 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1749,6 +1847,12 @@
                                                 <Port ID="Module1-Ch3-EV" Index="13">
                                                     <Name>Ch3-EV</Name>
                                                     <Description>MSCD Channel 3 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1781,6 +1885,12 @@
                                                 <Port Enabled="false" ID="VoltageExcitationOnOff456Port-pos1" Index="1">
                                                     <Name>VoltageExcitationOnOff456Port</Name>
                                                     <Description>MSCD Constant Voltage Excitation enable ports 4,5,6</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1800,6 +1910,12 @@
                                                 <Port ID="Module1-Ch4-EV" Index="14">
                                                     <Name>Ch4-EV</Name>
                                                     <Description>MSCD Channel 4 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1812,6 +1928,12 @@
                                                 <Port ID="Module1-Ch5-EV" Index="15">
                                                     <Name>Ch5-EV</Name>
                                                     <Description>MSCD Channel 5 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -1824,6 +1946,12 @@
                                                 <Port ID="Module1-Ch6-EV" Index="16">
                                                     <Name>Ch6-EV</Name>
                                                     <Description>MSCD Channel 6 Excitation Constant Voltage Output</Description>
+                                                    <GenericParameter>
+                                                        <NameValues>
+                                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                                        </NameValues>
+                                                        <PortType Extension="Excitation">Extension</PortType>
+                                                    </GenericParameter>
                                                     <PortDirection>Output</PortDirection>
                                                     <PortTypes>
                                                         <PortType Extension="Excitation">Extension</PortType>
@@ -2031,13 +2159,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin19"/>
@@ -2054,13 +2183,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin18"/>
@@ -2077,13 +2207,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin17"/>
@@ -2100,13 +2231,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin10"/>
@@ -2123,13 +2255,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin9"/>
@@ -2146,13 +2279,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin3"/>
@@ -2169,13 +2303,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin2"/>
@@ -2192,13 +2327,14 @@
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
                                                 <SampleRate>128</SampleRate>
                                                 <DataLength>16</DataLength>
-                                            </GenericParameter>
-                                            <PortDirection>Input</PortDirection>
-                                            <PortTypes>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
                                                 <PortType Thermocouple="E">Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType Thermocouple="J">Thermocouple</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos2-J1-Pin1"/>
@@ -2208,6 +2344,12 @@
                                         <Port Enabled="false" ID="Module2-Ch9" Index="9">
                                             <Name>Ch9</Name>
                                             <Description>MTCD Channel 9: RJC</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <PortType Extension="RJC">Extension</PortType>
+                                            </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
                                                 <PortType Extension="RJC">Extension</PortType>
