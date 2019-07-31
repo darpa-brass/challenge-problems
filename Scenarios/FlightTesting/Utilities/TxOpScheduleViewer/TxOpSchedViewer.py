@@ -29,7 +29,6 @@ n = {"namespaces": ns}
 
 MAX_BW_MBPS = 10.0      # Max data rate (Mbps)
 debug = 0               # Debug value: initially 0, e.g. no debug
-ld_link_scores = None
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -325,7 +324,7 @@ def print_link_info(link, row, cp):
     scored_link = False
     if score_file is not None and ld_link_scores is not None:
         for score in ld_link_scores:
-            if "Link" in score_file:
+            if "Link" in score:
                 # If Scoring Source and destination are on the same link.
                 if (int(link.src) == int(score['Link']['LinkSrc'])) and (int(link.dst) == int(score['Link']['LinkDst'])):
                     scored_link = True
@@ -355,7 +354,7 @@ def print_link_info(link, row, cp):
             else:
                 link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'),
                                      txt_color | curses.A_UNDERLINE)
-        elif link.max_latency_usec < score_data["max_thd"]:
+        elif link.max_latency_usec < score_data["Latency"]["max_thd"]:
             link_info_pad.addstr(row+2, 84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
                                  txt_color | curses.A_UNDERLINE)
         else: 
@@ -813,6 +812,7 @@ def run_schedule_viewer():
     global text_d
     global now
     global stdscr
+    global ld_link_scores
 
     rans_list = []
     qos_policies_list = []
@@ -921,13 +921,11 @@ def run_schedule_viewer():
     if score_file is not None:
         try:
             with open(score_file) as f:
-                global ld_link_scores
                 ld_link_scores = json.load(f)
         except FileNotFoundError:
-            ld_link_scores = None
             if debug >= 1:
                 print("JSON Score File Not Found!\r")
-        score_transmission_schedule(rans_list, ld_link_scores)
+        # score_transmission_schedule(rans_list, ld_link_scores)
 
     if ld_link_scores is not None:
         for d in ld_link_scores:
@@ -1049,7 +1047,6 @@ def no_gui():
 
 if __name__ == "__main__":
     now = time.strftime("%Y%m%d_%H%M%S")
-
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
@@ -1075,7 +1072,6 @@ if __name__ == "__main__":
         configFile = cli_args.CONFIG
         exporter = MDLExporter(database, mdl_file, configFile)
         exporter.export_xml()
-
     if headless:
         run_schedule_viewer()
     if not headless:
