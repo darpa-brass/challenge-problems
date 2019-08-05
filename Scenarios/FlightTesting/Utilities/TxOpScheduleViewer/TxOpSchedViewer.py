@@ -181,6 +181,17 @@ class RadioLink:
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
+class TmNSRadio:
+    """Class to contain TmNSRadio"""
+    def __init__(self,id, name, rfmacaddress, listeningport):
+        self.id = id
+        self.name = name
+        self.dest = listeningport
+        self.src = rfmacaddress
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
 
 def print_banner():
     global stdscr
@@ -816,6 +827,8 @@ def run_schedule_viewer():
 
     rans_list = []
     qos_policies_list = []
+    tmnsradio_list = []
+
 
     # Parse MDL file, and create the RAN Config (assuming only a single RAN Config)
     mdl_parser = etree.XMLParser(remove_blank_text=True)
@@ -842,6 +855,18 @@ def run_schedule_viewer():
             print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {}ms".format(rname, rfreq, repoch, rguard))
         new_ran = RanConfig(name=rname, id_attr=rid, freq=rfreq, epoch_ms=repoch, guard_ms=rguard)
         rans_list.append(new_ran)
+
+    # Parse MDL file for TmNSRadio
+    tmnsapp = root.xpath("//mdl:TmNSApp", namespaces=ns)
+    for app in tmnsapp:
+        tid = app.attrib['ID']
+        tname = app.find("mdl:Name", namespaces=ns).text
+        radio = app.find(".//mdl:TmNSRadio", namespaces=ns)
+        if radio is not None:
+            trfmacaddress = int(radio.find('.//mdl:RFMACAddress', namespaces=ns).text)
+            tlistening =int(radio.find('mdl:LinkAgent/mdl:ListeningPort', namespaces=ns).text)
+            new_radio = TmNSRadio(id=tid, name=tname, rfmacaddress=trfmacaddress, listeningport=tlistening)
+            tmnsradio_list.append(new_radio)
 
     # Parse MDL file for Radio Links and their associated Transmission Schedules
     radio_links = root.xpath("//mdl:RadioLink", namespaces=ns)
