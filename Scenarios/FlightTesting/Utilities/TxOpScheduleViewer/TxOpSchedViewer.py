@@ -29,7 +29,6 @@ n = {"namespaces": ns}
 
 MAX_BW_MBPS = 10.0      # Max data rate (Mbps)
 debug = 0               # Debug value: initially 0, e.g. no debug
-
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
@@ -93,6 +92,10 @@ class TxOp:
         self.timeout = timeout
         self.duration_usec = int(stop_usec) - int(start_usec) + 1
 
+# # ------------------------------------------------------------------------------
+# # ------------------------------------------------------------------------------
+# class Scoring_Data
+#     def __init__(self):
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -174,6 +177,17 @@ class RadioLink:
             self.greedy_throughput_point_value = 100 - (100 * (math.e ** ((-1 * coef) * max_points_thd)))
         self.greedy_throughput_point_value = self.greedy_throughput_point_value * multiplier
 
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+class TmNSRadio:
+    """Class to contain TmNSRadio"""
+    def __init__(self,id, name, rfmacaddress, listeningport):
+        self.id = id
+        self.name = name
+        self.dest = listeningport
+        self.src = rfmacaddress
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -304,6 +318,7 @@ def print_links_info(links, num_rans):
 def print_link_info(link, row, cp):
     global link_info_pad
     global mod_name
+    global score_file
 
     txt_color = curses.color_pair((cp % 10) + 1)
 
@@ -317,8 +332,18 @@ def print_link_info(link, row, cp):
     link_info_pad.addstr(row+3, 56, "Minimum Capacity Required:  ", txt_color)
     link_info_pad.addstr(row+4, 56, "Allocated Bandwidth:        ", txt_color)
 
-    if link.qos_policy is None:
-        link_info_pad.addstr(row+1, 84, "No QoS Policy!",
+    scored_link = False
+    if score_file is not None and ld_link_scores is not None:
+        for score in ld_link_scores:
+            if "Link" in score:
+                # If Scoring Source and destination are on the same link.
+                if (int(link.src) == int(score['Link']['LinkSrc'])) and (int(link.dst) == int(score['Link']['LinkDst'])):
+                    scored_link = True
+                    score_data = score
+                    break
+
+    if not scored_link:
+        link_info_pad.addstr(row+1, 84, "No Entry in {}!".format(score_file),
                              txt_color | BOLD | curses.A_REVERSE)
         if link.max_latency_usec == 0:
             link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'), txt_color | curses.A_UNDERLINE)
@@ -327,32 +352,32 @@ def print_link_info(link, row, cp):
                                  txt_color | curses.A_UNDERLINE)
             
     else:
-        if int(link.qos_policy.max_latency_usec) == 1000000.0:
+        if int(score_data["Latency"]["max_thd"]) == 1000000.0:
             link_info_pad.addstr(row+1, 84, "N/A", txt_color)
         else:
-            link_info_pad.addstr(row+1, 84, "{0:.3f} ms".format(int(link.qos_policy.max_latency_usec) / 1000),
+            link_info_pad.addstr(row+1, 84, "{0:.3f} ms".format(int(score_data["Latency"]["max_thd"]) / 1000),
                                  txt_color)
     
         if link.max_latency_usec == 0:
-            if link.qos_policy.max_latency_usec < 1000000.0:
+            if score_data["Latency"]["max_thd"] < 1000000.0:
                 link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'),
                                      txt_color | curses.A_UNDERLINE | curses.A_REVERSE)
             else:
                 link_info_pad.addstr(row+2, 84, "{0:^9}".format('N/A'),
                                      txt_color | curses.A_UNDERLINE)
-        elif link.max_latency_usec < link.qos_policy.max_latency_usec:
+        elif link.max_latency_usec < score_data["Latency"]["max_thd"]:
             link_info_pad.addstr(row+2, 84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
                                  txt_color | curses.A_UNDERLINE)
         else: 
             link_info_pad.addstr(row+2, 84, "{0:.3f} ms".format(int(link.max_latency_usec) / 1000),
                                  txt_color | curses.A_UNDERLINE | curses.A_REVERSE)
     
-    if link.qos_policy is None:
-        link_info_pad.addstr(row+3, 84, "No QoS Policy!", txt_color |
+    if not scored_link:
+        link_info_pad.addstr(row+3, 84, "No Entry in {}!".format(score_file), txt_color |
                              BOLD | curses.A_REVERSE)
         link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
     else:
-        qp_ac_mbps = int(link.qos_policy.ac) / 1000000    # get QoS Policy rate in Mbps
+        qp_ac_mbps = int(score_data["Bandwidth"]["min_thd"]) / 1000000    # get QoS Policy rate in Mbps
         link_info_pad.addstr(row+3, 84, "{0:0.3f} Mbps".format(qp_ac_mbps), txt_color)
         
         if qp_ac_mbps <= link.alloc_bw_mbps:
@@ -854,9 +879,12 @@ def run_schedule_viewer():
     global text_d
     global now
     global stdscr
+    global ld_link_scores
 
     rans_list = []
     qos_policies_list = []
+    tmnsradio_list = []
+
 
     # Parse MDL file, and create the RAN Config (assuming only a single RAN Config)
     mdl_parser = etree.XMLParser(remove_blank_text=True)
@@ -883,6 +911,18 @@ def run_schedule_viewer():
             print("RAN Name: {}, Frequency: {}, Epoch Size: {}ms, Guardband: {}ms".format(rname, rfreq, repoch, rguard))
         new_ran = RanConfig(name=rname, id_attr=rid, freq=rfreq, epoch_ms=repoch, guard_ms=rguard)
         rans_list.append(new_ran)
+
+    # Parse MDL file for TmNSRadio
+    tmnsapp = root.xpath("//mdl:TmNSApp", namespaces=ns)
+    for app in tmnsapp:
+        tid = app.attrib['ID']
+        tname = app.find("mdl:Name", namespaces=ns).text
+        radio = app.find(".//mdl:TmNSRadio", namespaces=ns)
+        if radio is not None:
+            trfmacaddress = int(radio.find('.//mdl:RFMACAddress', namespaces=ns).text)
+            tlistening =int(radio.find('mdl:LinkAgent/mdl:ListeningPort', namespaces=ns).text)
+            new_radio = TmNSRadio(id=tid, name=tname, rfmacaddress=trfmacaddress, listeningport=tlistening)
+            tmnsradio_list.append(new_radio)
 
     # Parse MDL file for Radio Links and their associated Transmission Schedules
     radio_links = root.xpath("//mdl:RadioLink", namespaces=ns)
@@ -964,9 +1004,9 @@ def run_schedule_viewer():
             with open(score_file) as f:
                 ld_link_scores = json.load(f)
         except FileNotFoundError:
-            ld_link_scores = None
             if debug >= 1:
                 print("JSON Score File Not Found!\r")
+        # score_transmission_schedule(rans_list, ld_link_scores)
 
     score_transmission_schedule(rans_list, ld_link_scores)
 
@@ -980,7 +1020,6 @@ def run_schedule_viewer():
 
 def main(stdscr):  
     global mdl_file
-    global score_file
     global text_d
     global now
 
@@ -1046,7 +1085,6 @@ def no_gui():
 
 if __name__ == "__main__":
     now = time.strftime("%Y%m%d_%H%M%S")
-
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', action='store', default=sys.stdin, help='MDL file to examine', type=str)
@@ -1072,7 +1110,6 @@ if __name__ == "__main__":
         configFile = cli_args.CONFIG
         exporter = MDLExporter(database, mdl_file, configFile)
         exporter.export_xml()
-
     if headless:
         run_schedule_viewer()
     if not headless:
