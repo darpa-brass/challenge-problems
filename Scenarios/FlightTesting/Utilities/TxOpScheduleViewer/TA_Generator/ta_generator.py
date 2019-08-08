@@ -142,15 +142,38 @@ def make_group(destination_mac):
     """)
 
 
+def make_ran(frequency):
+    return etree.fromstring(
+    f"""
+<RANConfiguration ID="RANConfig15_RAN_{frequency}">
+    <Name>RAN_{frequency}</Name>
+    <LinkAgentConnectionEncryptionEnabled>false</LinkAgentConnectionEncryptionEnabled>
+    <TSSTunnelEncryptionEnabled>false</TSSTunnelEncryptionEnabled>
+    <CenterFrequencyHz>{frequency}500000</CenterFrequencyHz>
+    <ModulationType>SOQPSK-TG</ModulationType>
+    <EpochSize>100</EpochSize>
+    <LDPCBlocksPerBurst>1</LDPCBlocksPerBurst>
+    <MaxGuardTimeSec>0.001</MaxGuardTimeSec>
+    <RadioControlLoopDSCPRef IDREF="DSCP_NetworkControl_111000"/>
+    <RANCommandControlDSCPRef IDREF="DSCP_NetworkControl_111000"/>
+    <RadioGroups/>
+</RANConfiguration>
+    """)
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('count', type=int, help="Number of TAs to generate. (1-255)")
+    parser.add_argument("--add_rans", type=int, default=0, help="Number of additional RANs to generate. (0-10)")
     parser.add_argument("--base", default="base.xml", help="Base XML location.")
     parser.add_argument("--output", default="output.xml", help="Output XML location.")
     cli_args = parser.parse_args()
 
     if cli_args.count > 255 or cli_args.count < 1:
-        print("Count must be in range 1-255.")
+        print("TA Count must be in range 1-255.")
+        return(-1)
+
+    if cli_args.add_rans > 10 or cli_args.add_rans < 0:
+        print("Additional RAN count must be in range 0-10.")
         return(-1)
 
     # initialize MDL file
@@ -164,6 +187,7 @@ def main():
     radio_links = base_mdl.find("//mdl:RadioLinks", **n)
     uplink_qos_refs = base_mdl.find("//mdl:QoSPolicy[@ID='QoS3_ClassicDownlink']//mdl:RadioLinkRefs", **n)
     downlink_qos_refs = base_mdl.find("//mdl:QoSPolicy[@ID='QoS4_SimpleUplink']//mdl:RadioLinkRefs", **n)
+    rans = base_mdl.find("//mdl:RANConfigurations", **n)
 
     for i in range(cli_args.count):
         ground_mac = 0x1000 + i        
@@ -215,6 +239,13 @@ def main():
         downlink_qos_ref.set("IDREF", downlink.get("ID"))
         downlink_qos_refs.append(downlink_qos_ref)
 
+    if cli_args.add_rans > 0:
+        frequency = 4919 + 22
+
+        for i in range(cli_args.add_rans):
+            ran = make_ran(frequency)
+            rans.append(ran)
+            frequency += 22
 
     with open(cli_args.output, "w") as f:
         f.write(etree.tounicode(base_mdl, pretty_print=True))
