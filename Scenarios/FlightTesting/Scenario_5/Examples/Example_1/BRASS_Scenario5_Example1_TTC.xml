@@ -917,8 +917,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
-                                                <SampleRate>1250000</SampleRate>
-                                                <DataLength>1</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>1250000</SampleRate>
+                                                    <DataLength>1</DataLength>
+                                                </Measurement>
                                                 <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
@@ -1480,8 +1482,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -1502,8 +1506,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -1524,8 +1530,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -1546,8 +1554,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -1568,8 +1578,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -1590,8 +1602,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>Analog</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -2157,8 +2171,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2181,8 +2197,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2205,8 +2223,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2229,8 +2249,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2253,8 +2275,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2277,8 +2301,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2301,8 +2327,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
@@ -2325,8 +2353,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
-                                                <SampleRate>128</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>128</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType Thermocouple="J">Thermocouple</PortType>
                                                 <PortType Thermocouple="K">Thermocouple</PortType>
                                                 <PortType Thermocouple="T">Thermocouple</PortType>
