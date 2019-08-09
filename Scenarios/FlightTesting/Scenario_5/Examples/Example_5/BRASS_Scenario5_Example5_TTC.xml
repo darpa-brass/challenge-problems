@@ -325,8 +325,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>Serial</BBNPortFunctionality>
-                                                <SampleRate>1250000</SampleRate>
-                                                <DataLength>1</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>1250000</SampleRate>
+                                                    <DataLength>1</DataLength>
+                                                </Measurement>
                                                 <PortType>Serial</PortType>
                                             </GenericParameter>
                                             <PortDirection>Bidirectional</PortDirection>
@@ -425,8 +427,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -443,8 +447,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -461,8 +467,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -479,8 +487,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -497,8 +507,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -515,8 +527,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>250</SampleRate>
-                                                <DataLength>16</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -551,8 +565,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -569,8 +585,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -587,8 +605,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -605,8 +625,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -623,8 +645,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -641,8 +665,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>500</SampleRate>
-                                                <DataLength>8</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>500</SampleRate>
+                                                    <DataLength>8</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -677,8 +703,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -695,8 +723,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -713,8 +743,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -731,8 +763,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -749,8 +783,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -767,8 +803,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>400</SampleRate>
-                                                <DataLength>12</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>400</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -803,8 +841,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -821,8 +861,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -839,8 +881,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -857,8 +901,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -875,8 +921,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
@@ -893,8 +941,10 @@
                                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                                 </NameValues>
                                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
-                                                <SampleRate>200</SampleRate>
-                                                <DataLength>24</DataLength>
+                                                <Measurement>
+                                                    <SampleRate>200</SampleRate>
+                                                    <DataLength>24</DataLength>
+                                                </Measurement>
                                                 <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
