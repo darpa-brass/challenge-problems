@@ -1,0 +1,40 @@
+{
+  "namespaces": {
+    "mdl": "http://www.wsmr.army.mil/RCC/schemas/MDL"
+  },
+  "objects": {
+    "//mdl:Measurement[@ID = 'meas-1-1']": {
+      "depth": 2,
+      "exclude": [
+        "mdl:Name"
+      ]
+    },
+    "//mdl:Measurement[@ID = 'meas-1-1-output']": {
+      "depth": 2
+    },
+    "//mdl:PortMapping[mdl:MeasurementRef/@IDREF = 'meas-1-1']": {
+      
+    },
+    "//mdl:NetworkNode[.//mdl:Port[@ID = 'TA1-Vendor1-DAU1-Module1-Ch1']]": {
+      "depth": 2,
+      "abbreviate": [
+        ".//mdl:Pin",
+        ".//mdl:Port"
+      ]
+    },
+    "//mdl:FunctionMapping[1]": {
+      
+    },
+    "//mdl:Function[1]": {
+      
+    },
+    "//mdl:Device[.//mdl:Port[@ID = 'TA1-Vendor1-DAU1-id_0x00000038']]": {
+      "depth": 2,
+      "abbreviate": [
+        ".//mdl:Pin",
+        ".//mdl:Port",
+        ".//mdl:DeviceModule"
+      ]
+    }
+  }
+}
