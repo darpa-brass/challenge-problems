@@ -171,8 +171,10 @@
                                         <Port ID="port">
                                             <GenericParameter>
                                                 <BBNPortFunctionality/><!--Replacement Port must contain a match-->
-                                                <SampleRate/><!--Supported sample rate-->
-                                                <DataLength/><!--Supported data length-->
+                                                <Measurement> <!--A tuple of supported data rate-->
+                                                    <SampleRate/><!--Supported sample rate-->
+                                                    <DataLength/><!--Supported data length-->
+                                                </Measurement>
                                                 <ExcitationPortIsPresent/><!--Allows connecting this Port to another Port requiring excitation-->
                                             </GenericParameter>
                                             <PortDirection/><!--Direction must be compatible with connecting Port-->
@@ -180,7 +182,7 @@
                                             <PortTypes>
                                                 <PortType/><!--Type must be compatible with connecting Port-->
                                             </PortTypes>
-                                            <Excitation/>
+                                            <Excitation/><!--Marks this port as solely excitation-->
                                             <!--<CaptureCapabilityRefs/>-->
                                             <!--<PhysicalNetworkPortRef/>--><!--Marks this port as a network port-->
                                         </Port>
