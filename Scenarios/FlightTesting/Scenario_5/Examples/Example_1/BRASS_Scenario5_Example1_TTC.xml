@@ -54,10 +54,10 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
