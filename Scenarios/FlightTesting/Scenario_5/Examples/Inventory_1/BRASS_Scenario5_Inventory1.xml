@@ -2055,7 +2055,7 @@
                     <Position>201</Position>
                     <PositionsOccupied>1</PositionsOccupied>
                     <Ports>
-                        <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
+                        <Port Enabled="false" ID="port-power2-j1-dummy-ex3" Index="1">
                             <Name>Ch1</Name>
                             <Description>Ch1 : Channel 1 Dummy</Description>
                             <GenericParameter>
@@ -2516,6 +2516,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2535,6 +2539,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2556,6 +2564,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2575,6 +2587,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2596,6 +2612,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2615,6 +2635,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2636,6 +2660,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2655,6 +2683,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2676,6 +2708,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2695,6 +2731,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2716,6 +2756,10 @@
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
                                 <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
@@ -2735,6 +2779,10 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
                                 <Measurement>
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
@@ -2987,6 +3035,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3002,6 +3058,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3017,6 +3081,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3032,6 +3104,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3047,6 +3127,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3062,6 +3150,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3077,6 +3173,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
@@ -3092,6 +3196,14 @@
                                     <NameValue Name="User" Index="1">BBN</NameValue>
                                 </NameValues>
                                 <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
                                 <PortType>Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>

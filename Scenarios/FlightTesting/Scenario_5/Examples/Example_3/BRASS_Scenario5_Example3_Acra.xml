@@ -508,7 +508,7 @@
                                     <Position>201</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port Enabled="false" ID="port-power2-j1-dummy" Index="1">
+                                        <Port Enabled="false" ID="port-power2-j1-dummy-ex3" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>Ch1 : Channel 1 Dummy</Description>
                                             <GenericParameter>
