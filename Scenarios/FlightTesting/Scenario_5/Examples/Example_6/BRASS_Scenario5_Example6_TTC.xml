@@ -1349,7 +1349,7 @@
                         <Name>Temperature2</Name>
                         <Description>Thermocouple j1 Ch1 to Thermocouple 2 j1 (Temperature)</Description>
                         <PortRef IDREF="port-mtcd2-j1-ch1-ex6"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <PortRef IDREF="port-thermo2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-12-1000"/>
                         </MeasurementRefs>
@@ -1358,7 +1358,7 @@
                         <Name>Temperature3</Name>
                         <Description>Thermocouple j1 Ch1 to Thermocouple 3 j1 (Temperature)</Description>
                         <PortRef IDREF="port-mtcd3-j1-ch1-ex6"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <PortRef IDREF="port-thermo3-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-8-1250"/>
                         </MeasurementRefs>
@@ -1367,7 +1367,7 @@
                         <Name>Temperature4</Name>
                         <Description>Thermocouple j1 Ch1 to Thermocouple 4 j1 (Temperature)</Description>
                         <PortRef IDREF="port-mtcd4-j1-ch1-ex6"/>
-                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <PortRef IDREF="port-thermo4-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-24-200"/>
                         </MeasurementRefs>

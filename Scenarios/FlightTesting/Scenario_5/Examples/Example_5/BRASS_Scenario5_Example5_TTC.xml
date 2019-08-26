@@ -1327,81 +1327,81 @@
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-mscd1-j1ch2-accel1-j1ch1">
+                    <PortMapping ID="pm-mscd1-j1ch2-accel1-j1ch2">
                         <Name>Acceleration2</Name>
-                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration Y)</Description>
                         <PortRef IDREF="port-mscd1-j1-ch2-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel1-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd1-j1ch3-accel1-j1ch1">
                         <Name>Acceleration3</Name>
-                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 1 j1 to Accelerometer 1 j1 (Acceleration Z)</Description>
                         <PortRef IDREF="port-mscd1-j1-ch3-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel1-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd1-j2ch1-accel1-j1ch1">
                         <Name>Acceleration4</Name>
-                        <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 1 j2 to Accelerometer 2 j1 (Acceleration X)</Description>
                         <PortRef IDREF="port-mscd1-j2-ch1-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd1-j2ch2-accel1-j1ch1">
                         <Name>Acceleration5</Name>
-                        <Description>Signal Conditioner 1 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 1 j2 to Accelerometer 2 j1 (Acceleration Y)</Description>
                         <PortRef IDREF="port-mscd1-j2-ch2-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel2-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd1-j2ch3-accel1-j1ch1">
                         <Name>Acceleration6</Name>
-                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 2 j1 (Acceleration Z)</Description>
                         <PortRef IDREF="port-mscd1-j2-ch3-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel2-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j1ch1-accel1-j1ch1">
                         <Name>Acceleration7</Name>
-                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 3 j1 (Acceleration X)</Description>
                         <PortRef IDREF="port-mscd2-j1-ch1-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel3-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j1ch2-accel1-j1ch1">
                         <Name>Acceleration8</Name>
-                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 3 j1 (Acceleration Y)</Description>
                         <PortRef IDREF="port-mscd2-j1-ch2-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel3-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j1ch3-accel1-j1ch1">
                         <Name>Acceleration9</Name>
-                        <Description>Signal Conditioner 2 j1 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j1 to Accelerometer 3 j1 (Acceleration Z)</Description>
                         <PortRef IDREF="port-mscd2-j1-ch3-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel3-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j2ch1-accel1-j1ch1">
                         <Name>Acceleration10</Name>
-                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 4 j1 (Acceleration X)</Description>
                         <PortRef IDREF="port-mscd2-j2-ch1-ex5"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
@@ -1410,18 +1410,18 @@
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j2ch2-accel1-j1ch1">
                         <Name>Acceleration11</Name>
-                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 4 j1 (Acceleration Y)</Description>
                         <PortRef IDREF="port-mscd2-j2-ch2-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel4-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
                     <PortMapping ID="pm-mscd2-j2ch3-accel1-j1ch1">
                         <Name>Acceleration12</Name>
-                        <Description>Signal Conditioner 2 j2 to Accelerometer 1 j1 (Acceleration X)</Description>
+                        <Description>Signal Conditioner 2 j2 to Accelerometer 4 j1 (Acceleration Z)</Description>
                         <PortRef IDREF="port-mscd2-j2-ch3-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel4-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
@@ -1457,7 +1457,7 @@
                         <Name>Vibration2</Name>
                         <Description>Signal Conditioner 4 j2 Ch1 to Vibration 2 j1 (Vibration)</Description>
                         <PortRef IDREF="port-mscd4-j2-ch1-ex5"/>
-                        <PortRef IDREF="port-vibration1-j1-ch1"/>
+                        <PortRef IDREF="port-vibration2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
