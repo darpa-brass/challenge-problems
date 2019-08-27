@@ -62,7 +62,7 @@
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000001</MeasurementID>
@@ -109,15 +109,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000002</MeasurementID>
@@ -164,15 +164,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000003</MeasurementID>
@@ -219,15 +219,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000004</MeasurementID>
@@ -274,15 +274,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000005</MeasurementID>
@@ -329,15 +329,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000006</MeasurementID>
@@ -384,15 +384,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000007</MeasurementID>
@@ -439,15 +439,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000008</MeasurementID>
@@ -494,15 +494,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000009</MeasurementID>
@@ -549,15 +549,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000010</MeasurementID>
@@ -604,15 +604,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000011</MeasurementID>
@@ -659,15 +659,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000012</MeasurementID>
@@ -714,15 +714,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000013</MeasurementID>
@@ -769,15 +769,15 @@
                         </NameValues>
                         <SampleRate>
                             <Min>128</Min>
-                            <Max>128</Max>
+                            <Max>256</Max>
                         </SampleRate>
                         <DataLength>
-                            <Min>16</Min>
+                            <Min>8</Min>
                             <Max>16</Max>
                         </DataLength>
                         <DataRate>
                             <Min>2048</Min>
-                            <Max>2048</Max>
+                            <Max>4096</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000014</MeasurementID>
@@ -820,12 +820,12 @@
     </MeasurementDomains>
     <NetworkDomain>
         <Networks>
-            <Network ID="TA1-Example5">
+            <Network ID="net-example-ex1">
                 <Name>Test Article Network</Name>
                 <Description>Test article network for Scenario TA1</Description>
                 <NetworkType>TestArticleNetwork</NetworkType>
                 <NetworkNodes>
-                    <NetworkNode ID="TTCDAU">
+                    <NetworkNode ID="nn-dau-ex1">
                         <Name>MnACQ-2000</Name>
                         <Description>TA1 TTC DAU Network Node</Description>
                         <GenericParameter>
@@ -844,7 +844,7 @@
                         <SerialID>3258089</SerialID>
                         <IEEE1588Version>2008e2e</IEEE1588Version>
                         <TmNSApps>
-                            <TmNSApp ID="DAUTma">
+                            <TmNSApp ID="tma-dau-ex1">
                                 <Name>TA1 TTC DAU1</Name>
                                 <Description>TA1 TTC DAU1 TMA</Description>
                                 <RoleID>TTC_DAU1</RoleID>
@@ -867,7 +867,7 @@
                         </TmNSApps>
                         <InternalStructure>
                             <Modules>
-                                <Module ID="module-101">
+                                <Module ID="mod-processor-ex1">
                                     <Name>MPPC-500</Name>
                                     <Description>MnACQ-2000 Processor</Description>
                                     <GenericParameter>
@@ -883,7 +883,7 @@
                                     <Position>101</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <RunningAppRefs>
-                                        <TmNSAppRef IDREF="DAUTma"/>
+                                        <TmNSAppRef IDREF="tma-dau-ex1"/>
                                     </RunningAppRefs>
                                     <Connectors>
                                         <Connector>
@@ -935,7 +935,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="module-102">
+                                <Module ID="mod-controller-ex1">
                                     <Name>MACQ-500</Name>
                                     <Description>MnACQ-2000 Controller</Description>
                                     <GenericParameter>
@@ -1185,7 +1185,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="module-1">
+                                <Module ID="mod-mscd-ex1">
                                     <Name>MSCD at Position 1</Name>
                                     <Description>6-channel Simultaneous Sampling Signal Conditioner</Description>
                                     <GenericParameter>
@@ -1486,12 +1486,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J1-Pin2"/>
@@ -1510,12 +1510,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J1-Pin5"/>
@@ -1534,12 +1534,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J1-Pin11"/>
@@ -1558,12 +1558,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J2-Pin2"/>
@@ -1582,12 +1582,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J2-Pin5"/>
@@ -1606,12 +1606,12 @@
                                                     <SampleRate>128</SampleRate>
                                                     <DataLength>16</DataLength>
                                                 </Measurement>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                                 <ExcitationPortIsPresent/>
                                             </GenericParameter>
                                             <PortDirection>Input</PortDirection>
                                             <PortTypes>
-                                                <PortType>Analog</PortType>
+                                                <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                             <PinRefs>
                                                 <PinRef IDREF="Pos1-J2-Pin11"/>
@@ -2119,7 +2119,7 @@
                                         </SubModule>
                                     </SubModules>
                                 </Module>
-                                <Module ID="module-2">
+                                <Module ID="mod-mtcd-ex1">
                                     <Name>MTCD at Position 2</Name>
                                     <Description>8-channel thermocouple conditioner</Description>
                                     <GenericParameter>
@@ -2536,7 +2536,7 @@
                     </NetworkNode>
                 </NetworkNodes>
                 <Devices>
-                    <Device ID="id_0x00000001">
+                    <Device ID="dev-accel1-ex1">
                         <Name>ACEL1 0</Name>
                         <Description>Accelerometer</Description>
                         <Manufacturer>PCB Piezotronics</Manufacturer>
@@ -2624,7 +2624,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000002">
+                    <Device ID="dev-accel2-ex1">
                         <Name>ACEL1 1</Name>
                         <Description>Accelerometer</Description>
                         <Manufacturer>PCB Piezotronics</Manufacturer>
@@ -2712,7 +2712,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000004">
+                    <Device ID="dev-thermo1-ex1">
                         <Name>THERM1 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -2764,7 +2764,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000005">
+                    <Device ID="dev-thermo2-ex1">
                         <Name>THERM2 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -2816,7 +2816,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000006">
+                    <Device ID="dev-thermo3-ex1">
                         <Name>THERM3 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -2868,7 +2868,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000007">
+                    <Device ID="dev-thermo4-ex1">
                         <Name>THERM4 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -2920,7 +2920,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000008">
+                    <Device ID="dev-thermo5-ex1">
                         <Name>THERM5 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -2972,7 +2972,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000009">
+                    <Device ID="dev-thermo6-ex1">
                         <Name>THERM6 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -3024,7 +3024,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x000000010">
+                    <Device ID="dev-thermo7-ex1">
                         <Name>THERM7 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
@@ -3076,7 +3076,7 @@
                             </DeviceModules>
                         </DeviceStructure>
                     </Device>
-                    <Device ID="id_0x00000011">
+                    <Device ID="dev-thermo8-ex1">
                         <Name>THERM8 0</Name>
                         <Description>Thermocouple</Description>
                         <Manufacturer>Omega</Manufacturer>
