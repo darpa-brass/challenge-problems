@@ -186,8 +186,8 @@ class TmNSRadio:
     def __init__(self,id, name, rfmacaddress, listeningport):
         self.id = id
         self.name = name
-        self.dest = listeningport
-        self.src = rfmacaddress
+        self.incoming = listeningport
+        self.outgoing = rfmacaddress
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -742,14 +742,11 @@ def generated_sorted_list(rans_list, link_scores):
 
 
 def min_required_schedule(rans_list, link_scores):
-
-
     sorted_rans = generated_sorted_list(rans_list, link_scores)
 
 
 def max_requested_schedule(rans_list, link_scores, mult):
     bandwidth = MAX_BW_MBPS * 1000  # kb/s
-
     sorted_rans = generated_sorted_list(rans_list, link_scores)
     for ran in sorted_rans:
         gb = ran["Guard_Band"]  # s
@@ -816,58 +813,165 @@ def write_report_to_json(rans_list):
 
 # ------------------------------------------------------------------------------
 
-def find_next_step_in_relay(rans_list, src, dest, current_step):
-    pass
 
-def score_transmission_schedule(rans_list, ld_link_scores):
+def find_next_step_in_relay(rans_list, initial_dest, target_dest, tmnsradio_list, relay_path):
+    for radio in tmnsradio_list:
+        if radio.incoming == initial_dest:
+            new_src = radio.outgoing
+
+    for ran in rans_list:
+        for link in ran.links:
+            new_dest = link.dest
+            if link.src == new_src:
+                if new_dest == target_dest:
+                    relay_path.append(link)
+                elif link in relay_path:
+                    relay_path = []
+                else:
+                    find_next_step_in_relay(rans_list, new_dest, target_dest, tmnsradio_list, relay_path)
+    return relay_path
+
+
+def calculate_latency_relay(relay_path, epoch_us):
+    source = relay_path[0]
+    other_relays = relay_path[1:]
+    max_latency = 0
+    for initial_tx in source.tx_sched:
+        epoch_count = 0
+        epoch_lap = False
+        initial_end_time = initial_tx.stop_usec
+        previous_end_time = initial_end_time
+        for relay in other_relays:
+            relay_start_time = epoch_us
+            relay_latency = epoch_us
+            for tx in relay:
+                if previous_end_time < tx.start_usec:
+                    current_start_time = tx.start_usec
+                else:
+                    current_start_time = tx.start_usec + epoch_us
+                current_latency = current_start_time - previous_end_time
+                if current_latency < relay_latency:
+                    relay_latency = current_latency
+                    relay_start_time = tx.start_usec
+                    if current_start_time >= epoch_us:
+                        epoch_lap = True
+                    if current_start_time < epoch_us:
+                        epoch_lap = False
+            if epoch_lap:
+                epoch_count += 1
+        latency = relay_start_time * (epoch_count * epoch_us) - initial_end_time
+        if latency > max_latency:
+            max_latency = latency
+    return max_latency
+
+
+def score_link_with_relay(rans_list, d, tmnsradio_list, initial_link, epoch_ms):
+    epoch_us = epoch_ms * 1000
+    relay_path = [initial_link]
+    initial_dest = int(initial_link.dest)
+    target_dest = int(d['Link']['LinkDst'])
+    relay_path = find_next_step_in_relay(rans_list, initial_dest, target_dest, tmnsradio_list, relay_path)
+    relay_throughput_scores = []
+    max_throughput_est_scores = []
+
+    if relay_path is not None:
+        if "Latency" in d:
+            if "max_thd" in d['Latency']:
+                lat_max_thd = d['Latency']['max_thd']
+            if "min_thd" in d['Latency']:
+                lat_min_thd = d['Latency']['min_thd']
+        else:
+            if debug >= 1:
+                print("The key 'Latency' was not found in the dictionary for the specified link.")
+        if "Bandwidth" in d:
+            if "min_thd" in d['Bandwidth']:
+                bw_min_thd = d['Bandwidth']['min_thd']
+            if "max_thd" in d['Bandwidth']:
+                bw_max_thd = d['Bandwidth']['max_thd']
+            if "coef" in d['Bandwidth']:
+                bw_coef = d['Bandwidth']['coef']
+        else:
+            if debug >= 1:
+                print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
+        if "Multiplier" in d:
+            mult = d["Multiplier"]
+        else:
+            if debug >= 1:
+                print(
+                    "The key 'Multiplier' was not found in the dictionary for the specified link.")
+
+        latency = calculate_latency_relay(relay_path, epoch_us)
+        for link in relay_path:
+            link.max_latency_usec = latency
+            link.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
+            link.calc_latency_value(lat_max_thd, lat_min_thd, mult)
+            max_requested_schedule(rans_list, ld_link_scores, mult)
+            relay_throughput_scores.append(link.throughput_point_value)
+            max_throughput_est_scores.append(link.greedy_throughput_point_value)
+
+    minimum_score = min(relay_throughput_scores)
+    min_max_estimate = min(max_throughput_est_scores)
+
+    for link in relay_path:
+        link.throughput_point_value = minimum_score
+        link.greedy_throughput_point_value = min_max_estimate
+
+
+def score_link_with_no_relay(rans_list, l, d):
+    """If Scoring Source and destination are on the same link."""
+    lat_min_thd = 0
+    lat_max_thd = 0
+    bw_min_thd = 0
+    bw_max_thd = 0
+    bw_coef = 0
+    mult = 1
+    if "Latency" in d:
+        if "max_thd" in d['Latency']:
+            lat_max_thd = d['Latency']['max_thd']
+        if "min_thd" in d['Latency']:
+            lat_min_thd = d['Latency']['min_thd']
+    else:
+        if debug >= 1:
+            print("The key 'Latency' was not found in the dictionary for the specified link.")
+    if "Bandwidth" in d:
+        if "min_thd" in d['Bandwidth']:
+            bw_min_thd = d['Bandwidth']['min_thd']
+        if "max_thd" in d['Bandwidth']:
+            bw_max_thd = d['Bandwidth']['max_thd']
+        if "coef" in d['Bandwidth']:
+            bw_coef = d['Bandwidth']['coef']
+    else:
+        if debug >= 1:
+            print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
+    if "Multiplier" in d:
+        mult = d["Multiplier"]
+    else:
+        if debug >= 1:
+            print(
+                "The key 'Multiplier' was not found in the dictionary for the specified link.")
+    l.calc_latency_value(int(lat_max_thd), int(lat_min_thd), mult)
+    l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
+    max_requested_schedule(rans_list, ld_link_scores, mult)
+
+
+def score_transmission_schedule(rans_list, ld_link_scores, tmnsradio_list=None):
     if ld_link_scores is not None:
         for d in ld_link_scores:
             for ran in rans_list:
+                epoch = ran.epoch_ms
                 for l in ran.links:
                     if "Link" in d:
-                        # If Scoring Source and destination are on the same link.
                         if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
-                            lat_min_thd = 0
-                            lat_max_thd = 0
-                            bw_min_thd = 0
-                            bw_max_thd = 0
-                            bw_coef = 0
-                            mult = 1
-                            if "Latency" in d:
-                                if "max_thd" in d['Latency']:
-                                    lat_max_thd = d['Latency']['max_thd']
-                                if "min_thd" in d['Latency']:
-                                    lat_min_thd = d['Latency']['min_thd']
-                            else:
-                                if debug >= 1:
-                                    print("The key 'Latency' was not found in the dictionary for the specified link.")
-                            if "Bandwidth" in d:
-                                if "min_thd" in d['Bandwidth']:
-                                    bw_min_thd = d['Bandwidth']['min_thd']
-                                if "max_thd" in d['Bandwidth']:
-                                    bw_max_thd = d['Bandwidth']['max_thd']
-                                if "coef" in d['Bandwidth']:
-                                    bw_coef = d['Bandwidth']['coef']
-                            else:
-                                if debug >= 1:
-                                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
-                            if "Multiplier" in d:
-                                mult = d["Multiplier"]
-                            else:
-                                if debug >= 1:
-                                    print(
-                                        "The key 'Multiplier' was not found in the dictionary for the specified link.")
-                            l.calc_latency_value(int(lat_max_thd), int(lat_min_thd), mult)
-                            l.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
-                        elif (int(l.src) == int(d['Link']['LinkSrc'])) or (int(l.dst) == int(d['Link']['LinkDst'])):
-                            pass
+                            score_link_with_no_relay(rans_list, l, d)
+                        elif int(l.src) == int(d['Link']['LinkSrc']):
+                            score_link_with_relay(rans_list, d, tmnsradio_list, epoch)
                         else:
                             if debug >= 1:
-                                print("No match of SRC and DST: this link is {0} --> {1}\r".format(l.src, l.dst))
+                                print("No match of SRC or DST: this link is {0} --> {1}\r".format(l.src, l.dst))
                     else:
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
-        max_requested_schedule(rans_list, ld_link_scores, mult)
+
 
 
 # ------------------------------------------------------------------------------
@@ -1008,7 +1112,7 @@ def run_schedule_viewer():
                 print("JSON Score File Not Found!\r")
         # score_transmission_schedule(rans_list, ld_link_scores)
 
-    score_transmission_schedule(rans_list, ld_link_scores)
+        score_transmission_schedule(rans_list, ld_link_scores)
 
     write_report_to_json(rans_list)
 
