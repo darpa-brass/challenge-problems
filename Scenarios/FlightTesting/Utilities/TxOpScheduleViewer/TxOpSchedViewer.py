@@ -104,11 +104,13 @@ class TxOp:
 class RadioLink:
     """Class to contain Radio Link info"""
     
-    def __init__(self, name, id_attr, src, dst, qp=None, lat=0):
+    def __init__(self, name, id_attr, src, src_id, dst, dst_id, qp=None, lat=0):
         self.name = name
         self.id = id_attr
         self.src = src
+        self.src_id = src_id
         self.dst = dst
+        self.dst_id = dst_id
         self.tx_sched = []
         self.qos_policy = qp
         self.max_latency_usec = lat             # Maximum Possible Latency achievable
@@ -183,11 +185,12 @@ class RadioLink:
 
 class TmNSRadio:
     """Class to contain TmNSRadio"""
-    def __init__(self,id, name, rfmacaddress, listeningport):
+    def __init__(self, id, name, rfmacaddress, listeningport, incoming_group_id):
         self.id = id
         self.name = name
         self.incoming = listeningport
         self.outgoing = rfmacaddress
+        self.incoming_group_id = incoming_group_id
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
@@ -814,21 +817,22 @@ def write_report_to_json(rans_list):
 # ------------------------------------------------------------------------------
 
 
-def find_next_step_in_relay(rans_list, initial_dest, target_dest, tmnsradio_list, relay_path):
+def find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path, previous_links=[]):
+    # Change to use IDs instead of ports
     for radio in tmnsradio_list:
         if radio.incoming == initial_dest:
             new_src = radio.outgoing
 
-    for ran in rans_list:
-        for link in ran.links:
-            new_dest = link.dest
-            if link.src == new_src:
-                if new_dest == target_dest:
-                    relay_path.append(link)
-                elif link in relay_path:
-                    relay_path = []
-                else:
-                    find_next_step_in_relay(rans_list, new_dest, target_dest, tmnsradio_list, relay_path)
+    for link in ran.links:
+        new_dest = link.dst
+        if link.src_id == new_src:
+            if link in previous_links:
+                relay_path = []
+            else:
+                relay_path.append(link)
+                previous_links.append(link)
+                if link.dst != target_dest:
+                    find_next_step_in_relay(ran, new_dest, target_dest, tmnsradio_list, relay_path, previous_links)
     return relay_path
 
 
@@ -859,62 +863,64 @@ def calculate_latency_relay(relay_path, epoch_us):
                         epoch_lap = False
             if epoch_lap:
                 epoch_count += 1
-        latency = relay_start_time * (epoch_count * epoch_us) - initial_end_time
+        latency = relay_start_time + (epoch_count * epoch_us) - initial_end_time
         if latency > max_latency:
             max_latency = latency
     return max_latency
 
 
 def score_link_with_relay(rans_list, d, tmnsradio_list, initial_link, epoch_ms):
-    epoch_us = epoch_ms * 1000
-    relay_path = [initial_link]
-    initial_dest = int(initial_link.dest)
-    target_dest = int(d['Link']['LinkDst'])
-    relay_path = find_next_step_in_relay(rans_list, initial_dest, target_dest, tmnsradio_list, relay_path)
-    relay_throughput_scores = []
-    max_throughput_est_scores = []
+    for ran in rans_list:
 
-    if relay_path is not None:
-        if "Latency" in d:
-            if "max_thd" in d['Latency']:
-                lat_max_thd = d['Latency']['max_thd']
-            if "min_thd" in d['Latency']:
-                lat_min_thd = d['Latency']['min_thd']
-        else:
-            if debug >= 1:
-                print("The key 'Latency' was not found in the dictionary for the specified link.")
-        if "Bandwidth" in d:
-            if "min_thd" in d['Bandwidth']:
-                bw_min_thd = d['Bandwidth']['min_thd']
-            if "max_thd" in d['Bandwidth']:
-                bw_max_thd = d['Bandwidth']['max_thd']
-            if "coef" in d['Bandwidth']:
-                bw_coef = d['Bandwidth']['coef']
-        else:
-            if debug >= 1:
-                print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
-        if "Multiplier" in d:
-            mult = d["Multiplier"]
-        else:
-            if debug >= 1:
-                print(
-                    "The key 'Multiplier' was not found in the dictionary for the specified link.")
+        epoch_us = int(int(epoch_ms) * 1000)
+        relay_path = [initial_link]
+        initial_dest = int(initial_link.dst)
+        target_dest = int(d['Link']['LinkDst'])
+        relay_path = find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path)
+        relay_throughput_scores = []
+        max_throughput_est_scores = []
 
-        latency = calculate_latency_relay(relay_path, epoch_us)
-        for link in relay_path:
-            link.max_latency_usec = latency
-            link.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
-            link.calc_latency_value(lat_max_thd, lat_min_thd, mult)
-            max_requested_schedule(rans_list, ld_link_scores, mult)
-            relay_throughput_scores.append(link.throughput_point_value)
-            max_throughput_est_scores.append(link.greedy_throughput_point_value)
+        if relay_path:
+            if "Latency" in d:
+                if "max_thd" in d['Latency']:
+                    lat_max_thd = d['Latency']['max_thd']
+                if "min_thd" in d['Latency']:
+                    lat_min_thd = d['Latency']['min_thd']
+            else:
+                if debug >= 1:
+                    print("The key 'Latency' was not found in the dictionary for the specified link.")
+            if "Bandwidth" in d:
+                if "min_thd" in d['Bandwidth']:
+                    bw_min_thd = d['Bandwidth']['min_thd']
+                if "max_thd" in d['Bandwidth']:
+                    bw_max_thd = d['Bandwidth']['max_thd']
+                if "coef" in d['Bandwidth']:
+                    bw_coef = d['Bandwidth']['coef']
+            else:
+                if debug >= 1:
+                    print("The key 'Bandwidth' was not found in the dictionary for the specified link.")
+            if "Multiplier" in d:
+                mult = d["Multiplier"]
+            else:
+                if debug >= 1:
+                    print(
+                        "The key 'Multiplier' was not found in the dictionary for the specified link.")
 
-    minimum_score = min(relay_throughput_scores)
-    min_max_estimate = min(max_throughput_est_scores)
+            latency = calculate_latency_relay(relay_path, epoch_us)
+            for link in relay_path:
+                link.max_latency_usec = latency
+                link.calc_throughput_value(bw_min_thd, bw_max_thd, bw_coef, mult)
+                link.calc_latency_value(lat_max_thd, lat_min_thd, mult)
+                max_requested_schedule(rans_list, ld_link_scores, mult)
+                relay_throughput_scores.append(link.throughput_point_value)
+                max_throughput_est_scores.append(link.greedy_throughput_point_value)
 
-    for link in relay_path:
-        link.throughput_point_value = minimum_score
-        link.greedy_throughput_point_value = min_max_estimate
+            minimum_score = min(relay_throughput_scores)
+            min_max_estimate = min(max_throughput_est_scores)
+
+            for link in relay_path:
+                link.throughput_point_value = minimum_score
+                link.greedy_throughput_point_value = min_max_estimate
 
 
 def score_link_with_no_relay(rans_list, l, d):
@@ -964,15 +970,13 @@ def score_transmission_schedule(rans_list, ld_link_scores, tmnsradio_list=None):
                         if (int(l.src) == int(d['Link']['LinkSrc'])) and (int(l.dst) == int(d['Link']['LinkDst'])):
                             score_link_with_no_relay(rans_list, l, d)
                         elif int(l.src) == int(d['Link']['LinkSrc']):
-                            score_link_with_relay(rans_list, d, tmnsradio_list, epoch)
+                            score_link_with_relay(rans_list, d, tmnsradio_list, l, epoch)
                         else:
                             if debug >= 1:
                                 print("No match of SRC or DST: this link is {0} --> {1}\r".format(l.src, l.dst))
                     else:
                         if debug >= 1:
                             print("No match for key 'Link' in score file for link.\r")
-
-
 
 # ------------------------------------------------------------------------------
 
@@ -1024,8 +1028,11 @@ def run_schedule_viewer():
         radio = app.find(".//mdl:TmNSRadio", namespaces=ns)
         if radio is not None:
             trfmacaddress = int(radio.find('.//mdl:RFMACAddress', namespaces=ns).text)
-            tlistening =int(radio.find('mdl:LinkAgent/mdl:ListeningPort', namespaces=ns).text)
-            new_radio = TmNSRadio(id=tid, name=tname, rfmacaddress=trfmacaddress, listeningport=tlistening)
+            radio_group_id = radio.find("mdl:JoinRadioGroupRefs/mdl:RadioGroupRef", namespaces=ns).attrib['IDREF']
+            rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(radio_group_id), namespaces=ns)
+            rldst = int(rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text)
+            # tlistening =int(radio.find('mdl:LinkAgent/mdl:ListeningPort', namespaces=ns).text)
+            new_radio = TmNSRadio(id=tid, name=tname, rfmacaddress=trfmacaddress, listeningport=rldst, incoming_group_id=radio_group_id)
             tmnsradio_list.append(new_radio)
 
     # Parse MDL file for Radio Links and their associated Transmission Schedules
@@ -1033,15 +1040,15 @@ def run_schedule_viewer():
     for radio_link in radio_links:
         rlname = radio_link.find("mdl:Name", namespaces=ns).text
         rlid = radio_link.attrib['ID']
-        rlsrc_idref = radio_link.find("mdl:SourceRadioRef", namespaces=ns).attrib
-        tmas = root.xpath("//mdl:TmNSApp[@ID='{}']".format(rlsrc_idref["IDREF"]), namespaces=ns)
-        rlsrc = tmas[0].find("mdl:TmNSRadio/mdl:RFMACAddress", namespaces=ns).text
+        rlsrc_idref = radio_link.find("mdl:SourceRadioRef", namespaces=ns).attrib["IDREF"]
+        tmas = root.xpath("//mdl:TmNSApp[@ID='{}']".format(rlsrc_idref), namespaces=ns)
+        rlsrc = int(tmas[0].find("mdl:TmNSRadio/mdl:RFMACAddress", namespaces=ns).text)
         ran_idref = tmas[0].find("mdl:TmNSRadio/mdl:RANConfigurationRef", namespaces=ns).attrib['IDREF']
-        rldst_idref = radio_link.find("mdl:DestinationRadioGroupRef", namespaces=ns).attrib
-        rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref["IDREF"]), namespaces=ns)
-        rldst = rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text
+        rldst_idref = radio_link.find("mdl:DestinationRadioGroupRef", namespaces=ns).attrib["IDREF"]
+        rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref), namespaces=ns)
+        rldst = int(rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text)
 
-        new_link = RadioLink(rlname, rlid, rlsrc, rldst)
+        new_link = RadioLink(rlname, rlid, rlsrc, rlsrc_idref, rldst, rldst_idref)
 
         tx_sched = radio_link.find("mdl:TransmissionSchedule", namespaces=ns)
         if tx_sched is not None:
@@ -1112,7 +1119,7 @@ def run_schedule_viewer():
                 print("JSON Score File Not Found!\r")
         # score_transmission_schedule(rans_list, ld_link_scores)
 
-        score_transmission_schedule(rans_list, ld_link_scores)
+        score_transmission_schedule(rans_list, ld_link_scores, tmnsradio_list)
 
     write_report_to_json(rans_list)
 
