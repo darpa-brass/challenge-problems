@@ -87,8 +87,8 @@ class TxOp:
     
     def __init__(self, freq=0, start_usec=0, stop_usec=0, timeout=0):
         self.freq = freq
-        self.start_usec = start_usec
-        self.stop_usec = stop_usec
+        self.start_usec = int(start_usec)
+        self.stop_usec = int(stop_usec)
         self.timeout = timeout
         self.duration_usec = int(stop_usec) - int(start_usec) + 1
 
@@ -104,11 +104,13 @@ class TxOp:
 class RadioLink:
     """Class to contain Radio Link info"""
     
-    def __init__(self, name, id_attr, src, src_id, dst, dst_id, qp=None, lat=0):
+    # def __init__(self, name, id_attr, src, src_id, dst, dst_id, qp=None, lat=0):
+    def __init__(self, name, id_attr, src, src_id, src_group, dst, dst_id, qp=None, lat=0):
         self.name = name
         self.id = id_attr
         self.src = src
         self.src_id = src_id
+        self.src_group = src_group
         self.dst = dst
         self.dst_id = dst_id
         self.tx_sched = []
@@ -817,22 +819,39 @@ def write_report_to_json(rans_list):
 # ------------------------------------------------------------------------------
 
 
-def find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path, previous_links=[]):
+def find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path):
     # Change to use IDs instead of ports
+    previous_links = []
+    previous_groups = []
+    for link in relay_path:
+        previous_links.append(link)
+        previous_groups.append(link.src_group)
+
     for radio in tmnsradio_list:
-        if radio.incoming == initial_dest:
-            new_src = radio.outgoing
+        if radio.incoming_group_id == initial_dest:
+            new_src = radio.id
+            break
 
     for link in ran.links:
-        new_dest = link.dst
         if link.src_id == new_src:
-            if link in previous_links:
-                relay_path = []
-            else:
-                relay_path.append(link)
-                previous_links.append(link)
-                if link.dst != target_dest:
-                    find_next_step_in_relay(ran, new_dest, target_dest, tmnsradio_list, relay_path, previous_links)
+            if link.dst_id not in previous_groups:
+                new_dest = link.dst_id
+                if link in previous_links or link.src_group in previous_groups:
+                    pass
+                else:
+                    relay_path.append(link)
+                    previous_links.append(link)
+                    if link.dst == target_dest:
+                        break
+                    find_next_step_in_relay(ran, new_dest, target_dest, tmnsradio_list, relay_path)
+
+    return relay_path
+
+
+def generate_relay_path(ran, initial_dest, target_dest, tmnsradio_list, relay_path):
+    relay_path = find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path)
+    if relay_path[-1].dst != target_dest:
+        relay_path = []
     return relay_path
 
 
@@ -848,7 +867,7 @@ def calculate_latency_relay(relay_path, epoch_us):
         for relay in other_relays:
             relay_start_time = epoch_us
             relay_latency = epoch_us
-            for tx in relay:
+            for tx in relay.tx_sched:
                 if previous_end_time < tx.start_usec:
                     current_start_time = tx.start_usec
                 else:
@@ -874,7 +893,7 @@ def score_link_with_relay(rans_list, d, tmnsradio_list, initial_link, epoch_ms):
 
         epoch_us = int(int(epoch_ms) * 1000)
         relay_path = [initial_link]
-        initial_dest = int(initial_link.dst)
+        initial_dest = initial_link.dst_id
         target_dest = int(d['Link']['LinkDst'])
         relay_path = find_next_step_in_relay(ran, initial_dest, target_dest, tmnsradio_list, relay_path)
         relay_throughput_scores = []
@@ -1043,12 +1062,13 @@ def run_schedule_viewer():
         rlsrc_idref = radio_link.find("mdl:SourceRadioRef", namespaces=ns).attrib["IDREF"]
         tmas = root.xpath("//mdl:TmNSApp[@ID='{}']".format(rlsrc_idref), namespaces=ns)
         rlsrc = int(tmas[0].find("mdl:TmNSRadio/mdl:RFMACAddress", namespaces=ns).text)
+        rlsrc_group = tmas[0].find("mdl:TmNSRadio/mdl:JoinRadioGroupRefs/mdl:RadioGroupRef", namespaces=ns).attrib["IDREF"]
         ran_idref = tmas[0].find("mdl:TmNSRadio/mdl:RANConfigurationRef", namespaces=ns).attrib['IDREF']
         rldst_idref = radio_link.find("mdl:DestinationRadioGroupRef", namespaces=ns).attrib["IDREF"]
         rgs = root.xpath("//mdl:RadioGroup[@ID='{}']".format(rldst_idref), namespaces=ns)
         rldst = int(rgs[0].find("mdl:GroupRFMACAddress", namespaces=ns).text)
 
-        new_link = RadioLink(rlname, rlid, rlsrc, rlsrc_idref, rldst, rldst_idref)
+        new_link = RadioLink(rlname, rlid, rlsrc, rlsrc_idref, rlsrc_group, rldst, rldst_idref)
 
         tx_sched = radio_link.find("mdl:TransmissionSchedule", namespaces=ns)
         if tx_sched is not None:
