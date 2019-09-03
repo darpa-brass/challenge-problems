@@ -4,5 +4,11 @@
         "Latency": {"max_thd": 50, "min_thd":60},
         "Bandwidth": {"min_thd": 200, "max_thd": 2000, "coef": 0.005},
         "Multiplier": 1
+     },
+    {
+        "Link": {"LinkSrc": 4097, "LinkDst": 65283},
+        "Latency": {"max_thd": 50, "min_thd":60},
+        "Bandwidth": {"min_thd": 200, "max_thd": 2000, "coef": 1},
+        "Multiplier": 1
      }
 ]
