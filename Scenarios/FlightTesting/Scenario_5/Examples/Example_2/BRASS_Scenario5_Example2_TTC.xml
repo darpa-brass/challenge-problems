@@ -2317,7 +2317,7 @@
                                         <Port ID="port-vibration1-j2-ch1" Index="2">
                                             <Name>Ch2</Name>
                                             <Description>j2 Ch2 (Remote Reset)</Description>
-                                            <PortDirection>Input</PortDirection>
+                                            <PortDirection>Output</PortDirection>
                                             <PinRefs>
                                                 <PinRef IDREF="pin-vibration1-j2-1"/>
                                                 <PinRef IDREF="pin-vibration1-j2-2"/>
@@ -2685,7 +2685,7 @@
                                         </Connector>
                                     </Connectors>
                                     <Ports>
-                                        <Port ID="port-thermo7-j1-ch" Index="1">
+                                        <Port ID="port-thermo7-j1-ch1" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>Ch1 : Channel 1 Temperature</Description>
                                             <PortDirection>Output</PortDirection>
