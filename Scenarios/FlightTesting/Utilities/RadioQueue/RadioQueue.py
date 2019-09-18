@@ -140,6 +140,7 @@ def setup_logger():
     log.setLevel('INFO')
     return log
 
+
 def run_epoch():
     global epoch_num
     global epochs_per_sec
@@ -160,9 +161,9 @@ def run_epoch():
 
     
     # Set callback timer for next epoch update
-    if not headless:
-        next_timer = threading.Timer(epoch_sec, run_epoch)
-        next_timer.start()
+    # if not headless:
+    #     next_timer = threading.Timer(epoch_sec, run_epoch)
+    #     next_timer.start()
     # Set Command Line Mode
     if not headless:
         height, width = stdscr.getmaxyx()
@@ -1161,6 +1162,19 @@ def print_time():
 
 # ------------------------------------------------------------------------------
 
+def run_epoch_loop():
+    # try:
+    while True:
+        start_time = time.time()
+        run_epoch()
+        time_waited = time.time() - start_time
+        if time_waited < epoch_sec:
+            time.sleep(epoch_sec - time_waited)
+    # except Exception as e:
+    #     print(e)
+
+# ------------------------------------------------------------------------------
+
 
 def main(stdscr):
     global text_d
@@ -1379,8 +1393,11 @@ def main(stdscr):
         message_pad.bkgd(text_d['BG'])
         toolbar_pad.bkgd(text_d['BG'])
         stdscr.clear()
-        
-    run_epoch()
+    # run_epoch()
+    run_epoch_loop()
+
+
+
 
 
 # ------------------------------------------------------------------------------
@@ -1439,15 +1456,16 @@ if __name__ == "__main__":
     border_d = {}
     graph_d = {}
     if headless:
-        try:
-            while True:
-                start_time = time.time()
-                run_epoch()
-                time_waited = time.time() - start_time
-                if time_waited < epoch_sec:
-                    time.sleep(epoch_sec-time_waited)
-        except Exception as e:
-            print(e)
+        run_epoch_loop
+        # try:
+        #     while True:
+        #         start_time = time.time()
+        #         run_epoch()
+        #         time_waited = time.time() - start_time
+        #         if time_waited < epoch_sec:
+        #             time.sleep(epoch_sec-time_waited)
+        # except Exception as e:
+        #     print(e)
     elif not headless:
         stdscr = curses.initscr()                # Initial main screen for curses
         banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
