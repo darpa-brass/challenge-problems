@@ -21,7 +21,7 @@ import random
 import logging
 import csv
 
-next_timer = 0
+# next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
 epoch_sec = epoch_ms / 1000         # epoch size converted to seconds
 epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
@@ -140,6 +140,7 @@ def setup_logger():
     log.setLevel('INFO')
     return log
 
+
 def run_epoch():
     global epoch_num
     global epochs_per_sec
@@ -147,7 +148,7 @@ def run_epoch():
     global radio_list
     global msg_list
     global stdscr
-    global next_timer
+    # global next_timer
     global time_pad
     global text_d
     global realtime_mode
@@ -160,9 +161,9 @@ def run_epoch():
 
     
     # Set callback timer for next epoch update
-    if not headless:
-        next_timer = threading.Timer(epoch_sec, run_epoch)
-        next_timer.start()
+    # if not headless:
+    #     next_timer = threading.Timer(epoch_sec, run_epoch)
+    #     next_timer.start()
     # Set Command Line Mode
     if not headless:
         height, width = stdscr.getmaxyx()
@@ -178,7 +179,7 @@ def run_epoch():
             elif keypress == ord('h'):  # If selected, toggle history plot
                 history_plot_mode = not history_plot_mode
             elif keypress == ord('x'):  # If selected, exit application
-                next_timer.cancel()
+                # next_timer.cancel()
                 restore_screen()
                 sys.exit()
 
@@ -1082,8 +1083,8 @@ def restore_screen():
 
 
 def sig_handler(sig, frame):
-    global next_timer
-    next_timer.cancel()
+    # global next_timer
+    # next_timer.cancel()
 
     restore_screen()
     sys.exit()
@@ -1158,6 +1159,19 @@ def print_time():
     else:
         time_pad.noutrefresh(0, 0, height-5, 2, height-4, width-1)
     
+
+# ------------------------------------------------------------------------------
+
+def run_epoch_loop():
+    # try:
+    while True:
+        start_time = time.time()
+        run_epoch()
+        time_waited = time.time() - start_time
+        if time_waited < epoch_sec:
+            time.sleep(epoch_sec - time_waited)
+    # except Exception as e:
+    #     print(e)
 
 # ------------------------------------------------------------------------------
 
@@ -1379,8 +1393,11 @@ def main(stdscr):
         message_pad.bkgd(text_d['BG'])
         toolbar_pad.bkgd(text_d['BG'])
         stdscr.clear()
-        
-    run_epoch()
+    # run_epoch()
+    run_epoch_loop()
+
+
+
 
 
 # ------------------------------------------------------------------------------
@@ -1439,15 +1456,16 @@ if __name__ == "__main__":
     border_d = {}
     graph_d = {}
     if headless:
-        try:
-            while True:
-                start_time = time.time()
-                run_epoch()
-                time_waited = time.time() - start_time
-                if time_waited < epoch_sec:
-                    time.sleep(epoch_sec-time_waited)
-        except Exception as e:
-            print(e)
+        run_epoch_loop
+        # try:
+        #     while True:
+        #         start_time = time.time()
+        #         run_epoch()
+        #         time_waited = time.time() - start_time
+        #         if time_waited < epoch_sec:
+        #             time.sleep(epoch_sec-time_waited)
+        # except Exception as e:
+        #     print(e)
     elif not headless:
         stdscr = curses.initscr()                # Initial main screen for curses
         banner_pad = curses.newpad(4, 90)        # Initialize Banner Pad
