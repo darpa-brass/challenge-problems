@@ -21,7 +21,7 @@ import random
 import logging
 import csv
 
-next_timer = 0
+# next_timer = 0
 epoch_ms = 100                      # epoch size in milliseconds
 epoch_sec = epoch_ms / 1000         # epoch size converted to seconds
 epochs_per_sec = 1000 / epoch_ms    # number of epochs per second
@@ -148,7 +148,7 @@ def run_epoch():
     global radio_list
     global msg_list
     global stdscr
-    global next_timer
+    # global next_timer
     global time_pad
     global text_d
     global realtime_mode
@@ -179,7 +179,7 @@ def run_epoch():
             elif keypress == ord('h'):  # If selected, toggle history plot
                 history_plot_mode = not history_plot_mode
             elif keypress == ord('x'):  # If selected, exit application
-                next_timer.cancel()
+                # next_timer.cancel()
                 restore_screen()
                 sys.exit()
 
@@ -1083,8 +1083,8 @@ def restore_screen():
 
 
 def sig_handler(sig, frame):
-    global next_timer
-    next_timer.cancel()
+    # global next_timer
+    # next_timer.cancel()
 
     restore_screen()
     sys.exit()
