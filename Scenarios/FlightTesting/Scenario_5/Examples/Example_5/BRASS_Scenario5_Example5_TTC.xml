@@ -1403,7 +1403,7 @@
                         <Name>Acceleration10</Name>
                         <Description>Signal Conditioner 2 j2 to Accelerometer 4 j1 (Acceleration X)</Description>
                         <PortRef IDREF="port-mscd2-j2-ch1-ex5"/>
-                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <PortRef IDREF="port-accel4-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
