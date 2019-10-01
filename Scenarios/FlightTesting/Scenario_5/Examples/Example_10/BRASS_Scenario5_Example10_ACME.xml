@@ -199,7 +199,7 @@
                 <Description>Example network for scenario 5.</Description>
                 <NetworkType>TestArticleNetwork</NetworkType>
                 <NetworkNodes>
-                    <NetworkNode ID="nn-dau-ex7">
+                    <NetworkNode ID="nn-dau-ex10">
                         <Name>Example10DAU</Name>
                         <Description>Scenario 5 DAU.</Description>
                         <GenericParameter>
@@ -218,7 +218,7 @@
                         <SerialID>123456789</SerialID>
                         <IEEE1588Version>2008e2e</IEEE1588Version>
                         <TmNSApps>
-                            <TmNSApp ID="tma-dau-ex7">
+                            <TmNSApp ID="tma-dau-ex10">
                                 <Name>DAUAppFriendlyName</Name>
                                 <Description>Scenario 5 DAU application.</Description>
                                 <RoleID>DAUApp</RoleID>
@@ -246,7 +246,7 @@
                                         <NotificationPort>1234</NotificationPort>
                                         <DSCPTableEntryRef IDREF="dscp-0"/>
                                         <NetworkInterfaceRefs>
-                                            <NetworkInterfaceRef IDREF="ni-ieee-eth0-ex7"/>
+                                            <NetworkInterfaceRef IDREF="ni-ieee-eth0-ex10"/>
                                         </NetworkInterfaceRefs>
                                     </SNMPSetup>
                                 </SMInterface>
@@ -254,7 +254,7 @@
                         </TmNSApps>
                         <InternalStructure>
                             <Modules>
-                                <Module ID="mod-processor-ex7">
+                                <Module ID="mod-processor-ex10">
                                     <Name>ProcessingModule</Name>
                                     <Description>ACME processing unit. Overhead.</Description>
                                     <GenericParameter>
@@ -270,10 +270,10 @@
                                     <Position>101</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <RunningAppRefs>
-                                        <TmNSAppRef IDREF="tma-dau-ex7"/>
+                                        <TmNSAppRef IDREF="tma-dau-ex10"/>
                                     </RunningAppRefs>
                                     <Ports>
-                                        <Port ID="port-processor-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-processor-j1-ch1-ex10" Index="1">
                                             <Name>J1 Console</Name>
                                             <Description>Console Serial Port</Description>
                                             <GenericParameter>
@@ -294,7 +294,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-ieee-ex7">
+                                <Module ID="mod-ieee-ex10">
                                     <Name>TimeAndEthernetModule</Name>
                                     <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
                                     <GenericParameter>
@@ -311,12 +311,12 @@
                                     <Position>102</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <NetworkInterfaces>
-                                        <NetworkInterface ID="ni-ieee-eth0-ex7">
+                                        <NetworkInterface ID="ni-ieee-eth0-ex10">
                                             <Name>eth0</Name>
                                             <DHCPEnable>false</DHCPEnable>
                                             <IPAddress>10.1.10.10</IPAddress>
                                             <PhysicalNetworkPorts>
-                                                <PhysicalNetworkPort ID="pnp-ieee-ethernet-ex7">
+                                                <PhysicalNetworkPort ID="pnp-ieee-ethernet-ex10">
                                                     <Name>Ethernet</Name>
                                                     <Description>MACQ j2 10/100Base-T Ethernet</Description>
                                                     <Medium>Copper</Medium>
@@ -330,7 +330,7 @@
                                         </NetworkInterface>
                                     </NetworkInterfaces>
                                     <Ports>
-                                        <Port ID="port-ieee-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-ieee-j1-ch1-ex10" Index="1">
                                             <Name>Time</Name>
                                             <Description>RS-422 Port 1</Description>
                                             <GenericParameter>
@@ -341,7 +341,7 @@
                                             </GenericParameter>
                                             <PortDirection>Output</PortDirection>
                                         </Port>
-                                        <Port ID="port-ieee-j2-ch1-ex7" Index="2">
+                                        <Port ID="port-ieee-j2-ch1-ex10" Index="2">
                                             <Name>Ethernet</Name>
                                             <Description>10/100 Fast Ethernet</Description>
                                             <GenericParameter>
@@ -355,11 +355,11 @@
                                             <PortTypes>
                                                 <PortType>Ethernet</PortType>
                                             </PortTypes>
-                                            <PhysicalNetworkPortRef IDREF="pnp-ieee-ethernet-ex7"/>
+                                            <PhysicalNetworkPortRef IDREF="pnp-ieee-ethernet-ex10"/>
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-sigcond1-ex7">
+                                <Module ID="mod-sigcond1-ex10">
                                     <Name>SignalConditioner1</Name>
                                     <Description>ACME signal conditioner.</Description>
                                     <GenericParameter>
@@ -375,7 +375,7 @@
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port ID="port-sigcond1-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-sigcond1-j1-ch1-ex10" Index="1">
                                             <Name>Ch1</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -395,7 +395,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond1-j1-ch2-ex7" Index="2">
+                                        <Port ID="port-sigcond1-j1-ch2-ex10" Index="2">
                                             <Name>Ch2</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -415,7 +415,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond1-j1-ch3-ex7" Index="3">
+                                        <Port ID="port-sigcond1-j1-ch3-ex10" Index="3">
                                             <Name>Ch3</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -435,7 +435,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond1-j2-ch1-ex7" Index="4">
+                                        <Port ID="port-sigcond1-j2-ch1-ex10" Index="4">
                                             <Name>Ch4</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -455,7 +455,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond1-j2-ch2-ex7" Index="5">
+                                        <Port ID="port-sigcond1-j2-ch2-ex10" Index="5">
                                             <Name>Ch5</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -475,7 +475,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond1-j2-ch3-ex7" Index="6">
+                                        <Port ID="port-sigcond1-j2-ch3-ex10" Index="6">
                                             <Name>Ch6</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -497,7 +497,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-sigcond2-ex7">
+                                <Module ID="mod-sigcond2-ex10">
                                     <Name>SignalConditioner2</Name>
                                     <Description>ACME signal conditioner.</Description>
                                     <GenericParameter>
@@ -513,7 +513,7 @@
                                     <Position>1</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port ID="port-sigcond2-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-sigcond2-j1-ch1-ex10" Index="1">
                                             <Name>Ch1</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -533,7 +533,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond2-j1-ch2-ex7" Index="2">
+                                        <Port ID="port-sigcond2-j1-ch2-ex10" Index="2">
                                             <Name>Ch2</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -553,7 +553,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond2-j1-ch3-ex7" Index="3">
+                                        <Port ID="port-sigcond2-j1-ch3-ex10" Index="3">
                                             <Name>Ch3</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -573,7 +573,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond2-j2-ch1-ex7" Index="4">
+                                        <Port ID="port-sigcond2-j2-ch1-ex10" Index="4">
                                             <Name>Ch4</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -593,7 +593,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond2-j2-ch2-ex7" Index="5">
+                                        <Port ID="port-sigcond2-j2-ch2-ex10" Index="5">
                                             <Name>Ch5</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -613,7 +613,7 @@
                                                 <PortType>SignalConditioner</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-sigcond2-j2-ch3-ex7" Index="6">
+                                        <Port ID="port-sigcond2-j2-ch3-ex10" Index="6">
                                             <Name>Ch6</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -635,7 +635,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-thermo-ex7">
+                                <Module ID="mod-thermo-ex10">
                                     <Name>ThermocoupleConditioner</Name>
                                     <Description>ACME thermocouple conditioner.</Description>
                                     <GenericParameter>
@@ -651,7 +651,7 @@
                                     <Position>3</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port ID="port-thermo-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-thermo-j1-ch1-ex10" Index="1">
                                             <Name>Ch1</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -674,7 +674,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch2-ex7" Index="2">
+                                        <Port ID="port-thermo-j1-ch2-ex10" Index="2">
                                             <Name>Ch2</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -697,7 +697,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch3-ex7" Index="3">
+                                        <Port ID="port-thermo-j1-ch3-ex10" Index="3">
                                             <Name>Ch3</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -720,7 +720,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch4-ex7" Index="4">
+                                        <Port ID="port-thermo-j1-ch4-ex10" Index="4">
                                             <Name>Ch4</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -743,7 +743,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch5-ex7" Index="5">
+                                        <Port ID="port-thermo-j1-ch5-ex10" Index="5">
                                             <Name>Ch5</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -766,7 +766,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch6-ex7" Index="6">
+                                        <Port ID="port-thermo-j1-ch6-ex10" Index="6">
                                             <Name>Ch6</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -789,7 +789,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch7-ex7" Index="7">
+                                        <Port ID="port-thermo-j1-ch7-ex10" Index="7">
                                             <Name>Ch7</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -812,7 +812,7 @@
                                                 <PortType>Thermocouple</PortType>
                                             </PortTypes>
                                         </Port>
-                                        <Port ID="port-thermo-j1-ch8-ex7" Index="8">
+                                        <Port ID="port-thermo-j1-ch8-ex10" Index="8">
                                             <Name>Ch8</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -837,7 +837,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-power1-ex7">
+                                <Module ID="mod-power1-ex10">
                                     <Name>PowerSupply1</Name>
                                     <Description>ACME mini power supply. Overhead.</Description>
                                     <GenericParameter>
@@ -853,7 +853,7 @@
                                     <Position>201</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port ID="port-power1-j1-ch1-ex7" Index="1">
+                                        <Port ID="port-power1-j1-ch1-ex10" Index="1">
                                             <Name>Ch1</Name>
                                             <GenericParameter>
                                                 <NameValues>
@@ -865,7 +865,7 @@
                                         </Port>
                                     </Ports>
                                 </Module>
-                                <Module ID="mod-power2-ex7">
+                                <Module ID="mod-power2-ex10">
                                     <Name>PowerSupply2</Name>
                                     <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
                                     <GenericParameter>
@@ -881,7 +881,7 @@
                                     <Position>202</Position>
                                     <PositionsOccupied>1</PositionsOccupied>
                                     <Ports>
-                                        <Port Enabled="false" ID="port-power2-j1-ch1-ex7" Index="1">
+                                        <Port Enabled="false" ID="port-power2-j1-ch1-ex10" Index="1">
                                             <Name>Ch1</Name>
                                             <Description>Dummy</Description>
                                             <GenericParameter>
@@ -1813,161 +1813,161 @@
                     </Device>
                 </Devices>
                 <PortMappings>
-                    <PortMapping ID="pm-sigcond1-j1ch1-accel1-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond1-j1ch1-accel1-j1ch1-ex10">
                         <Name>Acceleration1</Name>
-                        <PortRef IDREF="port-sigcond1-j1-ch1-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j1-ch1-ex10"/>
                         <PortRef IDREF="port-accel1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond1-j1ch2-accel1-j1ch2-ex7">
+                    <PortMapping ID="pm-sigcond1-j1ch2-accel1-j1ch2-ex10">
                         <Name>Acceleration2</Name>
-                        <PortRef IDREF="port-sigcond1-j1-ch2-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j1-ch2-ex10"/>
                         <PortRef IDREF="port-accel1-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond1-j1ch3-accel1-j1ch3-ex7">
+                    <PortMapping ID="pm-sigcond1-j1ch3-accel1-j1ch3-ex10">
                         <Name>Acceleration3</Name>
-                        <PortRef IDREF="port-sigcond1-j1-ch3-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j1-ch3-ex10"/>
                         <PortRef IDREF="port-accel1-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond1-j2ch1-accel2-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond1-j2ch1-accel2-j1ch1-ex10">
                         <Name>Acceleration4</Name>
-                        <PortRef IDREF="port-sigcond1-j2-ch1-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j2-ch1-ex10"/>
                         <PortRef IDREF="port-accel2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond1-j2ch2-accel2-j1ch2-ex7">
+                    <PortMapping ID="pm-sigcond1-j2ch2-accel2-j1ch2-ex10">
                         <Name>Acceleration5</Name>
-                        <PortRef IDREF="port-sigcond1-j2-ch2-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j2-ch2-ex10"/>
                         <PortRef IDREF="port-accel2-j1-ch2"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond1-j2ch3-accel2-j1ch3-ex7">
+                    <PortMapping ID="pm-sigcond1-j2ch3-accel2-j1ch3-ex10">
                         <Name>Acceleration6</Name>
-                        <PortRef IDREF="port-sigcond1-j2-ch3-ex7"/>
+                        <PortRef IDREF="port-sigcond1-j2-ch3-ex10"/>
                         <PortRef IDREF="port-accel2-j1-ch3"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j1ch1-strain1-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j1ch1-strain1-j1ch1-ex10">
                         <Name>Strain1</Name>
-                        <PortRef IDREF="port-sigcond2-j1-ch1-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j1-ch1-ex10"/>
                         <PortRef IDREF="port-strain1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j1ch2-strain2-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j1ch2-strain2-j1ch1-ex10">
                         <Name>Strain2</Name>
-                        <PortRef IDREF="port-sigcond2-j1-ch2-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j1-ch2-ex10"/>
                         <PortRef IDREF="port-strain2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j1ch3-pressure1-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j1ch3-pressure1-j1ch1-ex10">
                         <Name>Pressure1</Name>
-                        <PortRef IDREF="port-sigcond2-j1-ch3-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j1-ch3-ex10"/>
                         <PortRef IDREF="port-pressure1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j2ch1-audio1-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j2ch1-audio1-j1ch1-ex10">
                         <Name>Audio1</Name>
-                        <PortRef IDREF="port-sigcond2-j2-ch1-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j2-ch1-ex10"/>
                         <PortRef IDREF="port-audio1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j2ch2-vibration1-j1ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j2ch2-vibration1-j1ch1-ex10">
                         <Name>Vibration1</Name>
-                        <PortRef IDREF="port-sigcond2-j2-ch2-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j2-ch2-ex10"/>
                         <PortRef IDREF="port-vibration1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-sigcond2-j2ch3-vibration1-j2ch1-ex7">
+                    <PortMapping ID="pm-sigcond2-j2ch3-vibration1-j2ch1-ex10">
                         <Name>Remote Reset1</Name>
-                        <PortRef IDREF="port-sigcond2-j2-ch3-ex7"/>
+                        <PortRef IDREF="port-sigcond2-j2-ch3-ex10"/>
                         <PortRef IDREF="port-vibration1-j2-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-signal-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch1-thermo1-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch1-thermo1-j1ch1-ex10">
                         <Name>Temperature1</Name>
-                        <PortRef IDREF="port-thermo-j1-ch1-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch1-ex10"/>
                         <PortRef IDREF="port-thermo1-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch2-thermo2-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch2-thermo2-j1ch1-ex10">
                         <Name>Temperature2</Name>
-                        <PortRef IDREF="port-thermo-j1-ch2-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch2-ex10"/>
                         <PortRef IDREF="port-thermo2-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch3-thermo3-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch3-thermo3-j1ch1-ex10">
                         <Name>Temperature3</Name>
-                        <PortRef IDREF="port-thermo-j1-ch3-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch3-ex10"/>
                         <PortRef IDREF="port-thermo3-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch4-thermo4-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch4-thermo4-j1ch1-ex10">
                         <Name>Temperature4</Name>
-                        <PortRef IDREF="port-thermo-j1-ch4-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch4-ex10"/>
                         <PortRef IDREF="port-thermo4-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch5-thermo5-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch5-thermo5-j1ch1-ex10">
                         <Name>Temperature5</Name>
-                        <PortRef IDREF="port-thermo-j1-ch5-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch5-ex10"/>
                         <PortRef IDREF="port-thermo5-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch6-thermo6-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch6-thermo6-j1ch1-ex10">
                         <Name>Temperature6</Name>
-                        <PortRef IDREF="port-thermo-j1-ch6-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch6-ex10"/>
                         <PortRef IDREF="port-thermo6-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch7-thermo7-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch7-thermo7-j1ch1-ex10">
                         <Name>Temperature7</Name>
-                        <PortRef IDREF="port-thermo-j1-ch7-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch7-ex10"/>
                         <PortRef IDREF="port-thermo7-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
                         </MeasurementRefs>
                     </PortMapping>
-                    <PortMapping ID="pm-thermo-j1ch8-thermo8-j1ch1-ex7">
+                    <PortMapping ID="pm-thermo-j1ch8-thermo8-j1ch1-ex10">
                         <Name>Temperature8</Name>
-                        <PortRef IDREF="port-thermo-j1-ch8-ex7"/>
+                        <PortRef IDREF="port-thermo-j1-ch8-ex10"/>
                         <PortRef IDREF="port-thermo8-j1-ch1"/>
                         <MeasurementRefs>
                             <MeasurementRef IDREF="meas-temp-16-250"/>
