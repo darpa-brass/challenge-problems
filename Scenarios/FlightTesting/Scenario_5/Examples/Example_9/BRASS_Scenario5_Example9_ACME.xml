@@ -1,0 +1,2177 @@
+<MDLRoot xmlns="http://www.wsmr.army.mil/RCC/schemas/MDL"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.wsmr.army.mil/RCC/schemas/MDL MDL_v1_0_0.xsd">
+    <Name>Scenario 5 Example 9</Name>
+    <Description>ACME DAU with connected transducers.</Description>
+    <DatabaseID/>
+    <Checksum/>
+    <ConfigurationVersion>2019_10_01_00:00:00_ACMEDAU</ConfigurationVersion>
+    <DirtyBit>false</DirtyBit>
+    <MeasurementDomains>
+        <MeasurementDomain>
+            <Name>ExampleMeasurementDomain</Name>
+            <Description>Measurement domain for scenario 5.</Description>
+            <Measurements>
+                <Measurement ID="meas-signal-16-250">
+                    <Name>GenericSignal</Name>
+                    <Description>Generic signal.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>125</Min>
+                            <Max>250</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>8</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>1000</Min>
+                            <Max>4000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000001</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-16-250">
+                    <Name>Temperature1</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>125</Min>
+                            <Max>250</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>8</Min>
+                            <Max>16</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>1000</Min>
+                            <Max>4000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000010</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>16</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>250</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>4000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+                <Measurement ID="meas-temp-12-1000">
+                    <Name>Temperature2</Name>
+                    <Description>Temperature</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <SampleRate>
+                            <Min>500</Min>
+                            <Max>1000</Max>
+                        </SampleRate>
+                        <DataLength>
+                            <Min>6</Min>
+                            <Max>12</Max>
+                        </DataLength>
+                        <DataRate>
+                            <Min>3000</Min>
+                            <Max>12000</Max>
+                        </DataRate>
+                    </GenericParameter>
+                    <MeasurementID>0x10000011</MeasurementID>
+                    <MeasurementTypes>
+                        <MeasurementType>Analog</MeasurementType>
+                    </MeasurementTypes>
+                    <MeasurementActive>true</MeasurementActive>
+                    <ProperName>None</ProperName>
+                    <DeliveryClass>BestEffort</DeliveryClass>
+                    <DataAttributes>
+                        <BaseUnit>Counts</BaseUnit>
+                        <DigitalAttributes>
+                            <DataLength>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12</ConditionValue>
+                                    <BaseUnit>Bit</BaseUnit>
+                                </ConditionParameter>
+                            </DataLength>
+                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
+                            <SampleRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>1000</ConditionValue>
+                                    <BaseUnit>Hertz</BaseUnit>
+                                </ConditionParameter>
+                            </SampleRate>
+                            <DataRate>
+                                <ConditionParameter>
+                                    <ConditionOperation>==</ConditionOperation>
+                                    <ConditionValue>12000</ConditionValue>
+                                    <BaseUnit>BitPerSecond</BaseUnit>
+                                </ConditionParameter>
+                            </DataRate>
+                        </DigitalAttributes>
+                    </DataAttributes>
+                </Measurement>
+            </Measurements>
+        </MeasurementDomain>
+    </MeasurementDomains>
+    <NetworkDomain>
+        <Networks>
+            <Network ID="net-example">
+                <Name>ExampleNetwork</Name>
+                <Description>Example network for scenario 5.</Description>
+                <NetworkType>TestArticleNetwork</NetworkType>
+                <NetworkNodes>
+                    <NetworkNode ID="nn-dau-ex9">
+                        <Name>Example9DAU</Name>
+                        <Description>Scenario 5 DAU.</Description>
+                        <GenericParameter>
+                            <NameValues>
+                                <NameValue Name="User" Index="1">BBN</NameValue>
+                            </NameValues>
+                            <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
+                            <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
+                            <BBNDauFlaggedForReplacement/>
+                        </GenericParameter>
+                        <InventoryID>Scenario5ExampleDAU</InventoryID>
+                        <HostName>SwRI</HostName>
+                        <Manufacturer>ACME</Manufacturer>
+                        <Model>Scenario5</Model>
+                        <ModelVersion>1</ModelVersion>
+                        <SerialID>123456789</SerialID>
+                        <IEEE1588Version>2008e2e</IEEE1588Version>
+                        <TmNSApps>
+                            <TmNSApp ID="tma-dau-ex9">
+                                <Name>DAUAppFriendlyName</Name>
+                                <Description>Scenario 5 DAU application.</Description>
+                                <RoleID>DAUApp</RoleID>
+                                <LoggingLevel>Trace</LoggingLevel>
+                                <Manufacturer>ACME</Manufacturer>
+                                <Product>DAUApp</Product>
+                                <ProductVersion>1</ProductVersion>
+                                <ConfigurationVersion>2019_10_01_00:00:00_ACME</ConfigurationVersion>
+                                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                                <DirtyBit>false</DirtyBit>
+                                <TmNSDAU/>
+                                <TmNSLTCDataSource>
+                                    <LTCInterfaces>
+                                        <LTCInterface>
+                                            <TimeToLive>10</TimeToLive>
+                                        </LTCInterface>
+                                    </LTCInterfaces>
+                                </TmNSLTCDataSource>
+                                <SMInterface>
+                                    <SNMPSetup>
+                                        <SNMPVersions>
+                                            <SNMPVersion>v3</SNMPVersion>
+                                        </SNMPVersions>
+                                        <SNMPPort>1234</SNMPPort>
+                                        <NotificationPort>1234</NotificationPort>
+                                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                                        <NetworkInterfaceRefs>
+                                            <NetworkInterfaceRef IDREF="ni-ieee-eth0-ex9"/>
+                                        </NetworkInterfaceRefs>
+                                    </SNMPSetup>
+                                </SMInterface>
+                            </TmNSApp>
+                        </TmNSApps>
+                        <InternalStructure>
+                            <Modules>
+                                <Module ID="mod-processor-ex9">
+                                    <Name>ProcessingModule</Name>
+                                    <Description>ACME processing unit. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>P1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-P1</InventoryID>
+                                    <Position>101</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <RunningAppRefs>
+                                        <TmNSAppRef IDREF="tma-dau-ex9"/>
+                                    </RunningAppRefs>
+                                    <Ports>
+                                        <Port ID="port-processor-j1-ch1-ex9" Index="1">
+                                            <Name>J1 Console</Name>
+                                            <Description>Console Serial Port</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>1250000</SampleRate>
+                                                    <DataLength>1</DataLength>
+                                                </Measurement>
+                                                <PortType>Serial</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Serial</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-ieee-ex9">
+                                    <Name>TimeAndEthernetModule</Name>
+                                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>IEEE1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-IEEE1</InventoryID>
+                                    <Position>102</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <NetworkInterfaces>
+                                        <NetworkInterface ID="ni-ieee-eth0-ex9">
+                                            <Name>eth0</Name>
+                                            <DHCPEnable>false</DHCPEnable>
+                                            <IPAddress>10.1.9.9</IPAddress>
+                                            <PhysicalNetworkPorts>
+                                                <PhysicalNetworkPort ID="pnp-ieee-ethernet-ex9">
+                                                    <Name>Ethernet</Name>
+                                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                                    <Medium>Copper</Medium>
+                                                    <PortNumber>1</PortNumber>
+                                                    <PortDataRate>
+                                                        <Value>1e8</Value>
+                                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                                    </PortDataRate>
+                                                </PhysicalNetworkPort>
+                                            </PhysicalNetworkPorts>
+                                        </NetworkInterface>
+                                    </NetworkInterfaces>
+                                    <Ports>
+                                        <Port ID="port-ieee-j1-ch1-ex9" Index="1">
+                                            <Name>Time</Name>
+                                            <Description>RS-422 Port 1</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Output</PortDirection>
+                                        </Port>
+                                        <Port ID="port-ieee-j2-ch1-ex9" Index="2">
+                                            <Name>Ethernet</Name>
+                                            <Description>10/100 Fast Ethernet</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                                <PortType>Ethernet</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Bidirectional</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Ethernet</PortType>
+                                            </PortTypes>
+                                            <PhysicalNetworkPortRef IDREF="pnp-ieee-ethernet-ex9"/>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-sigcond1-ex9">
+                                    <Name>SignalConditioner1</Name>
+                                    <Description>ACME signal conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>SIGCOND1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-SIGCOND1</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-sigcond1-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j1-ch2-ex9" Index="2">
+                                            <Name>Ch2</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j1-ch3-ex9" Index="3">
+                                            <Name>Ch3</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch1-ex9" Index="4">
+                                            <Name>Ch4</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch2-ex9" Index="5">
+                                            <Name>Ch5</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond1-j2-ch3-ex9" Index="6">
+                                            <Name>Ch6</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-sigcond2-ex9">
+                                    <Name>SignalConditioner2</Name>
+                                    <Description>ACME signal conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>SIGCOND2</Model>
+                                    <SerialID>00002</SerialID>
+                                    <InventoryID>ACME-SIGCOND2</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-sigcond2-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j1-ch2-ex9" Index="2">
+                                            <Name>Ch2</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j1-ch3-ex9" Index="3">
+                                            <Name>Ch3</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch1-ex9" Index="4">
+                                            <Name>Ch4</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch2-ex9" Index="5">
+                                            <Name>Ch5</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-sigcond2-j2-ch3-ex9" Index="6">
+                                            <Name>Ch6</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <PortType>SignalConditioner</PortType>
+                                                <ExcitationPortIsPresent/>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>SignalConditioner</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-thermo1-ex9">
+                                    <Name>ThermocoupleConditioner</Name>
+                                    <Description>ACME thermocouple conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>THERMO1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-THERMO1</InventoryID>
+                                    <Position>3</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-thermo1-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch2-ex9" Index="2">
+                                            <Name>Ch2</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch3-ex9" Index="3">
+                                            <Name>Ch3</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch4-ex9" Index="4">
+                                            <Name>Ch4</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch5-ex9" Index="5">
+                                            <Name>Ch5</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch6-ex9" Index="6">
+                                            <Name>Ch6</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch7-ex9" Index="7">
+                                            <Name>Ch7</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo1-j1-ch8-ex9" Index="8">
+                                            <Name>Ch8</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-thermo2-ex9">
+                                    <Name>ThermocoupleConditioner</Name>
+                                    <Description>ACME thermocouple conditioner.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>THERMO1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-THERMO1</InventoryID>
+                                    <Position>3</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-thermo2-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch2-ex9" Index="2">
+                                            <Name>Ch2</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch3-ex9" Index="3">
+                                            <Name>Ch3</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch4-ex9" Index="4">
+                                            <Name>Ch4</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch5-ex9" Index="5">
+                                            <Name>Ch5</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch6-ex9" Index="6">
+                                            <Name>Ch6</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch7-ex9" Index="7">
+                                            <Name>Ch7</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                        <Port ID="port-thermo2-j1-ch8-ex9" Index="8">
+                                            <Name>Ch8</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                                <Measurement>
+                                                    <SampleRate>250</SampleRate>
+                                                    <DataLength>16</DataLength>
+                                                </Measurement>
+                                                <Measurement>
+                                                    <SampleRate>1000</SampleRate>
+                                                    <DataLength>12</DataLength>
+                                                </Measurement>
+                                                <PortType>Thermocouple</PortType>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                            <PortTypes>
+                                                <PortType>Thermocouple</PortType>
+                                            </PortTypes>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-power1-ex9">
+                                    <Name>PowerSupply1</Name>
+                                    <Description>ACME mini power supply. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>POW1</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-POW1</InventoryID>
+                                    <Position>201</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port ID="port-power1-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                                <Module ID="mod-power2-ex9">
+                                    <Name>PowerSupply2</Name>
+                                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                                    <GenericParameter>
+                                        <NameValues>
+                                            <NameValue Name="User" Index="1">BBN</NameValue>
+                                        </NameValues>
+                                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                                    </GenericParameter>
+                                    <Manufacturer>ACME</Manufacturer>
+                                    <Model>POW2</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>ACME-POW2</InventoryID>
+                                    <Position>202</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <Ports>
+                                        <Port Enabled="false" ID="port-power2-j1-ch1-ex9" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Dummy</Description>
+                                            <GenericParameter>
+                                                <NameValues>
+                                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                                </NameValues>
+                                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                                            </GenericParameter>
+                                            <PortDirection>Input</PortDirection>
+                                        </Port>
+                                    </Ports>
+                                </Module>
+                            </Modules>
+                        </InternalStructure>
+                    </NetworkNode>
+                </NetworkNodes>
+                <Devices>
+                    <Device ID="dev-accel1">
+                        <Name>Accelerometer 1</Name>
+                        <Description>PCB Piezotronics 356A16 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A16</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A16</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A16</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Acceleration</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-accel1-j1-1" Index="1">
+                                                    <Name>X Acceleration</Name>
+                                                    <Description>Rd</Description>
+                                                    <Designator>X Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel1-j1-2" Index="2">
+                                                    <Name>Z Acceleration</Name>
+                                                    <Description>Ye</Description>
+                                                    <Designator>Z Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel1-j1-3" Index="3">
+                                                    <Name>Y Accelleration</Name>
+                                                    <Description>Wh</Description>
+                                                    <Designator>Y Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel1-j1-4" Index="4">
+                                                    <Name>Ground</Name>
+                                                    <Description>Bk</Description>
+                                                    <Designator>Ground</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-accel1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel1-j1-1"/>
+                                                <PinRef IDREF="pin-accel1-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel1-j1-2"/>
+                                                <PinRef IDREF="pin-accel1-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                        <Port ID="port-accel1-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel1-j1-3"/>
+                                                <PinRef IDREF="pin-accel1-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-accel2">
+                        <Name>Accelerometer 2</Name>
+                        <Description>PCB Piezotronics 356A02 Accelerometer.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>356A02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 356A02</InventoryID>
+                        <DeviceType>Accelerometer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-accel2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>356A02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Acceleration</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-accel2-j1-1" Index="1">
+                                                    <Name>X Acceleration</Name>
+                                                    <Description>Rd</Description>
+                                                    <Designator>X Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel2-j1-2" Index="2">
+                                                    <Name>Z Acceleration</Name>
+                                                    <Description>Ye</Description>
+                                                    <Designator>Z Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel2-j1-3" Index="3">
+                                                    <Name>Y Accelleration</Name>
+                                                    <Description>Wh</Description>
+                                                    <Designator>Y Axis</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-accel2-j1-4" Index="4">
+                                                    <Name>Ground</Name>
+                                                    <Description>Bk</Description>
+                                                    <Designator>Ground</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-accel2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (X Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel2-j1-1"/>
+                                                <PinRef IDREF="pin-accel2-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch2" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j1 Ch2 (Z Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel2-j1-2"/>
+                                                <PinRef IDREF="pin-accel2-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                        <Port ID="port-accel2-j1-ch3" Index="3">
+                                            <Name>Ch3</Name>
+                                            <Description>j1 Ch3 (Y Axis)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-accel2-j1-3"/>
+                                                <PinRef IDREF="pin-accel2-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain1">
+                        <Name>Strain Guage 1</Name>
+                        <Description>PCB Piezotronics 260A02 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>260A02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 260A02</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>260A02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Strain</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-strain1-j1-1" Index="1">
+                                                    <Name>EX+</Name>
+                                                    <Description>Excitation Positive</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain1-j1-2" Index="2">
+                                                    <Name>OUT+</Name>
+                                                    <Description>Output Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain1-j1-3" Index="3">
+                                                    <Name>Ground</Name>
+                                                    <Description>Ground (Excitation Negative)</Description>
+                                                    <Designator>Bk</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain1-j1-4" Index="4">
+                                                    <Name>OUT-</Name>
+                                                    <Description>Output Negative</Description>
+                                                    <Designator>Gn</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-strain1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-strain1-j1-1"/>
+                                                <PinRef IDREF="pin-strain1-j1-2"/>
+                                                <PinRef IDREF="pin-strain1-j1-3"/>
+                                                <PinRef IDREF="pin-strain1-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-strain2">
+                        <Name>Strain Guage 2</Name>
+                        <Description>PCB Piezotronics 261A01 Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>261A01</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 261A01</InventoryID>
+                        <DeviceType>StrainGauge</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-strain2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>261A01</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Strain</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-strain2-j1-1" Index="1">
+                                                    <Name>EX+</Name>
+                                                    <Description>Excitation Positive</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain2-j1-2" Index="2">
+                                                    <Name>OUT+</Name>
+                                                    <Description>Output Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain2-j1-3" Index="3">
+                                                    <Name>OUT-</Name>
+                                                    <Description>Output Negative</Description>
+                                                    <Designator>Gn</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-strain2-j1-4" Index="4">
+                                                    <Name>Ground</Name>
+                                                    <Description>Ground (Excitation Negative)</Description>
+                                                    <Designator>Bk</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-strain2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Strain)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-strain2-j1-1"/>
+                                                <PinRef IDREF="pin-strain2-j1-2"/>
+                                                <PinRef IDREF="pin-strain2-j1-3"/>
+                                                <PinRef IDREF="pin-strain2-j1-4"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-pressure1">
+                        <Name>Pressure Sensor 1</Name>
+                        <Description>PCB Piezotronics 106B Strain Guage.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>106B</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 106B</InventoryID>
+                        <DeviceType>PressureTransducer</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-pressure1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>106B</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Pressure</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-pressure1-j1-1" Index="1">
+                                                    <Name>COAX</Name>
+                                                    <Description>Coaxial</Description>
+                                                    <Designator>Bk</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-pressure1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Pressure)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-pressure1-j1-1"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-audio1">
+                        <Name>Microphone 1</Name>
+                        <Description>PCB Piezotronics 378B02 Microphone.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>378B02</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 378B02</InventoryID>
+                        <DeviceType>Microphone</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-audio1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>378B02</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>External</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Audio</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-audio1-j1-1" Index="1">
+                                                    <Name>BNC</Name>
+                                                    <Description>Bayonet Neill-Concelman</Description>
+                                                    <Designator>Bk</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-audio1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Audio)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-audio1-j1-1"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-vibration1">
+                        <Name>Vibration Sensor 1</Name>
+                        <Description>PCB Piezotronics 685A09 Mechanical Vibration Sensor.</Description>
+                        <Manufacturer>PCB Piezotronics</Manufacturer>
+                        <Model>685A09</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>PCB Piezotronics 685A09</InventoryID>
+                        <DeviceType Extension="Vibration">Extension</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-vibration1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>PCB Piezotronics</Manufacturer>
+                                    <Model>685A09</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>PCB Piezotronics</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Vibration 1</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-vibration1-j1-1" Index="1">
+                                                    <Name>COMMON+</Name>
+                                                    <Description>Common Positive</Description>
+                                                    <Designator>C+</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j1-2" Index="2">
+                                                    <Name>NORMO+</Name>
+                                                    <Description>Normally Open Positive</Description>
+                                                    <Designator>NO+</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j1-3" Index="3">
+                                                    <Name>NORMC+</Name>
+                                                    <Description>Normally Closed Positive</Description>
+                                                    <Designator>NC+</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j1-4" Index="4">
+                                                    <Name>COMMON-</Name>
+                                                    <Description>Common Positive</Description>
+                                                    <Designator>C-</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j1-5" Index="5">
+                                                    <Name>NORMO-</Name>
+                                                    <Description>Normally Open Positive</Description>
+                                                    <Designator>NO-</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j1-6" Index="6">
+                                                    <Name>NORMC-</Name>
+                                                    <Description>Normally Closed Positive</Description>
+                                                    <Designator>NC-</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                        <Connector>
+                                            <Name>Vibration 2</Name>
+                                            <Description>j2</Description>
+                                            <Pins>
+                                                <Pin ID="pin-vibration1-j2-1" Index="1">
+                                                    <Name>RES+</Name>
+                                                    <Description>Reset Positive</Description>
+                                                    <Designator>RES+</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-vibration1-j2-2" Index="2">
+                                                    <Name>RES-</Name>
+                                                    <Description>Reset Negative</Description>
+                                                    <Designator>RES-</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-vibration1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>j1 Ch1 (Vibration)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-vibration1-j1-1"/>
+                                                <PinRef IDREF="pin-vibration1-j1-2"/>
+                                                <PinRef IDREF="pin-vibration1-j1-3"/>
+                                                <PinRef IDREF="pin-vibration1-j1-4"/>
+                                                <PinRef IDREF="pin-vibration1-j1-5"/>
+                                                <PinRef IDREF="pin-vibration1-j1-6"/>
+                                            </PinRefs>
+                                        </Port>
+                                        <Port ID="port-vibration1-j2-ch1" Index="2">
+                                            <Name>Ch2</Name>
+                                            <Description>j2 Ch2 (Remote Reset)</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-vibration1-j2-1"/>
+                                                <PinRef IDREF="pin-vibration1-j2-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo1">
+                        <Name>Thermocouple1</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo1-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo1-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo1-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo1-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo1-j1-1"/>
+                                                <PinRef IDREF="pin-thermo1-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo2">
+                        <Name>Thermocouple2</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00002</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo2-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00002</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo2-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo2-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo2-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo2-j1-1"/>
+                                                <PinRef IDREF="pin-thermo2-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo3">
+                        <Name>Thermocouple3</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00003</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo3-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00003</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo3-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo3-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo3-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo3-j1-1"/>
+                                                <PinRef IDREF="pin-thermo3-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo4">
+                        <Name>Thermocouple4</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00004</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo4-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00004</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo4-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo4-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo4-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo4-j1-1"/>
+                                                <PinRef IDREF="pin-thermo4-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo5">
+                        <Name>Thermocouple5</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00005</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo5-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00005</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo5-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo5-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo5-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo5-j1-1"/>
+                                                <PinRef IDREF="pin-thermo5-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo6">
+                        <Name>Thermocouple6</Name>
+                        <Description>Omega SA1-K-72 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>SA1-K-72</Model>
+                        <SerialID>00006</SerialID>
+                        <InventoryID>Omega-SA1-K-72</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo6-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>SA1-K-72</Model>
+                                    <SerialID>00006</SerialID>
+                                    <InventoryID>Omega-SA1-K-72-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>j1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo6-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo6-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo6-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo6-j1-1"/>
+                                                <PinRef IDREF="pin-thermo6-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo7">
+                        <Name>Thermocouple7</Name>
+                        <Description>Omega OS36-01 thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>OS36-01</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-OS36-01</InventoryID>
+                        <DeviceType Thermocouple="J">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo7-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>OS36-01</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-OS36-01-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>J1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo7-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo7-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo7-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo7-j1-1"/>
+                                                <PinRef IDREF="pin-thermo7-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                    <Device ID="dev-thermo8">
+                        <Name>Thermocouple8</Name>
+                        <Description>Omega OS36-10-K thermocouple.</Description>
+                        <Manufacturer>Omega</Manufacturer>
+                        <Model>OS36-10-K</Model>
+                        <SerialID>00001</SerialID>
+                        <InventoryID>Omega-OS36-10-K</InventoryID>
+                        <DeviceType Thermocouple="K">Thermocouple</DeviceType>
+                        <DeviceStructure>
+                            <DeviceModules>
+                                <DeviceModule ID="dmod-thermo8-main">
+                                    <Name>MainModule</Name>
+                                    <Description>Main device module.</Description>
+                                    <Manufacturer>Omega</Manufacturer>
+                                    <Model>OS36-10-K</Model>
+                                    <SerialID>00001</SerialID>
+                                    <InventoryID>Omega-OS36-10-K-Module</InventoryID>
+                                    <Position>1</Position>
+                                    <PositionsOccupied>1</PositionsOccupied>
+                                    <ExcitationSource>Internal</ExcitationSource>
+                                    <Connectors>
+                                        <Connector>
+                                            <Name>Temperature</Name>
+                                            <Description>J1</Description>
+                                            <Pins>
+                                                <Pin ID="pin-thermo8-j1-1" Index="1">
+                                                    <Name>T+</Name>
+                                                    <Description>Positive</Description>
+                                                    <Designator>Ye</Designator>
+                                                </Pin>
+                                                <Pin ID="pin-thermo8-j1-2" Index="2">
+                                                    <Name>T-</Name>
+                                                    <Description>Negative</Description>
+                                                    <Designator>Rd</Designator>
+                                                </Pin>
+                                            </Pins>
+                                        </Connector>
+                                    </Connectors>
+                                    <Ports>
+                                        <Port ID="port-thermo8-j1-ch1" Index="1">
+                                            <Name>Ch1</Name>
+                                            <Description>Ch1 : Channel 1 Temperature</Description>
+                                            <PortDirection>Output</PortDirection>
+                                            <PinRefs>
+                                                <PinRef IDREF="pin-thermo8-j1-1"/>
+                                                <PinRef IDREF="pin-thermo8-j1-2"/>
+                                            </PinRefs>
+                                        </Port>
+                                    </Ports>
+                                </DeviceModule>
+                            </DeviceModules>
+                        </DeviceStructure>
+                    </Device>
+                </Devices>
+                <PortMappings>
+                    <PortMapping ID="pm-sigcond1-j1ch1-accel1-j1ch1-ex9">
+                        <Name>Acceleration1</Name>
+                        <PortRef IDREF="port-sigcond1-j1-ch1-ex9"/>
+                        <PortRef IDREF="port-accel1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j1ch2-accel1-j1ch2-ex9">
+                        <Name>Acceleration2</Name>
+                        <PortRef IDREF="port-sigcond1-j1-ch2-ex9"/>
+                        <PortRef IDREF="port-accel1-j1-ch2"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j1ch3-accel1-j1ch3-ex9">
+                        <Name>Acceleration3</Name>
+                        <PortRef IDREF="port-sigcond1-j1-ch3-ex9"/>
+                        <PortRef IDREF="port-accel1-j1-ch3"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch1-accel2-j1ch1-ex9">
+                        <Name>Acceleration4</Name>
+                        <PortRef IDREF="port-sigcond1-j2-ch1-ex9"/>
+                        <PortRef IDREF="port-accel2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch2-accel2-j1ch2-ex9">
+                        <Name>Acceleration5</Name>
+                        <PortRef IDREF="port-sigcond1-j2-ch2-ex9"/>
+                        <PortRef IDREF="port-accel2-j1-ch2"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond1-j2ch3-accel2-j1ch3-ex9">
+                        <Name>Acceleration6</Name>
+                        <PortRef IDREF="port-sigcond1-j2-ch3-ex9"/>
+                        <PortRef IDREF="port-accel2-j1-ch3"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch1-strain1-j1ch1-ex9">
+                        <Name>Strain1</Name>
+                        <PortRef IDREF="port-sigcond2-j1-ch1-ex9"/>
+                        <PortRef IDREF="port-strain1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch2-strain2-j1ch1-ex9">
+                        <Name>Strain2</Name>
+                        <PortRef IDREF="port-sigcond2-j1-ch2-ex9"/>
+                        <PortRef IDREF="port-strain2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j1ch3-pressure1-j1ch1-ex9">
+                        <Name>Pressure1</Name>
+                        <PortRef IDREF="port-sigcond2-j1-ch3-ex9"/>
+                        <PortRef IDREF="port-pressure1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch1-audio1-j1ch1-ex9">
+                        <Name>Audio1</Name>
+                        <PortRef IDREF="port-sigcond2-j2-ch1-ex9"/>
+                        <PortRef IDREF="port-audio1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch2-vibration1-j1ch1-ex9">
+                        <Name>Vibration1</Name>
+                        <PortRef IDREF="port-sigcond2-j2-ch2-ex9"/>
+                        <PortRef IDREF="port-vibration1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-sigcond2-j2ch3-vibration1-j2ch1-ex9">
+                        <Name>Remote Reset1</Name>
+                        <PortRef IDREF="port-sigcond2-j2-ch3-ex9"/>
+                        <PortRef IDREF="port-vibration1-j2-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-signal-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch1-thermo1-j1ch1-ex9">
+                        <Name>Temperature1</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch1-ex9"/>
+                        <PortRef IDREF="port-thermo1-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch2-thermo2-j1ch1-ex9">
+                        <Name>Temperature2</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch2-ex9"/>
+                        <PortRef IDREF="port-thermo2-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch3-thermo3-j1ch1-ex9">
+                        <Name>Temperature3</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch3-ex9"/>
+                        <PortRef IDREF="port-thermo3-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch4-thermo4-j1ch1-ex9">
+                        <Name>Temperature4</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch4-ex9"/>
+                        <PortRef IDREF="port-thermo4-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-12-1000"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch5-thermo5-j1ch1-ex9">
+                        <Name>Temperature5</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch5-ex9"/>
+                        <PortRef IDREF="port-thermo5-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch6-thermo6-j1ch1-ex9">
+                        <Name>Temperature6</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch6-ex9"/>
+                        <PortRef IDREF="port-thermo6-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch7-thermo7-j1ch1-ex9">
+                        <Name>Temperature7</Name>
+                        <PortRef IDREF="port-thermo1-j1-ch7-ex9"/>
+                        <PortRef IDREF="port-thermo7-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-16-250"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                    <PortMapping ID="pm-thermo1-j1ch8-thermo8-j1ch1-ex9">
+                        <Name>Temperature8</Name>
+                        <PortRef IDREF="port-thermo2-j1-ch1-ex9"/>
+                        <PortRef IDREF="port-thermo8-j1-ch1"/>
+                        <MeasurementRefs>
+                            <MeasurementRef IDREF="meas-temp-12-1000"/>
+                        </MeasurementRefs>
+                    </PortMapping>
+                </PortMappings>
+            </Network>
+        </Networks>
+    </NetworkDomain>
+    <DSCPTable>
+        <DSCPTableEntry ID="dscp-0">
+            <Name>BestEffort</Name>
+            <DSCPValue>0b000000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-1">
+            <Name>Background</Name>
+            <DSCPValue>0b001000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-2">
+            <Name>Excellent Effort</Name>
+            <DSCPValue>0b010000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-3">
+            <Name>Critical Applications</Name>
+            <DSCPValue>0b011000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-4">
+            <Name>Video</Name>
+            <DSCPValue>0b100000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-5">
+            <Name>Voice</Name>
+            <DSCPValue>0b101000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-6">
+            <Name>Internetwork Control</Name>
+            <DSCPValue>0b110000</DSCPValue>
+        </DSCPTableEntry>
+        <DSCPTableEntry ID="dscp-7">
+            <Name>Network Control</Name>
+            <DSCPValue>0b111000</DSCPValue>
+        </DSCPTableEntry>
+    </DSCPTable>
+</MDLRoot>
