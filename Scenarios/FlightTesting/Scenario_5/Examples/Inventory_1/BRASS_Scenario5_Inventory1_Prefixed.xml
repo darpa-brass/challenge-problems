@@ -5029,4 +5029,3536 @@
             </Modules>
         </InternalStructure>
     </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex7">
+        <Name>Example7DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex7">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_09_30_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex7"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex7">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex7"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex7" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex7">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex7">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.7.7</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex7">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex7" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex7" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex7"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-sigcond1-ex7">
+                    <Name>SignalConditioner1</Name>
+                    <Description>ACME signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>SIGCOND1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-SIGCOND1</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-sigcond1-j1-ch1-ex7" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch2-ex7" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch3-ex7" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch1-ex7" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch2-ex7" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch3-ex7" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo-ex7">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo-j1-ch1-ex7" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch2-ex7" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch3-ex7" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch4-ex7" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch5-ex7" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch6-ex7" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch7-ex7" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch8-ex7" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex7">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex7" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex7">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex7" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex8">
+        <Name>Example8DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex8">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_10_01_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex8"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex8">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex8"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex8" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex8">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex8">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.8.8</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex8">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex8" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex8" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex8"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-bus1-ex8">
+                    <Name>BusMonitor1</Name>
+                    <Description>ACME bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>BUS1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-BUS1</InventoryID>
+                    <Position>4</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-bus1-j1-ch1-ex8" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch2-ex8" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch3-ex8" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch4-ex8" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch5-ex8" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch6-ex8" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch7-ex8" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch8-ex8" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-bus2-ex8">
+                    <Name>BusMonitor2</Name>
+                    <Description>ACME bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>BUS2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-BUS2</InventoryID>
+                    <Position>5</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-bus2-j1-ch1-ex8" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus2-j2-ch1-ex8" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex8">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex8" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex8">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex8" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex9">
+        <Name>Example9DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex9">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_10_01_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex9"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex9">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex9"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex9" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex9">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex9">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.9.9</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex9">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex9" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex9" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex9"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-sigcond1-ex9">
+                    <Name>SignalConditioner1</Name>
+                    <Description>ACME signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>SIGCOND1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-SIGCOND1</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-sigcond1-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch2-ex9" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch3-ex9" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch1-ex9" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch2-ex9" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch3-ex9" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-sigcond2-ex9">
+                    <Name>SignalConditioner2</Name>
+                    <Description>ACME signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>SIGCOND2</Model>
+                    <SerialID>00002</SerialID>
+                    <InventoryID>ACME-SIGCOND2</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-sigcond2-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j1-ch2-ex9" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j1-ch3-ex9" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch1-ex9" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch2-ex9" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch3-ex9" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo1-ex9">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo1-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch2-ex9" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch3-ex9" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch4-ex9" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch5-ex9" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch6-ex9" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch7-ex9" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo1-j1-ch8-ex9" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo2-ex9">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo2-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch2-ex9" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch3-ex9" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch4-ex9" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch5-ex9" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch6-ex9" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch7-ex9" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo2-j1-ch8-ex9" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex9">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex9">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex9" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex10">
+        <Name>Example10DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>45000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex10">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_09_30_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex10"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex10">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex10"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex10" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex10">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex10">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.10.10</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex10">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex10" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex10" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex10"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-sigcond1-ex10">
+                    <Name>SignalConditioner1</Name>
+                    <Description>ACME signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>SIGCOND1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-SIGCOND1</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-sigcond1-j1-ch1-ex10" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch2-ex10" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j1-ch3-ex10" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch1-ex10" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch2-ex10" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond1-j2-ch3-ex10" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-sigcond2-ex10">
+                    <Name>SignalConditioner2</Name>
+                    <Description>ACME signal conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>SignalConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>SIGCOND2</Model>
+                    <SerialID>00002</SerialID>
+                    <InventoryID>ACME-SIGCOND2</InventoryID>
+                    <Position>1</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-sigcond2-j1-ch1-ex10" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j1-ch2-ex10" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j1-ch3-ex10" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch1-ex10" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch2-ex10" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-sigcond2-j2-ch3-ex10" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>SignalConditioning</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <PortType>SignalConditioner</PortType>
+                                <ExcitationPortIsPresent/>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>SignalConditioner</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo-ex10">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo-j1-ch1-ex10" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch2-ex10" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch3-ex10" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch4-ex10" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch5-ex10" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch6-ex10" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch7-ex10" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch8-ex10" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex10">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex10" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex10">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex10" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex11">
+        <Name>Example11DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex11">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_09_30_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex11"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex11">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex11"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex11" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex11">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex11">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.11.11</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex11">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex11" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex11" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex11"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo-ex11">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo-j1-ch1-ex11" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch2-ex11" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch3-ex11" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch4-ex11" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch5-ex11" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch6-ex11" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch7-ex11" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch8-ex11" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Unipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-bus1-ex11">
+                    <Name>BusMonitor1</Name>
+                    <Description>ACME bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>BUS1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-BUS1</InventoryID>
+                    <Position>4</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-bus1-j1-ch1-ex11" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch2-ex11" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch3-ex11" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch4-ex11" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch5-ex11" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch6-ex11" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch7-ex11" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j1-ch8-ex11" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex11">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex11" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex11">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex11" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
+    <NetworkNode ID="inventory-nn-dau-ex12">
+        <Name>Example12DAU</Name>
+        <Description>Scenario 5 DAU.</Description>
+        <GenericParameter>
+            <NameValues>
+                <NameValue Name="User" Index="1">BBN</NameValue>
+            </NameValues>
+            <BBNDauMonetaryCost>67890</BBNDauMonetaryCost>
+            <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
+            <BBNDauFlaggedForReplacement/>
+        </GenericParameter>
+        <InventoryID>Scenario5ExampleDAU</InventoryID>
+        <HostName>SwRI</HostName>
+        <Manufacturer>ACME</Manufacturer>
+        <Model>Scenario5</Model>
+        <ModelVersion>1</ModelVersion>
+        <SerialID>123456789</SerialID>
+        <IEEE1588Version>2008e2e</IEEE1588Version>
+        <TmNSApps>
+            <TmNSApp ID="inventory-tma-dau-ex12">
+                <Name>DAUAppFriendlyName</Name>
+                <Description>Scenario 5 DAU application.</Description>
+                <RoleID>DAUApp</RoleID>
+                <LoggingLevel>Trace</LoggingLevel>
+                <Manufacturer>ACME</Manufacturer>
+                <Product>DAUApp</Product>
+                <ProductVersion>1</ProductVersion>
+                <ConfigurationVersion>2019_10_01_00:00:00_ACME</ConfigurationVersion>
+                <TmNSManagementResourcesVersion>1</TmNSManagementResourcesVersion>
+                <DirtyBit>false</DirtyBit>
+                <TmNSDAU/>
+                <TmNSLTCDataSource>
+                    <LTCInterfaces>
+                        <LTCInterface>
+                            <TimeToLive>10</TimeToLive>
+                        </LTCInterface>
+                    </LTCInterfaces>
+                </TmNSLTCDataSource>
+                <SMInterface>
+                    <SNMPSetup>
+                        <SNMPVersions>
+                            <SNMPVersion>v3</SNMPVersion>
+                        </SNMPVersions>
+                        <SNMPPort>1234</SNMPPort>
+                        <NotificationPort>1234</NotificationPort>
+                        <DSCPTableEntryRef IDREF="dscp-0"/>
+                        <NetworkInterfaceRefs>
+                            <NetworkInterfaceRef IDREF="inventory-ni-ieee-eth0-ex12"/>
+                        </NetworkInterfaceRefs>
+                    </SNMPSetup>
+                </SMInterface>
+            </TmNSApp>
+        </TmNSApps>
+        <InternalStructure>
+            <Modules>
+                <Module ID="inventory-mod-processor-ex12">
+                    <Name>ProcessingModule</Name>
+                    <Description>ACME processing unit. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Processor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>P1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-P1</InventoryID>
+                    <Position>101</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <RunningAppRefs>
+                        <TmNSAppRef IDREF="inventory-tma-dau-ex12"/>
+                    </RunningAppRefs>
+                    <Ports>
+                        <Port ID="inventory-port-processor-j1-ch1-ex12" Index="1">
+                            <Name>J1 Console</Name>
+                            <Description>Console Serial Port</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Serial</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>1250000</SampleRate>
+                                    <DataLength>1</DataLength>
+                                </Measurement>
+                                <PortType>Serial</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Serial</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-ieee-ex12">
+                    <Name>TimeAndEthernetModule</Name>
+                    <Description>TTC MACQ-500-4 time and ethernet. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>Time</BBNModuleFunctionality>
+                        <BBNModuleFunctionality>Ethernet</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>IEEE1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-IEEE1</InventoryID>
+                    <Position>102</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <NetworkInterfaces>
+                        <NetworkInterface ID="inventory-ni-ieee-eth0-ex12">
+                            <Name>eth0</Name>
+                            <DHCPEnable>false</DHCPEnable>
+                            <IPAddress>10.1.7.7</IPAddress>
+                            <PhysicalNetworkPorts>
+                                <PhysicalNetworkPort ID="inventory-pnp-ieee-ethernet-ex12">
+                                    <Name>Ethernet</Name>
+                                    <Description>MACQ j2 10/100Base-T Ethernet</Description>
+                                    <Medium>Copper</Medium>
+                                    <PortNumber>1</PortNumber>
+                                    <PortDataRate>
+                                        <Value>1e8</Value>
+                                        <BaseUnit>BitPerSecond</BaseUnit>
+                                    </PortDataRate>
+                                </PhysicalNetworkPort>
+                            </PhysicalNetworkPorts>
+                        </NetworkInterface>
+                    </NetworkInterfaces>
+                    <Ports>
+                        <Port ID="inventory-port-ieee-j1-ch1-ex12" Index="1">
+                            <Name>Time</Name>
+                            <Description>RS-422 Port 1</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Time</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Output</PortDirection>
+                        </Port>
+                        <Port ID="inventory-port-ieee-j2-ch1-ex12" Index="2">
+                            <Name>Ethernet</Name>
+                            <Description>10/100 Fast Ethernet</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Ethernet</BBNPortFunctionality>
+                                <PortType>Ethernet</PortType>
+                            </GenericParameter>
+                            <PortDirection>Bidirectional</PortDirection>
+                            <PortTypes>
+                                <PortType>Ethernet</PortType>
+                            </PortTypes>
+                            <PhysicalNetworkPortRef IDREF="inventory-pnp-ieee-ethernet-ex12"/>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-thermo-ex12">
+                    <Name>ThermocoupleConditioner</Name>
+                    <Description>ACME thermocouple conditioner.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>ThermocoupleConditioner</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>THERMO1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-THERMO1</InventoryID>
+                    <Position>3</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-thermo-j1-ch1-ex12" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch2-ex12" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch3-ex12" Index="3">
+                            <Name>Ch3</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch4-ex12" Index="4">
+                            <Name>Ch4</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch5-ex12" Index="5">
+                            <Name>Ch5</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch6-ex12" Index="6">
+                            <Name>Ch6</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch7-ex12" Index="7">
+                            <Name>Ch7</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-thermo-j1-ch8-ex12" Index="8">
+                            <Name>Ch8</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Thermocouple</BBNPortFunctionality>
+                                <Measurement>
+                                    <SampleRate>250</SampleRate>
+                                    <DataLength>16</DataLength>
+                                </Measurement>
+                                <Measurement>
+                                    <SampleRate>1000</SampleRate>
+                                    <DataLength>12</DataLength>
+                                </Measurement>
+                                <PortType>Thermocouple</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortPolarity>Bipolar</PortPolarity>
+                            <PortTypes>
+                                <PortType>Thermocouple</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-bus1-ex12">
+                    <Name>BusMonitor2</Name>
+                    <Description>ACME bus monitor.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>BusMonitor</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>BUS2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-BUS2</InventoryID>
+                    <Position>5</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-bus1-j1-ch1-ex12" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                        <Port ID="inventory-port-bus1-j2-ch1-ex12" Index="2">
+                            <Name>Ch2</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Bus</BBNPortFunctionality>
+                                <PortType>Bus</PortType>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                            <PortTypes>
+                                <PortType>Bus</PortType>
+                            </PortTypes>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power1-ex12">
+                    <Name>PowerSupply1</Name>
+                    <Description>ACME mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW1</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW1</InventoryID>
+                    <Position>201</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port ID="inventory-port-power1-j1-ch1-ex12" Index="1">
+                            <Name>Ch1</Name>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+                <Module ID="inventory-mod-power2-ex12">
+                    <Name>PowerSupply2</Name>
+                    <Description>TTC MPSM-2515-1 mini power supply. Overhead.</Description>
+                    <GenericParameter>
+                        <NameValues>
+                            <NameValue Name="User" Index="1">BBN</NameValue>
+                        </NameValues>
+                        <BBNModuleFunctionality>PowerSupply</BBNModuleFunctionality>
+                    </GenericParameter>
+                    <Manufacturer>ACME</Manufacturer>
+                    <Model>POW2</Model>
+                    <SerialID>00001</SerialID>
+                    <InventoryID>ACME-POW2</InventoryID>
+                    <Position>202</Position>
+                    <PositionsOccupied>1</PositionsOccupied>
+                    <Ports>
+                        <Port Enabled="false" ID="inventory-port-power2-j1-ch1-ex12" Index="1">
+                            <Name>Ch1</Name>
+                            <Description>Dummy</Description>
+                            <GenericParameter>
+                                <NameValues>
+                                    <NameValue Name="User" Index="1">BBN</NameValue>
+                                </NameValues>
+                                <BBNPortFunctionality>Power</BBNPortFunctionality>
+                            </GenericParameter>
+                            <PortDirection>Input</PortDirection>
+                        </Port>
+                    </Ports>
+                </Module>
+            </Modules>
+        </InternalStructure>
+    </NetworkNode>
 </DAUInventory>
