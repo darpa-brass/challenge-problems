@@ -179,17 +179,6 @@
                     </DataAttributes>
                 </Measurement>
             </Measurements>
-            <DataStreams>
-                <DataStream ID="ds-data1">
-                    <Name>DataStream1</Name>
-                    <Description>Dummy stream.</Description>
-                    <ProperName>ARINC429</ProperName>
-                    <PCMDataLink ID="pcm-data1">
-                        <Name>PCM1</Name>
-                        <Description>Dummy PCM data link.</Description>
-                    </PCMDataLink>
-                </DataStream>
-            </DataStreams>
         </MeasurementDomain>
     </MeasurementDomains>
     <NetworkDomain>
