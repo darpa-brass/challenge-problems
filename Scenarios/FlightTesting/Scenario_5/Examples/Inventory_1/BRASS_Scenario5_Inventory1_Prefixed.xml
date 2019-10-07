@@ -1220,7 +1220,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1243,7 +1246,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1266,7 +1272,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1289,7 +1298,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1312,7 +1324,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1335,7 +1350,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1358,7 +1376,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -1381,7 +1402,10 @@
                                     <SampleRate>1000</SampleRate>
                                     <DataLength>12</DataLength>
                                 </Measurement>
-                                <PortType>Thermocouple</PortType>
+                                <PortType Thermocouple="J">Thermocouple</PortType>
+                                <PortType Thermocouple="K">Thermocouple</PortType>
+                                <PortType Thermocouple="T">Thermocouple</PortType>
+                                <PortType Thermocouple="E">Thermocouple</PortType>
                             </GenericParameter>
                             <PortDirection>Input</PortDirection>
                             <PortTypes>
@@ -5038,7 +5062,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -5584,7 +5607,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -5980,7 +6002,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -6852,7 +6873,6 @@
             </NameValues>
             <BBNDauMonetaryCost>45000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -7550,7 +7570,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -8102,7 +8121,6 @@
             </NameValues>
             <BBNDauMonetaryCost>67890</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>2</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -8570,7 +8588,6 @@
             </NameValues>
             <BBNDauMonetaryCost>90000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>1</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -9512,7 +9529,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -10640,7 +10656,6 @@
             </NameValues>
             <BBNDauMonetaryCost>52000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>3</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
@@ -11334,7 +11349,6 @@
             </NameValues>
             <BBNDauMonetaryCost>30000</BBNDauMonetaryCost>
             <BBNDauOpportunityCost>8</BBNDauOpportunityCost>
-            <BBNDauFlaggedForReplacement/>
         </GenericParameter>
         <InventoryID>Scenario5ExampleDAU</InventoryID>
         <HostName>SwRI</HostName>
