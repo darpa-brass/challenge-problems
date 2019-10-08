@@ -123,73 +123,7 @@
                         </DigitalAttributes>
                     </DataAttributes>
                 </Measurement>
-                <Measurement ID="meas-temp-12-1000">
-                    <Name>Temperature2</Name>
-                    <Description>Temperature</Description>
-                    <GenericParameter>
-                        <NameValues>
-                            <NameValue Name="User" Index="1">BBN</NameValue>
-                        </NameValues>
-                        <SampleRate>
-                            <Min>500</Min>
-                            <Max>1000</Max>
-                        </SampleRate>
-                        <DataLength>
-                            <Min>6</Min>
-                            <Max>12</Max>
-                        </DataLength>
-                        <DataRate>
-                            <Min>3000</Min>
-                            <Max>12000</Max>
-                        </DataRate>
-                    </GenericParameter>
-                    <MeasurementID>0x10000011</MeasurementID>
-                    <MeasurementTypes>
-                        <MeasurementType>Analog</MeasurementType>
-                    </MeasurementTypes>
-                    <MeasurementActive>true</MeasurementActive>
-                    <ProperName>None</ProperName>
-                    <DeliveryClass>BestEffort</DeliveryClass>
-                    <DataAttributes>
-                        <BaseUnit>Counts</BaseUnit>
-                        <DigitalAttributes>
-                            <DataLength>
-                                <ConditionParameter>
-                                    <ConditionOperation>==</ConditionOperation>
-                                    <ConditionValue>12</ConditionValue>
-                                    <BaseUnit>Bit</BaseUnit>
-                                </ConditionParameter>
-                            </DataLength>
-                            <DigitalEncoding>UnsignedBinary</DigitalEncoding>
-                            <SampleRate>
-                                <ConditionParameter>
-                                    <ConditionOperation>==</ConditionOperation>
-                                    <ConditionValue>1000</ConditionValue>
-                                    <BaseUnit>Hertz</BaseUnit>
-                                </ConditionParameter>
-                            </SampleRate>
-                            <DataRate>
-                                <ConditionParameter>
-                                    <ConditionOperation>==</ConditionOperation>
-                                    <ConditionValue>12000</ConditionValue>
-                                    <BaseUnit>BitPerSecond</BaseUnit>
-                                </ConditionParameter>
-                            </DataRate>
-                        </DigitalAttributes>
-                    </DataAttributes>
-                </Measurement>
             </Measurements>
-            <DataStreams>
-                <DataStream ID="ds-data1">
-                    <Name>DataStream1</Name>
-                    <Description>Dummy stream.</Description>
-                    <ProperName>ARINC429</ProperName>
-                    <PCMDataLink ID="pcm-data1">
-                        <Name>PCM1</Name>
-                        <Description>Dummy PCM data link.</Description>
-                    </PCMDataLink>
-                </DataStream>
-            </DataStreams>
         </MeasurementDomain>
     </MeasurementDomains>
     <NetworkDomain>
