@@ -22,7 +22,7 @@
                         </NameValues>
                         <SampleRate>
                             <Min>250</Min>
-                            <Max>250</Max>
+                            <Max>100000</Max>
                         </SampleRate>
                         <DataLength>
                             <Min>16</Min>
@@ -30,7 +30,7 @@
                         </DataLength>
                         <DataRate>
                             <Min>4000</Min>
-                            <Max>4000</Max>
+                            <Max>1600000</Max>
                         </DataRate>
                     </GenericParameter>
                     <MeasurementID>0x10000001</MeasurementID>
