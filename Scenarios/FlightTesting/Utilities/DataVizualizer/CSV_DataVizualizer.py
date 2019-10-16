@@ -1,33 +1,90 @@
 import os
+import sys
+import time
+import argparse
 import csv
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-cwd = os.getcwd()
-csv_data = []
-sns.set(style="darkgrid")
-data_path = os.path.join(cwd, "data")
-for file in os.listdir(data_path):
-    ext = os.path.splitext(file)[-1].lower()
-    if ext == ".csv":
-        file_path = os.path.join(data_path, file)
-        with open(file_path, 'r') as f1:
-            csv_file = csv.reader(f1)
-            data_list = []
-            for row in csv_file:
-                data_list.extend(row)
-            csv_data.append(data_list)
-        break
 
-datasets = []
-for data in csv_data:
-    t = np.arange(len(data))
-    accel = np.fft.fft(data)
-    freq = np.fft.fftfreq(t.shape[-1])
-    data_dict = {'Frequency': freq, 'Acceleration': accel}
-    dataset = pd.DataFrame(data=data_dict)
-    sns.relplot(x='Frequency', y='Acceleration', data=dataset)
+def main(cli_args):
+    bad_data_path = cli_args.base_bad
+    corrected_data_path = cli_args.base_corrected
+    original_data_dict = {}
+    corrected_data_dict = {}
+    dataset = pd.DataFrame()
+    sns.set(style="darkgrid")
+    print(bad_data_path)
+    print(corrected_data_path)
+    for file in os.listdir(corrected_data_path):
+        file_path = os.path.join(corrected_data_path, file)
+        if os.path.isfile(file_path):
+            ext = os.path.splitext(file)[-1].lower()
+            if ext == ".csv":
+                with open(file_path, 'r') as f1:
+                    csv_file = csv.reader(f1)
+                    corrected_data = []
+                    channel_1 = []
+                    channel_2 = []
+                    channel_3 = []
+                    for row in csv_file:
+                        try:
+                            channel_1.append(float(row[0]))
+                            channel_2.append(float(row[1]))
+                            channel_3.append(float(row[2]))
+                        except ValueError:
+                            continue
+        corrected_data = [channel_1, channel_2, channel_3]
+        break
+    index = 0
+    for file in os.listdir(bad_data_path):
+        file_path = os.path.join(bad_data_path, file)
+        if os.path.isfile(file_path):
+            file_name = os.path.splitext(file)[0].lower()
+            ext = os.path.splitext(file)[-1].lower()
+            if ext == ".csv":
+
+                with open(file_path, 'r') as f1:
+                    csv_file = csv.reader(f1)
+                    value = []
+                    times = []
+                    for row in csv_file:
+                        try:
+                            value.append(int(row[0]))
+                            times.append(float(row[1]))
+                        except ValueError:
+                            continue
+                    time_array = np.asarray(times)
+                    original_dataset = pd.DataFrame({'value': np.asarray(value),
+                                                     'time': time_array})
+
+                    corrected_dataset = pd.DataFrame({'value': np.asarray(corrected_data[index]),
+                                                      'time': time_array})
+
+
+                    # original_data_dict[file_name] = {'value': np.asarray(value), 'time': np.asarray(times)}
+                    # corrected_data_dict[file_name] = {'time': np.asarray(times), 'value': np.asarray(corrected_data[index])}
+
+                dataset = pd.concat([dataset,
+                                      original_dataset.assign(source='original', data_channel=file_name),
+                                      corrected_dataset.assign(source='corrected', data_channel=file_name)],
+                                     axis=0,
+                                     ignore_index=False,
+                                     sort=False)
+                index = +1
+
+    g = sns.FacetGrid(dataset, col="source", row="data_channel", margin_titles=True)
+    g.map(plt.scatter, "time", "value")
     plt.show()
-    datasets.append(dataset)
+
+
+if __name__ == "__main__":
+    now = time.strftime("%Y%m%d_%H%M%S")
+    # Argument Parser Declarations
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-b', action='store', default=None, dest='base_bad', help='Path Base Acceleration Data in CSV format', type=str)
+    parser.add_argument('-bc', action='store', default=None, dest='base_corrected', help='Path Base Acceleration Data in CSV format', type=str)
+    cli_args = parser.parse_args()
+    main(cli_args)
