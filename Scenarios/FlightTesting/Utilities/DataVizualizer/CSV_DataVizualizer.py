@@ -8,22 +8,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def main(cli_args):
     bad_data_path = cli_args.base_bad
     corrected_data_path = cli_args.base_corrected
+    nominal_data_path = cli_args.base_nominal
     original_data_dict = {}
     corrected_data_dict = {}
     dataset = pd.DataFrame()
     sns.set(style="darkgrid")
-    print(bad_data_path)
-    print(corrected_data_path)
+
+
+
     for file in os.listdir(corrected_data_path):
-        file_path = os.path.join(corrected_data_path, file)
-        if os.path.isfile(file_path):
+        bad_file_path = os.path.join(corrected_data_path, file)
+        if os.path.isfile(bad_file_path):
             ext = os.path.splitext(file)[-1].lower()
             if ext == ".csv":
-                with open(file_path, 'r') as f1:
+                with open(bad_file_path, 'r') as f1:
                     csv_file = csv.reader(f1)
                     corrected_data = []
                     channel_1 = []
@@ -37,16 +38,41 @@ def main(cli_args):
                         except ValueError:
                             continue
         corrected_data = [channel_1, channel_2, channel_3]
-        break
+
+    for file in os.listdir(nominal_data_path):
+        nominal_file_path = os.path.join(nominal_data_path, file)
+
+        file_name = os.path.splitext(file)[0].lower()
+        ext = os.path.splitext(file)[-1].lower()
+        if ext == ".csv" and os.path.isfile(nominal_file_path):
+            with open(nominal_file_path, 'r') as f1:
+                csv_file = csv.reader(f1)
+                value = []
+                times = []
+                for row in csv_file:
+                    try:
+                        value.append(int(row[0]))
+                        times.append(float(row[1]))
+                    except ValueError:
+                        continue
+                time_array = np.asarray(times)
+                nominal_dataset = pd.DataFrame({'value': np.asarray(value),
+                                                 'time': time_array})
+
+            dataset = pd.concat([dataset, nominal_dataset.assign(source='nominal', data_channel=file_name)],
+                                axis=0,
+                                ignore_index=False,
+                                sort=False)
+
     index = 0
     for file in os.listdir(bad_data_path):
-        file_path = os.path.join(bad_data_path, file)
-        if os.path.isfile(file_path):
+        bad_file_path = os.path.join(bad_data_path, file)
+        if os.path.isfile(bad_file_path):
             file_name = os.path.splitext(file)[0].lower()
             ext = os.path.splitext(file)[-1].lower()
             if ext == ".csv":
 
-                with open(file_path, 'r') as f1:
+                with open(bad_file_path, 'r') as f1:
                     csv_file = csv.reader(f1)
                     value = []
                     times = []
@@ -84,7 +110,8 @@ if __name__ == "__main__":
     now = time.strftime("%Y%m%d_%H%M%S")
     # Argument Parser Declarations
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b', action='store', default=None, dest='base_bad', help='Path Base Acceleration Data in CSV format', type=str)
-    parser.add_argument('-bc', action='store', default=None, dest='base_corrected', help='Path Base Acceleration Data in CSV format', type=str)
+    parser.add_argument('-b', action='store', default=None, dest='base_bad', help='Path to incorrect Base Acceleration Data in CSV format', type=str)
+    parser.add_argument('-bc', action='store', default=None, dest='base_corrected', help='Path to synthesized Base Acceleration Data in CSV format', type=str)
+    parser.add_argument('-bn', action='store', default=None, dest='base_nominal', help='Path to ground truth Base Acceleration Data in CSV format', type=str)
     cli_args = parser.parse_args()
     main(cli_args)
