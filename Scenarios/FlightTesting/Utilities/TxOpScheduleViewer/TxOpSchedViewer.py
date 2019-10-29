@@ -360,7 +360,7 @@ def print_link_info(link, row, cp):
         if int(score_data["Latency"]["max_thd"]) == 1000000.0:
             link_info_pad.addstr(row+1, 84, "N/A", txt_color)
         else:
-            link_info_pad.addstr(row+1, 84, "{0:.3f} ms".format(int(score_data["Latency"]["max_thd"]) / 1000),
+            link_info_pad.addstr(row+1, 84, "{0:.3f} ms".format(int(score_data["Latency"]["max_thd"])),
                                  txt_color)
     
         if link.max_latency_usec == 0:
