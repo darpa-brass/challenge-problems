@@ -8,6 +8,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+
+def normalize_time(time_list):
+    start_time = time_list[0]
+    time = [x - start_time for x in time_list]
+    return time
+
+
 def main(cli_args):
     bad_data_path = cli_args.base_bad
     corrected_data_path = cli_args.base_corrected
@@ -37,6 +44,7 @@ def main(cli_args):
                             channel_3.append(float(row[2]))
                         except ValueError:
                             continue
+
         corrected_data = [channel_1, channel_2, channel_3]
 
     for file in os.listdir(nominal_data_path):
@@ -55,11 +63,14 @@ def main(cli_args):
                         times.append(float(row[1]))
                     except ValueError:
                         continue
-                time_array = np.asarray(times)
-                nominal_dataset = pd.DataFrame({'value': np.asarray(value),
-                                                 'time': time_array})
+                time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
+                nominal_data = np.mean(np.asarray(value).reshape(-1, 61), axis=1)
 
-            dataset = pd.concat([dataset, nominal_dataset.assign(source='nominal', data_channel=file_name)],
+                nominal_dataset = pd.DataFrame({'value':nominal_data,
+                                                'time': time_array}).assign(source='nominal',
+                                                                            data_channel=file_name)
+
+            dataset = pd.concat([dataset, nominal_dataset],
                                 axis=0,
                                 ignore_index=False,
                                 sort=False)
@@ -82,27 +93,28 @@ def main(cli_args):
                             times.append(float(row[1]))
                         except ValueError:
                             continue
-                    time_array = np.asarray(times)
-                    original_dataset = pd.DataFrame({'value': np.asarray(value),
-                                                     'time': time_array})
+                    time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
+                    original_data =np.mean(np.asarray(value).reshape(-1, 61), axis=1)
+                    modified_correction = np.mean(np.asarray(corrected_data[index]).reshape(-1, 61), axis=1)
 
-                    corrected_dataset = pd.DataFrame({'value': np.asarray(corrected_data[index]),
-                                                      'time': time_array})
+                    original_dataset = pd.DataFrame({'value': original_data,
+                                                     'time': time_array}).assign(source='original',
+                                                                                 data_channel=file_name)
 
+                    corrected_dataset = pd.DataFrame({'value': modified_correction,
+                                                      'time': time_array}).assign(source='corrected',
+                                                                                 data_channel=file_name)
 
-                    # original_data_dict[file_name] = {'value': np.asarray(value), 'time': np.asarray(times)}
-                    # corrected_data_dict[file_name] = {'time': np.asarray(times), 'value': np.asarray(corrected_data[index])}
 
                 dataset = pd.concat([dataset,
-                                      original_dataset.assign(source='original', data_channel=file_name),
-                                      corrected_dataset.assign(source='corrected', data_channel=file_name)],
-                                     axis=0,
-                                     ignore_index=False,
-                                     sort=False)
+                                    original_dataset,
+                                    corrected_dataset],
+                                    axis=0,
+                                    ignore_index=False,
+                                    sort=False)
                 index = +1
 
-    g = sns.FacetGrid(dataset, col="source", row="data_channel", margin_titles=True)
-    g.map(plt.scatter, "time", "value")
+    sns.relplot(x="time", y="value", hue="source",  col="data_channel", data=dataset)
     plt.show()
 
 
