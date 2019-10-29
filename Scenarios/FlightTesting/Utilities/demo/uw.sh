@@ -1,6 +1,8 @@
 #!/bin/bash
-python uw.py
+python3 uw.py
 
-mkdir uw
+mkdir -p uw
 unzip BambooEvaluationInput.zip -d uw
-python ../TxOpScheduleViewer/TxOpSchedViewer.py ta_1.mdl -s score_1.json
+rm BambooEvaluationInput.zip
+
+python3 ../TxOpScheduleViewer/TxOpSchedViewer.py ./uw/BambooEvaluationInput/ta_schedule_output_2.mdl -s ./uw/BambooEvaluationInput/score_2.json
