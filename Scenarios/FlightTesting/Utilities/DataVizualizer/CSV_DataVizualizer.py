@@ -26,28 +26,24 @@ def main(cli_args):
 
 
 
-    for file in os.listdir(corrected_data_path):
-        bad_file_path = os.path.join(corrected_data_path, file)
-        if os.path.isfile(bad_file_path):
-            ext = os.path.splitext(file)[-1].lower()
-            if ext == ".csv":
-                with open(bad_file_path, 'r') as f1:
-                    csv_file = csv.reader(f1)
-                    corrected_data = []
-                    channel_1 = []
-                    channel_2 = []
-                    channel_3 = []
-                    for row in csv_file:
-                        try:
-                            channel_1.append(float(row[0]))
-                            channel_2.append(float(row[1]))
-                            channel_3.append(float(row[2]))
-                        except ValueError:
-                            continue
 
-        corrected_data = [channel_1, channel_2, channel_3]
+    with open(corrected_data_path, 'r') as f1:
+        csv_file = csv.reader(f1)
+        corrected_data = []
+        channel_1 = []
+        channel_2 = []
+        channel_3 = []
+        for row in csv_file:
+            try:
+                channel_1.append(float(row[0]))
+                channel_2.append(float(row[1]))
+                channel_3.append(float(row[2]))
+            except ValueError:
+                continue
 
-    for file in os.listdir(nominal_data_path):
+    corrected_data = [channel_1, channel_2, channel_3]
+
+    for file in sorted(os.listdir(nominal_data_path)):
         nominal_file_path = os.path.join(nominal_data_path, file)
 
         file_name = os.path.splitext(file)[0].lower()
@@ -57,12 +53,14 @@ def main(cli_args):
                 csv_file = csv.reader(f1)
                 value = []
                 times = []
+                
                 for row in csv_file:
                     try:
                         value.append(int(row[0]))
                         times.append(float(row[1]))
                     except ValueError:
                         continue
+                        
                 time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
                 nominal_data = np.mean(np.asarray(value).reshape(-1, 61), axis=1)
 
@@ -87,14 +85,16 @@ def main(cli_args):
                     csv_file = csv.reader(f1)
                     value = []
                     times = []
+                    
                     for row in csv_file:
                         try:
                             value.append(int(row[0]))
                             times.append(float(row[1]))
                         except ValueError:
                             continue
+                            
                     time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
-                    original_data =np.mean(np.asarray(value).reshape(-1, 61), axis=1)
+                    original_data = np.mean(np.asarray(value).reshape(-1, 61), axis=1)
                     modified_correction = np.mean(np.asarray(corrected_data[index]).reshape(-1, 61), axis=1)
 
                     original_dataset = pd.DataFrame({'value': original_data,
@@ -105,14 +105,21 @@ def main(cli_args):
                                                       'time': time_array}).assign(source='corrected',
                                                                                  data_channel=file_name)
 
-
-                dataset = pd.concat([dataset,
-                                    original_dataset,
-                                    corrected_dataset],
+                if index == 0:
+                    dataset = pd.concat([dataset, original_dataset, corrected_dataset],
                                     axis=0,
                                     ignore_index=False,
                                     sort=False)
-                index = +1
+                    length = len(original_dataset['value'])
+                    
+                    print("Average percentage error:")
+                    print((sum(original_dataset['value']-corrected_dataset['value'])/length) / (sum(original_dataset['value'])/length))
+                else:
+                    dataset = pd.concat([dataset, original_dataset],
+                                    axis=0,
+                                    ignore_index=False,
+                                    sort=False) 
+                index += 1
 
     sns.relplot(x="time", y="value", hue="source",  col="data_channel", data=dataset)
     plt.show()
