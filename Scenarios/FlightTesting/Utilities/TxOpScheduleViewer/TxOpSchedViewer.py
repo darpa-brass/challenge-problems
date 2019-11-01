@@ -382,7 +382,7 @@ def print_link_info(link, row, cp):
                              BOLD | curses.A_REVERSE)
         link_info_pad.addstr(row+4, 84, "{0:0.3f} Mbps".format(link.alloc_bw_mbps), txt_color)
     else:
-        qp_ac_mbps = int(score_data["Bandwidth"]["min_thd"]) / 1000000    # get QoS Policy rate in Mbps
+        qp_ac_mbps = int(score_data["Bandwidth"]["min_thd"]) / 1000    # get QoS Policy rate in Mbps
         link_info_pad.addstr(row+3, 84, "{0:0.3f} Mbps".format(qp_ac_mbps), txt_color)
         
         if qp_ac_mbps <= link.alloc_bw_mbps:
