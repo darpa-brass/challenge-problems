@@ -1,0 +1,15 @@
+{
+  "namespaces": {
+    "mdl": "http://www.wsmr.army.mil/RCC/schemas/MDL"
+  },
+  "objects": {
+    "(//mdl:Port)[@ID = 'port-sigcond1-j1-ch1']": {
+	    "depth": 1
+    },
+    "(//mdl:PortMapping)[1]": {
+    },
+    "(//mdl:Measurement)[1]": {
+	    "depth": 1
+    }
+  }
+}

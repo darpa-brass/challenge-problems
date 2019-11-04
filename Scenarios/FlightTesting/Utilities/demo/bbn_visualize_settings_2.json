@@ -1,0 +1,15 @@
+{
+  "namespaces": {
+    "mdl": "http://www.wsmr.army.mil/RCC/schemas/MDL"
+  },
+  "objects": {
+    "(//mdl:Port)[@ID = 'inventory-port-sigcond2-j2-ch2']": {
+	    "depth": 1
+    },
+    "(//mdl:PortMapping)[1]": {
+    },
+    "(//mdl:Measurement)[@ID = 'meas-signal-16-250-e5224a9b-4']": {
+	    "depth": 1
+    }
+  }
+}
