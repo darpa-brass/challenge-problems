@@ -11,11 +11,13 @@ import seaborn as sns
 
 def normalize_time(time_list):
     start_time = time_list[0]
-    time = [x - start_time for x in time_list]
+    time = [(x - start_time)/10**9 for x in time_list]
     return time
 
 
 def main(cli_args):
+    time_label = ('Time(s)')
+    value_label = ('Acceleration(m/s^2)')
     bad_data_path = cli_args.base_bad
     corrected_data_path = cli_args.base_corrected
     nominal_data_path = cli_args.base_nominal
@@ -64,9 +66,9 @@ def main(cli_args):
                 time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
                 nominal_data = np.mean(np.asarray(value).reshape(-1, 61), axis=1)
 
-                nominal_dataset = pd.DataFrame({'value':nominal_data,
-                                                'time': time_array}).assign(source='nominal',
-                                                                            data_channel=file_name)
+                nominal_dataset = pd.DataFrame({value_label: nominal_data,
+                                                time_label: time_array}).assign(source='Ground Truth',
+                                                                                data_channel=file_name)
 
             dataset = pd.concat([dataset, nominal_dataset],
                                 axis=0,
@@ -92,36 +94,44 @@ def main(cli_args):
                             times.append(float(row[1]))
                         except ValueError:
                             continue
-                            
+                    print()
                     time_array = np.mean(np.asarray(normalize_time(times)).reshape(-1, 61), axis=1)
                     original_data = np.mean(np.asarray(value).reshape(-1, 61), axis=1)
                     modified_correction = np.mean(np.asarray(corrected_data[index]).reshape(-1, 61), axis=1)
 
-                    original_dataset = pd.DataFrame({'value': original_data,
-                                                     'time': time_array}).assign(source='original',
+
+                    original_dataset = pd.DataFrame({value_label: original_data,
+                                                     time_label: time_array}).assign(source='Original',
                                                                                  data_channel=file_name)
 
-                    corrected_dataset = pd.DataFrame({'value': modified_correction,
-                                                      'time': time_array}).assign(source='corrected',
-                                                                                 data_channel=file_name)
+                    corrected_dataset = pd.DataFrame({value_label: modified_correction,
+                                                      time_label: time_array}).assign(source='Adapted',
+                                                                                      data_channel=file_name)
+
+                # dataset = pd.concat([dataset, original_dataset, corrected_dataset],
+                #                     axis=0,
+                #                     ignore_index=False,
+                #                     sort=False)
 
                 if index == 0:
+
                     dataset = pd.concat([dataset, original_dataset, corrected_dataset],
-                                    axis=0,
-                                    ignore_index=False,
-                                    sort=False)
-                    length = len(original_dataset['value'])
-                    
+                                        axis=0,
+                                        ignore_index=False,
+                                        sort=False)
+
+                    length = len(original_dataset[value_label])
                     print("Average percentage error:")
-                    print((sum(original_dataset['value']-corrected_dataset['value'])/length) / (sum(original_dataset['value'])/length))
+                    print((sum(original_dataset[value_label]-corrected_dataset[value_label])/length) / (sum(original_dataset[value_label])/length))
                 else:
                     dataset = pd.concat([dataset, original_dataset],
-                                    axis=0,
-                                    ignore_index=False,
-                                    sort=False) 
+                                        axis=0,
+                                        ignore_index=False,
+                                        sort=False)
+
                 index += 1
 
-    sns.relplot(x="time", y="value", hue="source",  col="data_channel", data=dataset)
+    sns.relplot(x=time_label, y=value_label, hue="source",  col="data_channel", data=dataset)
     plt.show()
 
 
